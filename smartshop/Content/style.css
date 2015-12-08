@@ -30,10 +30,10 @@ body {
         background-color: #009688;
     }
 
-    .navbar-inverse .navbar-nav > .active > a:focus {
-        color: #FFFFFF;
-        background-color: #009688;
-    }
+        .navbar-inverse .navbar-nav > .active > a:focus {
+            color: #FFFFFF;
+            background-color: #009688;
+        }
 
     .navbar-inverse .navbar-nav > li > a:hover {
         color: #FFFFFF;
@@ -63,7 +63,12 @@ a.a-link {
 
     a.a-link:hover {
         text-decoration: none;
-        background-color: #65c3ba;
+        background-color: #009999;
+    }
+
+    a.a-link:focus {
+        text-decoration: none;
+        background-color: #009999;
     }
 
 .panel-heading-custom {
@@ -79,7 +84,7 @@ a.a-link {
 
 a.panel-menu {
     color: white;
-    background-color: #83d0c9;
+    background-color: #65c3ba;
     display: block;
     padding: 15px;
     margin: 0 !important;
@@ -87,25 +92,44 @@ a.panel-menu {
 
     a.panel-menu:hover {
         text-decoration: none;
-        background-color: #65c3ba;
+        background-color: #009688;
     }
 
     a.panel-menu:focus {
         text-decoration: none;
+        background-color: #009688;
     }
 
 img.secimages {
     width: 300px;
     height: 300px;
 }
+img.imagesshop {
+    width: 620px;
+    height: 670px;
+    /*margin-left: 700px;*/
+}
+p.textsen {
+
+} 
 
 .detail-custom {
     padding: 5px;
 }
+
 footer {
     background-color: gray;
+    color: #FFFFFF;
 }
+
 .click {
     color: white;
     margin-left: 10px;
+}
+.input-group {
+    width: 350px;
+}
+img.adds {
+width: 100px;
+height: 100px;
 }

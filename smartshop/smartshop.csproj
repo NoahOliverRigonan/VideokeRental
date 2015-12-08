@@ -195,11 +195,16 @@
     <Content Include="images\bed.jpg" />
     <Content Include="images\button.jpg" />
     <Content Include="images\cart.ico" />
+    <Content Include="images\dancer.jpeg" />
     <Content Include="images\gadgets.jpg" />
+    <Content Include="images\heat.jpeg" />
     <Content Include="images\howitworks.jpg" />
+    <Content Include="images\iphone.jpeg" />
     <Content Include="images\jansport.jpg" />
     <Content Include="images\logo.jpg" />
+    <Content Include="images\purel.jpeg" />
     <Content Include="images\save.jpg" />
+    <Content Include="images\shopping.jpeg" />
     <Content Include="images\sofa.jpg" />
     <Content Include="images\store.png" />
     <Content Include="images\tables.jpg" />
