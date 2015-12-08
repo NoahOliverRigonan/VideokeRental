@@ -104,5 +104,8 @@ img.secimages {
 }
 footer {
     background-color: gray;
-    padding-top: 20px;
+}
+.click {
+    color: white;
+    margin-left: 10px;
 }
