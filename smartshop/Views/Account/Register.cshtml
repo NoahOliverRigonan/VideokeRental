@@ -23,12 +23,11 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li><a href="@Url.Action("Index","Home")">Home </a></li>
-                        <li><a href="about.html">About us </a></li>
-                        <li><a href="#">Contact us</a></li>
+                        <li><a href="@Url.Action("About","Home")">About</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="active"><a href="@Url.Action("Register", "Account")"> Sign Up</a></li>
-                        <li><a href="@Url.Action("Login", "Account")"> Login</a></li>
+                        <li><a href="@Url.Action("Login", "Account")"> Log in</a></li>
                     </ul>
                 </div>
             </div>
@@ -46,7 +45,7 @@
                     <div class="panel-heading"><h4><b>Sign up</b></h4></div>
                     <div class="panel-body">
                         @model smartshop.Models.RegisterViewModel
-                        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        @using (Html.BeginForm("Sign up", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                         {
                             @Html.AntiForgeryToken()
                             <form role="form">
@@ -65,7 +64,7 @@
                                 </div>
                                 <br />
                                 @*<button type="submit" class="btn btn-primary btn-block btn-lg">Signup</button>*@
-                                <input type="submit" class="btn btn-primary" value="Register" />
+                                <input type="submit" class="btn btn-success btn-block btn-lg"  value=" Register" />
                             </form>
                         }
                     </div>

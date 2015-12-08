@@ -23,12 +23,11 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li><a href="@Url.Action("Index","Home")">Home </a></li>
-                        <li><a href="about.html">About us </a></li>
-                        <li><a href="#">Contact us</a></li>
+                        <li><a href="@Url.Action("About","Home")">About</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="@Url.Action("Register", "Account")"> Sign Up</a></li>
-                        <li class="active"><a href="@Url.Action("Login", "Account")"> Login</a></li>
+                        <li class="active"><a href="@Url.Action("Login", "Account")"> Log in</a></li>
                     </ul>
                 </div>
             </div>
@@ -47,7 +46,7 @@
                     <div class="panel-body">
                         @using smartshop.Models
                         @model LoginViewModel
-                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        @using (Html.BeginForm("Log in", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                         {
                             @Html.AntiForgeryToken()
                             <form role="form">
@@ -68,7 +67,7 @@
                                 </div>
                                 <br />
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                <input type="submit" class="btn btn-primary btn-block btn-lg" value="login">
+                                <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">
                             </form>
                         }
                     </div>

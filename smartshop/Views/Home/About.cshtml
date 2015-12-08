@@ -1,17 +1,49 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <title>About</title>
 
+    <!-- css -->
+    @Styles.Render("~/Content/stylesheets")
 </head>
 <body>
-    
+    <!-- navbar menu -->
+    <div class="container">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="@Url.Action("Index","Home")" class="navbar-brand"><b>smartSHOP.com</b></a>
+                    @*<img src="../images/store.png" alt="Flower" class="navcode">*@
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="@Url.Action("Index","Home")">Home </a></li>
+                        <li class="active"><a href="@Url.Action("About","Home")">About</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="@Url.Action("Register", "Account")"> Sign Up</a></li>
+                        <li><a href="@Url.Action("Login", "Account")"> Log in</a></li>
+                        @*@Html.Partial("_LoginPartial")*@
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- scripts -->
+    @Scripts.Render("~/Scripts/js")
 </body>
 </html>
 
 @*@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+        ViewBag.Title = "About";
+    }
+    <h2>@ViewBag.Title.</h2>
+    <h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>*@
+    <p>Use this area to provide additional information.</p>*@

@@ -8,7 +8,7 @@
 </head>
 <body>
     <!-- navbar menu -->
-    <div class="container">
+    <div class="container">     
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -23,9 +23,8 @@
                 <div class="collapse navbar-collapse" id="myNavbar">
 
                     <ul class="nav navbar-nav"> 
-                        <li class="active"><a href="#">Home </a></li>
-                        <li><a href="about.html">About us </a></li>
-                        <li><a href="#">Contact us</a></li>
+                        <li class="active"><a href="@Url.Action("Index","Home")">Home </a></li>
+                        <li><a href="@Url.Action("About","Home")">About</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         @*<li><a href="@Url.Action("Register", "Account")"> Sign Up</a></li>
@@ -98,7 +97,7 @@
             </div>
 
 
-            @*             -----> search             *@
+            @*      -----> search    *@
             <div class="col-md-7">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="search item">
@@ -121,19 +120,19 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox" align="center">
                         <div class="item active">
-                            <img src="../images/Desert.jpg" alt="Chania" class="carouselImage">
+                            <img src="../images/howitworks.jpg" alt="works" class="carouselImage">
                         </div>
 
                         <div class="item">
-                            <img src="../images/Hydrangeas.jpg" alt="Chania" class="carouselImage">
+                            <img src="../images/save.jpg" alt="save" class="carouselImage">
                         </div>
 
                         <div class="item">
-                            <img src="../images/Jellyfish.jpg" alt="Flower" class="carouselImage">
+                            <img src="../images/type.jpg" alt="type" class="carouselImage">
                         </div>
 
                         <div class="item">
-                            <img src="../images/Penguins.jpg" alt="Flower" class="carouselImage">
+                            <img src="../images/button.jpg" alt="button" class="carouselImage">
                         </div>
                     </div>
 
@@ -189,17 +188,17 @@
                 <div class="col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <center><img src="../images/tables.jpg" class="secimages"></center>
+                            <center><img src="../images/gadgets.jpg" class="secimages"></center>
                         </div>
-                        <div class="panel-footer">Panel Footer</div>
+                        <div class="panel-footer">Gadgets</div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <center><img src="../images/sofa.jpg" class="secimages"></center>
+                            <center><img src="../images/jansport.jpg" class="secimages"></center>
                         </div>
-                        <div class="panel-footer">Panel Footer</div>
+                        <div class="panel-footer">Bags</div>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -207,7 +206,7 @@
                         <div class="panel-body">
                             <center><img src="../images/wood.jpg" class="secimages"> </center>
                         </div>
-                        <div class="panel-footer">Panel Footer</div>
+                        <div class="panel-footer">Furniture</div>
                     </div>
                 </div>
             </div>
