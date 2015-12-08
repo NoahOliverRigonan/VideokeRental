@@ -193,6 +193,7 @@
     <Content Include="images\Desert.jpg" />
     <Content Include="images\Hydrangeas.jpg" />
     <Content Include="images\Jellyfish.jpg" />
+    <Content Include="images\logo.jpg" />
     <Content Include="images\Penguins.jpg" />
     <Content Include="images\sofa.jpg" />
     <Content Include="images\store.png" />
