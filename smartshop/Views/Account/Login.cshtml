@@ -45,21 +45,32 @@
                 <div class="panel panel-info">
                     <div class="panel-heading"><h4><b>Log in</b></h4></div>
                     <div class="panel-body">
-                        <form role="form">
-                            <div class="form-group">
+                        @using smartshop.Models
+                        @model LoginViewModel
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <form role="form">
                                 <label for="email">Email address:</label>
-                                <input type="email" class="form-control" id="email">
-                            </div>
-                            <div class="form-group">
+                                @*<input type="email" class="form-control" id="email">*@
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                <br />
                                 <label for="pwd">Password:</label>
-                                <input type="password" class="form-control" id="pwd">
-                            </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox"> Remember me</label>
-                            </div>
-                            <br />
-                            <button type="submit" class="btn btn-primary btn-block btn-lg">Login</button>
-                        </form>
+                                @*<input type="password" class="form-control" id="pwd">*@
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                <br />
+                                <div class="checkbox">
+                                    @*<label><input type="checkbox"> Remember me</label>*@
+                                    @Html.CheckBoxFor(m => m.RememberMe)
+                                    @Html.LabelFor(m => m.RememberMe)
+                                </div>
+                                <br />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <input type="submit" class="btn btn-primary btn-block btn-lg" value="login">
+                            </form>
+                        }
                     </div>
                     <div class="panel-footer">
                         <a href="#">Forgot Password?</a>
@@ -68,8 +79,8 @@
             </div>
             <div class="col-md-4"></div>
         </div>
-        
-       
+
+
     </div>
 
     <!-- scripts -->

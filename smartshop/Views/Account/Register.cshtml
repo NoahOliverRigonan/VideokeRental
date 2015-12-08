@@ -28,7 +28,7 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="active"><a href="@Url.Action("Register", "Account")"> Sign Up</a></li>
-                        <li ><a href="@Url.Action("Login", "Account")"> Login</a></li>
+                        <li><a href="@Url.Action("Login", "Account")"> Login</a></li>
                     </ul>
                 </div>
             </div>
@@ -45,39 +45,29 @@
                 <div class="panel panel-info">
                     <div class="panel-heading"><h4><b>Sign up</b></h4></div>
                     <div class="panel-body">
-                        <form role="form">
-                            <div class="form-group">
-                                <label for="firstname">First Name: </label>
-                                <input type="text" class="form-control" id="firstname">
-                            </div>
-                            <div class="form-group">
-                                <label for="lastname">Last Name: </label>
-                                <input type="text" class="form-control" id="lastname">
-                            </div>
-                            <div class="form-group">
-                                <label for="lastname">Birthdate: </label>
-                                <input type="date" class="form-control" id="date">
-                            </div>
-                            <div class="form-group">
-                                <label for="gender">Gender: </label><br />
-                                <label class="radio-inline"><input type="radio" name="Gender"> Male</label>
-                                <label class="radio-inline"><input type="radio" name="Gender"> Famale</label>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email Address: </label>
-                                <input type="email" class="form-control" id="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Password: </label>
-                                <input type="password" class="form-control" id="password">
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Confirm Password: </label>
-                                <input type="password" class="form-control" id="password">
-                            </div>
-                             <br />
-                            <button type="submit" class="btn btn-primary btn-block btn-lg">Signup</button>
-                        </form>
+                        @model smartshop.Models.RegisterViewModel
+                        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <form role="form">
+                                <div>
+                                    <label for="email">Email Address: </label>
+                                    @*<input type="email" class="form-control" id="email">*@
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                    <br />
+                                    <label for="pwd">Password: </label>
+                                    @*<input type="password" class="form-control" id="password">*@
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                    <br />
+                                    <label for="pwd">Confirm Password: </label>
+                                    @*<input type="password" class="form-control" id="password">*@
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                </div>
+                                <br />
+                                @*<button type="submit" class="btn btn-primary btn-block btn-lg">Signup</button>*@
+                                <input type="submit" class="btn btn-primary" value="Register" />
+                            </form>
+                        }
                     </div>
                     <div class="panel-footer">
                         <a href="#">Footer</a>
@@ -96,43 +86,43 @@
 </html>
 
 @*@model smartshop.Models.RegisterViewModel
-@{
-    ViewBag.Title = "Register";
-}
+    @{
+        ViewBag.Title = "Register";
+    }
 
-<h2>@ViewBag.Title.</h2>
+    <h2>@ViewBag.Title.</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Create a new account.</h4>
+        <hr />
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Register" />
+            </div>
         </div>
-    </div>
-}
+    }
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}*@
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@

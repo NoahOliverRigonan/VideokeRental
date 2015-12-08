@@ -27,8 +27,9 @@
                         <li><a href="#">Contact us</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="@Url.Action("Register", "Account")"> Sign Up</a></li>
-                        <li><a href="@Url.Action("Login", "Account")"> Login</a></li>
+                        @*<li><a href="@Url.Action("Register", "Account")"> Sign Up</a></li>
+                        <li><a href="@Url.Action("Login", "Account")"> Login</a></li>*@
+                        @Html.Partial("_LoginPartial")
                     </ul>
                 </div>
             </div> 
