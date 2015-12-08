@@ -102,3 +102,7 @@ img.secimages {
 .detail-custom {
     padding: 5px;
 }
+footer {
+    background-color: gray;
+    padding-top: 20px;
+}
