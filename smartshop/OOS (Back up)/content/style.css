@@ -1,0 +1,78 @@
+body {
+  font-family: Tahoma;
+}
+.carouselImage {
+	width: 100%;
+}
+.navbar-inverse {
+	background-color: #35a79c;
+	border: 0 !important;
+}
+.navbar-inverse .navbar-brand {
+	color: #FFFFFF;
+}
+.navbar-inverse .navbar-nav > li > a {
+	color: #FFFFFF;
+}
+.navbar-inverse .navbar-nav > .active > a  {
+	color: #FFFFFF;
+	background-color: #009688;
+}
+.navbar-inverse .navbar-nav > li > a:hover {
+	color: #FFFFFF;
+	background-color: #009688;
+}
+.navbar-inverse .navbar-nav > .active > a:hover  {
+	color: #FFFFFF;
+	background-color: #009688;
+}
+
+/* Side bar menu */
+.div-menu-custom {
+  text-decoration: none;
+  list-style-type: none;
+  background-color: #83d0c9;
+  padding-left: 0 !important;
+}
+
+a.a-link {
+  color: white;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 35px;
+  display: block;
+}
+a.a-link:hover {
+  text-decoration: none;
+  background-color: #65c3ba;
+}
+.panel-heading {
+  background-color:  #83d0c9;
+  text-decoration: none;
+  padding: 0 !important;
+  margin: 0 !important;
+
+}
+.panel-default {
+  margin: 0 !important;
+}
+a.panel-menu {
+  color: white;
+  background-color: #83d0c9;
+  display: block;
+  padding: 15px;
+  margin: 0 !important;
+}
+a.panel-menu:hover {
+  text-decoration: none;
+  background-color: #65c3ba;
+}
+a.panel-menu:focus {
+  text-decoration: none;
+}
+img.secimages {
+  width: 300px;
+  height: 300px;
+}
+
+
