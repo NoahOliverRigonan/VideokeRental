@@ -17,10 +17,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
-                    <img src="../images/store.png" alt="Flower" class="navcode">
+                    <a href="@Url.Action("Index","Home")" class="navbar-brand"><b>smartSHOP.com</b></a>
+                    @*<img src="../images/store.png" alt="Flower" class="navcode">*@
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
+
                     <ul class="nav navbar-nav"> 
                         <li class="active"><a href="#">Home </a></li>
                         <li><a href="about.html">About us </a></li>
@@ -95,9 +96,12 @@
                     </div>
                 </div>
             </div>
+
+
+            @*             -----> search             *@
             <div class="col-md-7">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="search diri">
+                    <input type="text" class="form-control" placeholder="search item">
                     <div class="input-group-btn">
                         <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Search</button>
                     </div>
