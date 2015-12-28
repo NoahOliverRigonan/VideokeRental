@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(smartshop.Startup))]
-namespace smartshop
+[assembly: OwinStartupAttribute(typeof(VideokeRental.Startup))]
+namespace VideokeRental
 {
     public partial class Startup
     {

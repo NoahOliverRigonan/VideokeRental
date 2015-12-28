@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using smartshop.Models;
+using VideokeRental.Models;
 
-namespace smartshop
+namespace VideokeRental
 {
     public class EmailService : IIdentityMessageService
     {
@@ -53,9 +53,9 @@ namespace smartshop
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
-                RequiredLength = 20,
+                RequiredLength = 6,
                 //RequireNonLetterOrDigit = true,
-                //RequireDigit = true,
+                RequireDigit = true,
                 //RequireLowercase = true,
                 //RequireUppercase = true,
             };

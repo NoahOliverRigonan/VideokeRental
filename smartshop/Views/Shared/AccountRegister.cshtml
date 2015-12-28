@@ -1,0 +1,110 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <section>
+        @{ Response.Redirect("~/Software/Index");}
+    </section>
+}
+else
+{
+    <div class="header-wrapper">
+        <div class="container">
+            <ul>
+                @*<li><a href="@Url.Action("Register", "Account")"> Sign Up</a></li>
+                    <li><a href="@Url.Action("Login", "Account")"> Login</a></li>*@
+                @Html.Partial("_LoginPartial")
+            </ul>
+        </div>
+    </div>
+    <!-- navbar menu -->
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="@Url.Action("Index","Home")" class="navbar-brand"><b>VideoK-RENTAL.com</b></a>
+                @*<img src="../images/store.png" alt="Flower" class="navcode">*@
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="@Url.Action("Index","Home")">Home </a></li>
+                    <li><a href="@Url.Action("About","Home")">About</a></li>
+                </ul>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading"><h4><b>Sign up</b></h4></div>
+                    <div class="panel-body">
+                        @using VideokeRental.Models
+                        @model RegisterViewModel
+                        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <form role="form">
+                                <div>
+                                    <label for="name">Full Name: </label>
+                                    <input type="text" class="form-control" id="name">
+                                    <br />
+                                    <label for="email">Email Address: </label>
+                                    @*<input type="email" class="form-control" id="email">*@
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                    <br />
+                                    <label for="pwd">Password: </label>
+                                    @*<input type="password" class="form-control" id="password">*@
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                    <br />
+                                    <label for="pwd">Confirm Password: </label>
+                                    @*<input type="password" class="form-control" id="password">*@
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                </div>
+                                <br />
+                                @*<button type="submit" class="btn btn-primary btn-block btn-lg">Signup</button>*@
+                                <input type="submit" class="btn btn-success btn-block btn-lg" value=" Register" />
+                            </form>
+                        }
+                    </div>
+                    <div class="panel-footer">
+                        By clicking this button, you agree to smartSHOP's
+                        <a href="#">Privacy Policy</a>
+                        &
+                        <a href="#">Terms of Use</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12"></div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>  version 1.0 - © copyright
+                </div>
+            </div>
+        </div>
+    </footer>
+}

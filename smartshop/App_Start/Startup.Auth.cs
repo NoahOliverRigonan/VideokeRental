@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using smartshop.Models;
+using VideokeRental.Models;
 
-namespace smartshop
+namespace VideokeRental
 {
     public partial class Startup
     {

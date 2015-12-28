@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace smartshop.Controllers
+namespace VideokeRental.Controllers
 {
     public class HomeController : Controller
     {

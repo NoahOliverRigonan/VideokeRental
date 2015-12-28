@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using smartshop.Models;
+using VideokeRental.Models;
 
-namespace smartshop.Controllers
+namespace VideokeRental.Controllers
 {
     [Authorize]
     public class ManageController : Controller
