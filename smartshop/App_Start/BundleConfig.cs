@@ -14,7 +14,9 @@ namespace VideokeRental
             bundles.Add(new StyleBundle("~/Content/stylesheets").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap.min.css",
-                      "~/Content/style.css"
+                      "~/Content/style.css",
+                      "~/Content/jquery.dataTables.css",
+                      "~/Content/jquery.dataTables.min.css"
                       ));
 
             // ===================
@@ -28,7 +30,9 @@ namespace VideokeRental
                      "~/Scripts/carousel.js",
                      "~/Scripts/collapse.js",
                      "~/Scripts/dropdown.js",
-                     "~/Scripts/transition.js"
+                     "~/Scripts/transition.js",
+                     "~/Scripts/jquery.dataTables.js",
+                     "~/Scripts/jquery.dataTables.min.js"
                      ));
 
             bundles.Add(new StyleBundle("~/font-awesome/fonts").Include(

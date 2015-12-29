@@ -136,3 +136,9 @@ img.adds {
 width: 100px;
 height: 100px;
 }
+/*data tables*/
+.tablecolor {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    background-color: #35a79c;
+}

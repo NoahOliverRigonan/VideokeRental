@@ -7,11 +7,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using VideokeRental.Models;
+using VideokeRental.Controllers;
 
 namespace VideokeRental.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : UserAccountController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

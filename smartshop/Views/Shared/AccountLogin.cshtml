@@ -59,10 +59,10 @@ else
                         {
                             @Html.AntiForgeryToken()
                             <form role="form">
-                                <label for="email">Email address:</label>
+                                <label for="email">Username:</label>
                                 @*<input type="email" class="form-control" id="email">*@
-                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                                 <br />
                                 <label for="pwd">Password:</label>
                                 @*<input type="password" class="form-control" id="pwd">*@

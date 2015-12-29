@@ -9,11 +9,13 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using VideokeRental.Models;
+using System.Diagnostics;
+using VideokeRental.Controllers;
 
 namespace VideokeRental.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : UserAccountController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
@@ -75,7 +77,7 @@ namespace VideokeRental.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -151,7 +153,12 @@ namespace VideokeRental.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser 
+                {
+                    FullName = model.FullName,
+                    UserName = model.UserName,
+                    Email = model.Email
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -166,6 +173,7 @@ namespace VideokeRental.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
+                Debug.WriteLine(result);
             }
 
             // If we got this far, something failed, redisplay form
