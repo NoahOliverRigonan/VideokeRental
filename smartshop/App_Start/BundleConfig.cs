@@ -31,6 +31,7 @@ namespace VideokeRental
                      "~/Scripts/collapse.js",
                      "~/Scripts/dropdown.js",
                      "~/Scripts/transition.js",
+                     "~/Scripts/popover.js",
                      "~/Scripts/jquery.dataTables.js",
                      "~/Scripts/jquery.dataTables.min.js"
                      ));

@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer</title>
+
+    <!-- css -->
+    @Styles.Render("~/Content/stylesheets")
+    @Styles.Render("~/font-awesome/fonts")
+</head>
+<body>
+    <div class="header-wrapper">
+        <ul>
+            @*<li><a href="@Url.Action("Register", "Account")"> Sign Up</a></li>
+                <li><a href="@Url.Action("Login", "Account")"> Login</a></li>*@
+            @Html.Partial("_LoginPartial")
+        </ul>
+    </div>
+    <!-- navbar menu -->
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="@Url.Action("Index","Home")" class="navbar-brand"><b>B-JAM</b></a>
+                @*<img src="../images/store.png" alt="Flower" class="navcode">*@
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><i class="fa fa-envelope"></i></a></li>
+                    <li><a href="#"><i class="fa fa-globe"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br />
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-heading-custom">
+                            <a href="@Url.Action("Index", "Software")" class=" panel-menu"><i class="fa fa-home"></i> Home</a>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-heading-custom">
+                            <a href="@Url.Action("Users", "Software")" class=" panel-menu"><i class="fa fa-user"></i> User</a>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-heading-custom">
+                            <a href="@Url.Action("Customer", "Software")" class="panel-active"><i class="fa fa-users"></i> Customer</a>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-heading-custom">
+                            <a href="@Url.Action("Product", "Software")" class="panel-menu"><i class="fa fa-shopping-bag"></i> Product</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <button class="btn btn-primary btn-sm pull-right"><span class="glyphicon glyphicon-plus"></span> Add</button>
+                <br />
+                <br />
+                <table id="table_id" class="display">
+                    <thead>
+                        <tr class="tablecolor">
+                            <th style="width: 120px;">Actions</th>
+                            <th style="width: 200px;">Name:</th>
+                            <th>Address:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="tablecolor">
+                            <td>
+                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            </td>
+                            <td>Butch Canada</td>
+                            <td>Cebu City</td>
+                        </tr>
+                        <tr class="tablecolor">
+                            <td>
+                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            </td>
+                            <td>Aicill Gabunada</td>
+                            <td>Africa</td>
+                        </tr>
+                        <tr class="tablecolor">
+                            <td>
+                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            </td>
+                            <td>Jo-ann</td>
+                            <td>Lapu-lapu</td>
+                        </tr>
+                        <tr class="tablecolor">
+                            <td>
+                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            </td>
+                            <td>Alsonny Reyes</td>
+                            <td>PNG</td>
+                        </tr>
+                        <tr class="tablecolor">
+                            <td>
+                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            </td>
+                            <td>Noah Oliver Rigonan</td>
+                            <td>United States of America</td>
+                        </tr>
+                        <tr class="tablecolor">
+                            <td>
+                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            </td>
+                            <td>Noah Oliver Rigonan</td>
+                            <td>United States of America</td>
+                        </tr>
+                        <tr class="tablecolor">
+                            <td>
+                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            </td>
+                            <td>Noah Oliver Rigonan</td>
+                            <td>United States of America</td>
+                        </tr>
+                        <tr class="tablecolor">
+                            <td>
+                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            </td>
+                            <td>Noah Oliver Rigonan</td>
+                            <td>United States of America</td>
+                        </tr>
+                        <tr class="tablecolor">
+                            <td>
+                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            </td>
+                            <td>Noah Oliver Rigonan</td>
+                            <td>United States of America</td>
+                        </tr>
+                        <tr class="tablecolor">
+                            <td>
+                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            </td>
+                            <td>Noah Oliver Rigonan</td>
+                            <td>United States of America</td>
+                        </tr>
+                        <tr class="tablecolor">
+                            <td>
+                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            </td>
+                            <td>Noah Oliver Rigonan</td>
+                            <td>United States of America</td>
+                        </tr>
+                        <tr class="tablecolor">
+                            <td>
+                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            </td>
+                            <td>Noah Oliver Rigonan</td>
+                            <td>United States of America</td>
+                        </tr>
+                        <tr class="tablecolor">
+                            <td>
+                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            </td>
+                            <td>Noah Oliver Rigonan</td>
+                            <td>United States of America</td>
+                        </tr>
+                        <tr class="tablecolor">
+                            <td>
+                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            </td>
+                            <td>Noah Oliver Rigonan</td>
+                            <td>United States of America</td>
+                        </tr>
+                        <tr class="tablecolor">
+                            <td>
+                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            </td>
+                            <td>Noah Oliver Rigonan</td>
+                            <td>United States of America</td>
+                        <tr class="tablecolor">
+                            <td>
+                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                            </td>
+                            <td>Noah Oliver Rigonan</td>
+                            <td>United States of America</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12"></div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="#" style="color: blue">Contact us</a>
+                    <a href="#" class="codition" style="color: blue">Privacy Policy</a>
+                    &
+                    <a href="#" style="color: blue">Terms of Use</a>
+                    <p> Videoke Rental System version 1.0 - © copyright
+                </div>
+            </div>
+        </div>
+    </footer>
+    @Scripts.Render("~/Scripts/js")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#table_id').DataTable();
+        });
+    </script>
+</body>
+</html>
+

@@ -661,6 +661,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\popover.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\transition.js" />
@@ -704,6 +705,9 @@
     <Content Include="Views\Shared\AccountLogin.cshtml" />
     <Content Include="Views\Shared\HomeIndex.cshtml" />
     <Content Include="Views\Shared\AccountRegister.cshtml" />
+    <Content Include="Views\Software\Product.cshtml" />
+    <Content Include="Views\Software\Customer.cshtml" />
+    <Content Include="Views\Software\Users.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
