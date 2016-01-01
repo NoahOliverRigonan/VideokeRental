@@ -1,5 +1,6 @@
 body {
     font-family: Tahoma;
+    background-color: transparent;
 }
 
 img.carouselImage {
@@ -190,4 +191,7 @@ a:link.content-message {
 
 .popover {
     width: 900px;
+}
+.btnclick {
+    margin-bottom:50px;
 }

@@ -202,6 +202,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\aa.jpg" />
     <Content Include="images\bed.jpg" />
     <Content Include="images\button.jpg" />
     <Content Include="images\cart.ico" />
@@ -219,6 +220,7 @@
     <Content Include="images\store.png" />
     <Content Include="images\tables.jpg" />
     <Content Include="images\type.jpg" />
+    <Content Include="images\unnamed14.jpg" />
     <Content Include="images\wood.jpg" />
     <Content Include="OOS %28Back up%29\content\bootstrap.css" />
     <Content Include="OOS %28Back up%29\content\bootstrap.min.css" />
