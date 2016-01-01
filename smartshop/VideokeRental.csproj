@@ -708,6 +708,7 @@
     <Content Include="Views\Software\Product.cshtml" />
     <Content Include="Views\Software\Customer.cshtml" />
     <Content Include="Views\Software\Users.cshtml" />
+    <Content Include="Views\Software\Message.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
