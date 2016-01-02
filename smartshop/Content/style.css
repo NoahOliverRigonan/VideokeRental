@@ -1,11 +1,13 @@
 body {
     font-family: Tahoma;
-    background-color: transparent;
 }
 
 img.carouselImage {
-    width: 50%;
-    height: 50px;
+    width: 70%;
+    height: 100px;
+}
+.carousel-custom {
+      background-color: #000000;
 }
 
 /*.carousel-inner > .item > img {
@@ -22,6 +24,7 @@ img.carouselImage {
 .navbar-inverse {
     background-color: #35a79c;
     border: 0 !important;
+    margin-bottom: 0 !important;
 
 }
 
@@ -163,6 +166,7 @@ height: 100px;
     border-top: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     background-color: #35a79c;
+    color: white;
 }
 
 /* pop over */
@@ -191,7 +195,4 @@ a:link.content-message {
 
 .popover {
     width: 900px;
-}
-.btnclick {
-    margin-bottom:50px;
 }

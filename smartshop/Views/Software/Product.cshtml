@@ -69,43 +69,79 @@
                 </div>
             </div>
             <div class="col-md-10">
-                <button class="btn btn-primary btn-sm pull-right"><span class="glyphicon glyphicon-plus"></span> Add</button>
+                <button type="button" class="btn btn-primary pull-right" data-toggle="modal" onclick="btnAddButton()"><span class="glyphicon glyphicon-plus"></span> Add</button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">User Info</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal">
+                                    <input type="hidden" id="product_Id" />
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Product Number</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" id="product_ProductNumber" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Product Name</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" id="product_ProductName" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Product Description</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" id="product_ProductDescription" class="form-control">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" onclick="btnSaveProduct()">Save</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Delete Product</h4>
+                            </div>
+                            <div class="modal-body">
+                                <input type="text" id="deleteProductId" />
+                                Are you sure you want to delete this?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" onclick="btnDeleteProduct()">Delete</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <br />
                 <br />
-                <table id="table_id" class="display">
+                <table id="table_id">
                     <thead>
                         <tr class="tablecolor">
-                            <th style="width: 120px;">Actions</th>
-                            <th style="width: 200px;">Product List:</th>
-                            <th>Product Price:</th>
+                            <th style="width: 60px"><center>Edit</center></th>
+                            <th style="width: 60px"><center>Delete</center></th>
+                            <th>Product Number</th>
+                            <th>Product Name</th>
+                            <th>Product Description</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Product 1</td>
-                            <td>200.00</td>
-                        </tr>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Product 2</td>
-                            <td>200.00</td>
-                        </tr>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Product 3</td>
-                            <td>200.00</td>
-                        </tr>
-                    </tbody>
                 </table>
             </div>
         </div>
@@ -131,11 +167,165 @@
     </footer>
     @Scripts.Render("~/Scripts/js")
     <script type="text/javascript">
+        // global variables
+        var products;
+
+        // get Products
+        function getProduct() {
+            products = new Array();
+            $.ajax({
+                url: '/api/product/list',
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                success: function (Results) {
+                    if (Results.length > 0) {
+                        for (i = 0; i < Results.length; i++) {
+                            products.push({
+                                EditId: '<button class="btn btn-primary btn-sm btn-block" onclick="btnEditButton()"><span class="glyphicon glyphicon-edit"></span> Edit</button>',
+                                DeleteId: '<button class="btn btn-danger btn-sm btn-block" onclick="btnDeleteButton()"><span class="glyphicon glyphicon-trash"></span> Delete</button>',
+                                Id: Results[i]["Id"],
+                                ProductNumber: Results[i]["ProductNumber"],
+                                ProductName: Results[i]["ProductName"],
+                                ProductDescription: Results[i]["ProductDescription"]
+                            });
+                        }
+                    }
+
+                    $('#table_id').dataTable({
+                        aaData: products,
+                        aoColumns: [
+                                { mData: 'EditId' },
+                                { mData: 'DeleteId' },
+                                { mData: 'ProductNumber' },
+                                { mData: 'ProductName' },
+                                { mData: 'ProductDescription' }
+                        ]
+                    });
+                }
+            });
+            return products;
+        }
+
+        // Add Product
+        function btnSaveProduct() {
+            var productObject = new Object();
+            productObject.ProductNumber = document.getElementById('product_ProductNumber').value;
+            productObject.ProductName = document.getElementById('product_ProductName').value;
+            productObject.ProductDescription = document.getElementById('product_ProductDescription').value;
+            var productData = JSON.stringify(productObject);
+
+            var productId = document.getElementById('product_Id').value;
+            if (productId == 0) {
+                $.ajax({
+                    type: "POST",
+                    url: '/api/product/add',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: productData,
+                    statusCode: {
+                        200: function () {
+                            location.reload();
+                        },
+                        404: function () {
+                            alert("Not Found");
+                        },
+                        500: function () {
+                            alert("Bad Request");
+                        }
+                    }
+                });
+            } else {
+                $.ajax({
+                    type: "PUT",
+                    url: '/api/updateProduct/' + productId,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: productData,
+                    statusCode: {
+                        200: function () {
+                            location.reload();
+                        },
+                        404: function () {
+                            alert("Not Found");
+                        },
+                        500: function () {
+                            alert("Bad Request");
+                        }
+                    }
+                });
+            }
+
+        }
+
+        // edit
+        function btnEditButton() {
+            $('#myModal').modal({
+                show: true,
+                backdrop: 'static'
+            });
+
+            var table = $('#table_id').DataTable();
+
+            $('#table_id tbody').on('click', 'tr', function () {
+                document.getElementById('product_Id').value = table.row(this).data().Id;
+                document.getElementById('product_ProductNumber').value = table.row(this).data().ProductNumber;
+                document.getElementById('product_ProductName').value = table.row(this).data().ProductName;
+                document.getElementById('product_ProductDescription').value = table.row(this).data().ProductDescription;
+            });
+        }
+
+        // delete
+        function btnDeleteButton() {
+            $('#myModalDelete').modal({
+                show: true,
+                backdrop: 'static'
+            });
+            var table = $('#table_id').DataTable();
+            $('#table_id tbody').on('click', 'tr', function () {
+                document.getElementById('deleteProductId').value = table.row(this).data().Id;
+            });
+        }
+        function btnDeleteProduct() {
+            var productId = document.getElementById('deleteProductId').value;
+
+            $.ajax({
+                type: "DELETE",
+                url: '/api/deleteProduct/' + productId,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                statusCode: {
+                    200: function () {
+                        location.reload();
+                    },
+                    404: function () {
+                        alert("Not Found");
+                    },
+                    500: function () {
+                        alert("Bad Request");
+                    }
+                }
+            });
+        }
+
+        // Add
+        function btnAddButton() {
+            $('#myModal').modal({
+                show: true,
+                backdrop: 'static'
+            });
+
+            document.getElementById('product_Id').value = 0;
+            document.getElementById('product_ProductNumber').value = "";
+            document.getElementById('product_ProductName').value = "";
+            document.getElementById('product_ProductDescription').value = "";
+        }
+
+        // On Load Page
         $(document).ready(function () {
-            $('#table_id').DataTable();
+            getProduct();
+
         });
     </script>
 </body>
 </html>
-
-

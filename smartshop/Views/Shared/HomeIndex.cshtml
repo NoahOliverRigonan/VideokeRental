@@ -40,40 +40,44 @@ else
             </div>
         </div>
     </nav>
-    
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel" class="carousel slide carousel-custom" data-ride="carousel">
 
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="3" class="active"></li>
-    </ol>
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            @*<li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>*@
+        </ol>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner" role="listbox" align="center">
-        <div class="item active">
-            <img src="../images/unnamed14.jpg" alt="works" class="carouselImage">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox" align="center">
+            <div class="item active" data-slide="next" aria-hidden="true">
+                <img src="../images/unnamed14.jpg" alt="works" class="carouselImage">
+                <div class="carousel-caption">
+                    <h1></h1>
+                    <p></p>
+                    <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                </div>
+            </div>
+
+            <div class="item" data-slide="next" aria-hidden="true">
+                <img src="../images/aa.jpg" alt="save" class="carouselImage"/>
+                <div class="carousel-caption">
+                    
+                    <h1></h1>
+                    <p></p>
+                    <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+                </div>
+            </div>
         </div>
-
-        <div class="item">
-            <img src="../images/aa.jpg" alt="save" class="carouselImage" />
-        </div>
-    </div>
-        <div class="btnclick" align="center">
-            <a href="#page-intro" class="btn btn-info">Learn more!</a>
-        </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="sr-only">Next</span>
+        </a>
     </div>
     <div class="container">
         <div class="row">
@@ -155,7 +159,7 @@ else
 
         <div class="col-md-9">*@
     @*</div>*@
-        <!-- Ads -->
+            <!-- Ads -->
     @*<div class="col-md-2">
             <div>
                 <div class="container">

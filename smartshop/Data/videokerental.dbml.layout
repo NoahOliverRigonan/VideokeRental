@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.875" name="videokerental">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 10.25" name="videokerental">
   <DataContextMoniker Name="/videokerentalDataContext" />
   <nestedChildShapes>
     <classShape Id="6d242497-bef2-4ec3-9e85-f5edb890b13a" absoluteBounds="6.75, 0.75, 2, 1.5785953776041666">
@@ -45,7 +45,7 @@
         <classShapeMoniker Id="5f688eac-a0bb-4396-b103-1982456677e4" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 4.69314697265625); (3.19791666666667 : 4.69314697265625 : JumpStart); (3.36458333333333 : 4.69314697265625 : JumpEnd); (3.5 : 4.69314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 4.69314697265625); (3.5 : 4.69314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/videokerentalDataContext/AspNetUser/AspNetUser_AspNetUserLogin" />
       <nodes>
         <classShapeMoniker Id="adc690d5-4b43-4136-af70-65a5b1d6857c" />
@@ -66,5 +66,17 @@
         <classShapeMoniker Id="0480d9b6-63ac-478c-8874-3badc7e98643" />
       </nodes>
     </associationConnector>
+    <classShape Id="b97c5f91-d549-47cf-bbde-18fb191b2f1f" absoluteBounds="7.125, 5.25, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/videokerentalDataContext/tblProduct" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9afb11ea-5fee-4b59-8c05-626f300ee4ca" absoluteBounds="7.1400000000000006, 5.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1c59e3bc-16c3-4404-8a74-8255b320e9f1" absoluteBounds="6.875, 8.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/videokerentalDataContext/tblCustomer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a2b72b43-5e55-44b3-8e8e-2fa724bfbd2e" absoluteBounds="6.89, 8.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
