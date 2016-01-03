@@ -25,5 +25,90 @@ namespace VideokeRental.Controllers
                            };
             return customers.ToList();
         }
+
+        // add
+        [Route("api/customer/add")]
+        public int Post(Models.tblCustomer customer)
+        {
+
+            try
+            {
+                Data.tblCustomer newnCustomer = new Data.tblCustomer();
+
+                newnCustomer.CustomerNumber = customer.CustomerNumber;
+                newnCustomer.CustomerName = customer.CustomerName;
+                newnCustomer.CustomerAddress = customer.CustomerAddress;
+
+                db.tblCustomers.InsertOnSubmit(newnCustomer);
+                db.SubmitChanges();
+
+                return newnCustomer.Id;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        // update
+        [Route("api/updateCustomer/{id}")]
+        public HttpResponseMessage Put(String id, Models.tblCustomer customer)
+        {
+            try
+            {
+                var customerId = Convert.ToInt32(id);
+                var customers = from d in db.tblCustomers where d.Id == customerId select d;
+
+                if (customers.Any())
+                {
+                    var updateCustomer = customers.FirstOrDefault();
+
+                    updateCustomer.CustomerNumber = customer.CustomerNumber;
+                    updateCustomer.CustomerName = customer.CustomerName;
+                    updateCustomer.CustomerAddress = customer.CustomerAddress;
+
+                    db.SubmitChanges();
+
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+            }
+            catch
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
+        // delete product
+        [Route("api/deleteCustomer/{id}")]
+        public HttpResponseMessage Delete(String id)
+        {
+            try
+            {
+                var customerId = Convert.ToInt32(id);
+                var customers = from d in db.tblCustomers where d.Id == customerId select d;
+
+                if (customers.Any())
+                {
+                    db.tblCustomers.DeleteOnSubmit(customers.First());
+                    db.SubmitChanges();
+
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+
+            }
+            catch
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
     }
 }

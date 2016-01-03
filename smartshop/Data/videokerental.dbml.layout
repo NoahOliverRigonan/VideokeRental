@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 10.25" name="videokerental">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.875" name="videokerental">
   <DataContextMoniker Name="/videokerentalDataContext" />
   <nestedChildShapes>
-    <classShape Id="6d242497-bef2-4ec3-9e85-f5edb890b13a" absoluteBounds="6.75, 0.75, 2, 1.5785953776041666">
+    <classShape Id="6d242497-bef2-4ec3-9e85-f5edb890b13a" absoluteBounds="6.25, 1, 2, 1.5785953776041666">
       <DataClassMoniker Name="/videokerentalDataContext/__MigrationHistory" />
       <nestedChildShapes>
-        <elementListCompartment Id="1e65a2b6-51e1-4446-991c-0c9d3653c0d8" absoluteBounds="6.765, 1.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="1e65a2b6-51e1-4446-991c-0c9d3653c0d8" absoluteBounds="6.265, 1.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="adc690d5-4b43-4136-af70-65a5b1d6857c" absoluteBounds="0.75, 2.25, 2, 3.3093082682291666">
@@ -38,7 +38,7 @@
         <elementListCompartment Id="58e1248d-5fa6-47cd-8258-1d177264f422" absoluteBounds="3.515, 1.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 5.55930826822917); (3.125 : 5.93430826822917); (3.125 : 5.74878669586338); (3.22232443490112 : 5.8461111307645 : JumpStart); (3.34017556509888 : 5.96396226096226 : JumpEnd); (3.50121330413662 : 6.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 5.55930826822917); (3.125 : 5.93430826822917); (3.125 : 5.74878669586338); (3.50121330413662 : 6.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/videokerentalDataContext/AspNetUser/AspNetUser_AspNetUserClaim" />
       <nodes>
         <classShapeMoniker Id="adc690d5-4b43-4136-af70-65a5b1d6857c" />
@@ -59,23 +59,23 @@
         <classShapeMoniker Id="0480d9b6-63ac-478c-8874-3badc7e98643" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(1.75 : 2.25); (1.75 : 1.8124995); (3.5 : 1.8124995)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.75 : 2.25); (1.75 : 1.8124995); (3.5 : 1.8124995)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/videokerentalDataContext/AspNetUser/AspNetUser_AspNetUserRole" />
       <nodes>
         <classShapeMoniker Id="adc690d5-4b43-4136-af70-65a5b1d6857c" />
         <classShapeMoniker Id="0480d9b6-63ac-478c-8874-3badc7e98643" />
       </nodes>
     </associationConnector>
-    <classShape Id="b97c5f91-d549-47cf-bbde-18fb191b2f1f" absoluteBounds="7.125, 5.25, 2, 1.5785953776041666">
+    <classShape Id="b97c5f91-d549-47cf-bbde-18fb191b2f1f" absoluteBounds="6.25, 3.375, 2, 1.5785953776041666">
       <DataClassMoniker Name="/videokerentalDataContext/tblProduct" />
       <nestedChildShapes>
-        <elementListCompartment Id="9afb11ea-5fee-4b59-8c05-626f300ee4ca" absoluteBounds="7.1400000000000006, 5.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="9afb11ea-5fee-4b59-8c05-626f300ee4ca" absoluteBounds="6.2650000000000006, 3.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="1c59e3bc-16c3-4404-8a74-8255b320e9f1" absoluteBounds="6.875, 8.375, 2, 1.5785953776041666">
+    <classShape Id="1c59e3bc-16c3-4404-8a74-8255b320e9f1" absoluteBounds="5.875, 5.625, 2, 1.5785953776041666">
       <DataClassMoniker Name="/videokerentalDataContext/tblCustomer" />
       <nestedChildShapes>
-        <elementListCompartment Id="a2b72b43-5e55-44b3-8e8e-2fa724bfbd2e" absoluteBounds="6.89, 8.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="a2b72b43-5e55-44b3-8e8e-2fa724bfbd2e" absoluteBounds="5.89, 6.0850000000000009, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
