@@ -27,5 +27,11 @@ namespace VideokeRental.Controllers
 
             return View();
         }
+        public ActionResult RentalVideoke()
+        {
+            ViewBag.Message = "Your Product.";
+
+            return View();
+        }
     }
 }

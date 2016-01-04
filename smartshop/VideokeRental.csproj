@@ -217,6 +217,7 @@
     <Content Include="images\howitworks.jpg" />
     <Content Include="images\iphone.jpeg" />
     <Content Include="images\jansport.jpg" />
+    <Content Include="images\karaoke1.jpg" />
     <Content Include="images\logo.jpg" />
     <Content Include="images\purel.jpeg" />
     <Content Include="images\save.jpg" />
@@ -716,10 +717,12 @@
     <Content Include="Views\Software\Customer.cshtml" />
     <Content Include="Views\Software\Users.cshtml" />
     <Content Include="Views\Software\Message.cshtml" />
+    <Content Include="Views\Home\RentalVideoke.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\User\" />
+    <Folder Include="Views\Videoke\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

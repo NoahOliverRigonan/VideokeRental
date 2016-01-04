@@ -8,10 +8,28 @@
     @Styles.Render("~/font-awesome/fonts")
 </head>
 <body>
-    @Html.Partial("HomeIndex")
+         @Html.Partial("HomeIndex")
 
     <!-- scripts -->
     @Scripts.Render("~/Scripts/js")
+    <script>
+
+         (function ($) {
+             $(document).ready(function () {
+                 $('#cssmenu').prepend('<div id="menu-button">Menu</div>');
+                 $('#cssmenu #menu-button').on('click', function () {
+                     var menu = $(this).next('ul');
+                     if (menu.hasClass('open')) {
+                         menu.removeClass('open');
+                     }
+                     else {
+                         menu.addClass('open');
+                     }
+                 });
+             });
+         })(jQuery);
+
+    </script>
 
 </body>
 </html>
