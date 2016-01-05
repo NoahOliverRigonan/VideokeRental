@@ -25,13 +25,14 @@ namespace VideokeRental
             bundles.Add(new ScriptBundle("~/Scripts/js").Include(
                      "~/Scripts/bootstrap.js",
                      "~/Scripts/bootstrap.min.js",
-                     //"~/Scripts/jquery.min.js",
-                     "~/Scripts/jquery-1.10.2.js",
+                     "~/Scripts/jquery.min.js",
+                     //"~/Scripts/jquery-1.10.2.js",
                      "~/Scripts/carousel.js",
                      "~/Scripts/collapse.js",
                      "~/Scripts/dropdown.js",
                      "~/Scripts/transition.js",
                      "~/Scripts/popover.js",
+                     "~/Scripts/modal.js",
                      "~/Scripts/jquery.dataTables.js",
                      "~/Scripts/jquery.dataTables.min.js"
                      ));

@@ -487,8 +487,6 @@
     <Content Include="OOS %28Back up%29\scripts\jquery.min.js" />
     <Content Include="OOS %28Back up%29\scripts\transition.js" />
     <Content Include="OOS %28Back up%29\view\index.html" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="OOS %28Back up%29\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="OOS %28Back up%29\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="OOS %28Back up%29\fonts\glyphicons-halflings-regular.woff" />
@@ -655,6 +653,8 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\carousel.js" />
     <Content Include="Scripts\collapse.js" />
     <Content Include="Scripts\dropdown.js" />
@@ -668,6 +668,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modal.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\popover.js" />
     <Content Include="Scripts\respond.js" />

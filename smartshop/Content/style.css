@@ -17,7 +17,7 @@ img.carouselImage {
 /*.header-wrapper{
     width: 100%;
 }*/
-/*.navbar-top-custom {
+.navbar-top-custom {
     margin-bottom: auto;
     padding-bottom: 0!important;
 }
@@ -54,8 +54,8 @@ img.carouselImage {
     .navbar-inverse .navbar-nav > .active > a:hover {
         color: #FFFFFF;
         background-color: #009688;
-    }*/
-@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700);
+    }
+/*@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700);
 #cssmenu {
   background: #4cb6ea;
   margin: 0;
@@ -418,7 +418,7 @@ img.carouselImage {
     right: 20px;
     top: 26px;
   }
-}
+}*/
     
 
 
@@ -578,3 +578,10 @@ img.items {
     width: 200px;
     height: 250px;
 }
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid gray;
+}   

@@ -69,102 +69,119 @@
                 </div>
             </div>
             <div class="col-md-10">
-                <button type="button" class="btn btn-primary pull-right" data-toggle="modal" onclick="btnAddButton()"><span class="glyphicon glyphicon-plus"></span> Add</button>
-
-                <!-- Modal -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Products</h2>
+                    </div>
+                    <div class="col-sm-6" align="right">
+                        <br />
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>Add</button>
+                    </div>
+                </div>
+                <hr />
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">User Info</h4>
+                                <h4 class="modal-title" id="myModalLabel">Information</h4>
                             </div>
                             <div class="modal-body">
-                                <form class="form-horizontal">
-                                    <input type="hidden" id="product_Id" />
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label">Product Number</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" id="product_ProductNumber" class="form-control">
-                                        </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form class="form-horizontal">
+                                            <input type="hidden" id="customer_Id" />
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Product Photo</label>
+                                                <div class="col-sm-8">
+                                                    <img id="product_ImageDisplay" src="#" class="img-thumbnail" alt="your image" width="304" height="236" />
+                                                    <input type="file" id="product_Image">
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label">Product Name</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" id="product_ProductName" class="form-control">
-                                        </div>
+                                    <div class="col-md-6">
+                                        <form class="form-horizontal">
+                                            <input type="hidden" id="customer_Id" />
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Product Number</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" id="product_ProductNumber" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Product Name</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" id="product_ProductName" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Product Description</label>
+                                                <div class="col-sm-8">
+                                                    <textarea id="product_ProductDescription" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label">Product Description</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" id="product_ProductDescription" class="form-control">
-                                        </div>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" onclick="btnSaveProduct()">Save</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Submit</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Modal -->
-                <div class="modal fade" id="myModalDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Delete Product</h4>
-                            </div>
-                            <div class="modal-body">
-                                <input type="hidden" id="deleteProductId" />
-                                Are you sure you want to delete this?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" onclick="btnDeleteProduct()">Delete</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="img">
+                            <a target="_blank" href="fjords.jpg">
+                                <img src="../images/bed.jpg" alt="Fjords" width="100" height="100">
+                            </a>
+                            <div class="desc">Add a description of the image here</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="img">
+                            <a target="_blank" href="fjords.jpg">
+                                <img src="../images/bed.jpg" alt="Fjords" width="100" height="100">
+                            </a>
+                            <div class="desc">Add a description of the image here</div>
+                        </div>
+                    </div>
+                    <div class="col-mad-4">
+                        <div class="img">
+                            <a target="_blank" href="fjords.jpg">
+                                <img src="../images/bed.jpg" alt="Fjords" width="100" height="100">
+                            </a>
+                            <div class="desc">Add a description of the image here</div>
                         </div>
                     </div>
                 </div>
-
-                <br />
-                <br />
-                <table id="table_id">
-                    <thead>
-                        <tr class="tablecolor">
-                            <th style="width: 60px"><center>Edit</center></th>
-                            <th style="width: 60px"><center>Delete</center></th>
-                            <th>Product Number</th>
-                            <th>Product Name</th>
-                            <th>Product Description</th>
-                        </tr>
-                    </thead>
-                </table>
             </div>
         </div>
     </div>
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12"></div>
-            </div>
-            <br />
-            <br />
-            <br />
-            <div class="row">
-                <div class="col-lg-12">
-                    <a href="#" style="color: blue">Contact us</a>
-                    <a href="#" class="codition" style="color: blue">Privacy Policy</a>
-                    &
-                    <a href="#" style="color: blue">Terms of Use</a>
-                    <p> Videoke Rental System version 1.0 - © copyright
+    @*<footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12"></div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <a href="#" style="color: blue">Contact us</a>
+                        <a href="#" class="codition" style="color: blue">Privacy Policy</a>
+                        &
+                        <a href="#" style="color: blue">Terms of Use</a>
+                        <p> Videoke Rental System version 1.0 - © copyright
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>*@
     @Scripts.Render("~/Scripts/js")
     <script type="text/javascript">
         // global variables
@@ -187,21 +204,26 @@
                                 Id: Results[i]["Id"],
                                 ProductNumber: Results[i]["ProductNumber"],
                                 ProductName: Results[i]["ProductName"],
-                                ProductDescription: Results[i]["ProductDescription"]
+                                ProductDescription: Results[i]["ProductDescription"],
+                                Images: Results[i]["Images"]
                             });
+
+
+                            $('body').append('<img id="product_ImageDisplay" src=" ' + Results[i]["Images"] + ' " class="img-thumbnail" alt="your image" width="304" height="236" />');
+
                         }
                     }
 
-                    $('#table_id').dataTable({
-                        aaData: products,
-                        aoColumns: [
-                                { mData: 'EditId' },
-                                { mData: 'DeleteId' },
-                                { mData: 'ProductNumber' },
-                                { mData: 'ProductName' },
-                                { mData: 'ProductDescription' }
-                        ]
-                    });
+                    //$('#table_id').dataTable({
+                    //    aaData: products,
+                    //    aoColumns: [
+                    //            { mData: 'EditId' },
+                    //            { mData: 'DeleteId' },
+                    //            { mData: 'ProductNumber' },
+                    //            { mData: 'ProductName' },
+                    //            { mData: 'ProductDescription' }
+                    //    ]
+                    //});
                 }
             });
             return products;
@@ -321,9 +343,28 @@
             document.getElementById('product_ProductDescription').value = "";
         }
 
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#product_ImageDisplay').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+
+                
+            }
+        }
+
         // On Load Page
         $(document).ready(function () {
             getProduct();
+            $('#product_ImageDisplay').hide();
+            $("#product_Image").change(function () {
+                readURL(this);
+                $('#product_ImageDisplay').show();
+            });
 
         });
     </script>

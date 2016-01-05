@@ -23,7 +23,8 @@ namespace VideokeRental.Controllers
                                Id = d.Id,
                                ProductNumber = d.ProductNumber,
                                ProductName = d.ProductName,
-                               ProductDescription = d.ProductDescription
+                               ProductDescription = d.ProductDescription,
+                               //Images = Convert.ToByte(d.Images)
                            };
             return products.ToList();
         }
