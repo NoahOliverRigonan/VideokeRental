@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web.Http;
 
 namespace VideokeRental.Controllers
@@ -24,7 +25,7 @@ namespace VideokeRental.Controllers
                                ProductNumber = d.ProductNumber,
                                ProductName = d.ProductName,
                                ProductDescription = d.ProductDescription,
-                               //Images = Convert.ToByte(d.Images)
+                               Images = BitConverter.ToString(d.Images.ToArray()).Replace("-", string.Empty)
                            };
             return products.ToList();
         }
@@ -41,6 +42,8 @@ namespace VideokeRental.Controllers
                 newProduct.ProductNumber = product.ProductNumber;
                 newProduct.ProductName = product.ProductName;
                 newProduct.ProductDescription = product.ProductDescription;
+                newProduct.Images = BitConverter.GetBytes(product.ImagesByte);
+                Debug.WriteLine(newProduct.Images);
 
                 db.tblProducts.InsertOnSubmit(newProduct);
                 db.SubmitChanges();

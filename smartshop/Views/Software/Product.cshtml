@@ -75,10 +75,13 @@
                     </div>
                     <div class="col-sm-6" align="right">
                         <br />
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>Add</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" onclick="btnAddButton()"><span class="glyphicon glyphicon-plus"></span>Add</button>
                     </div>
                 </div>
                 <hr />
+                <center>
+                    <label id="LabelItems">No Items</label>
+                </center>
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
@@ -96,11 +99,13 @@
                                                 <div class="col-sm-8">
                                                     <img id="product_ImageDisplay" src="#" class="img-thumbnail" alt="your image" width="304" height="236" />
                                                     <input type="file" id="product_Image">
+                                                    <input type="text" id="product_Image_data">
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="col-md-6">
+                                        <input type="text" id="product_Id" />
                                         <form class="form-horizontal">
                                             <input type="hidden" id="customer_Id" />
                                             <div class="form-group">
@@ -126,38 +131,20 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Submit</button>
+                                <button type="button" class="btn btn-primary" onclick="btnSaveProduct()">Submit</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <br />
-                <br />
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="img">
-                            <a target="_blank" href="fjords.jpg">
-                                <img src="../images/bed.jpg" alt="Fjords" width="100" height="100">
-                            </a>
-                            <div class="desc">Add a description of the image here</div>
+                <div id="row">
+                    <a href="#">
+                        <div id="col">
+                            <img id="images" />
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="img">
-                            <a target="_blank" href="fjords.jpg">
-                                <img src="../images/bed.jpg" alt="Fjords" width="100" height="100">
-                            </a>
-                            <div class="desc">Add a description of the image here</div>
-                        </div>
-                    </div>
-                    <div class="col-mad-4">
-                        <div class="img">
-                            <a target="_blank" href="fjords.jpg">
-                                <img src="../images/bed.jpg" alt="Fjords" width="100" height="100">
-                            </a>
-                            <div class="desc">Add a description of the image here</div>
-                        </div>
+                    </a>
+                    <div id="col2">
+                        <label id="productLabel"></label>
                     </div>
                 </div>
             </div>
@@ -216,20 +203,40 @@
                 contentType: 'application/json; charset=utf-8',
                 success: function (Results) {
                     if (Results.length > 0) {
+                        $('#LabelItems').hide();
                         for (i = 0; i < Results.length; i++) {
                             products.push({
                                 EditId: '<button class="btn btn-primary btn-sm btn-block" onclick="btnEditButton()"><span class="glyphicon glyphicon-edit"></span> Edit</button>',
                                 DeleteId: '<button class="btn btn-danger btn-sm btn-block" onclick="btnDeleteButton()"><span class="glyphicon glyphicon-trash"></span> Delete</button>',
                                 Id: Results[i]["Id"],
+                                Images: Results[i]["Images"],
                                 ProductNumber: Results[i]["ProductNumber"],
                                 ProductName: Results[i]["ProductName"],
-                                ProductDescription: Results[i]["ProductDescription"],
-                                Images: Results[i]["Images"]
+                                ProductDescription: Results[i]["ProductDescription"]
                             });
 
+                            //console.log(Results[i]["Id"]);
+                            //console.log(Results[i]["Images"]);
 
-                            $('body').append('<img id="product_ImageDisplay" src=" ' + Results[i]["Images"] + ' " class="img-thumbnail" alt="your image" width="304" height="236" />');
+                            function hexToBase64(str) {
+                                return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
+                            }
 
+                            var img = new Image();
+                            img.src = "data:image/jpeg;base64," + hexToBase64(Results[i]["Images"]);
+                            img.height = 250;
+                            img.width = 400;
+
+                            var node = document.createElement("images");
+                            node.setAttribute("align", "center");
+
+                            node.appendChild(img);
+                            var col1 = document.getElementById("col").appendChild(node);
+                            col1.setAttribute("class", "col-md-6 border-custom");
+                        }
+                    } else {
+                        if (Results.length == 0) {
+                            $('#LabelItems').show();
                         }
                     }
 
@@ -248,12 +255,21 @@
             return products;
         }
 
+        // Get Image
+        function getImages(products) {
+            products = new Array();
+
+
+        }
+
         // Add Product
         function btnSaveProduct() {
             var productObject = new Object();
             productObject.ProductNumber = document.getElementById('product_ProductNumber').value;
             productObject.ProductName = document.getElementById('product_ProductName').value;
             productObject.ProductDescription = document.getElementById('product_ProductDescription').value;
+            productObject.Images = document.getElementById('product_Image_data').value;
+
             var productData = JSON.stringify(productObject);
 
             var productId = document.getElementById('product_Id').value;
@@ -360,6 +376,7 @@
             document.getElementById('product_ProductNumber').value = "";
             document.getElementById('product_ProductName').value = "";
             document.getElementById('product_ProductDescription').value = "";
+            document.getElementById('product_Image_data').value = "";
         }
 
         function readURL(input) {
@@ -369,12 +386,20 @@
                 reader.onload = function (e) {
                     $('#product_ImageDisplay').attr('src', e.target.result);
                 }
-
                 reader.readAsDataURL(input.files[0]);
-
-                
             }
         }
+
+        document.querySelector('#product_Image').addEventListener('change', function () {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var binaryString = this.result;
+                //document.querySelector('#result').innerHTML = binaryString;
+                console.log(binaryString());
+                document.getElementById('product_Image_data').value = binaryString;
+            }
+            reader.readAsBinaryString(this.files[0]);
+        }, false);
 
         // On Load Page
         $(document).ready(function () {

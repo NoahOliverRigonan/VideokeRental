@@ -614,8 +614,6 @@ table, th, td {
 #myCarousel img {
     height: 100%;
     width: 100%;
-    -webkit-transition: opacity 0.8s linear;
-    opacity: 0.10;
 }
 
 .carousel-custom {
@@ -655,5 +653,14 @@ table, th, td {
 	font-size:14px;
 	font-family:Arial;
 	font-weight:bold;
+}
+.border-custom {
+    height: 300px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 50px;
+}
+.image-custom {
+    width: 100px;
 }
 

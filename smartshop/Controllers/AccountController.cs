@@ -170,6 +170,17 @@ namespace VideokeRental.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
+                    Data.videokerentalDataContext db = new Data.videokerentalDataContext();
+
+                    Data.tblCustomer newnCustomer = new Data.tblCustomer();
+
+                    newnCustomer.CustomerNumber = "00000000n";
+                    newnCustomer.CustomerName = user.FullName;
+                    newnCustomer.CustomerAddress = "Address - Default";
+
+                    db.tblCustomers.InsertOnSubmit(newnCustomer);
+                    db.SubmitChanges();
+
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

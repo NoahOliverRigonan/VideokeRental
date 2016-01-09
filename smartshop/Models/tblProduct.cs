@@ -13,6 +13,7 @@ namespace VideokeRental.Models
         public String ProductNumber { get; set; }
         public String ProductName { get; set; }
         public String ProductDescription { get; set; }
-        public Byte Images { get; set; }
+        public String Images { get; set; }
+        public Byte ImagesByte { get; set; }
     }
 }
