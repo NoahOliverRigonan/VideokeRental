@@ -8,7 +8,7 @@
     @Styles.Render("~/font-awesome/fonts")
 </head>
 <body>
-    
+
     <!-- navbar menu -->
     <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
@@ -34,174 +34,82 @@
     <br />
     <div class="container">
         <div class="row">
-            <div class="col-md-2">
-                <div class="panel-group" id="accordion">
-                    <div class="panel panel-default">
-                        <div class="panel-heading panel-heading-custom">
-                            <a href="@Url.Action("Index", "Software")" class=" panel-active"><i class="fa fa-home"></i> Home</a>
+                    @*<div class="panel panel-default">
+                            <div class="panel-heading panel-heading-custom">
+                                <a href="@Url.Action("Users", "Software")" class=" panel-menu"><i class="fa fa-user"></i> User</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading panel-heading-custom">
-                            <a href="@Url.Action("Users", "Software")" class=" panel-menu"><i class="fa fa-user"></i> User</a>
+                        <div class="panel panel-default">
+                            <div class="panel-heading panel-heading-custom">
+                                <a href="@Url.Action("Customer", "Software")" class="panel-menu"><i class="fa fa-users"></i> Customer</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading panel-heading-custom">
-                            <a href="@Url.Action("Customer", "Software")" class="panel-menu"><i class="fa fa-users"></i> Customer</a>
+                        <div class="panel panel-default">
+                            <div class="panel-heading panel-heading-custom">
+                                <a href="@Url.Action("Product", "Software")" class="panel-menu"><i class="fa fa-shopping-bag"></i> Product</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading panel-heading-custom">
-                            <a href="@Url.Action("Product", "Software")" class="panel-menu"><i class="fa fa-shopping-bag"></i> Product</a>
+                        <div class="panel panel-default">
+                            <div class="panel-heading panel-heading-custom">
+                                <a href="@Url.Action("Message", "Software")" class="panel-menu"><i class="fa fa-envelope"></i> Message</a>
+                            </div>
+                        </div>*@
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="div1">
+                        <div class="col-lg-4">
+                            <a href="@Url.Action("Customer", "Software")" class="p-menu">
+                                <div class="panel panel-custom">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="fa fa-users fa-4x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div class="" id="">&nbsp;</div>
+                                                <div><h3>Customer</h3></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading panel-heading-custom">
-                            <a href="@Url.Action("Message", "Software")" class="panel-menu"><i class="fa fa-envelope"></i> Message</a>
+                        <div class="col-lg-4">
+                            <a href="@Url.Action("Users", "Software")" class="p-menu">
+                                <div class="panel panel-custom">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="fa fa-user fa-4x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div class="" id="">&nbsp;</div>
+                                                <div><h3>User</h3></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-4">
+                            <a href="@Url.Action("Product", "Software")" class="p-menu">
+                                <div class="panel panel-custom">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="fa fa-user fa-4x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div class="" id="">&nbsp;</div>
+                                                <div><h3>Product</h3></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-10">
-                <table id="table_id" class="display">
-                    <thead>
-                        <tr class="tablecolor">
-                            <th style="width: 120px;">Actions</th>
-                            <th style="width: 200px;">Name:</th>
-                            <th>Address:</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Butch Canada</td>
-                            <td>Cebu City</td>
-                        </tr>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Aicill Gabunada</td>
-                            <td>Africa</td>
-                        </tr>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Jo-ann</td>
-                            <td>Lapu-lapu</td>
-                        </tr>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Alsonny Reyes</td>
-                            <td>PNG</td>
-                        </tr>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Noah Oliver Rigonan</td>
-                            <td>United States of America</td>
-                        </tr>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Noah Oliver Rigonan</td>
-                            <td>United States of America</td>
-                        </tr>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Noah Oliver Rigonan</td>
-                            <td>United States of America</td>
-                        </tr>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Noah Oliver Rigonan</td>
-                            <td>United States of America</td>
-                        </tr>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Noah Oliver Rigonan</td>
-                            <td>United States of America</td>
-                        </tr>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Noah Oliver Rigonan</td>
-                            <td>United States of America</td>
-                        </tr>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Noah Oliver Rigonan</td>
-                            <td>United States of America</td>
-                        </tr>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Noah Oliver Rigonan</td>
-                            <td>United States of America</td>
-                        </tr>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Noah Oliver Rigonan</td>
-                            <td>United States of America</td>
-                        </tr>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Noah Oliver Rigonan</td>
-                            <td>United States of America</td>
-                        </tr>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Noah Oliver Rigonan</td>
-                            <td>United States of America</td>
-                        <tr class="tablecolor">
-                            <td>
-                                <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                                <button class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                            </td>
-                            <td>Noah Oliver Rigonan</td>
-                            <td>United States of America</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
