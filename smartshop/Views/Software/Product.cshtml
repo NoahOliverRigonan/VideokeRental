@@ -30,7 +30,6 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-                    <li><a href="#"><i class="fa fa-globe"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -63,7 +62,17 @@
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading panel-heading-custom">
+                            <a href="@Url.Action("Calendar", "Software")" class="panel-menu"><i class="fa fa-calendar"></i> Calendar</a>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-heading-custom">
                             <a href="@Url.Action("Message", "Software")" class="panel-menu"><i class="fa fa-envelope"></i> Message</a>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-heading-custom">
+                            <a href="@Url.Action("Reports", "Software")" class="panel-menu"><i class="fa fa-print"></i> Reports</a>
                         </div>
                     </div>
                 </div>

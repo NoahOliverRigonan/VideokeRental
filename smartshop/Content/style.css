@@ -680,5 +680,6 @@ a.p-menu {
 .panel-custom {
     border-radius: 0!important;
     background-color: #082954;
+    margin: 60px;
 }
 

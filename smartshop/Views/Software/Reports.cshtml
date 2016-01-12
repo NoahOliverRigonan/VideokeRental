@@ -1,20 +1,14 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Message</title>
+    <title>Calendar</title>
 
     <!-- css -->
     @Styles.Render("~/Content/stylesheets")
     @Styles.Render("~/font-awesome/fonts")
 </head>
 <body>
-    <div class="header-wrapper">
-        <ul>
-            @*<li><a href="@Url.Action("Register", "Account")"> Sign Up</a></li>
-                <li><a href="@Url.Action("Login", "Account")"> Login</a></li>*@
-            @Html.Partial("_LoginPartial")
-        </ul>
-    </div>
+
     <!-- navbar menu -->
     <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
@@ -27,6 +21,7 @@
                 <a href="@Url.Action("Index","Home")" class="navbar-brand"><b>B-JAM</b></a>
                 @*<img src="../images/store.png" alt="Flower" class="navcode">*@
             </div>
+            @Html.Partial("_LoginPartial")
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><i class="fa fa-envelope"></i></a></li>
@@ -39,41 +34,44 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2">
-                <div class="panel-group" id="accordion">
-                    <div class="panel panel-default">
-                        <div class="panel-heading panel-heading-custom">
-                            <a href="@Url.Action("Index", "Software")" class=" panel-menu"><i class="fa fa-home"></i> Home</a>
-                        </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-heading-custom">
+                        <a href="@Url.Action("Index", "Software")" class=" panel-menu"><i class="fa fa-list"></i> Main menu</a>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading panel-heading-custom">
-                            <a href="@Url.Action("Users", "Software")" class=" panel-menu"><i class="fa fa-user"></i> User</a>
-                        </div>
+                    <div class="panel-heading panel-heading-custom">
+                        <a href="@Url.Action("Users", "Software")" class=" panel-menu"><i class="fa fa-user"></i> User</a>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading panel-heading-custom">
-                            <a href="@Url.Action("Customer", "Software")" class="panel-menu"><i class="fa fa-users"></i> Customer</a>
-                        </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-heading-custom">
+                        <a href="@Url.Action("Customer", "Software")" class="panel-menu"><i class="fa fa-users"></i> Customer</a>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading panel-heading-custom">
-                            <a href="@Url.Action("Product", "Software")" class="panel-menu"><i class="fa fa-shopping-bag"></i> Product</a>
-                        </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-heading-custom">
+                        <a href="@Url.Action("Product", "Software")" class="panel-menu"><i class="fa fa-shopping-bag"></i> Product</a>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading panel-heading-custom">
-                            <a href="@Url.Action("Calendar", "Software")" class="panel-menu"><i class="fa fa-calendar"></i> Calendar</a>
-                        </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-heading-custom">
+                        <a href="@Url.Action("Calendar", "Software")" class="panel-menu"><i class="fa fa-envelope"></i> Calendar</a>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading panel-heading-custom">
-                            <a href="@Url.Action("Message", "Software")" class="panel-active"><i class="fa fa-envelope"></i> Message</a>
-                        </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-heading-custom">
+                        <a href="@Url.Action("Message", "Software")" class="panel-menu"><i class="fa fa-envelope"></i> Message</a>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading panel-heading-custom">
-                            <a href="@Url.Action("Reports", "Software")" class="panel-menu"><i class="fa fa-print"></i> Reports</a>
-                        </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-heading-custom">
+                        <a href="@Url.Action("Reports", "Software")" class="panel-active"><i class="fa fa-print"></i> Reports</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h1>Our Reports Here! ...</h1>
                     </div>
                 </div>
             </div>
@@ -117,6 +115,6 @@
             </div>
         </div>
     </footer>
-            @Scripts.Render("~/Scripts/js")
+    @Scripts.Render("~/Scripts/js")
 </body>
 </html>

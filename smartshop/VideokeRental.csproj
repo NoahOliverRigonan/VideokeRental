@@ -720,6 +720,8 @@
     <Content Include="Views\Software\Users.cshtml" />
     <Content Include="Views\Software\Message.cshtml" />
     <Content Include="Views\Home\RentalVideoke.cshtml" />
+    <Content Include="Views\Software\Calendar.cshtml" />
+    <Content Include="Views\Software\Reports.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

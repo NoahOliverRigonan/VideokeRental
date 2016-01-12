@@ -39,5 +39,17 @@ namespace VideokeRental.Controllers
         {
             return View();
         }
+        [Authorize]
+        // GET: Software
+        public ActionResult Calendar()
+        {
+            return View();
+        }
+        [Authorize]
+        // GET: Software
+        public ActionResult Reports()
+        {
+            return View();
+        }
     }
 }
