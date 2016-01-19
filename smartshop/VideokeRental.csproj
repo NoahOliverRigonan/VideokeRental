@@ -212,6 +212,7 @@
     <Content Include="images\bed.jpg" />
     <Content Include="images\button.jpg" />
     <Content Include="images\cart.ico" />
+    <Content Include="images\credit.jpg" />
     <Content Include="images\dancer.jpeg" />
     <Content Include="images\gadgets.jpg" />
     <Content Include="images\heat.jpeg" />
@@ -674,6 +675,7 @@
     <Content Include="Scripts\popover.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\style.js" />
     <Content Include="Scripts\transition.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
