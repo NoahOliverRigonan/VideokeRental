@@ -146,19 +146,25 @@
                         </div>
                     </div>
                 </div>
-                <div id="row">
-                    <a href="#">
-                        <div id="col">
-                            <img id="images" />
-                        </div>
-                    </a>
-                    <div id="col2">
-                        <label id="productLabel"></label>
+
+                <div id="col2">
+                    <label id="productLabel"></label>
+                </div>
+
+                <div id="imageDiv">
+                    <image id="images" />
+                    <div id="overlayId">
+
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
+    <br />
+    <br />
+    <br />
+    <br />
     <footer class="footer">
         <div class="container">
             <div class="row">
@@ -224,51 +230,82 @@
                                 ProductDescription: Results[i]["ProductDescription"]
                             });
 
-                            //console.log(Results[i]["Id"]);
-                            //console.log(Results[i]["Images"]);
+                            // product Id
+                            var productIdElement = document.createElement("INPUT");
+                            //var productIdTextNode = document.createTextNode(Results[i]["Id"]);
+                            //productIdElement.appendChild(productIdTextNode);
+                            productIdElement.setAttribute('value', Results[i]["Id"]);
+                            productIdElement.setAttribute('type', 'hidden');
+                            productIdElement.setAttribute('Id', 'productId');
 
-                            function hexToBase64(str) {
-                                return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
-                            }
+                            // button view Details
+                            var buttonViewDetailsElement = document.createElement("BUTTON");
+                            var buttonValue = document.createTextNode("View Details");
+                            buttonViewDetailsElement.appendChild(buttonValue);
+                            buttonViewDetailsElement.setAttribute('class', 'btn btn-success btn-block');
 
-                            var img = new Image();
-                            img.src = "data:image/jpeg;base64," + hexToBase64(Results[i]["Images"]);
-                            img.height = 250;
-                            img.width = 400;
+                            // button delete
+                            var buttonDeleteElement = document.createElement("BUTTON");
+                            var buttonDeleteValue = document.createTextNode("Delete");
+                            buttonDeleteElement.appendChild(buttonDeleteValue);
+                            buttonDeleteElement.setAttribute('class', 'btn btn-danger btn-block');
+                            buttonDeleteElement.setAttribute('onclick', 'btnDeleteButton(' + Results[i]["Id"] + ')');
 
-                            var node = document.createElement("images");
-                            node.setAttribute("align", "center");
+                            // product Div
+                            var productDIVElement = document.createElement("DIV");
+                            // product br
+                            var BR = document.createElement("BR");
 
-                            node.appendChild(img);
-                            var col1 = document.getElementById("col").appendChild(node);
-                            col1.setAttribute("class", "col-md-6 border-custom");
+                            // product Title
+                            var productNameElement = document.createElement("H3");
+                            var productNameTextNode = document.createTextNode(Results[i]["ProductName"]);
+                            productNameElement.appendChild(productNameTextNode);
+
+                            // product Description
+                            var productDescriptionElement = document.createElement("P");
+                            var productDescriptionTextNode = document.createTextNode(Results[i]["ProductDescription"]);
+                            productDescriptionElement.appendChild(productDescriptionTextNode);
+
+                            // product Image
+                            var productImageElement = document.createElement("images");
+                            var imageData = new Image();
+                            imageData.src = "data:image/jpeg;base64," + hexToBase64(Results[i]["Images"]);
+                            imageData.className = "imageCSS img-thumbnail";
+                            productImageElement.appendChild(imageData);
+
+                            var overlayDivision = document.getElementById("overlayId").appendChild(productDIVElement);
+                            overlayDivision.setAttribute('class', 'overlay');
+                            overlayDivision.appendChild(productIdElement);
+                            overlayDivision.appendChild(productNameElement); 
+                            overlayDivision.appendChild(BR);
+                            overlayDivision.appendChild(productDescriptionElement);
+                            overlayDivision.appendChild(BR);
+                            overlayDivision.appendChild(buttonViewDetailsElement);
+                            overlayDivision.appendChild(buttonDeleteElement);
+                            
+                            // division
+                            var imageDivision = document.getElementById("imageDiv").appendChild(productImageElement);
+                            imageDivision.setAttribute("class", "col-md-6 border-custom hovereffect");
+                            imageDivision.appendChild(overlayDivision);
+                            ////imageDivision.appendChild(productNameElement);
+                            //imageDivision.appendChild(productDescriptionElement);
+                            //imageDivision.appendChild(buttonViewDetailsElement);
+
+
                         }
                     } else {
                         if (Results.length == 0) {
                             $('#LabelItems').show();
                         }
                     }
-
-                    //$('#table_id').dataTable({
-                    //    aaData: products,
-                    //    aoColumns: [
-                    //            { mData: 'EditId' },
-                    //            { mData: 'DeleteId' },
-                    //            { mData: 'ProductNumber' },
-                    //            { mData: 'ProductName' },
-                    //            { mData: 'ProductDescription' }
-                    //    ]
-                    //});
                 }
             });
             return products;
         }
 
-        // Get Image
-        function getImages(products) {
-            products = new Array();
-
-
+        // convert image to hex
+        function hexToBase64(str) {
+            return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
         }
 
         // Add Product
@@ -351,14 +388,25 @@
         }
 
         // delete
-        function btnDeleteButton() {
-            $('#myModalDelete').modal({
-                show: true,
-                backdrop: 'static'
-            });
-            var table = $('#table_id').DataTable();
-            $('#table_id tbody').on('click', 'tr', function () {
-                document.getElementById('deleteProductId').value = table.row(this).data().Id;
+        function btnDeleteButton(productId) {
+            console.log(productId);
+
+            $.ajax({
+                type: "DELETE",
+                url: '/api/deleteProduct/' + productId,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                statusCode: {
+                    200: function () {
+                        location.reload();
+                    },
+                    404: function () {
+                        alert("Not Found");
+                    },
+                    500: function () {
+                        alert("Bad Request");
+                    }
+                }
             });
         }
         function btnDeleteProduct() {
