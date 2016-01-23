@@ -42,7 +42,12 @@ namespace VideokeRental.Controllers
                 newProduct.ProductNumber = product.ProductNumber;
                 newProduct.ProductName = product.ProductName;
                 newProduct.ProductDescription = product.ProductDescription;
-                newProduct.Images = BitConverter.GetBytes(product.ImagesByte);
+                //newProduct.Images = BitConverter.GetBytes(product.Images);
+
+                byte[] imgarr = Convert.FromBase64String(product.Images);
+
+                newProduct.Images = imgarr;
+
                 Debug.WriteLine(newProduct.Images);
 
                 db.tblProducts.InsertOnSubmit(newProduct);
@@ -50,8 +55,9 @@ namespace VideokeRental.Controllers
 
                 return newProduct.Id;
             }
-            catch
+            catch(Exception e)
             {
+                Debug.WriteLine(e);
                 return 0;
             }
         }

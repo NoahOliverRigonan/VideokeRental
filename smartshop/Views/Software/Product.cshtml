@@ -277,7 +277,16 @@
             productObject.ProductNumber = document.getElementById('product_ProductNumber').value;
             productObject.ProductName = document.getElementById('product_ProductName').value;
             productObject.ProductDescription = document.getElementById('product_ProductDescription').value;
-            productObject.Images = document.getElementById('product_Image_data').value;
+
+            var images = $('#product_ImageDisplay').attr('src');
+            var ImageSave = images.replace("data:image/jpeg;base64,", "");
+            //var submitval = JSON.stringify({ data: ImageSave });
+
+            //productObject.Images = document.getElementById('product_Image_data').value;
+            productObject.Images = ImageSave;
+
+            console.log(ImageSave);
+
 
             var productData = JSON.stringify(productObject);
 
@@ -388,6 +397,7 @@
             document.getElementById('product_Image_data').value = "";
         }
 
+        // Read URL image
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -399,13 +409,15 @@
             }
         }
 
+        // onload image
         document.querySelector('#product_Image').addEventListener('change', function () {
             var reader = new FileReader();
             reader.onload = function () {
                 var binaryString = this.result;
                 //document.querySelector('#result').innerHTML = binaryString;
-                console.log(binaryString());
+                //console.log(binaryString());
                 document.getElementById('product_Image_data').value = binaryString;
+
             }
             reader.readAsBinaryString(this.files[0]);
         }, false);
@@ -414,6 +426,7 @@
         $(document).ready(function () {
             getProduct();
             $('#product_ImageDisplay').hide();
+
             $("#product_Image").change(function () {
                 readURL(this);
                 $('#product_ImageDisplay').show();
