@@ -674,7 +674,9 @@ table, th, td {
 }
 
 .border-custom {
-    height: 300px;
+    height: 400px;
+    padding: 20px;
+    border: 1px solid #dbdbdb;
 }
 
 .image-custom {
@@ -722,6 +724,8 @@ img.model {
 .imageCSS {
     max-width: 100%;
     max-height: 100%;
+    margin: auto;
+    border-radius: 15px;
 }
 
 .hovereffect {
@@ -812,3 +816,19 @@ img.model {
         -webkit-transition-delay: 0.3s;
         transition-delay: 0.3s;
     }
+
+div.boxes {
+    width: 400px;
+    height: 650px;
+    padding: 10px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+div.smallboxes {
+    width: 150px;
+    height: 150px;
+    padding: 10px;
+    border: 1px solid black;
+    margin-bottom: 100px;
+}

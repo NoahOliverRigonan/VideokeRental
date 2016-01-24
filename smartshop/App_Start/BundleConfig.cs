@@ -15,6 +15,11 @@ namespace VideokeRental
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap.min.css",
                       "~/Content/style.css",
+                      //"~/Content/alertify.bootstrap.css",
+                      "~/Content/alertify.core.css",
+                      "~/Content/alertify.default.css",
+                      "~/Content/toastr.css",
+                      "~/Content/toastr.min.css",
                       "~/Content/jquery.dataTables.css",
                       "~/Content/jquery.dataTables.min.css"
                       ));
@@ -34,6 +39,10 @@ namespace VideokeRental
                      "~/Scripts/popover.js",
                      "~/Scripts/modal.js",
                      "~/Scripts/style.js",
+                     "~/Scripts/alertify.js",
+                     "~/Scripts/alertify.min.js",
+                     "~/Scripts/toastr.js",
+                     "~/Scripts/toastr.min.js",
                      "~/Scripts/jquery.dataTables.js",
                      "~/Scripts/jquery.dataTables.min.js"
                      ));

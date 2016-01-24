@@ -57,7 +57,7 @@
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading panel-heading-custom">
-                            <a href="@Url.Action("Product", "Software")" class="panel-active"><i class="fa fa-shopping-bag"></i> Product</a>
+                            <a href="@Url.Action("Product", "Software")" class="panel-active"><i class="fa fa-shopping-bag"></i> Videoke Type</a>
                         </div>
                     </div>
                     <div class="panel panel-default">
@@ -89,50 +89,48 @@
                 </div>
                 <hr />
                 <center>
-                    <label id="LabelItems">No Items</label>
+                    <label id="LabelItems" style="color: red;">No Items</label>
                 </center>
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Information</h4>
+                                <h4 class="modal-title" id="myModalLabel">Videoke Details</h4>
                             </div>
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <form class="form-horizontal">
-                                            <input type="hidden" id="customer_Id" />
                                             <div class="form-group">
-                                                <label class="col-sm-4 control-label">Product Photo</label>
+                                                <label class="col-sm-4 control-label">Photo</label>
                                                 <div class="col-sm-8">
                                                     <img id="product_ImageDisplay" src="#" class="img-thumbnail" alt="your image" width="304" height="236" />
-                                                    <input type="file" id="product_Image">
-                                                    <input type="text" id="product_Image_data">
+                                                    <input type="file" class="form-control requiredVideoke" id="product_Image">
                                                 </div>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" id="product_Id" />
+                                        <input type="hidden" id="product_Id" />
                                         <form class="form-horizontal">
                                             <input type="hidden" id="customer_Id" />
                                             <div class="form-group">
-                                                <label class="col-sm-4 control-label">Product Number</label>
+                                                <label class="col-sm-4 control-label">Number</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" id="product_ProductNumber" class="form-control">
+                                                    <input type="text" id="product_ProductNumber" class="form-control requiredVideoke">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-4 control-label">Product Name</label>
+                                                <label class="col-sm-4 control-label">Name</label>
                                                 <div class="col-sm-8">
-                                                    <input type="text" id="product_ProductName" class="form-control">
+                                                    <input type="text" id="product_ProductName" class="form-control requiredVideoke">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-4 control-label">Product Description</label>
+                                                <label class="col-sm-4 control-label">Description</label>
                                                 <div class="col-sm-8">
-                                                    <textarea id="product_ProductDescription" class="form-control"></textarea>
+                                                    <textarea id="product_ProductDescription" class="form-control requiredVideoke"></textarea>
                                                 </div>
                                             </div>
                                         </form>
@@ -149,15 +147,14 @@
 
                 <div id="col2">
                     <label id="productLabel"></label>
+                    <center><h3 id="loadingVideoke"><i class="fa fa-spinner fa-spin"></i> Loading Videoke ... </h3></center>
                 </div>
-
                 <div id="imageDiv">
                     <image id="images" />
                     <div id="overlayId">
 
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -211,96 +208,114 @@
         // get Products
         function getProduct() {
             products = new Array();
-            $.ajax({
-                url: '/api/product/list',
-                cache: false,
-                type: 'GET',
-                contentType: 'application/json; charset=utf-8',
-                success: function (Results) {
-                    if (Results.length > 0) {
-                        $('#LabelItems').hide();
-                        for (i = 0; i < Results.length; i++) {
-                            products.push({
-                                EditId: '<button class="btn btn-primary btn-sm btn-block" onclick="btnEditButton()"><span class="glyphicon glyphicon-edit"></span> Edit</button>',
-                                DeleteId: '<button class="btn btn-danger btn-sm btn-block" onclick="btnDeleteButton()"><span class="glyphicon glyphicon-trash"></span> Delete</button>',
-                                Id: Results[i]["Id"],
-                                Images: Results[i]["Images"],
-                                ProductNumber: Results[i]["ProductNumber"],
-                                ProductName: Results[i]["ProductName"],
-                                ProductDescription: Results[i]["ProductDescription"]
-                            });
+            $('#LabelItems').hide();
+            $('#loadingVideoke').show();
 
-                            // product Id
-                            var productIdElement = document.createElement("INPUT");
-                            //var productIdTextNode = document.createTextNode(Results[i]["Id"]);
-                            //productIdElement.appendChild(productIdTextNode);
-                            productIdElement.setAttribute('value', Results[i]["Id"]);
-                            productIdElement.setAttribute('type', 'hidden');
-                            productIdElement.setAttribute('Id', 'productId');
+            setTimeout(function () {
+                $.ajax({
+                    url: '/api/product/list',
+                    cache: false,
+                    type: 'GET',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (Results) {
+                        if (Results.length > 0) {
+                            $('#LabelItems').hide();
+                            $('#loadingVideoke').hide();
+                            for (i = 0; i < Results.length; i++) {
+                                products.push({
+                                    EditId: '<button class="btn btn-primary btn-sm btn-block" onclick="btnEditButton()"><span class="glyphicon glyphicon-edit"></span> Edit</button>',
+                                    DeleteId: '<button class="btn btn-danger btn-sm btn-block" onclick="btnDeleteButton()"><span class="glyphicon glyphicon-trash"></span> Delete</button>',
+                                    Id: Results[i]["Id"],
+                                    Images: Results[i]["Images"],
+                                    ProductNumber: Results[i]["ProductNumber"],
+                                    ProductName: Results[i]["ProductName"],
+                                    ProductDescription: Results[i]["ProductDescription"]
+                                });
 
-                            // button view Details
-                            var buttonViewDetailsElement = document.createElement("BUTTON");
-                            var buttonValue = document.createTextNode("View Details");
-                            buttonViewDetailsElement.appendChild(buttonValue);
-                            buttonViewDetailsElement.setAttribute('class', 'btn btn-success btn-block');
+                                // product Id
+                                var productIdElement = document.createElement("INPUT");
+                                //var productIdTextNode = document.createTextNode(Results[i]["Id"]);
+                                //productIdElement.appendChild(productIdTextNode);
+                                productIdElement.setAttribute('value', Results[i]["Id"]);
+                                productIdElement.setAttribute('type', 'hidden');
+                                productIdElement.setAttribute('Id', 'productId');
 
-                            // button delete
-                            var buttonDeleteElement = document.createElement("BUTTON");
-                            var buttonDeleteValue = document.createTextNode("Delete");
-                            buttonDeleteElement.appendChild(buttonDeleteValue);
-                            buttonDeleteElement.setAttribute('class', 'btn btn-danger btn-block');
-                            buttonDeleteElement.setAttribute('onclick', 'btnDeleteButton(' + Results[i]["Id"] + ')');
-
-                            // product Div
-                            var productDIVElement = document.createElement("DIV");
-                            // product br
-                            var BR = document.createElement("BR");
-
-                            // product Title
-                            var productNameElement = document.createElement("H3");
-                            var productNameTextNode = document.createTextNode(Results[i]["ProductName"]);
-                            productNameElement.appendChild(productNameTextNode);
-
-                            // product Description
-                            var productDescriptionElement = document.createElement("P");
-                            var productDescriptionTextNode = document.createTextNode(Results[i]["ProductDescription"]);
-                            productDescriptionElement.appendChild(productDescriptionTextNode);
-
-                            // product Image
-                            var productImageElement = document.createElement("images");
-                            var imageData = new Image();
-                            imageData.src = "data:image/jpeg;base64," + hexToBase64(Results[i]["Images"]);
-                            imageData.className = "imageCSS img-thumbnail";
-                            productImageElement.appendChild(imageData);
-
-                            var overlayDivision = document.getElementById("overlayId").appendChild(productDIVElement);
-                            overlayDivision.setAttribute('class', 'overlay');
-                            overlayDivision.appendChild(productIdElement);
-                            overlayDivision.appendChild(productNameElement); 
-                            overlayDivision.appendChild(BR);
-                            overlayDivision.appendChild(productDescriptionElement);
-                            overlayDivision.appendChild(BR);
-                            overlayDivision.appendChild(buttonViewDetailsElement);
-                            overlayDivision.appendChild(buttonDeleteElement);
-                            
-                            // division
-                            var imageDivision = document.getElementById("imageDiv").appendChild(productImageElement);
-                            imageDivision.setAttribute("class", "col-md-6 border-custom hovereffect");
-                            imageDivision.appendChild(overlayDivision);
-                            ////imageDivision.appendChild(productNameElement);
-                            //imageDivision.appendChild(productDescriptionElement);
-                            //imageDivision.appendChild(buttonViewDetailsElement);
+                                // button view Details
+                                var buttonViewDetailsElement = document.createElement("BUTTON");
+                                var buttonValue = document.createTextNode("View Details");
+                                buttonViewDetailsElement.appendChild(buttonValue);
+                                buttonViewDetailsElement.setAttribute('class', 'btn btn-success btn-block');
+                                buttonViewDetailsElement.setAttribute('onclick', 'btnViewDetailsButton(' + Results[i]["Id"] + ')');
 
 
-                        }
-                    } else {
-                        if (Results.length == 0) {
-                            $('#LabelItems').show();
+                                // button delete
+                                var buttonDeleteElement = document.createElement("BUTTON");
+                                var buttonDeleteValue = document.createTextNode("Delete");
+                                buttonDeleteElement.appendChild(buttonDeleteValue);
+                                buttonDeleteElement.setAttribute('class', 'btn btn-danger btn-block');
+                                buttonDeleteElement.setAttribute('onclick', 'btnDeleteButton(' + Results[i]["Id"] + ')');
+
+                                // product Div
+                                var productDIVElement = document.createElement("DIV");
+
+                                // product Title
+                                var productNameElement = document.createElement("H3");
+                                var productNameTextNode = document.createTextNode(Results[i]["ProductName"]);
+                                productNameElement.appendChild(productNameTextNode);
+
+                                // product Description
+                                var productDescriptionElement = document.createElement("P");
+                                var productDescriptionTextNode = document.createTextNode(Results[i]["ProductDescription"]);
+                                productDescriptionElement.appendChild(productDescriptionTextNode);
+
+                                // product Image
+                                var productImageElement = document.createElement("images");
+                                var imageData = new Image();
+                                imageData.src = "data:image/jpeg;base64," + hexToBase64(Results[i]["Images"]);
+                                imageData.className = "imageCSS";
+                                productImageElement.appendChild(imageData);
+
+                                var overlayDivision = document.getElementById("overlayId").appendChild(productDIVElement);
+                                overlayDivision.setAttribute('class', 'overlay');
+                                overlayDivision.appendChild(productIdElement);
+                                overlayDivision.appendChild(productNameElement);
+                                // product br
+                                var BR = document.createElement("BR");
+                                overlayDivision.appendChild(BR);
+                                overlayDivision.appendChild(productDescriptionElement);
+
+                                // product br2
+                                var BR2 = document.createElement("BR");
+                                overlayDivision.appendChild(BR2);
+                                overlayDivision.appendChild(buttonViewDetailsElement);
+                                overlayDivision.appendChild(buttonDeleteElement);
+
+                                // division
+                                var imageDivision = document.getElementById("imageDiv").appendChild(productImageElement);
+                                imageDivision.setAttribute("class", "col-md-6 border-custom hovereffect");
+                                imageDivision.appendChild(overlayDivision);
+                                ////imageDivision.appendChild(productNameElement);
+                                //imageDivision.appendChild(productDescriptionElement);
+                                //imageDivision.appendChild(buttonViewDetailsElement);
+
+
+                            }
+                        } else {
+                            if (Results.length == 0) {
+                                $('#LabelItems').show();
+                                $('#loadingVideoke').hide();
+                            }
                         }
                     }
-                }
-            });
+                });
+            }, 1000);
+
             return products;
+        }
+
+        function btnViewDetailsButton(videokeId) {
+            window.location.href = "/Software/VideokeDetails?VideokeId=" + videokeId;
+
         }
 
         // convert image to hex
@@ -311,61 +326,79 @@
         // Add Product
         function btnSaveProduct() {
             var productObject = new Object();
+
+            var productId = document.getElementById('product_Id').value;
             productObject.ProductNumber = document.getElementById('product_ProductNumber').value;
             productObject.ProductName = document.getElementById('product_ProductName').value;
             productObject.ProductDescription = document.getElementById('product_ProductDescription').value;
-
             var images = $('#product_ImageDisplay').attr('src');
             var ImageSave = images.replace("data:image/jpeg;base64,", "");
-            //var submitval = JSON.stringify({ data: ImageSave });
-
-            //productObject.Images = document.getElementById('product_Image_data').value;
             productObject.Images = ImageSave;
-
-            console.log(ImageSave);
-
-
             var productData = JSON.stringify(productObject);
 
-            var productId = document.getElementById('product_Id').value;
-            if (productId == 0) {
-                $.ajax({
-                    type: "POST",
-                    url: '/api/product/add',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    data: productData,
-                    statusCode: {
-                        200: function () {
-                            location.reload();
-                        },
-                        404: function () {
-                            alert("Not Found");
-                        },
-                        500: function () {
-                            alert("Bad Request");
+            var isValid = true;
+            $('.requiredVideoke').each(function () {
+                if ($.trim($(this).val()) == '') {
+                    isValid = false;
+                    $(this).css({
+                        "border": "1px solid red"
+                    });
+                }
+                else {
+                    $(this).css({
+                        "border": "",
+                    });
+                }
+            });
+            if (isValid == false) {
+                toastr.error("Invalid Entry");
+            }
+            else {
+                if (productId == 0) {
+                    $.ajax({
+                        type: "POST",
+                        url: '/api/product/add',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: productData,
+                        statusCode: {
+                            200: function () {
+                                toastr.success("Successfully add");
+                                setTimeout(function () {
+                                    window.location.reload(1);
+                                }, 1000);
+                            },
+                            404: function () {
+                                alert("Not Found");
+                            },
+                            500: function () {
+                                alert("Bad Request");
+                            }
                         }
-                    }
-                });
-            } else {
-                $.ajax({
-                    type: "PUT",
-                    url: '/api/updateProduct/' + productId,
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    data: productData,
-                    statusCode: {
-                        200: function () {
-                            location.reload();
-                        },
-                        404: function () {
-                            alert("Not Found");
-                        },
-                        500: function () {
-                            alert("Bad Request");
+                    });
+                } else {
+                    $.ajax({
+                        type: "PUT",
+                        url: '/api/updateProduct/' + productId,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: productData,
+                        statusCode: {
+                            200: function () {
+                                toastr.success("Successfully updated");
+                                setTimeout(function () {
+                                    window.location.reload(1);
+                                }, 1000);
+                            },
+                            404: function () {
+                                alert("Not Found");
+                            },
+                            500: function () {
+                                alert("Bad Request");
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
 
         }
@@ -390,43 +423,53 @@
         // delete
         function btnDeleteButton(productId) {
             console.log(productId);
-
-            $.ajax({
-                type: "DELETE",
-                url: '/api/deleteProduct/' + productId,
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                statusCode: {
-                    200: function () {
-                        location.reload();
-                    },
-                    404: function () {
-                        alert("Not Found");
-                    },
-                    500: function () {
-                        alert("Bad Request");
-                    }
+            alertify.confirm("Delete?", function (e) {
+                if (e) {
+                    $.ajax({
+                        type: "DELETE",
+                        url: '/api/deleteProduct/' + productId,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        statusCode: {
+                            200: function () {
+                                toastr.success("Successfully deleted");
+                                setTimeout(function () {
+                                    window.location.reload(1);
+                                }, 1000);
+                            },
+                            404: function () {
+                                alert("Not Found");
+                            },
+                            500: function () {
+                                alert("Bad Request");
+                            }
+                        }
+                    });
                 }
             });
         }
         function btnDeleteProduct() {
-            var productId = document.getElementById('deleteProductId').value;
+            alertify.confirm("Delete?", function (e) {
+                if (e) {
+                    var productId = document.getElementById('deleteProductId').value;
 
-            $.ajax({
-                type: "DELETE",
-                url: '/api/deleteProduct/' + productId,
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                statusCode: {
-                    200: function () {
-                        location.reload();
-                    },
-                    404: function () {
-                        alert("Not Found");
-                    },
-                    500: function () {
-                        alert("Bad Request");
-                    }
+                    $.ajax({
+                        type: "DELETE",
+                        url: '/api/deleteProduct/' + productId,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        statusCode: {
+                            200: function () {
+                                location.reload();
+                            },
+                            404: function () {
+                                alert("Not Found");
+                            },
+                            500: function () {
+                                alert("Bad Request");
+                            }
+                        }
+                    });
                 }
             });
         }
@@ -438,11 +481,16 @@
                 backdrop: 'static'
             });
 
+            $('.requiredVideoke').each(function () {
+                $(this).css({
+                    "border": "",
+                });
+            });
+
             document.getElementById('product_Id').value = 0;
             document.getElementById('product_ProductNumber').value = "";
             document.getElementById('product_ProductName').value = "";
             document.getElementById('product_ProductDescription').value = "";
-            document.getElementById('product_Image_data').value = "";
         }
 
         // Read URL image
@@ -464,7 +512,6 @@
                 var binaryString = this.result;
                 //document.querySelector('#result').innerHTML = binaryString;
                 //console.log(binaryString());
-                document.getElementById('product_Image_data').value = binaryString;
 
             }
             reader.readAsBinaryString(this.files[0]);

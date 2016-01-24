@@ -51,5 +51,11 @@ namespace VideokeRental.Controllers
         {
             return View();
         }
+        [Authorize]
+        // GET: Software
+        public ActionResult VideokeDetails()
+        {
+            return View();
+        }
     }
 }
