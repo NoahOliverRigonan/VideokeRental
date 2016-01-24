@@ -15,5 +15,7 @@ namespace VideokeRental.Models
         public String ProductDescription { get; set; }
         public String Images { get; set; }
         public Byte ImagesByte { get; set; }
+        public Boolean IsReserved { get; set; }
+        public Boolean IsRented { get; set; }
     }
 }

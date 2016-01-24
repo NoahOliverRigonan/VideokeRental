@@ -33,9 +33,6 @@ namespace VideokeRental.Data
     partial void Insert__MigrationHistory(__MigrationHistory instance);
     partial void Update__MigrationHistory(__MigrationHistory instance);
     partial void Delete__MigrationHistory(__MigrationHistory instance);
-    partial void InsertAspNetUser(AspNetUser instance);
-    partial void UpdateAspNetUser(AspNetUser instance);
-    partial void DeleteAspNetUser(AspNetUser instance);
     partial void InsertAspNetRole(AspNetRole instance);
     partial void UpdateAspNetRole(AspNetRole instance);
     partial void DeleteAspNetRole(AspNetRole instance);
@@ -48,12 +45,24 @@ namespace VideokeRental.Data
     partial void InsertAspNetUserRole(AspNetUserRole instance);
     partial void UpdateAspNetUserRole(AspNetUserRole instance);
     partial void DeleteAspNetUserRole(AspNetUserRole instance);
+    partial void InsertAspNetUser(AspNetUser instance);
+    partial void UpdateAspNetUser(AspNetUser instance);
+    partial void DeleteAspNetUser(AspNetUser instance);
     partial void InserttblCustomer(tblCustomer instance);
     partial void UpdatetblCustomer(tblCustomer instance);
     partial void DeletetblCustomer(tblCustomer instance);
+    partial void InserttblGallery(tblGallery instance);
+    partial void UpdatetblGallery(tblGallery instance);
+    partial void DeletetblGallery(tblGallery instance);
     partial void InserttblProduct(tblProduct instance);
     partial void UpdatetblProduct(tblProduct instance);
     partial void DeletetblProduct(tblProduct instance);
+    partial void InserttblVideokeRental(tblVideokeRental instance);
+    partial void UpdatetblVideokeRental(tblVideokeRental instance);
+    partial void DeletetblVideokeRental(tblVideokeRental instance);
+    partial void InserttblVideokeReservation(tblVideokeReservation instance);
+    partial void UpdatetblVideokeReservation(tblVideokeReservation instance);
+    partial void DeletetblVideokeReservation(tblVideokeReservation instance);
     #endregion
 		
 		public videokerentalDataContext() : 
@@ -94,14 +103,6 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		public System.Data.Linq.Table<AspNetUser> AspNetUsers
-		{
-			get
-			{
-				return this.GetTable<AspNetUser>();
-			}
-		}
-		
 		public System.Data.Linq.Table<AspNetRole> AspNetRoles
 		{
 			get
@@ -134,6 +135,14 @@ namespace VideokeRental.Data
 			}
 		}
 		
+		public System.Data.Linq.Table<AspNetUser> AspNetUsers
+		{
+			get
+			{
+				return this.GetTable<AspNetUser>();
+			}
+		}
+		
 		public System.Data.Linq.Table<tblCustomer> tblCustomers
 		{
 			get
@@ -142,11 +151,35 @@ namespace VideokeRental.Data
 			}
 		}
 		
+		public System.Data.Linq.Table<tblGallery> tblGalleries
+		{
+			get
+			{
+				return this.GetTable<tblGallery>();
+			}
+		}
+		
 		public System.Data.Linq.Table<tblProduct> tblProducts
 		{
 			get
 			{
 				return this.GetTable<tblProduct>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblVideokeRental> tblVideokeRentals
+		{
+			get
+			{
+				return this.GetTable<tblVideokeRental>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblVideokeReservation> tblVideokeReservations
+		{
+			get
+			{
+				return this.GetTable<tblVideokeReservation>();
 			}
 		}
 	}
@@ -282,440 +315,6 @@ namespace VideokeRental.Data
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AspNetUsers")]
-	public partial class AspNetUser : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _Id;
-		
-		private string _FullName;
-		
-		private string _Email;
-		
-		private System.Nullable<bool> _EmailConfirmed;
-		
-		private string _UserName;
-		
-		private string _PasswordHash;
-		
-		private string _SecurityStamp;
-		
-		private string _PhoneNumber;
-		
-		private System.Nullable<bool> _PhoneNumberConfirmed;
-		
-		private System.Nullable<bool> _TwoFactorEnabled;
-		
-		private System.Nullable<System.DateTime> _LockoutEndDateUtc;
-		
-		private System.Nullable<bool> _LockoutEnabled;
-		
-		private System.Nullable<int> _AccessFailedCount;
-		
-		private EntitySet<AspNetUserClaim> _AspNetUserClaims;
-		
-		private EntitySet<AspNetUserLogin> _AspNetUserLogins;
-		
-		private EntitySet<AspNetUserRole> _AspNetUserRoles;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(string value);
-    partial void OnIdChanged();
-    partial void OnFullNameChanging(string value);
-    partial void OnFullNameChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnEmailConfirmedChanging(System.Nullable<bool> value);
-    partial void OnEmailConfirmedChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
-    partial void OnPasswordHashChanging(string value);
-    partial void OnPasswordHashChanged();
-    partial void OnSecurityStampChanging(string value);
-    partial void OnSecurityStampChanged();
-    partial void OnPhoneNumberChanging(string value);
-    partial void OnPhoneNumberChanged();
-    partial void OnPhoneNumberConfirmedChanging(System.Nullable<bool> value);
-    partial void OnPhoneNumberConfirmedChanged();
-    partial void OnTwoFactorEnabledChanging(System.Nullable<bool> value);
-    partial void OnTwoFactorEnabledChanged();
-    partial void OnLockoutEndDateUtcChanging(System.Nullable<System.DateTime> value);
-    partial void OnLockoutEndDateUtcChanged();
-    partial void OnLockoutEnabledChanging(System.Nullable<bool> value);
-    partial void OnLockoutEnabledChanged();
-    partial void OnAccessFailedCountChanging(System.Nullable<int> value);
-    partial void OnAccessFailedCountChanged();
-    #endregion
-		
-		public AspNetUser()
-		{
-			this._AspNetUserClaims = new EntitySet<AspNetUserClaim>(new Action<AspNetUserClaim>(this.attach_AspNetUserClaims), new Action<AspNetUserClaim>(this.detach_AspNetUserClaims));
-			this._AspNetUserLogins = new EntitySet<AspNetUserLogin>(new Action<AspNetUserLogin>(this.attach_AspNetUserLogins), new Action<AspNetUserLogin>(this.detach_AspNetUserLogins));
-			this._AspNetUserRoles = new EntitySet<AspNetUserRole>(new Action<AspNetUserRole>(this.attach_AspNetUserRoles), new Action<AspNetUserRole>(this.detach_AspNetUserRoles));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
-		public string FullName
-		{
-			get
-			{
-				return this._FullName;
-			}
-			set
-			{
-				if ((this._FullName != value))
-				{
-					this.OnFullNameChanging(value);
-					this.SendPropertyChanging();
-					this._FullName = value;
-					this.SendPropertyChanged("FullName");
-					this.OnFullNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(256)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmailConfirmed", DbType="Bit")]
-		public System.Nullable<bool> EmailConfirmed
-		{
-			get
-			{
-				return this._EmailConfirmed;
-			}
-			set
-			{
-				if ((this._EmailConfirmed != value))
-				{
-					this.OnEmailConfirmedChanging(value);
-					this.SendPropertyChanging();
-					this._EmailConfirmed = value;
-					this.SendPropertyChanged("EmailConfirmed");
-					this.OnEmailConfirmedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
-		public string UserName
-		{
-			get
-			{
-				return this._UserName;
-			}
-			set
-			{
-				if ((this._UserName != value))
-				{
-					this.OnUserNameChanging(value);
-					this.SendPropertyChanging();
-					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasswordHash", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string PasswordHash
-		{
-			get
-			{
-				return this._PasswordHash;
-			}
-			set
-			{
-				if ((this._PasswordHash != value))
-				{
-					this.OnPasswordHashChanging(value);
-					this.SendPropertyChanging();
-					this._PasswordHash = value;
-					this.SendPropertyChanged("PasswordHash");
-					this.OnPasswordHashChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecurityStamp", DbType="NVarChar(MAX)")]
-		public string SecurityStamp
-		{
-			get
-			{
-				return this._SecurityStamp;
-			}
-			set
-			{
-				if ((this._SecurityStamp != value))
-				{
-					this.OnSecurityStampChanging(value);
-					this.SendPropertyChanging();
-					this._SecurityStamp = value;
-					this.SendPropertyChanged("SecurityStamp");
-					this.OnSecurityStampChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="NVarChar(MAX)")]
-		public string PhoneNumber
-		{
-			get
-			{
-				return this._PhoneNumber;
-			}
-			set
-			{
-				if ((this._PhoneNumber != value))
-				{
-					this.OnPhoneNumberChanging(value);
-					this.SendPropertyChanging();
-					this._PhoneNumber = value;
-					this.SendPropertyChanged("PhoneNumber");
-					this.OnPhoneNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumberConfirmed", DbType="Bit")]
-		public System.Nullable<bool> PhoneNumberConfirmed
-		{
-			get
-			{
-				return this._PhoneNumberConfirmed;
-			}
-			set
-			{
-				if ((this._PhoneNumberConfirmed != value))
-				{
-					this.OnPhoneNumberConfirmedChanging(value);
-					this.SendPropertyChanging();
-					this._PhoneNumberConfirmed = value;
-					this.SendPropertyChanged("PhoneNumberConfirmed");
-					this.OnPhoneNumberConfirmedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TwoFactorEnabled", DbType="Bit")]
-		public System.Nullable<bool> TwoFactorEnabled
-		{
-			get
-			{
-				return this._TwoFactorEnabled;
-			}
-			set
-			{
-				if ((this._TwoFactorEnabled != value))
-				{
-					this.OnTwoFactorEnabledChanging(value);
-					this.SendPropertyChanging();
-					this._TwoFactorEnabled = value;
-					this.SendPropertyChanged("TwoFactorEnabled");
-					this.OnTwoFactorEnabledChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LockoutEndDateUtc", DbType="DateTime")]
-		public System.Nullable<System.DateTime> LockoutEndDateUtc
-		{
-			get
-			{
-				return this._LockoutEndDateUtc;
-			}
-			set
-			{
-				if ((this._LockoutEndDateUtc != value))
-				{
-					this.OnLockoutEndDateUtcChanging(value);
-					this.SendPropertyChanging();
-					this._LockoutEndDateUtc = value;
-					this.SendPropertyChanged("LockoutEndDateUtc");
-					this.OnLockoutEndDateUtcChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LockoutEnabled", DbType="Bit")]
-		public System.Nullable<bool> LockoutEnabled
-		{
-			get
-			{
-				return this._LockoutEnabled;
-			}
-			set
-			{
-				if ((this._LockoutEnabled != value))
-				{
-					this.OnLockoutEnabledChanging(value);
-					this.SendPropertyChanging();
-					this._LockoutEnabled = value;
-					this.SendPropertyChanged("LockoutEnabled");
-					this.OnLockoutEnabledChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccessFailedCount", DbType="Int")]
-		public System.Nullable<int> AccessFailedCount
-		{
-			get
-			{
-				return this._AccessFailedCount;
-			}
-			set
-			{
-				if ((this._AccessFailedCount != value))
-				{
-					this.OnAccessFailedCountChanging(value);
-					this.SendPropertyChanging();
-					this._AccessFailedCount = value;
-					this.SendPropertyChanged("AccessFailedCount");
-					this.OnAccessFailedCountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_AspNetUserClaim", Storage="_AspNetUserClaims", ThisKey="Id", OtherKey="UserId")]
-		public EntitySet<AspNetUserClaim> AspNetUserClaims
-		{
-			get
-			{
-				return this._AspNetUserClaims;
-			}
-			set
-			{
-				this._AspNetUserClaims.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_AspNetUserLogin", Storage="_AspNetUserLogins", ThisKey="Id", OtherKey="UserId")]
-		public EntitySet<AspNetUserLogin> AspNetUserLogins
-		{
-			get
-			{
-				return this._AspNetUserLogins;
-			}
-			set
-			{
-				this._AspNetUserLogins.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_AspNetUserRole", Storage="_AspNetUserRoles", ThisKey="Id", OtherKey="UserId")]
-		public EntitySet<AspNetUserRole> AspNetUserRoles
-		{
-			get
-			{
-				return this._AspNetUserRoles;
-			}
-			set
-			{
-				this._AspNetUserRoles.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_AspNetUserClaims(AspNetUserClaim entity)
-		{
-			this.SendPropertyChanging();
-			entity.AspNetUser = this;
-		}
-		
-		private void detach_AspNetUserClaims(AspNetUserClaim entity)
-		{
-			this.SendPropertyChanging();
-			entity.AspNetUser = null;
-		}
-		
-		private void attach_AspNetUserLogins(AspNetUserLogin entity)
-		{
-			this.SendPropertyChanging();
-			entity.AspNetUser = this;
-		}
-		
-		private void detach_AspNetUserLogins(AspNetUserLogin entity)
-		{
-			this.SendPropertyChanging();
-			entity.AspNetUser = null;
-		}
-		
-		private void attach_AspNetUserRoles(AspNetUserRole entity)
-		{
-			this.SendPropertyChanging();
-			entity.AspNetUser = this;
-		}
-		
-		private void detach_AspNetUserRoles(AspNetUserRole entity)
-		{
-			this.SendPropertyChanging();
-			entity.AspNetUser = null;
 		}
 	}
 	
@@ -1327,6 +926,468 @@ namespace VideokeRental.Data
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AspNetUsers")]
+	public partial class AspNetUser : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Id;
+		
+		private string _FullName;
+		
+		private string _Email;
+		
+		private System.Nullable<bool> _EmailConfirmed;
+		
+		private string _UserName;
+		
+		private string _PasswordHash;
+		
+		private string _SecurityStamp;
+		
+		private string _PhoneNumber;
+		
+		private System.Nullable<bool> _PhoneNumberConfirmed;
+		
+		private System.Nullable<bool> _TwoFactorEnabled;
+		
+		private System.Nullable<System.DateTime> _LockoutEndDateUtc;
+		
+		private System.Nullable<bool> _LockoutEnabled;
+		
+		private System.Nullable<int> _AccessFailedCount;
+		
+		private EntitySet<AspNetUserClaim> _AspNetUserClaims;
+		
+		private EntitySet<AspNetUserLogin> _AspNetUserLogins;
+		
+		private EntitySet<AspNetUserRole> _AspNetUserRoles;
+		
+		private EntitySet<tblCustomer> _tblCustomers;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(string value);
+    partial void OnIdChanged();
+    partial void OnFullNameChanging(string value);
+    partial void OnFullNameChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnEmailConfirmedChanging(System.Nullable<bool> value);
+    partial void OnEmailConfirmedChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnPasswordHashChanging(string value);
+    partial void OnPasswordHashChanged();
+    partial void OnSecurityStampChanging(string value);
+    partial void OnSecurityStampChanged();
+    partial void OnPhoneNumberChanging(string value);
+    partial void OnPhoneNumberChanged();
+    partial void OnPhoneNumberConfirmedChanging(System.Nullable<bool> value);
+    partial void OnPhoneNumberConfirmedChanged();
+    partial void OnTwoFactorEnabledChanging(System.Nullable<bool> value);
+    partial void OnTwoFactorEnabledChanged();
+    partial void OnLockoutEndDateUtcChanging(System.Nullable<System.DateTime> value);
+    partial void OnLockoutEndDateUtcChanged();
+    partial void OnLockoutEnabledChanging(System.Nullable<bool> value);
+    partial void OnLockoutEnabledChanged();
+    partial void OnAccessFailedCountChanging(System.Nullable<int> value);
+    partial void OnAccessFailedCountChanged();
+    #endregion
+		
+		public AspNetUser()
+		{
+			this._AspNetUserClaims = new EntitySet<AspNetUserClaim>(new Action<AspNetUserClaim>(this.attach_AspNetUserClaims), new Action<AspNetUserClaim>(this.detach_AspNetUserClaims));
+			this._AspNetUserLogins = new EntitySet<AspNetUserLogin>(new Action<AspNetUserLogin>(this.attach_AspNetUserLogins), new Action<AspNetUserLogin>(this.detach_AspNetUserLogins));
+			this._AspNetUserRoles = new EntitySet<AspNetUserRole>(new Action<AspNetUserRole>(this.attach_AspNetUserRoles), new Action<AspNetUserRole>(this.detach_AspNetUserRoles));
+			this._tblCustomers = new EntitySet<tblCustomer>(new Action<tblCustomer>(this.attach_tblCustomers), new Action<tblCustomer>(this.detach_tblCustomers));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this.OnFullNameChanging(value);
+					this.SendPropertyChanging();
+					this._FullName = value;
+					this.SendPropertyChanged("FullName");
+					this.OnFullNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(256)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EmailConfirmed", DbType="Bit")]
+		public System.Nullable<bool> EmailConfirmed
+		{
+			get
+			{
+				return this._EmailConfirmed;
+			}
+			set
+			{
+				if ((this._EmailConfirmed != value))
+				{
+					this.OnEmailConfirmedChanging(value);
+					this.SendPropertyChanging();
+					this._EmailConfirmed = value;
+					this.SendPropertyChanged("EmailConfirmed");
+					this.OnEmailConfirmedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(256) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PasswordHash", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string PasswordHash
+		{
+			get
+			{
+				return this._PasswordHash;
+			}
+			set
+			{
+				if ((this._PasswordHash != value))
+				{
+					this.OnPasswordHashChanging(value);
+					this.SendPropertyChanging();
+					this._PasswordHash = value;
+					this.SendPropertyChanged("PasswordHash");
+					this.OnPasswordHashChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SecurityStamp", DbType="NVarChar(MAX)")]
+		public string SecurityStamp
+		{
+			get
+			{
+				return this._SecurityStamp;
+			}
+			set
+			{
+				if ((this._SecurityStamp != value))
+				{
+					this.OnSecurityStampChanging(value);
+					this.SendPropertyChanging();
+					this._SecurityStamp = value;
+					this.SendPropertyChanged("SecurityStamp");
+					this.OnSecurityStampChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="NVarChar(MAX)")]
+		public string PhoneNumber
+		{
+			get
+			{
+				return this._PhoneNumber;
+			}
+			set
+			{
+				if ((this._PhoneNumber != value))
+				{
+					this.OnPhoneNumberChanging(value);
+					this.SendPropertyChanging();
+					this._PhoneNumber = value;
+					this.SendPropertyChanged("PhoneNumber");
+					this.OnPhoneNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumberConfirmed", DbType="Bit")]
+		public System.Nullable<bool> PhoneNumberConfirmed
+		{
+			get
+			{
+				return this._PhoneNumberConfirmed;
+			}
+			set
+			{
+				if ((this._PhoneNumberConfirmed != value))
+				{
+					this.OnPhoneNumberConfirmedChanging(value);
+					this.SendPropertyChanging();
+					this._PhoneNumberConfirmed = value;
+					this.SendPropertyChanged("PhoneNumberConfirmed");
+					this.OnPhoneNumberConfirmedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TwoFactorEnabled", DbType="Bit")]
+		public System.Nullable<bool> TwoFactorEnabled
+		{
+			get
+			{
+				return this._TwoFactorEnabled;
+			}
+			set
+			{
+				if ((this._TwoFactorEnabled != value))
+				{
+					this.OnTwoFactorEnabledChanging(value);
+					this.SendPropertyChanging();
+					this._TwoFactorEnabled = value;
+					this.SendPropertyChanged("TwoFactorEnabled");
+					this.OnTwoFactorEnabledChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LockoutEndDateUtc", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LockoutEndDateUtc
+		{
+			get
+			{
+				return this._LockoutEndDateUtc;
+			}
+			set
+			{
+				if ((this._LockoutEndDateUtc != value))
+				{
+					this.OnLockoutEndDateUtcChanging(value);
+					this.SendPropertyChanging();
+					this._LockoutEndDateUtc = value;
+					this.SendPropertyChanged("LockoutEndDateUtc");
+					this.OnLockoutEndDateUtcChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LockoutEnabled", DbType="Bit")]
+		public System.Nullable<bool> LockoutEnabled
+		{
+			get
+			{
+				return this._LockoutEnabled;
+			}
+			set
+			{
+				if ((this._LockoutEnabled != value))
+				{
+					this.OnLockoutEnabledChanging(value);
+					this.SendPropertyChanging();
+					this._LockoutEnabled = value;
+					this.SendPropertyChanged("LockoutEnabled");
+					this.OnLockoutEnabledChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccessFailedCount", DbType="Int")]
+		public System.Nullable<int> AccessFailedCount
+		{
+			get
+			{
+				return this._AccessFailedCount;
+			}
+			set
+			{
+				if ((this._AccessFailedCount != value))
+				{
+					this.OnAccessFailedCountChanging(value);
+					this.SendPropertyChanging();
+					this._AccessFailedCount = value;
+					this.SendPropertyChanged("AccessFailedCount");
+					this.OnAccessFailedCountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_AspNetUserClaim", Storage="_AspNetUserClaims", ThisKey="Id", OtherKey="UserId")]
+		public EntitySet<AspNetUserClaim> AspNetUserClaims
+		{
+			get
+			{
+				return this._AspNetUserClaims;
+			}
+			set
+			{
+				this._AspNetUserClaims.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_AspNetUserLogin", Storage="_AspNetUserLogins", ThisKey="Id", OtherKey="UserId")]
+		public EntitySet<AspNetUserLogin> AspNetUserLogins
+		{
+			get
+			{
+				return this._AspNetUserLogins;
+			}
+			set
+			{
+				this._AspNetUserLogins.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_AspNetUserRole", Storage="_AspNetUserRoles", ThisKey="Id", OtherKey="UserId")]
+		public EntitySet<AspNetUserRole> AspNetUserRoles
+		{
+			get
+			{
+				return this._AspNetUserRoles;
+			}
+			set
+			{
+				this._AspNetUserRoles.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_tblCustomer", Storage="_tblCustomers", ThisKey="Id", OtherKey="UserId")]
+		public EntitySet<tblCustomer> tblCustomers
+		{
+			get
+			{
+				return this._tblCustomers;
+			}
+			set
+			{
+				this._tblCustomers.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_AspNetUserClaims(AspNetUserClaim entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUser = this;
+		}
+		
+		private void detach_AspNetUserClaims(AspNetUserClaim entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUser = null;
+		}
+		
+		private void attach_AspNetUserLogins(AspNetUserLogin entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUser = this;
+		}
+		
+		private void detach_AspNetUserLogins(AspNetUserLogin entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUser = null;
+		}
+		
+		private void attach_AspNetUserRoles(AspNetUserRole entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUser = this;
+		}
+		
+		private void detach_AspNetUserRoles(AspNetUserRole entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUser = null;
+		}
+		
+		private void attach_tblCustomers(tblCustomer entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUser = this;
+		}
+		
+		private void detach_tblCustomers(tblCustomer entity)
+		{
+			this.SendPropertyChanging();
+			entity.AspNetUser = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblCustomer")]
 	public partial class tblCustomer : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1335,11 +1396,31 @@ namespace VideokeRental.Data
 		
 		private int _Id;
 		
+		private string _UserId;
+		
 		private string _CustomerNumber;
 		
-		private string _CustomerName;
+		private string _Customer;
 		
-		private string _CustomerAddress;
+		private string _MainAddress;
+		
+		private string _Email;
+		
+		private string _Street;
+		
+		private string _Town;
+		
+		private string _City;
+		
+		private string _ContactNumber;
+		
+		private string _OtherInfo;
+		
+		private EntitySet<tblVideokeRental> _tblVideokeRentals;
+		
+		private EntitySet<tblVideokeReservation> _tblVideokeReservations;
+		
+		private EntityRef<AspNetUser> _AspNetUser;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1347,16 +1428,33 @@ namespace VideokeRental.Data
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
+    partial void OnUserIdChanging(string value);
+    partial void OnUserIdChanged();
     partial void OnCustomerNumberChanging(string value);
     partial void OnCustomerNumberChanged();
-    partial void OnCustomerNameChanging(string value);
-    partial void OnCustomerNameChanged();
-    partial void OnCustomerAddressChanging(string value);
-    partial void OnCustomerAddressChanged();
+    partial void OnCustomerChanging(string value);
+    partial void OnCustomerChanged();
+    partial void OnMainAddressChanging(string value);
+    partial void OnMainAddressChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnStreetChanging(string value);
+    partial void OnStreetChanged();
+    partial void OnTownChanging(string value);
+    partial void OnTownChanged();
+    partial void OnCityChanging(string value);
+    partial void OnCityChanged();
+    partial void OnContactNumberChanging(string value);
+    partial void OnContactNumberChanged();
+    partial void OnOtherInfoChanging(string value);
+    partial void OnOtherInfoChanged();
     #endregion
 		
 		public tblCustomer()
 		{
+			this._tblVideokeRentals = new EntitySet<tblVideokeRental>(new Action<tblVideokeRental>(this.attach_tblVideokeRentals), new Action<tblVideokeRental>(this.detach_tblVideokeRentals));
+			this._tblVideokeReservations = new EntitySet<tblVideokeReservation>(new Action<tblVideokeReservation>(this.attach_tblVideokeReservations), new Action<tblVideokeReservation>(this.detach_tblVideokeReservations));
+			this._AspNetUser = default(EntityRef<AspNetUser>);
 			OnCreated();
 		}
 		
@@ -1376,6 +1474,30 @@ namespace VideokeRental.Data
 					this._Id = value;
 					this.SendPropertyChanged("Id");
 					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="NVarChar(128)")]
+		public string UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					if (this._AspNetUser.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
 				}
 			}
 		}
@@ -1400,42 +1522,469 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string CustomerName
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Customer", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string Customer
 		{
 			get
 			{
-				return this._CustomerName;
+				return this._Customer;
 			}
 			set
 			{
-				if ((this._CustomerName != value))
+				if ((this._Customer != value))
 				{
-					this.OnCustomerNameChanging(value);
+					this.OnCustomerChanging(value);
 					this.SendPropertyChanging();
-					this._CustomerName = value;
-					this.SendPropertyChanged("CustomerName");
-					this.OnCustomerNameChanged();
+					this._Customer = value;
+					this.SendPropertyChanged("Customer");
+					this.OnCustomerChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerAddress", DbType="NVarChar(350) NOT NULL", CanBeNull=false)]
-		public string CustomerAddress
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainAddress", DbType="NVarChar(350) NOT NULL", CanBeNull=false)]
+		public string MainAddress
 		{
 			get
 			{
-				return this._CustomerAddress;
+				return this._MainAddress;
 			}
 			set
 			{
-				if ((this._CustomerAddress != value))
+				if ((this._MainAddress != value))
 				{
-					this.OnCustomerAddressChanging(value);
+					this.OnMainAddressChanging(value);
 					this.SendPropertyChanging();
-					this._CustomerAddress = value;
-					this.SendPropertyChanged("CustomerAddress");
-					this.OnCustomerAddressChanged();
+					this._MainAddress = value;
+					this.SendPropertyChanged("MainAddress");
+					this.OnMainAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(100)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Street", DbType="NVarChar(350)")]
+		public string Street
+		{
+			get
+			{
+				return this._Street;
+			}
+			set
+			{
+				if ((this._Street != value))
+				{
+					this.OnStreetChanging(value);
+					this.SendPropertyChanging();
+					this._Street = value;
+					this.SendPropertyChanged("Street");
+					this.OnStreetChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Town", DbType="NVarChar(350)")]
+		public string Town
+		{
+			get
+			{
+				return this._Town;
+			}
+			set
+			{
+				if ((this._Town != value))
+				{
+					this.OnTownChanging(value);
+					this.SendPropertyChanging();
+					this._Town = value;
+					this.SendPropertyChanged("Town");
+					this.OnTownChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_City", DbType="NVarChar(350)")]
+		public string City
+		{
+			get
+			{
+				return this._City;
+			}
+			set
+			{
+				if ((this._City != value))
+				{
+					this.OnCityChanging(value);
+					this.SendPropertyChanging();
+					this._City = value;
+					this.SendPropertyChanged("City");
+					this.OnCityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactNumber", DbType="NVarChar(100)")]
+		public string ContactNumber
+		{
+			get
+			{
+				return this._ContactNumber;
+			}
+			set
+			{
+				if ((this._ContactNumber != value))
+				{
+					this.OnContactNumberChanging(value);
+					this.SendPropertyChanging();
+					this._ContactNumber = value;
+					this.SendPropertyChanged("ContactNumber");
+					this.OnContactNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OtherInfo", DbType="NVarChar(350)")]
+		public string OtherInfo
+		{
+			get
+			{
+				return this._OtherInfo;
+			}
+			set
+			{
+				if ((this._OtherInfo != value))
+				{
+					this.OnOtherInfoChanging(value);
+					this.SendPropertyChanging();
+					this._OtherInfo = value;
+					this.SendPropertyChanged("OtherInfo");
+					this.OnOtherInfoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCustomer_tblVideokeRental", Storage="_tblVideokeRentals", ThisKey="Id", OtherKey="RentedByCustomerId")]
+		public EntitySet<tblVideokeRental> tblVideokeRentals
+		{
+			get
+			{
+				return this._tblVideokeRentals;
+			}
+			set
+			{
+				this._tblVideokeRentals.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCustomer_tblVideokeReservation", Storage="_tblVideokeReservations", ThisKey="Id", OtherKey="ReserveByCustomerId")]
+		public EntitySet<tblVideokeReservation> tblVideokeReservations
+		{
+			get
+			{
+				return this._tblVideokeReservations;
+			}
+			set
+			{
+				this._tblVideokeReservations.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_tblCustomer", Storage="_AspNetUser", ThisKey="UserId", OtherKey="Id", IsForeignKey=true)]
+		public AspNetUser AspNetUser
+		{
+			get
+			{
+				return this._AspNetUser.Entity;
+			}
+			set
+			{
+				AspNetUser previousValue = this._AspNetUser.Entity;
+				if (((previousValue != value) 
+							|| (this._AspNetUser.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AspNetUser.Entity = null;
+						previousValue.tblCustomers.Remove(this);
+					}
+					this._AspNetUser.Entity = value;
+					if ((value != null))
+					{
+						value.tblCustomers.Add(this);
+						this._UserId = value.Id;
+					}
+					else
+					{
+						this._UserId = default(string);
+					}
+					this.SendPropertyChanged("AspNetUser");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblVideokeRentals(tblVideokeRental entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblCustomer = this;
+		}
+		
+		private void detach_tblVideokeRentals(tblVideokeRental entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblCustomer = null;
+		}
+		
+		private void attach_tblVideokeReservations(tblVideokeReservation entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblCustomer = this;
+		}
+		
+		private void detach_tblVideokeReservations(tblVideokeReservation entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblCustomer = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblGallery")]
+	public partial class tblGallery : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _ProductId;
+		
+		private System.Data.Linq.Binary _ImageFront;
+		
+		private System.Data.Linq.Binary _ImageBack;
+		
+		private System.Data.Linq.Binary _ImageLeftSide;
+		
+		private System.Data.Linq.Binary _ImageRightSide;
+		
+		private EntityRef<tblProduct> _tblProduct;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnProductIdChanging(int value);
+    partial void OnProductIdChanged();
+    partial void OnImageFrontChanging(System.Data.Linq.Binary value);
+    partial void OnImageFrontChanged();
+    partial void OnImageBackChanging(System.Data.Linq.Binary value);
+    partial void OnImageBackChanged();
+    partial void OnImageLeftSideChanging(System.Data.Linq.Binary value);
+    partial void OnImageLeftSideChanged();
+    partial void OnImageRightSideChanging(System.Data.Linq.Binary value);
+    partial void OnImageRightSideChanged();
+    #endregion
+		
+		public tblGallery()
+		{
+			this._tblProduct = default(EntityRef<tblProduct>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId", DbType="Int NOT NULL")]
+		public int ProductId
+		{
+			get
+			{
+				return this._ProductId;
+			}
+			set
+			{
+				if ((this._ProductId != value))
+				{
+					if (this._tblProduct.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProductIdChanging(value);
+					this.SendPropertyChanging();
+					this._ProductId = value;
+					this.SendPropertyChanged("ProductId");
+					this.OnProductIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageFront", DbType="VarBinary(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary ImageFront
+		{
+			get
+			{
+				return this._ImageFront;
+			}
+			set
+			{
+				if ((this._ImageFront != value))
+				{
+					this.OnImageFrontChanging(value);
+					this.SendPropertyChanging();
+					this._ImageFront = value;
+					this.SendPropertyChanged("ImageFront");
+					this.OnImageFrontChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageBack", DbType="VarBinary(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary ImageBack
+		{
+			get
+			{
+				return this._ImageBack;
+			}
+			set
+			{
+				if ((this._ImageBack != value))
+				{
+					this.OnImageBackChanging(value);
+					this.SendPropertyChanging();
+					this._ImageBack = value;
+					this.SendPropertyChanged("ImageBack");
+					this.OnImageBackChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageLeftSide", DbType="VarBinary(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary ImageLeftSide
+		{
+			get
+			{
+				return this._ImageLeftSide;
+			}
+			set
+			{
+				if ((this._ImageLeftSide != value))
+				{
+					this.OnImageLeftSideChanging(value);
+					this.SendPropertyChanging();
+					this._ImageLeftSide = value;
+					this.SendPropertyChanged("ImageLeftSide");
+					this.OnImageLeftSideChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageRightSide", DbType="VarBinary(MAX) NOT NULL", CanBeNull=false, UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary ImageRightSide
+		{
+			get
+			{
+				return this._ImageRightSide;
+			}
+			set
+			{
+				if ((this._ImageRightSide != value))
+				{
+					this.OnImageRightSideChanging(value);
+					this.SendPropertyChanging();
+					this._ImageRightSide = value;
+					this.SendPropertyChanged("ImageRightSide");
+					this.OnImageRightSideChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblProduct_tblGallery", Storage="_tblProduct", ThisKey="ProductId", OtherKey="Id", IsForeignKey=true)]
+		public tblProduct tblProduct
+		{
+			get
+			{
+				return this._tblProduct.Entity;
+			}
+			set
+			{
+				tblProduct previousValue = this._tblProduct.Entity;
+				if (((previousValue != value) 
+							|| (this._tblProduct.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblProduct.Entity = null;
+						previousValue.tblGalleries.Remove(this);
+					}
+					this._tblProduct.Entity = value;
+					if ((value != null))
+					{
+						value.tblGalleries.Add(this);
+						this._ProductId = value.Id;
+					}
+					else
+					{
+						this._ProductId = default(int);
+					}
+					this.SendPropertyChanged("tblProduct");
 				}
 			}
 		}
@@ -1477,6 +2026,16 @@ namespace VideokeRental.Data
 		
 		private System.Data.Linq.Binary _Images;
 		
+		private bool _IsReserved;
+		
+		private bool _IsRented;
+		
+		private EntitySet<tblGallery> _tblGalleries;
+		
+		private EntitySet<tblVideokeRental> _tblVideokeRentals;
+		
+		private EntitySet<tblVideokeReservation> _tblVideokeReservations;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -1491,10 +2050,17 @@ namespace VideokeRental.Data
     partial void OnProductDescriptionChanged();
     partial void OnImagesChanging(System.Data.Linq.Binary value);
     partial void OnImagesChanged();
+    partial void OnIsReservedChanging(bool value);
+    partial void OnIsReservedChanged();
+    partial void OnIsRentedChanging(bool value);
+    partial void OnIsRentedChanged();
     #endregion
 		
 		public tblProduct()
 		{
+			this._tblGalleries = new EntitySet<tblGallery>(new Action<tblGallery>(this.attach_tblGalleries), new Action<tblGallery>(this.detach_tblGalleries));
+			this._tblVideokeRentals = new EntitySet<tblVideokeRental>(new Action<tblVideokeRental>(this.attach_tblVideokeRentals), new Action<tblVideokeRental>(this.detach_tblVideokeRentals));
+			this._tblVideokeReservations = new EntitySet<tblVideokeReservation>(new Action<tblVideokeReservation>(this.attach_tblVideokeReservations), new Action<tblVideokeReservation>(this.detach_tblVideokeReservations));
 			OnCreated();
 		}
 		
@@ -1518,7 +2084,7 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductNumber", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductNumber", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string ProductNumber
 		{
 			get
@@ -1538,7 +2104,7 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductName", DbType="NVarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
 		public string ProductName
 		{
 			get
@@ -1558,7 +2124,7 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductDescription", DbType="NVarChar(500)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductDescription", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
 		public string ProductDescription
 		{
 			get
@@ -1594,6 +2160,769 @@ namespace VideokeRental.Data
 					this._Images = value;
 					this.SendPropertyChanged("Images");
 					this.OnImagesChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsReserved", DbType="Bit NOT NULL")]
+		public bool IsReserved
+		{
+			get
+			{
+				return this._IsReserved;
+			}
+			set
+			{
+				if ((this._IsReserved != value))
+				{
+					this.OnIsReservedChanging(value);
+					this.SendPropertyChanging();
+					this._IsReserved = value;
+					this.SendPropertyChanged("IsReserved");
+					this.OnIsReservedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsRented", DbType="Bit NOT NULL")]
+		public bool IsRented
+		{
+			get
+			{
+				return this._IsRented;
+			}
+			set
+			{
+				if ((this._IsRented != value))
+				{
+					this.OnIsRentedChanging(value);
+					this.SendPropertyChanging();
+					this._IsRented = value;
+					this.SendPropertyChanged("IsRented");
+					this.OnIsRentedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblProduct_tblGallery", Storage="_tblGalleries", ThisKey="Id", OtherKey="ProductId")]
+		public EntitySet<tblGallery> tblGalleries
+		{
+			get
+			{
+				return this._tblGalleries;
+			}
+			set
+			{
+				this._tblGalleries.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblProduct_tblVideokeRental", Storage="_tblVideokeRentals", ThisKey="Id", OtherKey="ProductId")]
+		public EntitySet<tblVideokeRental> tblVideokeRentals
+		{
+			get
+			{
+				return this._tblVideokeRentals;
+			}
+			set
+			{
+				this._tblVideokeRentals.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblProduct_tblVideokeReservation", Storage="_tblVideokeReservations", ThisKey="Id", OtherKey="ProductId")]
+		public EntitySet<tblVideokeReservation> tblVideokeReservations
+		{
+			get
+			{
+				return this._tblVideokeReservations;
+			}
+			set
+			{
+				this._tblVideokeReservations.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblGalleries(tblGallery entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblProduct = this;
+		}
+		
+		private void detach_tblGalleries(tblGallery entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblProduct = null;
+		}
+		
+		private void attach_tblVideokeRentals(tblVideokeRental entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblProduct = this;
+		}
+		
+		private void detach_tblVideokeRentals(tblVideokeRental entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblProduct = null;
+		}
+		
+		private void attach_tblVideokeReservations(tblVideokeReservation entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblProduct = this;
+		}
+		
+		private void detach_tblVideokeReservations(tblVideokeReservation entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblProduct = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblVideokeRental")]
+	public partial class tblVideokeRental : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _ProductId;
+		
+		private int _RentedByCustomerId;
+		
+		private string _RentalPurpose;
+		
+		private System.DateTime _RentedDateStart;
+		
+		private System.DateTime _RentedDateEnd;
+		
+		private bool _IsReturned;
+		
+		private decimal _AmountPaid;
+		
+		private bool _IsExtend;
+		
+		private decimal _ExtendAmountPaid;
+		
+		private string _ExtendHours;
+		
+		private EntityRef<tblCustomer> _tblCustomer;
+		
+		private EntityRef<tblProduct> _tblProduct;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnProductIdChanging(int value);
+    partial void OnProductIdChanged();
+    partial void OnRentedByCustomerIdChanging(int value);
+    partial void OnRentedByCustomerIdChanged();
+    partial void OnRentalPurposeChanging(string value);
+    partial void OnRentalPurposeChanged();
+    partial void OnRentedDateStartChanging(System.DateTime value);
+    partial void OnRentedDateStartChanged();
+    partial void OnRentedDateEndChanging(System.DateTime value);
+    partial void OnRentedDateEndChanged();
+    partial void OnIsReturnedChanging(bool value);
+    partial void OnIsReturnedChanged();
+    partial void OnAmountPaidChanging(decimal value);
+    partial void OnAmountPaidChanged();
+    partial void OnIsExtendChanging(bool value);
+    partial void OnIsExtendChanged();
+    partial void OnExtendAmountPaidChanging(decimal value);
+    partial void OnExtendAmountPaidChanged();
+    partial void OnExtendHoursChanging(string value);
+    partial void OnExtendHoursChanged();
+    #endregion
+		
+		public tblVideokeRental()
+		{
+			this._tblCustomer = default(EntityRef<tblCustomer>);
+			this._tblProduct = default(EntityRef<tblProduct>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId", DbType="Int NOT NULL")]
+		public int ProductId
+		{
+			get
+			{
+				return this._ProductId;
+			}
+			set
+			{
+				if ((this._ProductId != value))
+				{
+					if (this._tblProduct.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProductIdChanging(value);
+					this.SendPropertyChanging();
+					this._ProductId = value;
+					this.SendPropertyChanged("ProductId");
+					this.OnProductIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RentedByCustomerId", DbType="Int NOT NULL")]
+		public int RentedByCustomerId
+		{
+			get
+			{
+				return this._RentedByCustomerId;
+			}
+			set
+			{
+				if ((this._RentedByCustomerId != value))
+				{
+					if (this._tblCustomer.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRentedByCustomerIdChanging(value);
+					this.SendPropertyChanging();
+					this._RentedByCustomerId = value;
+					this.SendPropertyChanged("RentedByCustomerId");
+					this.OnRentedByCustomerIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RentalPurpose", DbType="NVarChar(350)")]
+		public string RentalPurpose
+		{
+			get
+			{
+				return this._RentalPurpose;
+			}
+			set
+			{
+				if ((this._RentalPurpose != value))
+				{
+					this.OnRentalPurposeChanging(value);
+					this.SendPropertyChanging();
+					this._RentalPurpose = value;
+					this.SendPropertyChanged("RentalPurpose");
+					this.OnRentalPurposeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RentedDateStart", DbType="DateTime NOT NULL")]
+		public System.DateTime RentedDateStart
+		{
+			get
+			{
+				return this._RentedDateStart;
+			}
+			set
+			{
+				if ((this._RentedDateStart != value))
+				{
+					this.OnRentedDateStartChanging(value);
+					this.SendPropertyChanging();
+					this._RentedDateStart = value;
+					this.SendPropertyChanged("RentedDateStart");
+					this.OnRentedDateStartChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RentedDateEnd", DbType="DateTime NOT NULL")]
+		public System.DateTime RentedDateEnd
+		{
+			get
+			{
+				return this._RentedDateEnd;
+			}
+			set
+			{
+				if ((this._RentedDateEnd != value))
+				{
+					this.OnRentedDateEndChanging(value);
+					this.SendPropertyChanging();
+					this._RentedDateEnd = value;
+					this.SendPropertyChanged("RentedDateEnd");
+					this.OnRentedDateEndChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsReturned", DbType="Bit NOT NULL")]
+		public bool IsReturned
+		{
+			get
+			{
+				return this._IsReturned;
+			}
+			set
+			{
+				if ((this._IsReturned != value))
+				{
+					this.OnIsReturnedChanging(value);
+					this.SendPropertyChanging();
+					this._IsReturned = value;
+					this.SendPropertyChanged("IsReturned");
+					this.OnIsReturnedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AmountPaid", DbType="Decimal(18,0) NOT NULL")]
+		public decimal AmountPaid
+		{
+			get
+			{
+				return this._AmountPaid;
+			}
+			set
+			{
+				if ((this._AmountPaid != value))
+				{
+					this.OnAmountPaidChanging(value);
+					this.SendPropertyChanging();
+					this._AmountPaid = value;
+					this.SendPropertyChanged("AmountPaid");
+					this.OnAmountPaidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsExtend", DbType="Bit NOT NULL")]
+		public bool IsExtend
+		{
+			get
+			{
+				return this._IsExtend;
+			}
+			set
+			{
+				if ((this._IsExtend != value))
+				{
+					this.OnIsExtendChanging(value);
+					this.SendPropertyChanging();
+					this._IsExtend = value;
+					this.SendPropertyChanged("IsExtend");
+					this.OnIsExtendChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExtendAmountPaid", DbType="Decimal(18,0) NOT NULL")]
+		public decimal ExtendAmountPaid
+		{
+			get
+			{
+				return this._ExtendAmountPaid;
+			}
+			set
+			{
+				if ((this._ExtendAmountPaid != value))
+				{
+					this.OnExtendAmountPaidChanging(value);
+					this.SendPropertyChanging();
+					this._ExtendAmountPaid = value;
+					this.SendPropertyChanged("ExtendAmountPaid");
+					this.OnExtendAmountPaidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExtendHours", DbType="NVarChar(50)")]
+		public string ExtendHours
+		{
+			get
+			{
+				return this._ExtendHours;
+			}
+			set
+			{
+				if ((this._ExtendHours != value))
+				{
+					this.OnExtendHoursChanging(value);
+					this.SendPropertyChanging();
+					this._ExtendHours = value;
+					this.SendPropertyChanged("ExtendHours");
+					this.OnExtendHoursChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCustomer_tblVideokeRental", Storage="_tblCustomer", ThisKey="RentedByCustomerId", OtherKey="Id", IsForeignKey=true)]
+		public tblCustomer tblCustomer
+		{
+			get
+			{
+				return this._tblCustomer.Entity;
+			}
+			set
+			{
+				tblCustomer previousValue = this._tblCustomer.Entity;
+				if (((previousValue != value) 
+							|| (this._tblCustomer.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblCustomer.Entity = null;
+						previousValue.tblVideokeRentals.Remove(this);
+					}
+					this._tblCustomer.Entity = value;
+					if ((value != null))
+					{
+						value.tblVideokeRentals.Add(this);
+						this._RentedByCustomerId = value.Id;
+					}
+					else
+					{
+						this._RentedByCustomerId = default(int);
+					}
+					this.SendPropertyChanged("tblCustomer");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblProduct_tblVideokeRental", Storage="_tblProduct", ThisKey="ProductId", OtherKey="Id", IsForeignKey=true)]
+		public tblProduct tblProduct
+		{
+			get
+			{
+				return this._tblProduct.Entity;
+			}
+			set
+			{
+				tblProduct previousValue = this._tblProduct.Entity;
+				if (((previousValue != value) 
+							|| (this._tblProduct.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblProduct.Entity = null;
+						previousValue.tblVideokeRentals.Remove(this);
+					}
+					this._tblProduct.Entity = value;
+					if ((value != null))
+					{
+						value.tblVideokeRentals.Add(this);
+						this._ProductId = value.Id;
+					}
+					else
+					{
+						this._ProductId = default(int);
+					}
+					this.SendPropertyChanged("tblProduct");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblVideokeReservation")]
+	public partial class tblVideokeReservation : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _ProductId;
+		
+		private int _ReserveByCustomerId;
+		
+		private System.DateTime _ReserveDateStart;
+		
+		private System.DateTime _ReserveDateEnd;
+		
+		private bool _IsReserved;
+		
+		private EntityRef<tblCustomer> _tblCustomer;
+		
+		private EntityRef<tblProduct> _tblProduct;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnProductIdChanging(int value);
+    partial void OnProductIdChanged();
+    partial void OnReserveByCustomerIdChanging(int value);
+    partial void OnReserveByCustomerIdChanged();
+    partial void OnReserveDateStartChanging(System.DateTime value);
+    partial void OnReserveDateStartChanged();
+    partial void OnReserveDateEndChanging(System.DateTime value);
+    partial void OnReserveDateEndChanged();
+    partial void OnIsReservedChanging(bool value);
+    partial void OnIsReservedChanged();
+    #endregion
+		
+		public tblVideokeReservation()
+		{
+			this._tblCustomer = default(EntityRef<tblCustomer>);
+			this._tblProduct = default(EntityRef<tblProduct>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId", DbType="Int NOT NULL")]
+		public int ProductId
+		{
+			get
+			{
+				return this._ProductId;
+			}
+			set
+			{
+				if ((this._ProductId != value))
+				{
+					if (this._tblProduct.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProductIdChanging(value);
+					this.SendPropertyChanging();
+					this._ProductId = value;
+					this.SendPropertyChanged("ProductId");
+					this.OnProductIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReserveByCustomerId", DbType="Int NOT NULL")]
+		public int ReserveByCustomerId
+		{
+			get
+			{
+				return this._ReserveByCustomerId;
+			}
+			set
+			{
+				if ((this._ReserveByCustomerId != value))
+				{
+					if (this._tblCustomer.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnReserveByCustomerIdChanging(value);
+					this.SendPropertyChanging();
+					this._ReserveByCustomerId = value;
+					this.SendPropertyChanged("ReserveByCustomerId");
+					this.OnReserveByCustomerIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReserveDateStart", DbType="DateTime NOT NULL")]
+		public System.DateTime ReserveDateStart
+		{
+			get
+			{
+				return this._ReserveDateStart;
+			}
+			set
+			{
+				if ((this._ReserveDateStart != value))
+				{
+					this.OnReserveDateStartChanging(value);
+					this.SendPropertyChanging();
+					this._ReserveDateStart = value;
+					this.SendPropertyChanged("ReserveDateStart");
+					this.OnReserveDateStartChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReserveDateEnd", DbType="DateTime NOT NULL")]
+		public System.DateTime ReserveDateEnd
+		{
+			get
+			{
+				return this._ReserveDateEnd;
+			}
+			set
+			{
+				if ((this._ReserveDateEnd != value))
+				{
+					this.OnReserveDateEndChanging(value);
+					this.SendPropertyChanging();
+					this._ReserveDateEnd = value;
+					this.SendPropertyChanged("ReserveDateEnd");
+					this.OnReserveDateEndChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsReserved", DbType="Bit NOT NULL")]
+		public bool IsReserved
+		{
+			get
+			{
+				return this._IsReserved;
+			}
+			set
+			{
+				if ((this._IsReserved != value))
+				{
+					this.OnIsReservedChanging(value);
+					this.SendPropertyChanging();
+					this._IsReserved = value;
+					this.SendPropertyChanged("IsReserved");
+					this.OnIsReservedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCustomer_tblVideokeReservation", Storage="_tblCustomer", ThisKey="ReserveByCustomerId", OtherKey="Id", IsForeignKey=true)]
+		public tblCustomer tblCustomer
+		{
+			get
+			{
+				return this._tblCustomer.Entity;
+			}
+			set
+			{
+				tblCustomer previousValue = this._tblCustomer.Entity;
+				if (((previousValue != value) 
+							|| (this._tblCustomer.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblCustomer.Entity = null;
+						previousValue.tblVideokeReservations.Remove(this);
+					}
+					this._tblCustomer.Entity = value;
+					if ((value != null))
+					{
+						value.tblVideokeReservations.Add(this);
+						this._ReserveByCustomerId = value.Id;
+					}
+					else
+					{
+						this._ReserveByCustomerId = default(int);
+					}
+					this.SendPropertyChanged("tblCustomer");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblProduct_tblVideokeReservation", Storage="_tblProduct", ThisKey="ProductId", OtherKey="Id", IsForeignKey=true)]
+		public tblProduct tblProduct
+		{
+			get
+			{
+				return this._tblProduct.Entity;
+			}
+			set
+			{
+				tblProduct previousValue = this._tblProduct.Entity;
+				if (((previousValue != value) 
+							|| (this._tblProduct.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblProduct.Entity = null;
+						previousValue.tblVideokeReservations.Remove(this);
+					}
+					this._tblProduct.Entity = value;
+					if ((value != null))
+					{
+						value.tblVideokeReservations.Add(this);
+						this._ProductId = value.Id;
+					}
+					else
+					{
+						this._ProductId = default(int);
+					}
+					this.SendPropertyChanged("tblProduct");
 				}
 			}
 		}

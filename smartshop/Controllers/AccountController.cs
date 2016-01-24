@@ -175,8 +175,8 @@ namespace VideokeRental.Controllers
                     Data.tblCustomer newnCustomer = new Data.tblCustomer();
 
                     newnCustomer.CustomerNumber = "00000000n";
-                    newnCustomer.CustomerName = user.FullName;
-                    newnCustomer.CustomerAddress = "Address - Default";
+                    newnCustomer.Customer = user.FullName;
+                    newnCustomer.MainAddress = "Address - Default";
 
                     db.tblCustomers.InsertOnSubmit(newnCustomer);
                     db.SubmitChanges();

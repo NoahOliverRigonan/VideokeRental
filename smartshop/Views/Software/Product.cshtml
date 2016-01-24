@@ -57,7 +57,7 @@
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading panel-heading-custom">
-                            <a href="@Url.Action("Product", "Software")" class="panel-active"><i class="fa fa-shopping-bag"></i> Videoke Type</a>
+                            <a href="@Url.Action("Product", "Software")" class="panel-active"><i class="fa fa-microphone"></i> Videoke</a>
                         </div>
                     </div>
                     <div class="panel panel-default">
@@ -229,7 +229,9 @@
                                     Images: Results[i]["Images"],
                                     ProductNumber: Results[i]["ProductNumber"],
                                     ProductName: Results[i]["ProductName"],
-                                    ProductDescription: Results[i]["ProductDescription"]
+                                    ProductDescription: Results[i]["ProductDescription"],
+                                    IsRented: Results[i]["IsRented"],
+                                    IsReserved: Results[i]["IsReserved"],
                                 });
 
                                 // product Id
@@ -246,14 +248,6 @@
                                 buttonViewDetailsElement.appendChild(buttonValue);
                                 buttonViewDetailsElement.setAttribute('class', 'btn btn-success btn-block');
                                 buttonViewDetailsElement.setAttribute('onclick', 'btnViewDetailsButton(' + Results[i]["Id"] + ')');
-
-
-                                // button delete
-                                var buttonDeleteElement = document.createElement("BUTTON");
-                                var buttonDeleteValue = document.createTextNode("Delete");
-                                buttonDeleteElement.appendChild(buttonDeleteValue);
-                                buttonDeleteElement.setAttribute('class', 'btn btn-danger btn-block');
-                                buttonDeleteElement.setAttribute('onclick', 'btnDeleteButton(' + Results[i]["Id"] + ')');
 
                                 // product Div
                                 var productDIVElement = document.createElement("DIV");
@@ -275,6 +269,34 @@
                                 imageData.className = "imageCSS";
                                 productImageElement.appendChild(imageData);
 
+                                console.log("naa s agawas " + Results[i]["IsReserved"]);
+                                if (Results[i]["IsReserved"] == true) {
+                                    console.log(productIsReservedElement);
+                                    var buttonDeleteElement = document.createElement("BUTTON");
+                                    var buttonDeleteValue = document.createTextNode("Delete");
+                                    buttonDeleteElement.appendChild(buttonDeleteValue);
+                                    buttonDeleteElement.setAttribute('style', 'visibility: hidden;');
+                                    buttonDeleteElement.setAttribute('onclick', 'btnDeleteButton(' + Results[i]["Id"] + ')');
+
+                                    // product reserved boolean
+                                    var productIsReservedElement = document.createElement("LABEL");
+                                    var productIsReservedTextNode = document.createTextNode("RESERVED!");
+                                    productIsReservedElement.appendChild(productIsReservedTextNode);
+
+                                } else {
+                                    // button delete
+                                    var buttonDeleteElement = document.createElement("BUTTON");
+                                    var buttonDeleteValue = document.createTextNode("Delete");
+                                    buttonDeleteElement.appendChild(buttonDeleteValue);
+                                    buttonDeleteElement.setAttribute('class', 'btn btn-danger btn-block');
+                                    buttonDeleteElement.setAttribute('onclick', 'btnDeleteButton(' + Results[i]["Id"] + ')');
+
+                                    // product reserved boolean
+                                    var productIsReservedElement = document.createElement("LABEL");
+                                    var productIsReservedTextNode = document.createTextNode("AVAILABLE!");
+                                    productIsReservedElement.appendChild(productIsReservedTextNode);
+                                }
+
                                 var overlayDivision = document.getElementById("overlayId").appendChild(productDIVElement);
                                 overlayDivision.setAttribute('class', 'overlay');
                                 overlayDivision.appendChild(productIdElement);
@@ -289,6 +311,10 @@
                                 overlayDivision.appendChild(BR2);
                                 overlayDivision.appendChild(buttonViewDetailsElement);
                                 overlayDivision.appendChild(buttonDeleteElement);
+
+                                var BR3 = document.createElement("BR");
+                                overlayDivision.appendChild(BR3);
+                                overlayDivision.appendChild(productIsReservedElement);
 
                                 // division
                                 var imageDivision = document.getElementById("imageDiv").appendChild(productImageElement);

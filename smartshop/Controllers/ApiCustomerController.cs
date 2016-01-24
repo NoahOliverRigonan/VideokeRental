@@ -20,8 +20,8 @@ namespace VideokeRental.Controllers
                            {
                                Id = d.Id,
                                CustomerNumber = d.CustomerNumber,
-                               CustomerName = d.CustomerName,
-                               CustomerAddress = d.CustomerAddress
+                               CustomerName = d.Customer,
+                               CustomerAddress = d.MainAddress
                            };
             return customers.ToList();
         }
@@ -36,8 +36,8 @@ namespace VideokeRental.Controllers
                 Data.tblCustomer newnCustomer = new Data.tblCustomer();
 
                 newnCustomer.CustomerNumber = customer.CustomerNumber;
-                newnCustomer.CustomerName = customer.CustomerName;
-                newnCustomer.CustomerAddress = customer.CustomerAddress;
+                newnCustomer.Customer = customer.CustomerName;
+                newnCustomer.MainAddress = customer.CustomerAddress;
 
                 db.tblCustomers.InsertOnSubmit(newnCustomer);
                 db.SubmitChanges();
@@ -64,8 +64,8 @@ namespace VideokeRental.Controllers
                     var updateCustomer = customers.FirstOrDefault();
 
                     updateCustomer.CustomerNumber = customer.CustomerNumber;
-                    updateCustomer.CustomerName = customer.CustomerName;
-                    updateCustomer.CustomerAddress = customer.CustomerAddress;
+                    updateCustomer.Customer = customer.CustomerName;
+                    updateCustomer.MainAddress = customer.CustomerAddress;
 
                     db.SubmitChanges();
 
