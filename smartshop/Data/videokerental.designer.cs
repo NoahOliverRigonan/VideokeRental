@@ -48,6 +48,12 @@ namespace VideokeRental.Data
     partial void InsertAspNetUser(AspNetUser instance);
     partial void UpdateAspNetUser(AspNetUser instance);
     partial void DeleteAspNetUser(AspNetUser instance);
+    partial void InserttblCalendarRental(tblCalendarRental instance);
+    partial void UpdatetblCalendarRental(tblCalendarRental instance);
+    partial void DeletetblCalendarRental(tblCalendarRental instance);
+    partial void InserttblCalendarReservation(tblCalendarReservation instance);
+    partial void UpdatetblCalendarReservation(tblCalendarReservation instance);
+    partial void DeletetblCalendarReservation(tblCalendarReservation instance);
     partial void InserttblCustomer(tblCustomer instance);
     partial void UpdatetblCustomer(tblCustomer instance);
     partial void DeletetblCustomer(tblCustomer instance);
@@ -140,6 +146,22 @@ namespace VideokeRental.Data
 			get
 			{
 				return this.GetTable<AspNetUser>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblCalendarRental> tblCalendarRentals
+		{
+			get
+			{
+				return this.GetTable<tblCalendarRental>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblCalendarReservation> tblCalendarReservations
+		{
+			get
+			{
+				return this.GetTable<tblCalendarReservation>();
 			}
 		}
 		
@@ -1388,6 +1410,308 @@ namespace VideokeRental.Data
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblCalendarRental")]
+	public partial class tblCalendarRental : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _CustomersIdRented;
+		
+		private System.DateTime _RentedDate;
+		
+		private EntityRef<tblCustomer> _tblCustomer;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnCustomersIdRentedChanging(int value);
+    partial void OnCustomersIdRentedChanged();
+    partial void OnRentedDateChanging(System.DateTime value);
+    partial void OnRentedDateChanged();
+    #endregion
+		
+		public tblCalendarRental()
+		{
+			this._tblCustomer = default(EntityRef<tblCustomer>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomersIdRented", DbType="Int NOT NULL")]
+		public int CustomersIdRented
+		{
+			get
+			{
+				return this._CustomersIdRented;
+			}
+			set
+			{
+				if ((this._CustomersIdRented != value))
+				{
+					if (this._tblCustomer.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCustomersIdRentedChanging(value);
+					this.SendPropertyChanging();
+					this._CustomersIdRented = value;
+					this.SendPropertyChanged("CustomersIdRented");
+					this.OnCustomersIdRentedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RentedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime RentedDate
+		{
+			get
+			{
+				return this._RentedDate;
+			}
+			set
+			{
+				if ((this._RentedDate != value))
+				{
+					this.OnRentedDateChanging(value);
+					this.SendPropertyChanging();
+					this._RentedDate = value;
+					this.SendPropertyChanged("RentedDate");
+					this.OnRentedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCustomer_tblCalendarRental", Storage="_tblCustomer", ThisKey="CustomersIdRented", OtherKey="Id", IsForeignKey=true)]
+		public tblCustomer tblCustomer
+		{
+			get
+			{
+				return this._tblCustomer.Entity;
+			}
+			set
+			{
+				tblCustomer previousValue = this._tblCustomer.Entity;
+				if (((previousValue != value) 
+							|| (this._tblCustomer.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblCustomer.Entity = null;
+						previousValue.tblCalendarRentals.Remove(this);
+					}
+					this._tblCustomer.Entity = value;
+					if ((value != null))
+					{
+						value.tblCalendarRentals.Add(this);
+						this._CustomersIdRented = value.Id;
+					}
+					else
+					{
+						this._CustomersIdRented = default(int);
+					}
+					this.SendPropertyChanged("tblCustomer");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblCalendarReservation")]
+	public partial class tblCalendarReservation : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _CustomersIdReserved;
+		
+		private System.DateTime _ReservedDate;
+		
+		private EntityRef<tblCustomer> _tblCustomer;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnCustomersIdReservedChanging(int value);
+    partial void OnCustomersIdReservedChanged();
+    partial void OnReservedDateChanging(System.DateTime value);
+    partial void OnReservedDateChanged();
+    #endregion
+		
+		public tblCalendarReservation()
+		{
+			this._tblCustomer = default(EntityRef<tblCustomer>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomersIdReserved", DbType="Int NOT NULL")]
+		public int CustomersIdReserved
+		{
+			get
+			{
+				return this._CustomersIdReserved;
+			}
+			set
+			{
+				if ((this._CustomersIdReserved != value))
+				{
+					if (this._tblCustomer.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCustomersIdReservedChanging(value);
+					this.SendPropertyChanging();
+					this._CustomersIdReserved = value;
+					this.SendPropertyChanged("CustomersIdReserved");
+					this.OnCustomersIdReservedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReservedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ReservedDate
+		{
+			get
+			{
+				return this._ReservedDate;
+			}
+			set
+			{
+				if ((this._ReservedDate != value))
+				{
+					this.OnReservedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ReservedDate = value;
+					this.SendPropertyChanged("ReservedDate");
+					this.OnReservedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCustomer_tblCalendarReservation", Storage="_tblCustomer", ThisKey="CustomersIdReserved", OtherKey="Id", IsForeignKey=true)]
+		public tblCustomer tblCustomer
+		{
+			get
+			{
+				return this._tblCustomer.Entity;
+			}
+			set
+			{
+				tblCustomer previousValue = this._tblCustomer.Entity;
+				if (((previousValue != value) 
+							|| (this._tblCustomer.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblCustomer.Entity = null;
+						previousValue.tblCalendarReservations.Remove(this);
+					}
+					this._tblCustomer.Entity = value;
+					if ((value != null))
+					{
+						value.tblCalendarReservations.Add(this);
+						this._CustomersIdReserved = value.Id;
+					}
+					else
+					{
+						this._CustomersIdReserved = default(int);
+					}
+					this.SendPropertyChanged("tblCustomer");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblCustomer")]
 	public partial class tblCustomer : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1415,6 +1739,10 @@ namespace VideokeRental.Data
 		private string _ContactNumber;
 		
 		private string _OtherInfo;
+		
+		private EntitySet<tblCalendarRental> _tblCalendarRentals;
+		
+		private EntitySet<tblCalendarReservation> _tblCalendarReservations;
 		
 		private EntitySet<tblVideokeRental> _tblVideokeRentals;
 		
@@ -1452,6 +1780,8 @@ namespace VideokeRental.Data
 		
 		public tblCustomer()
 		{
+			this._tblCalendarRentals = new EntitySet<tblCalendarRental>(new Action<tblCalendarRental>(this.attach_tblCalendarRentals), new Action<tblCalendarRental>(this.detach_tblCalendarRentals));
+			this._tblCalendarReservations = new EntitySet<tblCalendarReservation>(new Action<tblCalendarReservation>(this.attach_tblCalendarReservations), new Action<tblCalendarReservation>(this.detach_tblCalendarReservations));
 			this._tblVideokeRentals = new EntitySet<tblVideokeRental>(new Action<tblVideokeRental>(this.attach_tblVideokeRentals), new Action<tblVideokeRental>(this.detach_tblVideokeRentals));
 			this._tblVideokeReservations = new EntitySet<tblVideokeReservation>(new Action<tblVideokeReservation>(this.attach_tblVideokeReservations), new Action<tblVideokeReservation>(this.detach_tblVideokeReservations));
 			this._AspNetUser = default(EntityRef<AspNetUser>);
@@ -1682,6 +2012,32 @@ namespace VideokeRental.Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCustomer_tblCalendarRental", Storage="_tblCalendarRentals", ThisKey="Id", OtherKey="CustomersIdRented")]
+		public EntitySet<tblCalendarRental> tblCalendarRentals
+		{
+			get
+			{
+				return this._tblCalendarRentals;
+			}
+			set
+			{
+				this._tblCalendarRentals.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCustomer_tblCalendarReservation", Storage="_tblCalendarReservations", ThisKey="Id", OtherKey="CustomersIdReserved")]
+		public EntitySet<tblCalendarReservation> tblCalendarReservations
+		{
+			get
+			{
+				return this._tblCalendarReservations;
+			}
+			set
+			{
+				this._tblCalendarReservations.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCustomer_tblVideokeRental", Storage="_tblVideokeRentals", ThisKey="Id", OtherKey="RentedByCustomerId")]
 		public EntitySet<tblVideokeRental> tblVideokeRentals
 		{
@@ -1760,6 +2116,30 @@ namespace VideokeRental.Data
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_tblCalendarRentals(tblCalendarRental entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblCustomer = this;
+		}
+		
+		private void detach_tblCalendarRentals(tblCalendarRental entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblCustomer = null;
+		}
+		
+		private void attach_tblCalendarReservations(tblCalendarReservation entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblCustomer = this;
+		}
+		
+		private void detach_tblCalendarReservations(tblCalendarReservation entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblCustomer = null;
 		}
 		
 		private void attach_tblVideokeRentals(tblVideokeRental entity)
@@ -2030,6 +2410,8 @@ namespace VideokeRental.Data
 		
 		private bool _IsRented;
 		
+		private decimal _Price;
+		
 		private EntitySet<tblGallery> _tblGalleries;
 		
 		private EntitySet<tblVideokeRental> _tblVideokeRentals;
@@ -2054,6 +2436,8 @@ namespace VideokeRental.Data
     partial void OnIsReservedChanged();
     partial void OnIsRentedChanging(bool value);
     partial void OnIsRentedChanged();
+    partial void OnPriceChanging(decimal value);
+    partial void OnPriceChanged();
     #endregion
 		
 		public tblProduct()
@@ -2200,6 +2584,26 @@ namespace VideokeRental.Data
 					this._IsRented = value;
 					this.SendPropertyChanged("IsRented");
 					this.OnIsRentedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
 				}
 			}
 		}

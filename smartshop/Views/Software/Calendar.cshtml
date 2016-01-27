@@ -6,6 +6,7 @@
     <!-- css -->
     @Styles.Render("~/Content/stylesheets")
     @Styles.Render("~/font-awesome/fonts")
+    @Scripts.Render("~/Scripts/js")
 </head>
 <body>
 
@@ -49,12 +50,12 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading panel-heading-custom">
-                        <a href="@Url.Action("Product", "Software")" class="panel-menu"><i class="fa fa-shopping-bag"></i> Videoke Type</a>
+                        <a href="@Url.Action("Product", "Software")" class="panel-menu"><i class="fa fa-microphone"></i> Videoke</a>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading panel-heading-custom">
-                        <a href="@Url.Action("Calendar", "Software")" class="panel-active"><i class="fa fa-envelope"></i> Calendar</a>
+                        <a href="@Url.Action("Calendar", "Software")" class="panel-active"><i class="fa fa-calendar"></i> Calendar</a>
                     </div>
                 </div>
                 <div class="panel panel-default">
@@ -69,11 +70,49 @@
                 </div>
             </div>
             <div class="col-md-10">
-                <input type="date" />
-                <div class="btn-group">
-                    <button type="button" class="btn btn-primary" aria-haspopup="true" aria-expanded="false">
-                        Get Reservation
-                    </button>
+                <h2>Calendar</h2>
+                <br /><br />
+                <div class="container">
+                    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                        <li class="active"><a data-toggle="tab" href="#reservation" id="menuReservation">Reservation</a></li>
+                        <li><a data-toggle="tab" href="#rental" id="menuRental">Rental</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="reservation" class="tab-pane fade in active">
+                            <br /><br />
+                            <input type="date" id="myDate">
+                            
+                            <button class="btn btn-primary" onclick="myFunction()"> Get Reservation</button>
+                            <input type="hidden" id="demo">
+                            <button onclick="window.location.href ='@Url.Action("CalendarReservePDF", "Software")'" cla class="btn btn-primary btn-sm pull-right" id="cmdPrintCompany"><i class="fa fa-print"></i> Print</button>
+                            <br /><br />
+                            <table id="tblCalendarReserve" class="tbldisplay">
+                                <thead>
+                                    <tr class="tablecolortbl">
+                                        <th>Reserve Date</th>
+                                        <th>Customer Name</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div id="rental" class="tab-pane fade">
+                            <br /><br />
+                            <input type="date" id="calendarRenta" />
+                            <button class="btn btn-primary" onclick="myFunction()"> Get Rental</button>
+                            <input type="hidden" id="rentalDate">
+                            <button onclick="window.location.href ='@Url.Action("CalendarRentalPDF", "Software")'" cla class="btn btn-primary btn-sm pull-right" id="cmdPrintCompany"><i class="fa fa-print"></i> Print</button>
+                            <br /><br />
+                            <table id="tblCalendarRental" class="tbldisplay">
+                                <thead>
+                                    <tr class="tablecolortbl">
+                                        <th>Rent Date</th>
+                                        <th>Customer Name</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -117,6 +156,183 @@
             </div>
         </div>
     </footer>
-    @Scripts.Render("~/Scripts/js")
+
+
+    <script type="text/javascript">
+        // globla varialbles
+        var calendarReservations;
+        var calendarRentals;
+
+        //get customers
+        function getCalendarReservation() {
+            calendarReservations = new Array();
+            $.ajax({
+                url: '/api/calendarReservation/list',
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                success: function (Results) {
+                    if (Results.length > 0) {
+                        for (i = 0; i < Results.length; i++) {
+                            calendarReservations.push({
+                                Id: Results[i]["Id"],
+                                CustomersIdReserved: Results[i]["CustomersIdReserved"],
+                                CustomersReserved: Results[i]["CustomersReserved"],
+                                ReservedDate: Results[i]["ReservedDate"]
+                            });
+                        }
+                    }
+                    $('#tblCalendarReserve').dataTable({
+                        aaData: calendarReservations,
+                        aoColumns: [
+                                { mData: 'ReservedDate' },
+                                { mData: 'CustomersReserved' },
+                        ]
+                    });
+                }
+            });
+            return calendarReservations;
+        }
+
+        function myFunction() {
+            var x = document.getElementById("myDate").value;
+            document.getElementById("demo").value = x;
+            calendarReservations = new Array();
+            $.ajax({
+                url: '/api/getCalendarResevation/' + x,
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                success: function (Results) {
+                    if (Results.length > 0) {
+                        for (i = 0; i < Results.length; i++) {
+                            calendarReservations.push({
+                                Id: Results[i]["Id"],
+                                CustomersIdReserved: Results[i]["CustomersIdReserved"],
+                                CustomersReserved: Results[i]["CustomersReserved"],
+                                ReservedDate: Results[i]["ReservedDate"]
+
+                            });
+                        }
+                    }
+                   
+                    var table = $('#tblCalendarReserve').DataTable();
+                    table.destroy();
+                    setTimeout(function () {
+                        $('#tblCalendarReserve').dataTable({
+                            aaData: calendarReservations,
+                            aoColumns: [
+                                    { mData: 'ReservedDate' },
+                                    { mData: 'CustomersReserved' },
+                            ]
+                        });
+                    }, 50);
+                   
+                }
+            });
+            return calendarReservations;
+        }
+
+        //get customers
+        function getCalendarRental() {
+            calendarRentals = new Array();
+            $.ajax({
+                url: '/api/calendarRental/list',
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                success: function (Results) {
+                    if (Results.length > 0) {
+                        for (i = 0; i < Results.length; i++) {
+                            calendarRentals.push({
+                                Id: Results[i]["Id"],
+                                CustomersIdRented: Results[i]["CustomersIdRented"],
+                                CustomersRent: Results[i]["CustomersRent"],
+                                RentedDate: Results[i]["RentedDate"]
+                            });
+                        }
+                    }
+                    $('#tblCalendarRental').dataTable({
+                        aaData: calendarRentals,
+                        aoColumns: [
+                                { mData: 'RentedDate' },
+                                { mData: 'CustomersRent' },
+                        ]
+                    });
+                }
+            });
+            return calendarRentals;
+        }
+
+        function myFunction() {
+            var x = document.getElementById("calendarRenta").value;
+            document.getElementById("rentalDate").value = x;
+            calendarRentals = new Array();
+            $.ajax({
+                url: '/api/getCalendarRental/' + x,
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                success: function (Results) {
+                    if (Results.length > 0) {
+                        for (i = 0; i < Results.length; i++) {
+                            calendarRentals.push({
+                                Id: Results[i]["Id"],
+                                CustomersIdRented: Results[i]["CustomersIdRented"],
+                                CustomersRent: Results[i]["CustomersRent"],
+                                RentedDate: Results[i]["RentedDate"]
+
+                            });
+                        }
+                    }
+
+                    var table = $('#tblCalendarRental').DataTable();
+                    table.destroy();
+                    setTimeout(function () {
+                        $('#tblCalendarRental').dataTable({
+                            aaData: calendarRentals,
+                            aoColumns: [
+                                    { mData: 'RentedDate' },
+                                    { mData: 'CustomersRent' },
+                            ]
+                        });
+                    }, 50);
+
+                }
+            });
+            return calendarRentals;
+        }
+
+        // On Load Page
+        $(document).ready(function () {
+            var now = new Date();
+
+            var day = ("0" + now.getDate()).slice(-2);
+            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+            var today = now.getFullYear() + "-" + (month) + "-" + (day);
+
+            $('#myDate').val(today);
+            $('#calendarRenta').val(today);
+            getCalendarReservation();
+            $('#tabs').tab();
+
+            $('#menuReservation').click(function () {
+                $('#reservation').show();
+                $('#rental').hide();
+            });
+
+            $('#menuRental').click(function () {
+                $('#rental').show();
+                $('#reservation').hide();
+                getCalendarRental();
+                window.getCalendarRental = function () {
+                    return true;
+                }
+            });
+        });
+    </script>
+
+
+
 </body>
 </html>

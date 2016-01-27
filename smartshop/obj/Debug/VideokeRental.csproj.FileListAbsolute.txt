@@ -59,3 +59,5 @@ C:\Users\ButchCañada\Source\Repos\VideokeRental\smartshop\bin\Microsoft.Owin.Se
 C:\Users\ButchCañada\Source\Repos\VideokeRental\smartshop\obj\Debug\smartshop.dll
 C:\Users\ButchCañada\Source\Repos\VideokeRental\smartshop\obj\Debug\smartshop.pdb
 C:\Users\ButchCañada\Source\Repos\VideokeRental\smartshop\obj\Debug\VideokeRental.csprojResolveAssemblyReference.cache
+C:\Users\ButchCañada\Source\Repos\VideokeRental\smartshop\bin\itextsharp.dll
+C:\Users\ButchCañada\Source\Repos\VideokeRental\smartshop\bin\itextsharp.xml

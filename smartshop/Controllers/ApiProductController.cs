@@ -28,6 +28,7 @@ namespace VideokeRental.Controllers
                                Images = BitConverter.ToString(d.Images.ToArray()).Replace("-", string.Empty),
                                IsReserved = d.IsReserved,
                                IsRented = d.IsRented,
+                               Price = d.Price,
                            };
             return products.ToList();
         }
@@ -49,6 +50,7 @@ namespace VideokeRental.Controllers
                 newProduct.Images = imgarr;
                 newProduct.IsReserved = false;
                 newProduct.IsRented = false;
+                newProduct.Price = product.Price;
 
                 db.tblProducts.InsertOnSubmit(newProduct);
                 db.SubmitChanges();
@@ -78,6 +80,7 @@ namespace VideokeRental.Controllers
                     updateProduct.ProductNumber = product.ProductNumber;
                     updateProduct.ProductName = product.ProductName;
                     updateProduct.ProductDescription = product.ProductDescription;
+                    updateProduct.Price = product.Price;
 
                     db.SubmitChanges();
 

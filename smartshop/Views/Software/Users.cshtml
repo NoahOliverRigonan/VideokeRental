@@ -16,7 +16,7 @@
         </ul>
     </div>
     <!-- navbar menu -->
-    <nav class="navbar navbar-inverse navbar-static-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -27,6 +27,7 @@
                 <a href="@Url.Action("Index","Home")" class="navbar-brand"><b>Videoke Rental System</b></a>
                 @*<img src="../images/store.png" alt="Flower" class="navcode">*@
             </div>
+            @Html.Partial("_LoginPartial")
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#" id="messageEmail" data-placement="bottom"><i class="fa fa-envelope"></i></a></li>
@@ -36,6 +37,7 @@
     </nav>
     <br />
     <br />
+
     <div class="container">
         <!-- Popover 2 hidden content -->
         <div style="display: none; width: 200px;">
@@ -106,6 +108,8 @@
                 </a>
             </div>
         </div>
+        <br />
+        <br />
         <div class="row">
             <div class="col-md-2">
                 <div class="panel-group" id="accordion">
@@ -147,7 +151,7 @@
                 </div>
             </div>
             <div class="col-md-10">
-                
+                <h2>User</h2>
 
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -273,6 +277,45 @@
     </footer>
     @Scripts.Render("~/Scripts/js")
     <script type="text/javascript">
+        // globla varialbles
+        var customers;
+
+        //get customers
+        function getCustomer() {
+            customers = new Array();
+            $.ajax({
+                url: '/api/customer/list',
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                success: function (Results) {
+                    if (Results.length > 0) {
+                        for (i = 0; i < Results.length; i++) {
+                            customers.push({
+                                EditId: '<button class="btn btn-primary btn-sm btn-block" onclick="btnEditButton()"><span class="glyphicon glyphicon-edit"></span> Edit</button>',
+                                DeleteId: '<button class="btn btn-danger btn-sm btn-block" onclick="btnDeleteButton()"><span class="glyphicon glyphicon-trash"></span> Delete</button>',
+                                Id: Results[i]["Id"],
+                                CustomerNumber: Results[i]["CustomerNumber"],
+                                CustomerName: Results[i]["CustomerName"],
+                                CustomerAddress: Results[i]["CustomerAddress"]
+                            });
+                        }
+                    }
+                    $('#table_id').dataTable({
+                        aaData: customers,
+                        aoColumns: [
+                                { mData: 'EditId' },
+                                { mData: 'DeleteId' },
+                                { mData: 'CustomerNumber' },
+                                { mData: 'CustomerName' },
+                                { mData: 'CustomerAddress' }
+                        ]
+                    });
+                }
+            });
+            return customers;
+        }
+
         $('[data-toggle="popover"]').popover();
 
         $("#messageEmail").popover({

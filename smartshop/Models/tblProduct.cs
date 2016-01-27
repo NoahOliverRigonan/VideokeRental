@@ -17,5 +17,6 @@ namespace VideokeRental.Models
         public Byte ImagesByte { get; set; }
         public Boolean IsReserved { get; set; }
         public Boolean IsRented { get; set; }
+        public Decimal Price { get; set; }
     }
 }

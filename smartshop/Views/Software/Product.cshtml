@@ -8,13 +8,7 @@
     @Styles.Render("~/font-awesome/fonts")
 </head>
 <body>
-    <div class="header-wrapper">
-        <ul>
-            @*<li><a href="@Url.Action("Register", "Account")"> Sign Up</a></li>
-                <li><a href="@Url.Action("Login", "Account")"> Login</a></li>*@
-            @Html.Partial("_LoginPartial")
-        </ul>
-    </div>
+
     <!-- navbar menu -->
     <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
@@ -27,6 +21,7 @@
                 <a href="@Url.Action("Index","Home")" class="navbar-brand"><b>Videoke Rental System</b></a>
                 @*<img src="../images/store.png" alt="Flower" class="navcode">*@
             </div>
+            @Html.Partial("_LoginPartial")
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><i class="fa fa-envelope"></i></a></li>
@@ -36,6 +31,7 @@
     </nav>
     <br />
     <br />
+
     <div class="container">
         <div class="row">
             <div class="col-md-2">
@@ -125,6 +121,12 @@
                                                 <label class="col-sm-4 control-label">Name</label>
                                                 <div class="col-sm-8">
                                                     <input type="text" id="product_ProductName" class="form-control requiredVideoke">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-4 control-label">Price</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" id="product_ProductPrice" class="form-control requiredVideoke">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -229,6 +231,7 @@
                                     ProductDescription: Results[i]["ProductDescription"],
                                     IsRented: Results[i]["IsRented"],
                                     IsReserved: Results[i]["IsReserved"],
+                                    Price: Results[i]["Price"],
                                 });
 
                                 // product Id
@@ -253,6 +256,11 @@
                                 var productNameElement = document.createElement("H3");
                                 var productNameTextNode = document.createTextNode(Results[i]["ProductName"]);
                                 productNameElement.appendChild(productNameTextNode);
+
+                                // product Price
+                                var priceElement = document.createElement("P");
+                                var priceTextNode = document.createTextNode('₱ ' + Results[i]["Price"].toFixed(2));
+                                priceElement.appendChild(priceTextNode);
 
                                 // product Description
                                 var productDescriptionElement = document.createElement("P");
@@ -312,6 +320,7 @@
                                 var BR3 = document.createElement("BR");
                                 overlayDivision.appendChild(BR3);
                                 overlayDivision.appendChild(productIsReservedElement);
+                                overlayDivision.appendChild(priceElement);
 
                                 // division
                                 var imageDivision = document.getElementById("imageDiv").appendChild(productImageElement);
@@ -354,6 +363,7 @@
             productObject.ProductNumber = document.getElementById('product_ProductNumber').value;
             productObject.ProductName = document.getElementById('product_ProductName').value;
             productObject.ProductDescription = document.getElementById('product_ProductDescription').value;
+            productObject.Price = document.getElementById('product_ProductPrice').value;
             var images = $('#product_ImageDisplay').attr('src');
             var ImageSave = images.replace("data:image/jpeg;base64,", "");
             productObject.Images = ImageSave;
@@ -440,6 +450,7 @@
                 document.getElementById('product_ProductNumber').value = table.row(this).data().ProductNumber;
                 document.getElementById('product_ProductName').value = table.row(this).data().ProductName;
                 document.getElementById('product_ProductDescription').value = table.row(this).data().ProductDescription;
+                document.getElementById('product_ProductPrice').value = table.row(this).data().Price;
             });
         }
 
@@ -514,6 +525,7 @@
             document.getElementById('product_ProductNumber').value = "";
             document.getElementById('product_ProductName').value = "";
             document.getElementById('product_ProductDescription').value = "";
+            document.getElementById('product_ProductPrice').value = "";
         }
 
         // Read URL image
