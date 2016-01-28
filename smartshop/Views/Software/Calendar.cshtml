@@ -83,7 +83,7 @@
                             <br /><br />
                             <input type="date" id="myDate">
                             
-                            <button class="btn btn-primary" onclick="myFunction()"> Get Reservation</button>
+                            <button class="btn btn-primary" onclick="getReservation()"> Get Reservation</button>
                             <input type="hidden" id="demo">
                             <button onclick="window.location.href ='@Url.Action("CalendarReservePDF", "Software")'" cla class="btn btn-primary btn-sm pull-right" id="cmdPrintCompany"><i class="fa fa-print"></i> Print</button>
                             <br /><br />
@@ -99,7 +99,7 @@
                         <div id="rental" class="tab-pane fade">
                             <br /><br />
                             <input type="date" id="calendarRenta" />
-                            <button class="btn btn-primary" onclick="myFunction()"> Get Rental</button>
+                            <button class="btn btn-primary" onclick="getRental()"> Get Rental</button>
                             <input type="hidden" id="rentalDate">
                             <button onclick="window.location.href ='@Url.Action("CalendarRentalPDF", "Software")'" cla class="btn btn-primary btn-sm pull-right" id="cmdPrintCompany"><i class="fa fa-print"></i> Print</button>
                             <br /><br />
@@ -194,7 +194,7 @@
             return calendarReservations;
         }
 
-        function myFunction() {
+        function getReservation() {
             var x = document.getElementById("myDate").value;
             document.getElementById("demo").value = x;
             calendarReservations = new Array();
@@ -264,7 +264,7 @@
             return calendarRentals;
         }
 
-        function myFunction() {
+        function getRental() {
             var x = document.getElementById("calendarRenta").value;
             document.getElementById("rentalDate").value = x;
             calendarRentals = new Array();

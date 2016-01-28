@@ -87,6 +87,7 @@
                 <center>
                     <label id="LabelItems" style="color: red;">No Items</label>
                 </center>
+
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
@@ -258,7 +259,7 @@
                                 productNameElement.appendChild(productNameTextNode);
 
                                 // product Price
-                                var priceElement = document.createElement("P");
+                                var priceElement = document.createElement("H3");
                                 var priceTextNode = document.createTextNode('₱ ' + Results[i]["Price"].toFixed(2));
                                 priceElement.appendChild(priceTextNode);
 
@@ -274,14 +275,28 @@
                                 imageData.className = "imageCSS";
                                 productImageElement.appendChild(imageData);
 
-                                console.log("naa s agawas " + Results[i]["IsReserved"]);
+                                console.log("" + Results[i]["IsReserved"]);
                                 if (Results[i]["IsReserved"] == true) {
-                                    console.log(productIsReservedElement);
+                                    var faDeleteElement = document.createElement("I");
+                                    faDeleteElement.setAttribute('class', 'fa fa-close');
+
+                                    var faEditElement = document.createElement("I");
+                                    faEditElement.setAttribute('class', 'fa fa-edit');
+
+                                    // button delete
                                     var buttonDeleteElement = document.createElement("BUTTON");
-                                    var buttonDeleteValue = document.createTextNode("Delete");
-                                    buttonDeleteElement.appendChild(buttonDeleteValue);
-                                    buttonDeleteElement.setAttribute('style', 'visibility: hidden;');
+                                    //var buttonDeleteValue = document.createTextNode("Delete");
+                                    buttonDeleteElement.appendChild(faDeleteElement);
+                                    buttonDeleteElement.setAttribute('class', 'btn btn-danger pull-right');
                                     buttonDeleteElement.setAttribute('onclick', 'btnDeleteButton(' + Results[i]["Id"] + ')');
+                                    buttonDeleteElement.setAttribute('disabled', '');
+
+                                    // button edit
+                                    var buttonEditElement = document.createElement("BUTTON");
+                                    //var buttonDeleteValue = document.createTextNode("Delete");
+                                    buttonEditElement.appendChild(faEditElement);
+                                    buttonEditElement.setAttribute('class', 'btn btn-primary pull-right');
+                                    buttonEditElement.setAttribute('onclick', 'btnEditButton(' + Results[i]["Id"] + ')');
 
                                     // product reserved boolean
                                     var productIsReservedElement = document.createElement("LABEL");
@@ -289,12 +304,25 @@
                                     productIsReservedElement.appendChild(productIsReservedTextNode);
 
                                 } else {
+                                    var faDeleteElement = document.createElement("I");
+                                    faDeleteElement.setAttribute('class', 'fa fa-close');
+
+                                    var faEditElement = document.createElement("I");
+                                    faEditElement.setAttribute('class', 'fa fa-edit');
+
                                     // button delete
                                     var buttonDeleteElement = document.createElement("BUTTON");
-                                    var buttonDeleteValue = document.createTextNode("Delete");
-                                    buttonDeleteElement.appendChild(buttonDeleteValue);
-                                    buttonDeleteElement.setAttribute('class', 'btn btn-danger btn-block');
+                                    //var buttonDeleteValue = document.createTextNode("Delete");
+                                    buttonDeleteElement.appendChild(faDeleteElement);
+                                    buttonDeleteElement.setAttribute('class', 'btn btn-danger pull-right');
                                     buttonDeleteElement.setAttribute('onclick', 'btnDeleteButton(' + Results[i]["Id"] + ')');
+
+                                    // button delete
+                                    var buttonEditElement = document.createElement("BUTTON");
+                                    //var buttonDeleteValue = document.createTextNode("Delete");
+                                    buttonEditElement.appendChild(faEditElement);
+                                    buttonEditElement.setAttribute('class', 'btn btn-primary pull-right');
+                                    buttonEditElement.setAttribute('onclick', 'btnEditButton(' + Results[i]["Id"] + ')');
 
                                     // product reserved boolean
                                     var productIsReservedElement = document.createElement("LABEL");
@@ -303,6 +331,15 @@
                                 }
 
                                 var overlayDivision = document.getElementById("overlayId").appendChild(productDIVElement);
+
+                                overlayDivision.appendChild(buttonDeleteElement);
+                                overlayDivision.appendChild(buttonEditElement);
+
+                                var BR4 = document.createElement("BR");
+                                overlayDivision.appendChild(BR4);
+                                var BR5 = document.createElement("BR");
+                                overlayDivision.appendChild(BR5);
+
                                 overlayDivision.setAttribute('class', 'overlay');
                                 overlayDivision.appendChild(productIdElement);
                                 overlayDivision.appendChild(productNameElement);
@@ -315,12 +352,22 @@
                                 var BR2 = document.createElement("BR");
                                 overlayDivision.appendChild(BR2);
                                 overlayDivision.appendChild(buttonViewDetailsElement);
-                                overlayDivision.appendChild(buttonDeleteElement);
 
+                                // product br3, br4
                                 var BR3 = document.createElement("BR");
                                 overlayDivision.appendChild(BR3);
-                                overlayDivision.appendChild(productIsReservedElement);
+                                var BR4 = document.createElement("BR");
+                                overlayDivision.appendChild(BR4);
                                 overlayDivision.appendChild(priceElement);
+
+                                // product br5, br6
+                                var BR5 = document.createElement("BR");
+                                overlayDivision.appendChild(BR5);
+                                overlayDivision.appendChild(buttonViewDetailsElement)
+                                var BR6 = document.createElement("BR");
+                                overlayDivision.appendChild(BR6);
+                                overlayDivision.appendChild(productIsReservedElement);
+
 
                                 // division
                                 var imageDivision = document.getElementById("imageDiv").appendChild(productImageElement);
@@ -437,21 +484,50 @@
         }
 
         // edit
-        function btnEditButton() {
+        function btnEditButton(productId) {
             $('#myModal').modal({
                 show: true,
                 backdrop: 'static'
             });
 
-            var table = $('#table_id').DataTable();
+            $.ajax({
+                url: '/api/product/getId/' + productId,
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                success: function (Results) {
+                    if (Results.length > 0) {
+                        products.push({
+                            EditId: '<button class="btn btn-primary btn-sm btn-block" onclick="btnEditButton()"><span class="glyphicon glyphicon-edit"></span> Edit</button>',
+                            DeleteId: '<button class="btn btn-danger btn-sm btn-block" onclick="btnDeleteButton()"><span class="glyphicon glyphicon-trash"></span> Delete</button>',
+                            Id: Results.Id,
+                            Images: Results.Images,
+                            ProductNumber: Results.ProductNumber,
+                            ProductName: Results.ProductName,
+                            ProductDescription: Results.ProductDescription,
+                            IsRented: Results.IsRented,
+                            IsReserved: Results.IsReserved,
+                            Price: Results.Price
+                        });
+                    }
 
-            $('#table_id tbody').on('click', 'tr', function () {
-                document.getElementById('product_Id').value = table.row(this).data().Id;
-                document.getElementById('product_ProductNumber').value = table.row(this).data().ProductNumber;
-                document.getElementById('product_ProductName').value = table.row(this).data().ProductName;
-                document.getElementById('product_ProductDescription').value = table.row(this).data().ProductDescription;
-                document.getElementById('product_ProductPrice').value = table.row(this).data().Price;
+                    document.getElementById('product_Id').value = Results.Id;
+                    
+                    //var image = Results.Images;
+                    //var srcImage = "data:image/jpeg;base64," + hexToBase64(Results.Images)
+
+                    //// product Image
+                    //var productImageElement = document.createElement("product_ImageDisplay");
+                    //productImageElement.setAttribute("src", "data:image/jpeg;base64," + hexToBase64(Results.Images))
+                    //productImageElement.setAttribute('class', 'imageCSS');
+
+                    document.getElementById('product_ProductNumber').value = Results.ProductNumber;
+                    document.getElementById('product_ProductName').value = Results.ProductName;
+                    document.getElementById('product_ProductDescription').value = Results.ProductDescription;
+                    document.getElementById('product_ProductPrice').value = Results.Price;
+                }
             });
+
         }
 
         // delete

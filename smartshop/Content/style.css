@@ -376,6 +376,7 @@ img.model {
         overflow: scroll;
         overflow-x: auto;
         overflow-y: auto;
+        word-wrap: break-word;
         color: #FFF;
         padding: 10px;
         top: 0;
