@@ -8,7 +8,7 @@
     @Styles.Render("~/font-awesome/fonts")
 </head>
 <body>
-    
+
     <!-- navbar menu -->
     <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
@@ -75,6 +75,7 @@
             </div>
             <div class="col-md-10">
                 <h2>Messages</h2>
+
             </div>
         </div>
     </div>
@@ -116,6 +117,16 @@
             </div>
         </div>
     </footer>
-            @Scripts.Render("~/Scripts/js")
+    @Scripts.Render("~/Scripts/js")
+    <script type="text/javascript">
+        var count;
+
+        for (count = 0; count < 10; count++) {
+            (+count);
+            ("<br />");
+        }
+        console.log(count);
+    </script>
+
 </body>
 </html>

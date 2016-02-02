@@ -56,7 +56,7 @@
                 <h4 id="videokeDetails"></h4>
                 <center><h2 id="videokePrice"></h2></center>
                 <br />
-                <button class="btn btn-success btn-block btn-lg" data-toggle="collapse" data-target="#reserve">Reserve</button>
+                <button id="btnReserve" class="btn btn-success btn-block btn-lg" data-toggle="collapse" data-target="#reserve">Reserve</button>
                 <div class="collapse" id="reserve">
                     <br />
                     <div class="form-group">
@@ -212,6 +212,10 @@
                     imageData.className = "imageCSS";
                     productImageElement.appendChild(imageData);
                     document.getElementById("imageDiv").appendChild(productImageElement);
+
+                    if(Results.IsReserved == true) {
+                        $('#btnReserve').hide();
+                    }
 
                 }
             });
