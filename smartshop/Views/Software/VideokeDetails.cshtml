@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var videokeId = Request.QueryString["VideokeId"];
+}
+<!DOCTYPE html>
 <html>
 <head>
     <title>Videoke Detail</title>
@@ -34,22 +37,27 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5">
-                <div class="boxes">
-
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="smallboxes">
-                </div>
-                <div class="smallboxes">
-                </div>
-                <div class="smallboxes">
-
+                <div id="imageDiv">
+                    <image id="images" />
                 </div>
             </div>
             <div class="col-md-4">
-                <button class="btn btn-primary btn-block btn-lg" data-toggle="collapse" data-target="#demo">Reserve</button>
-                <div class="collapse" id="demo">
+
+                @*<div class="smallboxes">
+                </div>
+                <div class="smallboxes">
+                </div>
+                <div class="smallboxes">
+                </div>*@
+            </div>
+            <div class="col-md-3">
+
+                <center><h1 id="videokeName"></h1></center><br />
+                <h4 id="videokeDetails"></h4>
+                <center><h2 id="videokePrice"></h2></center>
+                <br />
+                <button class="btn btn-success btn-block btn-lg" data-toggle="collapse" data-target="#reserve">Reserve</button>
+                <div class="collapse" id="reserve">
                     <br />
                     <div class="form-group">
                         <label for="firstname">First Name:</label>
@@ -73,14 +81,54 @@
                     </div>
                     <div class="form-group">
                         <label for="date">Date Needed:</label>
-                        <input type="date" class="form-control"><br /><br />
+                        <input type="date" class="form-control"><br />
                     </div>
-                    <button class="btn btn-success btn-block btn-lg">Submit</button>
+                    <button class="btn btn-default btn-lg">Submit</button>
                 </div>
+                <br />
+                <button class="btn btn-primary btn-block btn-lg" data-toggle="collapse" data-target="#rent">Rent</button>
+                <br />
+                <div class="collapse" id="rent">
+                    <br />
+                    <div class="form-group">
+                        <label for="firstname">First Name:</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name:</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactNo">Contact No:</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date Reserve:</label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date Needed:</label>
+                        <input type="date" class="form-control"><br />
+                    </div>
+                    <button class="btn btn-default btn-lg">Submit</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+
+
+            </div>
+            <div class="col-md-6">
 
             </div>
         </div>
     </div>
+    <br /><br /><br />
     <footer class="footer">
         <div class="container">
             <div class="row">
@@ -120,6 +168,68 @@
         </div>
     </footer>
     @Scripts.Render("~/Scripts/js")
+    <script type="text/javascript">
+
+        //var image = document.getElementById("product_ImageDisplay").childNodes[0].nodeValue;
+        //document.getElementById("imageslink").innerHTML = myText;
+
+        // Global Variables
+        var products;
+
+        // get the data of the product
+        function getProductDetails() {
+            products = new Array();
+            var productId = @videokeId;
+            console.log(productId);
+            $.ajax({
+                url: '/api/product/getId/' + productId,
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                success: function (Results) {
+                    if (Results.length > 0) {
+                        products.push({
+                            EditId: '<button class="btn btn-primary btn-sm btn-block" onclick="btnEditButton()"><span class="glyphicon glyphicon-edit"></span> Edit</button>',
+                            DeleteId: '<button class="btn btn-danger btn-sm btn-block" onclick="btnDeleteButton()"><span class="glyphicon glyphicon-trash"></span> Delete</button>',
+                            Id: Results.Id,
+                            Images: Results.Images,
+                            ProductNumber: Results.ProductNumber,
+                            ProductName: Results.ProductName,
+                            ProductDescription: Results.ProductDescription,
+                            IsRented: Results.IsRented,
+                            IsReserved: Results.IsReserved,
+                            Price: Results.Price
+                        });
+                    }
+
+                    document.getElementById('videokeName').innerHTML = Results.ProductName;
+                    document.getElementById('videokePrice').innerHTML = "₱ " + Results.Price;
+                    document.getElementById('videokeDetails').innerHTML = Results.ProductDescription;
+
+                    var productImageElement = document.createElement("images");
+                    var imageData = new Image();
+                    imageData.src = "data:image/jpeg;base64," + hexToBase64(Results.Images);
+                    imageData.className = "imageCSS";
+                    productImageElement.appendChild(imageData);
+                    document.getElementById("imageDiv").appendChild(productImageElement);
+
+                }
+            });
+
+        }
+
+        function hexToBase64(str) {
+            return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
+        }
+
+        // ready function
+        $(document).ready(function () {
+            getProductDetails();
+        });
+
+    </script>
+
+
 
 </body>
 </html>
