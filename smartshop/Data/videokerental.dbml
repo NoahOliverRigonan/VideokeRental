@@ -81,9 +81,9 @@
     <Type Name="tblCustomer">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="UserId" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
-      <Column Name="CustomerNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Customer" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="MainAddress" Type="System.String" DbType="NVarChar(350) NOT NULL" CanBeNull="false" />
+      <Column Name="MainAddress" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Street" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
       <Column Name="Town" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
@@ -121,6 +121,13 @@
       <Association Name="tblProduct_tblGallery" Member="tblGalleries" ThisKey="Id" OtherKey="ProductId" Type="tblGallery" />
       <Association Name="tblProduct_tblVideokeRental" Member="tblVideokeRentals" ThisKey="Id" OtherKey="ProductId" Type="tblVideokeRental" />
       <Association Name="tblProduct_tblVideokeReservation" Member="tblVideokeReservations" ThisKey="Id" OtherKey="ProductId" Type="tblVideokeReservation" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblVideokeDetails" Member="tblVideokeDetails">
+    <Type Name="tblVideokeDetail">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Details" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.tblVideokeRental" Member="tblVideokeRentals">

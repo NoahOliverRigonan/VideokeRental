@@ -177,6 +177,7 @@
     <Compile Include="Controllers\ApiCalendarRentalController.cs" />
     <Compile Include="Controllers\ApiCalendarReservationController.cs" />
     <Compile Include="Controllers\ApiCustomerController.cs" />
+    <Compile Include="Controllers\ApiMainUserController.cs" />
     <Compile Include="Controllers\ApiProductController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -191,6 +192,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AspNetUsers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\tblCalendarRental.cs" />

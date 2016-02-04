@@ -63,6 +63,9 @@ namespace VideokeRental.Data
     partial void InserttblProduct(tblProduct instance);
     partial void UpdatetblProduct(tblProduct instance);
     partial void DeletetblProduct(tblProduct instance);
+    partial void InserttblVideokeDetail(tblVideokeDetail instance);
+    partial void UpdatetblVideokeDetail(tblVideokeDetail instance);
+    partial void DeletetblVideokeDetail(tblVideokeDetail instance);
     partial void InserttblVideokeRental(tblVideokeRental instance);
     partial void UpdatetblVideokeRental(tblVideokeRental instance);
     partial void DeletetblVideokeRental(tblVideokeRental instance);
@@ -186,6 +189,14 @@ namespace VideokeRental.Data
 			get
 			{
 				return this.GetTable<tblProduct>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblVideokeDetail> tblVideokeDetails
+		{
+			get
+			{
+				return this.GetTable<tblVideokeDetail>();
 			}
 		}
 		
@@ -1832,7 +1843,7 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerNumber", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerNumber", DbType="NVarChar(50)")]
 		public string CustomerNumber
 		{
 			get
@@ -1872,7 +1883,7 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainAddress", DbType="NVarChar(350) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MainAddress", DbType="NVarChar(350)")]
 		public string MainAddress
 		{
 			get
@@ -2701,6 +2712,116 @@ namespace VideokeRental.Data
 		{
 			this.SendPropertyChanging();
 			entity.tblProduct = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblVideokeDetails")]
+	public partial class tblVideokeDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _ProductId;
+		
+		private string _Details;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnProductIdChanging(int value);
+    partial void OnProductIdChanged();
+    partial void OnDetailsChanging(string value);
+    partial void OnDetailsChanged();
+    #endregion
+		
+		public tblVideokeDetail()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId", DbType="Int NOT NULL")]
+		public int ProductId
+		{
+			get
+			{
+				return this._ProductId;
+			}
+			set
+			{
+				if ((this._ProductId != value))
+				{
+					this.OnProductIdChanging(value);
+					this.SendPropertyChanging();
+					this._ProductId = value;
+					this.SendPropertyChanged("ProductId");
+					this.OnProductIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Details", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Details
+		{
+			get
+			{
+				return this._Details;
+			}
+			set
+			{
+				if ((this._Details != value))
+				{
+					this.OnDetailsChanging(value);
+					this.SendPropertyChanging();
+					this._Details = value;
+					this.SendPropertyChanged("Details");
+					this.OnDetailsChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	

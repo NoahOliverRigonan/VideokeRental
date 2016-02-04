@@ -15,7 +15,7 @@ namespace VideokeRental
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap.min.css",
                       "~/Content/style.css",
-                      //"~/Content/alertify.bootstrap.css",
+                      "~/Content/alertify.bootstrap.css",
                       "~/Content/alertify.core.css",
                       "~/Content/alertify.default.css",
                       "~/Content/toastr.css",
@@ -30,7 +30,7 @@ namespace VideokeRental
             bundles.Add(new ScriptBundle("~/Scripts/js").Include(
                      "~/Scripts/bootstrap.js",
                      "~/Scripts/bootstrap.min.js",
-                     //"~/Scripts/jquery.min.js",
+                     "~/Scripts/jquery.min.js",
                      "~/Scripts/jquery-1.10.2.js",
                      "~/Scripts/jquery-1.10.2.min.js",
                      "~/Scripts/carousel.js",

@@ -235,7 +235,7 @@
             return customers;
         }
 
-        // Add Product
+        // Add Customer
         function btnSaveCustomer() {
             var customerObject = new Object();
             customerObject.CustomerNumber = document.getElementById('customer_CustomerNumber').value;
@@ -350,6 +350,8 @@
 
         // On Load Page
         $(document).ready(function () {
+            document.getElementById('customer_CustomerNumber').disabled = true;
+
             getCustomer();
         });
     </script>

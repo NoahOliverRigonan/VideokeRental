@@ -37,6 +37,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5">
+                <center><h1 id="videokeName"></h1></center><br />
                 <div id="imageDiv">
                     <image id="images" />
                 </div>
@@ -52,7 +53,7 @@
             </div>
             <div class="col-md-3">
 
-                <center><h1 id="videokeName"></h1></center><br />
+                
                 <h4 id="videokeDetails"></h4>
                 <center><h2 id="videokePrice"></h2></center>
                 <br />
@@ -203,7 +204,7 @@
                     }
 
                     document.getElementById('videokeName').innerHTML = Results.ProductName;
-                    document.getElementById('videokePrice').innerHTML = "₱ " + Results.Price;
+                    document.getElementById('videokePrice').innerHTML = "₱ " + Results.Price + '.00';
                     document.getElementById('videokeDetails').innerHTML = Results.ProductDescription;
 
                     var productImageElement = document.createElement("images");
