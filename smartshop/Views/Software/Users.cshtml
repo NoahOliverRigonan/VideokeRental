@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var userId = ViewData["UserId"];
+}
+<!DOCTYPE html>
 <html>
 <head>
     <title>User</title>
@@ -408,11 +411,13 @@
             });
         }
         function btnDeleteCustomer() {
-            var customerId = document.getElementById('deleteCustomerId').value;
+            var userId = "@userId";
+
+            console.log(login);
 
             $.ajax({
                 type: "DELETE",
-                url: '/api/deleteMainUser' + customerId,
+                url: '/api/deleteMainUser/' + userId,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 statusCode: {
@@ -422,8 +427,8 @@
                     404: function () {
                         alert("Not Found");
                     },
-                    500: function () {
-                        alert("Bad Request");
+                    400: function () {
+                        toastr.error("The user is serve as customer. Can't be deleted!")
                     }
                 }
             });
@@ -448,5 +453,3 @@
     </script>
 </body>
 </html>
-
-

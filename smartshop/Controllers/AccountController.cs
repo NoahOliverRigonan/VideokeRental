@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using VideokeRental.Models;
 using System.Diagnostics;
 using VideokeRental.Controllers;
+using Microsoft.AspNet.Identity;
 
 namespace VideokeRental.Controllers
 {
@@ -170,21 +171,47 @@ namespace VideokeRental.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
+                    //Data.videokerentalDataContext db = new Data.videokerentalDataContext();
+
+                    //Data.tblCustomer newCustomer = new Data.tblCustomer();
+
+                    //var getUserId = User.Identity.GetUserId();
+                    //Debug.WriteLine(getUserId);
+
+                    //var lastCustomerNumber = (from d in db.tblCustomers.OrderByDescending(d => d.CustomerNumber) select d.CustomerNumber).SingleOrDefault();
+
+                    //var newCustomerNumber = Convert.ToInt32(lastCustomerNumber) + 1;
+                    //var newStringCustomerNumber = Convert.ToString(newCustomerNumber);
+
+                    //newCustomer.UserId = getUserId;
+                    //newCustomer.CustomerNumber = newStringCustomerNumber;
+                    //newCustomer.Customer = user.FullName;
+                    //newCustomer.Email = user.Email;
+
+                    //db.tblCustomers.InsertOnSubmit(newCustomer);
+                    //db.SubmitChanges();
+
                     Data.videokerentalDataContext db = new Data.videokerentalDataContext();
 
-                    Data.tblCustomer newnCustomer = new Data.tblCustomer();
+                    var users = from d in db.AspNetUsers where d.UserName == user.UserName select d;
 
-                    var lastCustomerNumber = (from d in db.tblCustomers.OrderByDescending(d => d.CustomerNumber) select d.CustomerNumber).SingleOrDefault();
+                    var lastCustomerNumber = (from d in db.tblCustomers.OrderByDescending(d => d.CustomerNumber) select d.CustomerNumber).FirstOrDefault();
 
                     var newCustomerNumber = Convert.ToInt32(lastCustomerNumber) + 1;
                     var newStringCustomerNumber = Convert.ToString(newCustomerNumber);
 
-                    newnCustomer.CustomerNumber = newStringCustomerNumber;
-                    newnCustomer.Customer = user.FullName;
-                    newnCustomer.Email = user.Email;
+                    Data.tblCustomer newCustomer = new Data.tblCustomer();
 
-                    db.tblCustomers.InsertOnSubmit(newnCustomer);
-                    db.SubmitChanges();
+                    if(users.Any()) 
+                    {
+                        newCustomer.UserId = users.First().Id;
+                        newCustomer.CustomerNumber = newStringCustomerNumber;
+                        newCustomer.Customer = user.FullName;
+                        newCustomer.Email = user.Email;
+
+                        db.tblCustomers.InsertOnSubmit(newCustomer);
+                        db.SubmitChanges();
+                    }
 
                     return RedirectToAction("Index", "Home");
                 }
