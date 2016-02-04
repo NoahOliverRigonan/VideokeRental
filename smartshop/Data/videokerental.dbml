@@ -80,11 +80,11 @@
   <Table Name="dbo.tblCustomer" Member="tblCustomers">
     <Type Name="tblCustomer">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UserId" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
-      <Column Name="CustomerNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UserId" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="CustomerNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Customer" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="MainAddress" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Street" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
       <Column Name="Town" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
       <Column Name="City" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />

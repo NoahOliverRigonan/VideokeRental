@@ -72,6 +72,10 @@ namespace VideokeRental.Models
         [Display(Name = "Fullname")]
         public string FullName { get; set; }
 
+        //[Required]
+        //[Display(Name = "Address")]
+        //public string Address { get; set; }
+
         [Required]
         [Display(Name = "Username")]
         public string UserName { get; set; }

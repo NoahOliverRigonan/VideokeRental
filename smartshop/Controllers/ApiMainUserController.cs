@@ -35,6 +35,30 @@ namespace VideokeRental.Controllers
             return mainUsers.ToList();
         }
 
+        // add
+        [Route("api/mainUser/add")]
+        public string Post(Models.AspNetUsers mainUser)
+        {
+
+            try
+            {
+                Data.AspNetUser newUser = new Data.AspNetUser();
+
+                newUser.FullName = mainUser.FullName;
+                newUser.Email = mainUser.Email;
+                newUser.UserName = mainUser.UserName;
+
+                db.AspNetUsers.InsertOnSubmit(newUser);
+                db.SubmitChanges();
+
+                return newUser.Id;
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
         // update
         [Route("api/updateMainUser/{userId}")]
         public HttpResponseMessage Put(String userId, Models.ApplicationUser mainUser)

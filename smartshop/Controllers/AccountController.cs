@@ -158,7 +158,7 @@ namespace VideokeRental.Controllers
                 {
                     FullName = model.FullName,
                     UserName = model.UserName,
-                    Email = model.Email
+                    Email = model.Email,
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

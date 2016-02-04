@@ -2,172 +2,172 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.5, 19.625" name="videokerental">
   <DataContextMoniker Name="/videokerentalDataContext" />
   <nestedChildShapes>
-    <classShape Id="20a680d7-f0dd-47e7-bc20-846543c3ce15" absoluteBounds="0.75, 0.75, 2, 1.5785953776041666">
+    <classShape Id="39d90240-b0c8-4065-b763-ef1be5083104" absoluteBounds="0.75, 0.75, 2, 1.5785953776041666">
       <DataClassMoniker Name="/videokerentalDataContext/__MigrationHistory" />
       <nestedChildShapes>
-        <elementListCompartment Id="aa1df0b6-b0f8-4e36-8fdc-70aac942e312" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="36aed55f-3640-49e8-952d-c2a869711fab" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="34f12566-e975-4856-a4cf-f2a6dbf523d7" absoluteBounds="3.75, 5.25, 2, 1.1939925130208344">
+    <classShape Id="f0176e68-41cd-44d2-b3c2-36424a6b6827" absoluteBounds="3.75, 5.25, 2, 1.1939925130208344">
       <DataClassMoniker Name="/videokerentalDataContext/AspNetRole" />
       <nestedChildShapes>
-        <elementListCompartment Id="be15be22-6972-49d5-a178-40ed69199907" absoluteBounds="3.765, 5.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="60d3b998-f874-4122-be68-9636c1a47b14" absoluteBounds="3.765, 5.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="ab18ef77-04f3-4f2f-9cbb-06ba3ae9f3df" absoluteBounds="3.5, 9.875, 2, 1.5785953776041666">
+    <classShape Id="254e0ccb-60cb-4753-a6ad-71958f0a68b2" absoluteBounds="3.5, 9.875, 2, 1.5785953776041666">
       <DataClassMoniker Name="/videokerentalDataContext/AspNetUserClaim" />
       <nestedChildShapes>
-        <elementListCompartment Id="177b0fc4-4607-4799-8301-f577af6674f8" absoluteBounds="3.515, 10.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="e40bc5d4-7aec-4d74-b720-a0521f7cfc26" absoluteBounds="3.515, 10.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="8fd9cc82-18c7-479c-a476-03489bee1eec" absoluteBounds="3.5, 7.75, 2, 1.3862939453124996">
+    <classShape Id="cb32feeb-c320-44dc-980f-60c454d9ca83" absoluteBounds="3.5, 7.75, 2, 1.3862939453124996">
       <DataClassMoniker Name="/videokerentalDataContext/AspNetUserLogin" />
       <nestedChildShapes>
-        <elementListCompartment Id="64382800-0524-4449-9748-32b15b6981a1" absoluteBounds="3.515, 8.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="0487d9cf-dedb-409e-a768-f7a8436885bb" absoluteBounds="3.515, 8.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="869583ba-2b98-40c1-877d-7657582b41f4" absoluteBounds="6.5, 9.25, 2, 1.1939925130208344">
+    <classShape Id="140b0e5c-b327-4737-8f33-a5ab639b4293" absoluteBounds="6.5, 9.25, 2, 1.1939925130208344">
       <DataClassMoniker Name="/videokerentalDataContext/AspNetUserRole" />
       <nestedChildShapes>
-        <elementListCompartment Id="db427fb1-4f35-42e6-a70a-4ab29e6a46a4" absoluteBounds="6.515, 9.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="71678b95-55ad-4457-be43-b5fad8c902fa" absoluteBounds="6.515, 9.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="1b0aa134-4d5d-404b-8c7f-315ab828008d" absoluteBounds="0.75, 8.125, 2, 3.3093082682291666">
+    <classShape Id="12c30c71-314d-4901-a709-da3f31fa7c3f" absoluteBounds="0.75, 8.125, 2, 3.3093082682291666">
       <DataClassMoniker Name="/videokerentalDataContext/AspNetUser" />
       <nestedChildShapes>
-        <elementListCompartment Id="28f08248-6a1b-4fcf-b0f9-d2d866dfcd1b" absoluteBounds="0.765, 8.585, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="2a54bd09-3865-4243-bcb0-ef6f97ef8d9c" absoluteBounds="0.765, 8.585, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="7ee5ee06-58d5-4757-b43f-746e9468f826" absoluteBounds="6.25, 12.25, 2, 1.3862939453124987">
+    <classShape Id="df557898-1352-4121-baf1-8949dfa06ba0" absoluteBounds="6.25, 12.25, 2, 1.3862939453124987">
       <DataClassMoniker Name="/videokerentalDataContext/tblCalendarRental" />
       <nestedChildShapes>
-        <elementListCompartment Id="8ac71d3e-19f2-4139-b41a-493059d2602d" absoluteBounds="6.265, 12.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="f41f5cfa-b3b4-413e-ba0a-e74ebc18eaf9" absoluteBounds="6.265, 12.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="dfcc5aa5-52ac-4d46-9a23-79068be0bbf3" absoluteBounds="6.25, 14.375, 2, 1.3862939453124987">
+    <classShape Id="ec17f50c-7351-49dc-afd4-b0495ecc0806" absoluteBounds="6.25, 14.375, 2, 1.3862939453124987">
       <DataClassMoniker Name="/videokerentalDataContext/tblCalendarReservation" />
       <nestedChildShapes>
-        <elementListCompartment Id="71820cbe-7b6a-4237-aa4e-676d06fa2598" absoluteBounds="6.265, 14.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="df7a0989-73b0-45c5-a322-44cbc92f6b12" absoluteBounds="6.265, 14.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="e25ada95-f4b5-4ae0-a9b0-7f27babd4078" absoluteBounds="3.5, 12.5, 2, 2.9247054036458344">
+    <classShape Id="752abaf3-1e17-4d74-83c4-b51d4aa9472c" absoluteBounds="3.5, 12.5, 2, 2.9247054036458344">
       <DataClassMoniker Name="/videokerentalDataContext/tblCustomer" />
       <nestedChildShapes>
-        <elementListCompartment Id="ed4ed256-0572-49b7-a657-3e34fb508fb5" absoluteBounds="3.515, 12.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="1e5be349-3f15-4ff7-b733-f33102ec4ed3" absoluteBounds="3.515, 12.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="83243f36-e151-4d4e-b3bf-6dc7e35ef4d4" absoluteBounds="9.25, 6, 2, 1.9631982421875005">
+    <classShape Id="9de6fbe8-17d9-401c-bb76-1fab81529243" absoluteBounds="9.25, 6, 2, 1.9631982421875005">
       <DataClassMoniker Name="/videokerentalDataContext/tblGallery" />
       <nestedChildShapes>
-        <elementListCompartment Id="34181efe-8486-4393-b4f4-44a84a25a693" absoluteBounds="9.265, 6.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="22823572-8db6-4e5e-a134-99c758ca076a" absoluteBounds="9.265, 6.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="f73a4390-46ae-4fa0-91db-4e549d41a9ac" absoluteBounds="6.5, 5.75, 2, 2.3478011067708344">
+    <classShape Id="3e079298-e71c-4b2d-bf38-3eb96dceb6f0" absoluteBounds="6.5, 5.75, 2, 2.3478011067708344">
       <DataClassMoniker Name="/videokerentalDataContext/tblProduct" />
       <nestedChildShapes>
-        <elementListCompartment Id="88155d7e-ac8f-4b20-9280-b9ebf5f5c85b" absoluteBounds="6.515, 6.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="504d514f-13dc-4de8-b164-488613f64425" absoluteBounds="6.515, 6.21, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="14ac2fee-d700-4925-b0b6-be76c9c334d0" absoluteBounds="3.75, 0.75, 2, 1.3862939453125">
+    <classShape Id="d4fe6d48-b907-44b9-abe9-3d3f5554cb9f" absoluteBounds="3.75, 0.75, 2, 1.3862939453125">
       <DataClassMoniker Name="/videokerentalDataContext/tblVideokeDetail" />
       <nestedChildShapes>
-        <elementListCompartment Id="d2336005-4333-41cc-8d99-cd0450f0a879" absoluteBounds="3.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="141d0af6-025f-421e-bc24-acd6ae254841" absoluteBounds="3.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="ff0eb3e3-5137-443c-886f-8e03f7d37326" absoluteBounds="6.25, 16.5, 2, 2.9247054036458309">
+    <classShape Id="50be2960-f363-4c36-aede-2e74e7c507e0" absoluteBounds="6.25, 16.5, 2, 2.9247054036458309">
       <DataClassMoniker Name="/videokerentalDataContext/tblVideokeRental" />
       <nestedChildShapes>
-        <elementListCompartment Id="24363d08-21f1-4af1-8014-907608876da2" absoluteBounds="6.265, 16.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="caf4f121-eabe-4eb7-89da-ac50bfa773eb" absoluteBounds="6.265, 16.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="c410c5aa-af85-4866-b9ee-afb2c9363206" absoluteBounds="9.25, 13, 2, 1.9631982421874987">
+    <classShape Id="07f6ba5c-1d03-4e99-8e68-6debdbba9c67" absoluteBounds="9.25, 13, 2, 1.9631982421874987">
       <DataClassMoniker Name="/videokerentalDataContext/tblVideokeReservation" />
       <nestedChildShapes>
-        <elementListCompartment Id="f7746175-1ff4-4abc-a5e7-708becf28e34" absoluteBounds="9.265, 13.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="6f519cdd-a59a-4b36-8a1e-a43574d3c3f5" absoluteBounds="9.265, 13.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(5.65625 : 6.44399251302083); (5.65625 : 9.53125); (6.5 : 9.53125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/videokerentalDataContext/AspNetRole/AspNetRole_AspNetUserRole" />
       <nodes>
-        <classShapeMoniker Id="34f12566-e975-4856-a4cf-f2a6dbf523d7" />
-        <classShapeMoniker Id="869583ba-2b98-40c1-877d-7657582b41f4" />
+        <classShapeMoniker Id="f0176e68-41cd-44d2-b3c2-36424a6b6827" />
+        <classShapeMoniker Id="140b0e5c-b327-4737-8f33-a5ab639b4293" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(2.75 : 10.6546541341146); (3.5 : 10.6546541341146)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/videokerentalDataContext/AspNetUser/AspNetUser_AspNetUserClaim" />
       <nodes>
-        <classShapeMoniker Id="1b0aa134-4d5d-404b-8c7f-315ab828008d" />
-        <classShapeMoniker Id="ab18ef77-04f3-4f2f-9cbb-06ba3ae9f3df" />
+        <classShapeMoniker Id="12c30c71-314d-4901-a709-da3f31fa7c3f" />
+        <classShapeMoniker Id="254e0ccb-60cb-4753-a6ad-71958f0a68b2" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(2.75 : 8.63064697265625); (3.5 : 8.63064697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/videokerentalDataContext/AspNetUser/AspNetUser_AspNetUserLogin" />
       <nodes>
-        <classShapeMoniker Id="1b0aa134-4d5d-404b-8c7f-315ab828008d" />
-        <classShapeMoniker Id="8fd9cc82-18c7-479c-a476-03489bee1eec" />
+        <classShapeMoniker Id="12c30c71-314d-4901-a709-da3f31fa7c3f" />
+        <classShapeMoniker Id="cb32feeb-c320-44dc-980f-60c454d9ca83" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(2.75 : 9.734375); (6.5 : 9.734375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/videokerentalDataContext/AspNetUser/AspNetUser_AspNetUserRole" />
       <nodes>
-        <classShapeMoniker Id="1b0aa134-4d5d-404b-8c7f-315ab828008d" />
-        <classShapeMoniker Id="869583ba-2b98-40c1-877d-7657582b41f4" />
+        <classShapeMoniker Id="12c30c71-314d-4901-a709-da3f31fa7c3f" />
+        <classShapeMoniker Id="140b0e5c-b327-4737-8f33-a5ab639b4293" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(5.5 : 13.0681469726562); (6.25 : 13.0681469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/videokerentalDataContext/tblCustomer/tblCustomer_tblCalendarRental" />
       <nodes>
-        <classShapeMoniker Id="e25ada95-f4b5-4ae0-a9b0-7f27babd4078" />
-        <classShapeMoniker Id="7ee5ee06-58d5-4757-b43f-746e9468f826" />
+        <classShapeMoniker Id="752abaf3-1e17-4d74-83c4-b51d4aa9472c" />
+        <classShapeMoniker Id="df557898-1352-4121-baf1-8949dfa06ba0" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(5.5 : 14.8998527018229); (6.25 : 14.8998527018229)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/videokerentalDataContext/tblCustomer/tblCustomer_tblCalendarReservation" />
       <nodes>
-        <classShapeMoniker Id="e25ada95-f4b5-4ae0-a9b0-7f27babd4078" />
-        <classShapeMoniker Id="dfcc5aa5-52ac-4d46-9a23-79068be0bbf3" />
+        <classShapeMoniker Id="752abaf3-1e17-4d74-83c4-b51d4aa9472c" />
+        <classShapeMoniker Id="ec17f50c-7351-49dc-afd4-b0495ecc0806" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(1.75 : 11.4343082682292); (1.75 : 13.9623527018229); (3.5 : 13.9623527018229)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/videokerentalDataContext/AspNetUser/AspNetUser_tblCustomer" />
       <nodes>
-        <classShapeMoniker Id="1b0aa134-4d5d-404b-8c7f-315ab828008d" />
-        <classShapeMoniker Id="e25ada95-f4b5-4ae0-a9b0-7f27babd4078" />
+        <classShapeMoniker Id="12c30c71-314d-4901-a709-da3f31fa7c3f" />
+        <classShapeMoniker Id="752abaf3-1e17-4d74-83c4-b51d4aa9472c" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(8.5 : 6.98159912109375); (9.25 : 6.98159912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/videokerentalDataContext/tblProduct/tblProduct_tblGallery" />
       <nodes>
-        <classShapeMoniker Id="f73a4390-46ae-4fa0-91db-4e549d41a9ac" />
-        <classShapeMoniker Id="83243f36-e151-4d4e-b3bf-6dc7e35ef4d4" />
+        <classShapeMoniker Id="3e079298-e71c-4b2d-bf38-3eb96dceb6f0" />
+        <classShapeMoniker Id="9de6fbe8-17d9-401c-bb76-1fab81529243" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(4.5 : 15.4247054036458); (4.5 : 17.9623527018229); (6.25 : 17.9623527018229)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/videokerentalDataContext/tblCustomer/tblCustomer_tblVideokeRental" />
       <nodes>
-        <classShapeMoniker Id="e25ada95-f4b5-4ae0-a9b0-7f27babd4078" />
-        <classShapeMoniker Id="ff0eb3e3-5137-443c-886f-8e03f7d37326" />
+        <classShapeMoniker Id="752abaf3-1e17-4d74-83c4-b51d4aa9472c" />
+        <classShapeMoniker Id="50be2960-f363-4c36-aede-2e74e7c507e0" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(8.46769230769231 : 8.09780110677083); (8.875 : 8.50510879907853); (8.875 : 16.125); (8.625 : 16.125); (8.25 : 16.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/videokerentalDataContext/tblProduct/tblProduct_tblVideokeRental" />
       <nodes>
-        <classShapeMoniker Id="f73a4390-46ae-4fa0-91db-4e549d41a9ac" />
-        <classShapeMoniker Id="ff0eb3e3-5137-443c-886f-8e03f7d37326" />
+        <classShapeMoniker Id="3e079298-e71c-4b2d-bf38-3eb96dceb6f0" />
+        <classShapeMoniker Id="50be2960-f363-4c36-aede-2e74e7c507e0" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(5.5 : 14.0056469726562); (8.79166666666667 : 14.0056469726562 : JumpStart); (8.95833333333333 : 14.0056469726562 : JumpEnd); (9.25 : 14.0056469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/videokerentalDataContext/tblCustomer/tblCustomer_tblVideokeReservation" />
       <nodes>
-        <classShapeMoniker Id="e25ada95-f4b5-4ae0-a9b0-7f27babd4078" />
-        <classShapeMoniker Id="c410c5aa-af85-4866-b9ee-afb2c9363206" />
+        <classShapeMoniker Id="752abaf3-1e17-4d74-83c4-b51d4aa9472c" />
+        <classShapeMoniker Id="07f6ba5c-1d03-4e99-8e68-6debdbba9c67" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(8.5 : 8.00241549138622); (9.0625 : 8.56491549138622); (9.0625 : 13.4715714863281); (9.25 : 13.4715714863281)]" fixedFrom="NotFixed" fixedTo="Algorithm">
       <AssociationMoniker Name="/videokerentalDataContext/tblProduct/tblProduct_tblVideokeReservation" />
       <nodes>
-        <classShapeMoniker Id="f73a4390-46ae-4fa0-91db-4e549d41a9ac" />
-        <classShapeMoniker Id="c410c5aa-af85-4866-b9ee-afb2c9363206" />
+        <classShapeMoniker Id="3e079298-e71c-4b2d-bf38-3eb96dceb6f0" />
+        <classShapeMoniker Id="07f6ba5c-1d03-4e99-8e68-6debdbba9c67" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

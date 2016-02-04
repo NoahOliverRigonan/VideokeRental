@@ -238,6 +238,7 @@
         // Add Customer
         function btnSaveCustomer() {
             var customerObject = new Object();
+
             customerObject.CustomerNumber = document.getElementById('customer_CustomerNumber').value;
             customerObject.CustomerName = document.getElementById('customer_CustomerName').value;
             customerObject.CustomerAddress = document.getElementById('customer_CustomerAddress').value;
@@ -351,7 +352,7 @@
         // On Load Page
         $(document).ready(function () {
             document.getElementById('customer_CustomerNumber').disabled = true;
-
+                
             getCustomer();
         });
     </script>

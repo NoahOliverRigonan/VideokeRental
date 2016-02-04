@@ -45,17 +45,19 @@
             <div class="col-md-4">
 
                 @*<div class="smallboxes">
-                </div>
-                <div class="smallboxes">
-                </div>
-                <div class="smallboxes">
-                </div>*@
+                    </div>
+                    <div class="smallboxes">
+                    </div>
+                    <div class="smallboxes">
+                    </div>*@
             </div>
             <div class="col-md-3">
 
-                
+                <center><h4 class="styleVideoke">Videoke Details</h4></center>
                 <h4 id="videokeDetails"></h4>
-                <center><h2 id="videokePrice"></h2></center>
+                <center><h4 class="styleVideoke">Price</h4></center>
+                <h2 id="videokePrice"></h2>
+
                 <br />
                 <button id="btnReserve" class="btn btn-success btn-block btn-lg" data-toggle="collapse" data-target="#reserve">Reserve</button>
                 <div class="collapse" id="reserve">
@@ -87,9 +89,9 @@
                     <button class="btn btn-default btn-lg">Submit</button>
                 </div>
                 <br />
-                <button class="btn btn-primary btn-block btn-lg" data-toggle="collapse" data-target="#rent">Rent</button>
+                <button class="btn btn-primary btn-block btn-lg" data-toggle="collapse" data-target="#rental">Rent</button>
                 <br />
-                <div class="collapse" id="rent">
+                <div class="collapse" id="rental">
                     <br />
                     <div class="form-group">
                         <label for="firstname">First Name:</label>
@@ -204,7 +206,7 @@
                     }
 
                     document.getElementById('videokeName').innerHTML = Results.ProductName;
-                    document.getElementById('videokePrice').innerHTML = "₱ " + Results.Price + '.00';
+                    document.getElementById('videokePrice').innerHTML ="₱ " + Results.Price + '.00';
                     document.getElementById('videokeDetails').innerHTML = Results.ProductDescription;
 
                     var productImageElement = document.createElement("images");

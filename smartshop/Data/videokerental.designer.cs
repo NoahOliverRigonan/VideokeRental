@@ -1819,7 +1819,7 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="NVarChar(128)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
 		public string UserId
 		{
 			get
@@ -1843,7 +1843,7 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerNumber", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerNumber", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string CustomerNumber
 		{
 			get
@@ -1903,7 +1903,7 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
 		public string Email
 		{
 			get
