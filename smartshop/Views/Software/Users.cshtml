@@ -230,7 +230,6 @@
                 <table id="tableMainUser_id" class="display">
                     <thead>
                         <tr class="tablecolor">
-                            <th style="width: 60px"><center></center></th>
                             <th>Full Name</th>
                             <th>Username</th>
                             <th>Email</th>
@@ -348,7 +347,6 @@
                     $('#tableMainUser_id').dataTable({
                         aaData: mainUsers,
                         aoColumns: [
-                                { mData: 'EditId' },
                                 { mData: 'FullName' },
                                 { mData: 'UserName' },
                                 { mData: 'Email' }
@@ -359,81 +357,6 @@
             return mainUsers;
         }
 
-        // Add Customer
-        function btnSaveUser() {
-            var mainUserObject = new Object();
-
-            mainUserObject.FullName = document.getElementById('mainUser_FullName').value;
-            mainUserObject.Email = document.getElementById('mainUser_Email').value;
-            mainUserObject.UserName = document.getElementById('mainUser_UserName').value;
-            var customerData = JSON.stringify(mainUserObject);
-
-            var customerId = document.getElementById('customer_Id').value;
-            if (customerId == 0) {
-                $.ajax({
-                    type: "POST",
-                    url: '/api/mainUser/add',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    data: customerData,
-                    statusCode: {
-                        200: function () {
-                            location.reload();
-                        },
-                        404: function () {
-                            alert("Not Found");
-                        },
-                        500: function () {
-                            alert("Bad Request");
-                        }
-                    }
-                });
-            } else {
-                $.ajax({
-                    type: "PUT",
-                    url: '/api/updateMainUser/' + customerId,
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    data: customerData,
-                    statusCode: {
-                        200: function () {
-                            location.reload();
-                        },
-                        404: function () {
-                            alert("Not Found");
-                        },
-                        500: function () {
-                            alert("Bad Request");
-                        }
-                    }
-                });
-            }
-        }
-
-        // edit
-        function btnEditButton() {
-
-            $('#myMainUserModal').modal({
-                show: true,
-                backdrop: 'static'
-            });
-
-            $('#tableMainUser_id').modal({
-                show: true,
-                backdrop: 'static'
-            });
-
-            var table = $('#tableMainUser_id').DataTable();
-
-            $('#tableMainUser_id tbody').on('click', 'tr', function () {
-                document.getElementById('customer_Id').value = table.row(this).data().Id;
-                document.getElementById('mainUser_FullName').value = table.row(this).data().FullName;
-                document.getElementById('mainUser_Email').value = table.row(this).data().Email;
-                document.getElementById('mainUser_UserName').value = table.row(this).data().UserName;
-            });
-
-
-        }
 
         //function btnAddButton() {
         //    $('#myMainUserModal').modal({

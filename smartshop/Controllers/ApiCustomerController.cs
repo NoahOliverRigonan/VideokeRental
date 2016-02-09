@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -26,6 +27,37 @@ namespace VideokeRental.Controllers
             return customers.ToList();
         }
 
+        [Route("api/customer/listLastCustomerNumber")]
+        public Models.tblCustomer GetLastCustomerNumber()
+        {
+
+            var customers = from d in db.tblCustomers.OrderByDescending(d => d.CustomerNumber)
+                            select new Models.tblCustomer
+                            {
+                                Id = d.Id,
+                                CustomerNumber = d.CustomerNumber,
+                                CustomerName = d.Customer,
+                                CustomerAddress = d.MainAddress
+                            };
+            return (Models.tblCustomer)customers.FirstOrDefault();
+        }
+
+        [Route("api/customer/listCustomerByUserId/{userId}")]
+        public Models.tblCustomer GetCustomerByUserId(String userId)
+        {
+
+            var customers = from d in db.tblCustomers
+                            where d.UserId == userId
+                            select new Models.tblCustomer
+                            {
+                                Id = d.Id,
+                                CustomerNumber = d.CustomerNumber,
+                                CustomerName = d.Customer,
+                                CustomerAddress = d.MainAddress
+                            };
+            return (Models.tblCustomer)customers.FirstOrDefault();
+        }
+
         // add
         [Route("api/customer/add")]
         public int Post(Models.tblCustomer customer)
@@ -44,8 +76,9 @@ namespace VideokeRental.Controllers
 
                 return newnCustomer.Id;
             }
-            catch
+            catch(Exception e)
             {
+                Debug.WriteLine(e);
                 return 0;
             }
         }
@@ -59,6 +92,8 @@ namespace VideokeRental.Controllers
                 var customerId = Convert.ToInt32(id);
                 var customers = from d in db.tblCustomers where d.Id == customerId select d;
 
+                var userId = (from d in db.tblCustomers where d.Id == customerId select d.UserId).SingleOrDefault();
+                var ASPusers = from d in db.AspNetUsers where d.Id == userId select d;
                 if (customers.Any())
                 {
                     var updateCustomer = customers.FirstOrDefault();
@@ -69,6 +104,14 @@ namespace VideokeRental.Controllers
 
                     db.SubmitChanges();
 
+                    if (ASPusers.Any())
+                    {
+                        var updateUser = ASPusers.FirstOrDefault();
+                        updateUser.FullName = customer.CustomerName;
+
+                        db.SubmitChanges();
+                    }
+
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
 
@@ -77,8 +120,9 @@ namespace VideokeRental.Controllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
             }
-            catch
+            catch(Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
         }
@@ -105,8 +149,9 @@ namespace VideokeRental.Controllers
                 }
 
             }
-            catch
+            catch(Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
         }

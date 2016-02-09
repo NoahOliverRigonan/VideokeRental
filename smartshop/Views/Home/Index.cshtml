@@ -12,6 +12,29 @@
     <!-- scripts -->
     @Scripts.Render("~/Scripts/js")
     <script>
+        // free trial modal
+        function freeTrialModal_OnClick() {
+            $('#freeTrialModal').modal({
+                show: true,
+                backdrop: 'static'
+            });
+        }
+
+        // six months modal
+        function sixMonthsModal_OnClick() {
+            $('#6MonthsModal').modal({
+                show: true,
+                backdrop: 'static'
+            });
+        }
+
+        // 12months modal
+        function twelveMonthsModal_OnClick() {
+            $('#12MonthsModal').modal({
+                show: true,
+                backdrop: 'static'
+            });
+        }
 
         //(function ($) {
         //    $(document).ready(function () {

@@ -1,5 +1,7 @@
 ﻿@{
     var videokeId = Request.QueryString["VideokeId"];
+    var fullName = ViewData["FullName"];
+    var userId = ViewData["UserId"];
 }
 <!DOCTYPE html>
 <html>
@@ -36,89 +38,82 @@
     <br />
     <div class="container">
         <div class="row">
+            <div class="col-md-7">
+                <center>
+                    <h1 id="videokeName"></h1><br />
+                    <div id="imageDiv">
+                        <image id="images" />
+                    </div>
+                </center>
+            </div>
+            @*<div class="col-md-4">
+
+                    @*<div class="smallboxes">
+                    </div>
+                    <div class="smallboxes">
+                    </div>
+                    <div class="smallboxes">
+                    </div>*
+                </div>*@
             <div class="col-md-5">
-                <center><h1 id="videokeName"></h1></center><br />
-                <div id="imageDiv">
-                    <image id="images" />
-                </div>
-            </div>
-            <div class="col-md-4">
 
-                @*<div class="smallboxes">
-                    </div>
-                    <div class="smallboxes">
-                    </div>
-                    <div class="smallboxes">
-                    </div>*@
-            </div>
-            <div class="col-md-3">
-
-                <center><h4 class="styleVideoke">Videoke Details</h4></center>
+                <h4 class="styleVideoke">Videoke Details</h4>
                 <h4 id="videokeDetails"></h4>
-                <center><h4 class="styleVideoke">Price</h4></center>
+                <br />
+                <h4 class="styleVideoke">Price</h4>
                 <h2 id="videokePrice"></h2>
 
                 <br />
-                <button id="btnReserve" class="btn btn-success btn-block btn-lg" data-toggle="collapse" data-target="#reserve">Reserve</button>
+                <button id="btnCancelReserved" class="btn btn-danger btn-block btn-lg" onclick="btnCancelReserved_OnClick()">Cancel Reservation</button>
+                <button id="btnReserve" class="btn btn-success btn-block btn-lg" data-toggle="collapse" data-target="#reserve">Inquire for Reservation</button>
                 <div class="collapse" id="reserve">
                     <br />
                     <div class="form-group">
-                        <label for="firstname">First Name:</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastname">Last Name:</label>
-                        <input type="text" class="form-control">
+                        <label for="firstname">Full Name:</label>
+                        <input type="text" id="vd_fullName" class="form-control requiredVideokeReservation">
                     </div>
                     <div class="form-group">
                         <label for="address">Address:</label>
-                        <input type="text" class="form-control">
+                        <textarea id="vd_address" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="contactNo">Contact No:</label>
-                        <input type="text" class="form-control">
+                        <input type="text" id="vd_contactNo" class="form-control ">
                     </div>
                     <div class="form-group">
                         <label for="date">Date Reserve:</label>
-                        <input type="date" class="form-control">
+                        <input type="date" id="vd_dateReserve" class="form-control requiredVideokeReservation">
                     </div>
                     <div class="form-group">
                         <label for="date">Date Needed:</label>
-                        <input type="date" class="form-control"><br />
+                        <input type="date" id="vd_dateNeeded" class="form-control requiredVideokeReservation"><br />
+
                     </div>
-                    <button class="btn btn-default btn-lg">Submit</button>
+                    <button class="btn btn-default btn-lg" onclick="btnSubmitReservation()">Submit</button>
                 </div>
                 <br />
-                <button class="btn btn-primary btn-block btn-lg" data-toggle="collapse" data-target="#rental">Rent</button>
-                <br />
-                <div class="collapse" id="rental">
+                @*<button class="btn btn-primary btn-block btn-lg" data-toggle="collapse" data-target="#rental">Rent</button>
                     <br />
-                    <div class="form-group">
-                        <label for="firstname">First Name:</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastname">Last Name:</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address:</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="contactNo">Contact No:</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Date Reserve:</label>
-                        <input type="date" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Date Needed:</label>
-                        <input type="date" class="form-control"><br />
-                    </div>
-                    <button class="btn btn-default btn-lg">Submit</button>
-                </div>
+                    <div class="collapse" id="rental">
+                        <br />
+                        <div class="form-group">
+                            <label for="firstname">Full Name:</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address:</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactNo">Contact No:</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Date Rent:</label>
+                            <input type="date" class="form-control">
+                        </div>
+                        <button class="btn btn-default btn-lg">Submit</button>
+                    </div>*@
             </div>
         </div>
         <div class="row">
@@ -173,66 +168,250 @@
     @Scripts.Render("~/Scripts/js")
     <script type="text/javascript">
 
-        //var image = document.getElementById("product_ImageDisplay").childNodes[0].nodeValue;
-        //document.getElementById("imageslink").innerHTML = myText;
+    //var image = document.getElementById("product_ImageDisplay").childNodes[0].nodeValue;
+    //document.getElementById("imageslink").innerHTML = myText;
 
-        // Global Variables
-        var products;
+    // Global Variables
+    var products;
 
-        // get the data of the product
-        function getProductDetails() {
-            products = new Array();
-            var productId = @videokeId;
-            console.log(productId);
-            $.ajax({
-                url: '/api/product/getId/' + productId,
-                cache: false,
-                type: 'GET',
-                contentType: 'application/json; charset=utf-8',
-                success: function (Results) {
-                    if (Results.length > 0) {
-                        products.push({
-                            EditId: '<button class="btn btn-primary btn-sm btn-block" onclick="btnEditButton()"><span class="glyphicon glyphicon-edit"></span> Edit</button>',
-                            DeleteId: '<button class="btn btn-danger btn-sm btn-block" onclick="btnDeleteButton()"><span class="glyphicon glyphicon-trash"></span> Delete</button>',
-                            Id: Results.Id,
-                            Images: Results.Images,
-                            ProductNumber: Results.ProductNumber,
-                            ProductName: Results.ProductName,
-                            ProductDescription: Results.ProductDescription,
-                            IsRented: Results.IsRented,
-                            IsReserved: Results.IsReserved,
-                            Price: Results.Price
+    // get the data of the product
+    function getProductDetails() {
+        products = new Array();
+        var productId = @videokeId;
+        $.ajax({
+            url: '/api/product/getId/' + productId,
+            cache: false,
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            success: function (Results) {
+                if (Results.length > 0) {
+                    products.push({
+                        EditId: '<button class="btn btn-primary btn-sm btn-block" onclick="btnEditButton()"><span class="glyphicon glyphicon-edit"></span> Edit</button>',
+                        DeleteId: '<button class="btn btn-danger btn-sm btn-block" onclick="btnDeleteButton()"><span class="glyphicon glyphicon-trash"></span> Delete</button>',
+                        Id: Results.Id,
+                        Images: Results.Images,
+                        ProductNumber: Results.ProductNumber,
+                        ProductName: Results.ProductName,
+                        ProductDescription: Results.ProductDescription,
+                        IsRented: Results.IsRented,
+                        IsReserved: Results.IsReserved,
+                        Price: Results.Price
+                    });
+                }
+
+                document.getElementById('videokeName').innerHTML = Results.ProductName;
+                document.getElementById('videokePrice').innerHTML ="₱ " + Results.Price;
+                document.getElementById('videokeDetails').innerHTML = Results.ProductDescription;
+
+                var productImageElement = document.createElement("images");
+                var imageData = new Image();
+                imageData.src = "data:image/jpeg;base64," + hexToBase64(Results.Images);
+                imageData.className = "imageCSS";
+                productImageElement.appendChild(imageData);
+                document.getElementById("imageDiv").appendChild(productImageElement);
+
+                if(Results.IsReserved == true) {
+                    $('#btnReserve').hide();
+                    $('#btnCancelReserved').show();
+                } else {
+                    $('#btnReserve').show();
+                    $('#btnCancelReserved').hide();
+                }
+
+            }
+        });
+
+    }
+
+    function hexToBase64(str) {
+        return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
+    }
+
+    function btnCancelReserved_OnClick()
+    {
+        var userId = "@userId";
+        $.ajax({
+            url: '/api/customer/listCustomerByUserId/' + userId,
+            cache: false,
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            success: function (Results) {
+
+                var reservationObject = new Object();
+                var videokeId = @videokeId;
+                var customerId = Results.Id;
+
+                $.ajax({
+                    type: "DELETE",
+                    url: '/api/deleteVideokeReservation/' + videokeId + "/" + customerId,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    statusCode: {
+                        200: function () {
+                            toastr.success("Successfully Cancel the Reservation");
+
+                            var productObject = new Object();
+                            productObject.IsReserved = false;
+                            productObject.IsRented = false;
+
+                            var productData = JSON.stringify(productObject);
+
+                            var productId = @videokeId;
+                            $.ajax({
+                                type: "PUT",
+                                url: '/api/updateProductIsReserved/' + productId,
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                data: productData,
+                                statusCode: {
+                                    200: function () {
+                                        toastr.success("Successfully updated the product");
+                                        setTimeout(function () {
+                                            window.location.reload(1);
+                                        }, 1000);
+                                    },
+                                    404: function () {
+                                        alert("Not Found");
+                                    },
+                                    500: function () {
+                                        alert("Bad Request");
+                                    }
+                                }
+                            });
+                        },
+                        404: function () {
+                            alert("Not Found");
+                        },
+                        500: function () {
+                            alert("Bad Request");
+                        }
+                    }
+                });
+            }
+        });
+
+        //vd_fullName
+        //vd_address
+        //vd_contactNo
+        //vd_dateReserve
+        //vd_dateNeeded
+    }
+
+    // submit form in registration
+    function btnSubmitReservation()
+    {
+        var userId = "@userId";
+        $.ajax({
+            url: '/api/customer/listCustomerByUserId/' + userId,
+            cache: false,
+            type: 'GET',
+            contentType: 'application/json; charset=utf-8',
+            success: function (Results) {
+
+                var reservationObject = new Object();
+                var videokeId = @videokeId;
+                var customerId = Results.Id;
+
+                document.getElementById('vd_dateReserve').value;
+                document.getElementById('vd_dateNeeded').value;
+
+                reservationObject.ProductId = videokeId;
+                reservationObject.ReserveByCustomerId = customerId;
+                reservationObject.ReserveDateStart = document.getElementById('vd_dateReserve').value;
+                reservationObject.ReserveDateEnd = document.getElementById('vd_dateNeeded').value;
+                var reservationData = JSON.stringify(reservationObject);
+
+                var isValid = true;
+                $('.requiredVideokeReservation').each(function () {
+                    if ($.trim($(this).val()) == '') {
+                        isValid = false;
+                        $(this).css({
+                            "border": "1px solid red"
                         });
                     }
-
-                    document.getElementById('videokeName').innerHTML = Results.ProductName;
-                    document.getElementById('videokePrice').innerHTML ="₱ " + Results.Price + '.00';
-                    document.getElementById('videokeDetails').innerHTML = Results.ProductDescription;
-
-                    var productImageElement = document.createElement("images");
-                    var imageData = new Image();
-                    imageData.src = "data:image/jpeg;base64," + hexToBase64(Results.Images);
-                    imageData.className = "imageCSS";
-                    productImageElement.appendChild(imageData);
-                    document.getElementById("imageDiv").appendChild(productImageElement);
-
-                    if(Results.IsReserved == true) {
-                        $('#btnReserve').hide();
+                    else {
+                        $(this).css({
+                            "border": "",
+                        });
                     }
-
+                });
+                if (isValid == false) {
+                    toastr.error("Invalid Entry");
                 }
-            });
+                else {
+                    $.ajax({
+                        type: "POST",
+                        url: '/api/videokeReservation/add',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: reservationData,
+                        statusCode: {
+                            200: function () {
+                                toastr.success("Successfully add");
 
-        }
+                                var productObject = new Object();
+                                productObject.IsReserved = true;
+                                productObject.IsRented = false;
 
-        function hexToBase64(str) {
-            return btoa(String.fromCharCode.apply(null, str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" ")));
-        }
+                                var productData = JSON.stringify(productObject);
 
-        // ready function
-        $(document).ready(function () {
-            getProductDetails();
+                                var productId = @videokeId;
+                                $.ajax({
+                                    type: "PUT",
+                                    url: '/api/updateProductIsReserved/' + productId,
+                                    contentType: "application/json; charset=utf-8",
+                                    dataType: "json",
+                                    data: productData,
+                                    statusCode: {
+                                        200: function () {
+                                            toastr.success("Successfully updated");
+                                            setTimeout(function () {
+                                                window.location.reload(1);
+                                            }, 1000);
+                                        },
+                                        404: function () {
+                                            alert("Not Found");
+                                        },
+                                        500: function () {
+                                            alert("Bad Request");
+                                        }
+                                    }
+                                });
+                            },
+                            404: function () {
+                                alert("Not Found");
+                            },
+                            500: function () {
+                                alert("Bad Request");
+                            }
+                        }
+                    });
+                }
+            }
         });
+
+        //vd_fullName
+        //vd_address
+        //vd_contactNo
+        //vd_dateReserve
+        //vd_dateNeeded
+    }
+
+    // ready function
+    $(document).ready(function () {
+        getProductDetails();
+        var now = new Date();
+
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+        var today = now.getFullYear() + "-" + (month) + "-" + (day);
+
+        document.getElementById('vd_fullName').value = "@fullName";
+        document.getElementById('vd_dateReserve').value = today;
+        document.getElementById('vd_fullName').disabled = true;
+        document.getElementById('vd_dateReserve').disabled = true;
+
+    });
 
     </script>
 

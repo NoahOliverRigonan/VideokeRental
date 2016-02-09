@@ -102,7 +102,9 @@
                                             <div class="form-group">
                                                 <label class="col-sm-4 control-label">Photo</label>
                                                 <div class="col-sm-8">
+                                                    <div id="imageDisplayForEdit"></div>
                                                     <img id="product_ImageDisplay" src="#" class="img-thumbnail" alt="your image" width="304" height="236" />
+                                                    <br />
                                                     <input type="file" class="form-control requiredVideoke" id="product_Image">
                                                 </div>
                                             </div>
@@ -142,7 +144,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary" onclick="btnSaveProduct()">Submit</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeModal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -235,6 +237,68 @@
                                     Price: Results[i]["Price"],
                                 });
 
+                                if (Results[i]["IsReserved"] == true) {
+                                    var faDeleteElement = document.createElement("I");
+                                    faDeleteElement.setAttribute('class', 'fa fa-close');
+
+                                    var faEditElement = document.createElement("I");
+                                    faEditElement.setAttribute('class', 'fa fa-edit');
+
+                                    // button delete
+                                    var buttonDeleteElement = document.createElement("BUTTON");
+                                    //var buttonDeleteValue = document.createTextNode("Delete");
+                                    buttonDeleteElement.appendChild(faDeleteElement);
+                                    buttonDeleteElement.setAttribute('class', 'btn btn-danger btn-xs pull-right');
+                                    buttonDeleteElement.setAttribute('onclick', 'btnDeleteButton(' + Results[i]["Id"] + ')');
+                                    buttonDeleteElement.setAttribute('disabled', '');
+
+                                    // button edit
+                                    var buttonEditElement = document.createElement("BUTTON");
+                                    //var buttonDeleteValue = document.createTextNode("Delete");
+                                    buttonEditElement.appendChild(faEditElement);
+                                    buttonEditElement.setAttribute('class', 'btn btn-primary btn-xs pull-right');
+                                    buttonEditElement.setAttribute('onclick', 'btnEditButton(' + Results[i]["Id"] + ')');
+                                    buttonEditElement.setAttribute('disabled', '');
+
+                                    // product reserved boolean
+                                    var productIsReservedElement = document.createElement("LABEL");
+                                    var productIsReservedTextNode = document.createTextNode("RESERVED!");
+                                    productIsReservedElement.appendChild(productIsReservedTextNode);
+                                    productIsReservedElement.style.color = "yellowgreen";
+                                    productIsReservedElement.style.cssFloat = "left";
+
+                                } else {
+                                    var faDeleteElement = document.createElement("I");
+                                    faDeleteElement.setAttribute('class', 'fa fa-close');
+
+                                    var faEditElement = document.createElement("I");
+                                    faEditElement.setAttribute('class', 'fa fa-edit');
+
+                                    // button delete
+                                    var buttonDeleteElement = document.createElement("BUTTON");
+                                    //var buttonDeleteValue = document.createTextNode("Delete");
+                                    buttonDeleteElement.appendChild(faDeleteElement);
+                                    buttonDeleteElement.setAttribute('class', 'btn btn-danger btn-xs pull-right');
+                                    buttonDeleteElement.setAttribute('onclick', 'btnDeleteButton(' + Results[i]["Id"] + ')');
+
+                                    // button delete
+                                    var buttonEditElement = document.createElement("BUTTON");
+                                    //var buttonDeleteValue = document.createTextNode("Delete");
+                                    buttonEditElement.appendChild(faEditElement);
+                                    buttonEditElement.setAttribute('class', 'btn btn-primary btn-xs pull-right');
+                                    buttonEditElement.setAttribute('onclick', 'btnEditButton(' + Results[i]["Id"] + ')');
+
+                                    var productFontsElement = document.createElement("I");
+                                    productFontsElement.setAttribute('class', 'fa fa-check');
+
+                                    // product reserved boolean
+                                    var productIsReservedElement = document.createElement("LABEL");
+                                    var productIsReservedTextNode = document.createTextNode("AVAILABLE!");
+                                    productIsReservedElement.appendChild(productIsReservedTextNode);
+                                    productIsReservedElement.style.color = "skyblue";
+                                    productIsReservedElement.style.cssFloat = "left";
+                                }
+
                                 // product Id
                                 var productIdElement = document.createElement("INPUT");
                                 //var productIdTextNode = document.createTextNode(Results[i]["Id"]);
@@ -247,7 +311,7 @@
                                 var buttonViewDetailsElement = document.createElement("BUTTON");
                                 var buttonValue = document.createTextNode("View Details");
                                 buttonViewDetailsElement.appendChild(buttonValue);
-                                buttonViewDetailsElement.setAttribute('class', 'btn btn-success btn-block');
+                                buttonViewDetailsElement.setAttribute('class', 'btn btn-success btn-lg');
                                 buttonViewDetailsElement.setAttribute('onclick', 'btnViewDetailsButton(' + Results[i]["Id"] + ')');
 
                                 // product Div
@@ -275,62 +339,10 @@
                                 imageData.className = "imageCSS";
                                 productImageElement.appendChild(imageData);
 
-                                if (Results[i]["IsReserved"] == true) {
-                                    var faDeleteElement = document.createElement("I");
-                                    faDeleteElement.setAttribute('class', 'fa fa-close');
-
-                                    var faEditElement = document.createElement("I");
-                                    faEditElement.setAttribute('class', 'fa fa-edit');
-
-                                    // button delete
-                                    var buttonDeleteElement = document.createElement("BUTTON");
-                                    //var buttonDeleteValue = document.createTextNode("Delete");
-                                    buttonDeleteElement.appendChild(faDeleteElement);
-                                    buttonDeleteElement.setAttribute('class', 'btn btn-danger pull-right');
-                                    buttonDeleteElement.setAttribute('onclick', 'btnDeleteButton(' + Results[i]["Id"] + ')');
-                                    buttonDeleteElement.setAttribute('disabled', '');
-
-                                    // button edit
-                                    var buttonEditElement = document.createElement("BUTTON");
-                                    //var buttonDeleteValue = document.createTextNode("Delete");
-                                    buttonEditElement.appendChild(faEditElement);
-                                    buttonEditElement.setAttribute('class', 'btn btn-primary pull-right');
-                                    buttonEditElement.setAttribute('onclick', 'btnEditButton(' + Results[i]["Id"] + ')');
-
-                                    // product reserved boolean
-                                    var productIsReservedElement = document.createElement("LABEL");
-                                    var productIsReservedTextNode = document.createTextNode("RESERVED!");
-                                    productIsReservedElement.appendChild(productIsReservedTextNode);
-
-                                } else {
-                                    var faDeleteElement = document.createElement("I");
-                                    faDeleteElement.setAttribute('class', 'fa fa-close');
-
-                                    var faEditElement = document.createElement("I");
-                                    faEditElement.setAttribute('class', 'fa fa-edit');
-
-                                    // button delete
-                                    var buttonDeleteElement = document.createElement("BUTTON");
-                                    //var buttonDeleteValue = document.createTextNode("Delete");
-                                    buttonDeleteElement.appendChild(faDeleteElement);
-                                    buttonDeleteElement.setAttribute('class', 'btn btn-danger pull-right');
-                                    buttonDeleteElement.setAttribute('onclick', 'btnDeleteButton(' + Results[i]["Id"] + ')');
-
-                                    // button delete
-                                    var buttonEditElement = document.createElement("BUTTON");
-                                    //var buttonDeleteValue = document.createTextNode("Delete");
-                                    buttonEditElement.appendChild(faEditElement);
-                                    buttonEditElement.setAttribute('class', 'btn btn-primary pull-right');
-                                    buttonEditElement.setAttribute('onclick', 'btnEditButton(' + Results[i]["Id"] + ')');
-
-                                    // product reserved boolean
-                                    var productIsReservedElement = document.createElement("LABEL");
-                                    var productIsReservedTextNode = document.createTextNode("AVAILABLE!");
-                                    productIsReservedElement.appendChild(productIsReservedTextNode);
-                                }
 
                                 var overlayDivision = document.getElementById("overlayId").appendChild(productDIVElement);
 
+                                overlayDivision.appendChild(productIsReservedElement);
                                 overlayDivision.appendChild(buttonDeleteElement);
                                 overlayDivision.appendChild(buttonEditElement);
 
@@ -338,6 +350,8 @@
                                 overlayDivision.appendChild(BR4);
                                 var BR5 = document.createElement("BR");
                                 overlayDivision.appendChild(BR5);
+                                var BR6 = document.createElement("BR");
+                                overlayDivision.appendChild(BR6);
 
                                 overlayDivision.setAttribute('class', 'overlay');
                                 overlayDivision.appendChild(productIdElement);
@@ -353,8 +367,6 @@
                                 overlayDivision.appendChild(buttonViewDetailsElement);
 
                                 // product br3, br4
-                                var BR3 = document.createElement("BR");
-                                overlayDivision.appendChild(BR3);
                                 var BR4 = document.createElement("BR");
                                 overlayDivision.appendChild(BR4);
                                 overlayDivision.appendChild(priceElement);
@@ -363,9 +375,6 @@
                                 var BR5 = document.createElement("BR");
                                 overlayDivision.appendChild(BR5);
                                 overlayDivision.appendChild(buttonViewDetailsElement)
-                                var BR6 = document.createElement("BR");
-                                overlayDivision.appendChild(BR6);
-                                overlayDivision.appendChild(productIsReservedElement);
 
 
                                 // division
@@ -410,8 +419,9 @@
             productObject.ProductName = document.getElementById('product_ProductName').value;
             productObject.ProductDescription = document.getElementById('product_ProductDescription').value;
             productObject.Price = document.getElementById('product_ProductPrice').value;
-            var images = $('#product_ImageDisplay').attr('src');
+            var images = $('#product_ImageDisplay').attr('src');;
             var ImageSave = images.replace("data:image/jpeg;base64,", "");
+
             productObject.Images = ImageSave;
             var productData = JSON.stringify(productObject);
 
@@ -489,6 +499,9 @@
                 backdrop: 'static'
             });
 
+            $('#product_ImageDisplay').hide();
+            $('#product_Image').val("");
+
             $.ajax({
                 url: '/api/product/getId/' + productId,
                 cache: false,
@@ -511,7 +524,7 @@
                     }
 
                     document.getElementById('product_Id').value = Results.Id;
-                    
+
                     //var image = Results.Images;
                     //var srcImage = "data:image/jpeg;base64," + hexToBase64(Results.Images)
 
@@ -519,6 +532,18 @@
                     //var productImageElement = document.createElement("product_ImageDisplay");
                     //productImageElement.setAttribute("src", "data:image/jpeg;base64," + hexToBase64(Results.Images))
                     //productImageElement.setAttribute('class', 'imageCSS');
+
+
+                    //imageDisplayForEdit
+
+                    // product Image
+                    var productImageElement = document.createElement("images");
+                    var imageData = new Image();
+                    imageData.src = "data:image/jpeg;base64," + hexToBase64(Results.Images);
+                    imageData.className = "imageCSS";
+                    productImageElement.appendChild(imageData);
+
+                    var imageDivision = document.getElementById("imageDisplayForEdit").appendChild(productImageElement);
 
                     document.getElementById('product_ProductNumber').value = Results.ProductNumber;
                     document.getElementById('product_ProductName').value = Results.ProductName;
@@ -528,6 +553,10 @@
             });
 
         }
+
+        $('#closeModal').click(function () {
+            $('#imageDisplayForEdit').children("images").remove();
+        });
 
         // delete
         function btnDeleteButton(productId) {
@@ -596,6 +625,11 @@
                 });
             });
 
+            //$('#product_ImageDisplay').remove();
+
+            $('#product_Image').val("");
+            $('#product_ImageDisplay').hide();
+            
             document.getElementById('product_Id').value = 0;
             document.getElementById('product_ProductNumber').value = "";
             document.getElementById('product_ProductName').value = "";
@@ -624,6 +658,7 @@
                 //console.log(binaryString());
 
             }
+            $('#imageDisplayForEdit').children("images").remove();
             reader.readAsBinaryString(this.files[0]);
         }, false);
 

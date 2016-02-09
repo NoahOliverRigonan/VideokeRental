@@ -179,6 +179,7 @@
     <Compile Include="Controllers\ApiCustomerController.cs" />
     <Compile Include="Controllers\ApiMainUserController.cs" />
     <Compile Include="Controllers\ApiProductController.cs" />
+    <Compile Include="Controllers\ApiVideokeReservationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SoftwareController.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Models\tblCalendarReservation.cs" />
     <Compile Include="Models\tblCustomer.cs" />
     <Compile Include="Models\tblProduct.cs" />
+    <Compile Include="Models\tblVideokeReservation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

@@ -118,8 +118,42 @@ namespace VideokeRental.Controllers
                     return Request.CreateResponse(HttpStatusCode.NotFound);
                 }
             }
-            catch
+            catch(Exception e)
             {
+                Debug.WriteLine(e);
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
+        // update
+        [Route("api/updateProductIsReserved/{id}")]
+        public HttpResponseMessage PutIsReserved(String id, Models.tblProduct product)
+        {
+            try
+            {
+                var productId = Convert.ToInt32(id);
+                var products = from d in db.tblProducts where d.Id == productId select d;
+
+                if (products.Any())
+                {
+                    var updateProduct = products.FirstOrDefault();
+
+                    updateProduct.IsReserved = product.IsReserved;
+                    updateProduct.IsRented = product.IsReserved;
+
+                    db.SubmitChanges();
+
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
         }

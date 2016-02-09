@@ -105,19 +105,19 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">Customer Number</label>
                                         <div class="col-sm-8">
-                                            <input type="text" id="customer_CustomerNumber" class="form-control">
+                                            <input type="text" id="customer_CustomerNumber" class="form-control requiredCustomer">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">Customer Name</label>
                                         <div class="col-sm-8">
-                                            <input type="text" id="customer_CustomerName" class="form-control">
+                                            <input type="text" id="customer_CustomerName" class="form-control requiredCustomer">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">Customer Address</label>
                                         <div class="col-sm-8">
-                                            <input type="text" id="customer_CustomerAddress" class="form-control">
+                                            <input type="text" id="customer_CustomerAddress" class="form-control requiredCustomer">
                                         </div>
                                     </div>
                                 </form>
@@ -244,45 +244,65 @@
             customerObject.CustomerAddress = document.getElementById('customer_CustomerAddress').value;
             var customerData = JSON.stringify(customerObject);
 
-            var customerId = document.getElementById('customer_Id').value;
-            if (customerId == 0) {
-                $.ajax({
-                    type: "POST",
-                    url: '/api/customer/add',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    data: customerData,
-                    statusCode: {
-                        200: function () {
-                            location.reload();
-                        },
-                        404: function () {
-                            alert("Not Found");
-                        },
-                        500: function () {
-                            alert("Bad Request");
+            var isValid = true;
+            $('.requiredCustomer').each(function () {
+                if ($.trim($(this).val()) == '') {
+                    isValid = false;
+                    $(this).css({
+                        "border": "1px solid red"
+                    });
+                }
+                else {
+                    $(this).css({
+                        "border": "",
+                    });
+                }
+            });
+            if (isValid == false) {
+                toastr.error("Invalid Entry");
+            }
+            else
+            {
+                var customerId = document.getElementById('customer_Id').value;
+                if (customerId == 0) {
+                    $.ajax({
+                        type: "POST",
+                        url: '/api/customer/add',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: customerData,
+                        statusCode: {
+                            200: function () {
+                                location.reload();
+                            },
+                            404: function () {
+                                alert("Not Found");
+                            },
+                            500: function () {
+                                alert("Bad Request");
+                            }
                         }
-                    }
-                });
-            } else {
-                $.ajax({
-                    type: "PUT",
-                    url: '/api/updateCustomer/' + customerId,
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    data: customerData,
-                    statusCode: {
-                        200: function () {
-                            location.reload();
-                        },
-                        404: function () {
-                            alert("Not Found");
-                        },
-                        500: function () {
-                            alert("Bad Request");
+                    });
+                } else {
+                    $.ajax({
+                        type: "PUT",
+                        url: '/api/updateCustomer/' + customerId,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: customerData,
+                        statusCode: {
+                            200: function () {
+                                location.reload();
+                            },
+                            404: function () {
+                                alert("Not Found");
+                            },
+                            500: function () {
+                                alert("Bad Request");
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         }
 
@@ -291,6 +311,12 @@
             $('#myModal').modal({
                 show: true,
                 backdrop: 'static'
+            });
+
+            $('.requiredCustomer').each(function () {
+                $(this).css({
+                    "border": "",
+                });
             });
 
             var table = $('#table_id').DataTable();
@@ -343,16 +369,50 @@
                 backdrop: 'static'
             });
 
-            document.getElementById('customer_Id').value = 0;
-            document.getElementById('customer_CustomerNumber').value = "";
-            document.getElementById('customer_CustomerName').value = "";
-            document.getElementById('customer_CustomerAddress').value = "";
+            $('.requiredCustomer').each(function () {
+                $(this).css({
+                    "border": "",
+                });
+            });
+
+            var customerLastNumber = new Array();
+            $.ajax({
+                url: '/api/customer/listLastCustomerNumber',
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                success: function (Results) {
+                    if (Results.length > 0) {
+                        customerLastNumber.push({
+                            EditId: '<button class="btn btn-primary btn-sm btn-block" onclick="btnEditButton()"><span class="glyphicon glyphicon-edit"></span> Edit</button>',
+                            DeleteId: '<button class="btn btn-danger btn-sm btn-block" onclick="btnDeleteButton()"><span class="glyphicon glyphicon-trash"></span> Delete</button>',
+                            Id: Results.Id,
+                            CustomerNumber: Results.CustomerNumber,
+                            CustomerName: Results.CustomerName,
+                            CustomerAddress: Results.CustomerAddress
+                        });
+
+
+                    }
+
+                    var CustomerNumberDefault = Results.CustomerNumber;
+
+                    console.log("lahos sud");
+
+                    document.getElementById('customer_Id').value = 0;
+                    document.getElementById('customer_CustomerNumber').value = parseInt(CustomerNumberDefault) + 1;
+                    document.getElementById('customer_CustomerName').value = "";
+                    document.getElementById('customer_CustomerAddress').value = "";
+                }
+            });
+
+            console.log("lahos gawas");
         }
 
         // On Load Page
         $(document).ready(function () {
             document.getElementById('customer_CustomerNumber').disabled = true;
-                
+
             getCustomer();
         });
     </script>
