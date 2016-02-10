@@ -10,6 +10,7 @@ namespace VideokeRental.Models
     {
         [Key]
         public Int32 Id { get; set; }
+        public String UserId { get; set; }
         public String CustomerNumber { get; set; }
         public String CustomerName { get; set; }
         public String CustomerAddress { get; set; }

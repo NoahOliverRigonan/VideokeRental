@@ -35,6 +35,7 @@ namespace VideokeRental.Controllers
                             select new Models.tblCustomer
                             {
                                 Id = d.Id,
+                                UserId = d.UserId,
                                 CustomerNumber = d.CustomerNumber,
                                 CustomerName = d.Customer,
                                 CustomerAddress = d.MainAddress
@@ -51,6 +52,7 @@ namespace VideokeRental.Controllers
                             select new Models.tblCustomer
                             {
                                 Id = d.Id,
+                                UserId = d.UserId,
                                 CustomerNumber = d.CustomerNumber,
                                 CustomerName = d.Customer,
                                 CustomerAddress = d.MainAddress
