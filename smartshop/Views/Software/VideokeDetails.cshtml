@@ -64,7 +64,7 @@
                 <h2 id="videokePrice"></h2>
 
                 <br />
-                <button id="btnCancelReserved" class="btn btn-danger btn-block btn-lg" onclick="btnCancelReserved_OnClick()">Cancel Reservation</button>
+                <button id="btnCancelReserved" class="btn btn-danger btn-lg" onclick="btnCancelReserved_OnClick()">Cancel Reservation</button>
                 <button id="btnReserve" class="btn btn-success btn-block btn-lg" data-toggle="collapse" data-target="#reserve">Inquire for Reservation</button>
                 <div class="collapse" id="reserve">
                     <br />
@@ -97,25 +97,31 @@
                         <div class="form-group">
                             <label class="control-label col-sm-4">Customer:</label>
                             <div class="col-sm-8">
-                                <p id="vrRetrieve_Customer"></p>
+                                <p  class="formreserve" id="vrRetrieve_Customer"></p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-4">Address:</label>
                             <div class="col-sm-8">
-                                <p id="vrRetrieve_Address"></p>
+                                <p class="formreserve" id="vrRetrieve_Address"></p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-4">Contact Number:</label>
                             <div class="col-sm-8">
-                                <p id="vrRetrieve_ContactNumber"></p>
+                                <p class="formreserve" id="vrRetrieve_ContactNumber"></p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-4">Date Reserved:</label>
                             <div class="col-sm-8">
-                                <p id="vrRetrieve_DateReserved"></p>
+                                <p class="formreserve" id="vrRetrieve_DateReserved"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">Price:</label>
+                            <div class="col-sm-8">
+                                <p class="formreserve" id="vrRetrieve_PriceReserve"></p>
                             </div>
                         </div>
                     </form>
@@ -232,6 +238,7 @@
 
                     document.getElementById('videokeName').innerHTML = Results.ProductName;
                     document.getElementById('videokePrice').innerHTML ="₱ " + Results.Price;
+                    document.getElementById('vrRetrieve_PriceReserve').innerHTML ="₱ " + Results.Price;
                     document.getElementById('videokeDetails').innerHTML = Results.ProductDescription;
 
                     var productImageElement = document.createElement("images");
@@ -260,33 +267,34 @@
                         success: function (VRResults) {
 
                             //var customerId = VRResults.
+                            if(VRResults != null)
+                            {
+                                $.ajax({
+                                    url: '/api/customer/listCustomerByUserId/' + VRResults.UserId,
+                                    cache: false,
+                                    type: 'GET',
+                                    contentType: 'application/json; charset=utf-8',
+                                    success: function (CustomerResults) {
 
-                            $.ajax({
-                                url: '/api/customer/listCustomerByUserId/' + VRResults.UserId,
-                                cache: false,
-                                type: 'GET',
-                                contentType: 'application/json; charset=utf-8',
-                                success: function (CustomerResults) {
+                                        var userId = "@userId";
+                                        if(userId == CustomerResults.UserId)
+                                        {
+                                            $('#btnCancelReserved').show();
+                                        }
+                                        else
+                                        {
+                                            $('#btnCancelReserved').hide();
+                                        }
 
-                                    var userId = "@userId";
-                                    if(userId == CustomerResults.UserId)
-                                    {
-                                        $('#btnCancelReserved').show();
                                     }
-                                    else
-                                    {
-                                        $('#btnCancelReserved').hide();
-                                    }
+                                });
 
-                                }
-                            });
-
-                            //vrRetrieve_Customer
-                            document.getElementById('vrRetrieve_Customer').innerHTML = VRResults.ReserveByCustomer;
-                            //document.getElementById('vrRetrieve_Address').innerHTML = Results.ReserveByCustomer;
-                            //document.getElementById('vrRetrieve_ContactNumber').innerHTML = Results.ReserveByCustomer;
-                            document.getElementById('vrRetrieve_DateReserved').innerHTML = VRResults.ReserveDateStart;
-
+                                //vrRetrieve_Customer
+                                document.getElementById('vrRetrieve_Customer').innerHTML = VRResults.ReserveByCustomer;
+                                //document.getElementById('vrRetrieve_Address').innerHTML = Results.ReserveByCustomer;
+                                //document.getElementById('vrRetrieve_ContactNumber').innerHTML = Results.ReserveByCustomer;
+                                document.getElementById('vrRetrieve_DateReserved').innerHTML = VRResults.ReserveDateStart;
+                            }
                         }
                     });
                 }

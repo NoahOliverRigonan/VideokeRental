@@ -496,3 +496,11 @@ fieldset {
     color: red;
     font-family: 'Comic Sans MS'; 
 }
+.formreserve {
+    margin-top: 5px;
+    font-size: medium;
+}
+.control-label {
+    font-style: inherit;
+    font-size: medium;
+}
