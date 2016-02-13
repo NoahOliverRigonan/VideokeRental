@@ -48,13 +48,13 @@
             </div>
             @*<div class="col-md-4">
 
-                    @*<div class="smallboxes">
-                    </div>
-                    <div class="smallboxes">
-                    </div>
-                    <div class="smallboxes">
-                    </div>*
-                </div>*@
+                @*<div class="smallboxes">
+                </div>
+                <div class="smallboxes">
+                </div>
+                <div class="smallboxes">
+                </div>*
+            </div>*@
             <div class="col-md-5">
 
                 <h4 class="styleVideoke">Videoke Details</h4>
@@ -65,6 +65,7 @@
 
                 <br />
                 <button id="btnCancelReserved" class="btn btn-danger btn-lg" onclick="btnCancelReserved_OnClick()">Cancel Reservation</button>
+                <button id="btnrent" class="btn btn-danger btn-lg" onclick="btnrent_OnClick()">Rent</button>
                 <button id="btnReserve" class="btn btn-success btn-block btn-lg" data-toggle="collapse" data-target="#reserve">Inquire for Reservation</button>
                 <div class="collapse" id="reserve">
                     <br />
@@ -73,7 +74,7 @@
                         <input type="text" id="vd_fullName" class="form-control requiredVideokeReservation">
                     </div>
                     <div class="form-group">
-                        <label for="address">Address:</label>
+                        <label for="address">Delevered Address:</label>
                         <textarea id="vd_address" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
@@ -82,40 +83,39 @@
                     </div>
                     <div class="form-group">
                         <label for="date">Date Reserve:</label>
-                        <input type="date" id="vd_dateReserve" class="form-control requiredVideokeReservation">
+                        <input type="date" id="vd_dateReserve" class="form-control requiredVideokeReservation" onchange="dateOnchange(this.value)">
                     </div>
                     <div class="form-group">
-                        <label for="date">Date Needed:</label>
-                        <input type="date" id="vd_dateNeeded" class="form-control requiredVideokeReservation"><br />
+                        <label for="date">Due Date:</label>
 
+                        <input type="date" id="vd_dateNeeded" class="form-control requiredVideokeReservation">
                     </div>
                     <button class="btn btn-default btn-lg" onclick="btnSubmitReservation()">Submit</button>
                 </div>
                 <br />
+                <br />
+                <br />
+
+                <h1 id="reservedInformation">RENTED!</h1>
+                <button onclick="btnReturnVideoke()">Return</button>
                 <div id="infoReserved">
-                    <form class="form-horizontal" role="form">
+                    <form class="form-horizontal informationBox" role="form">
                         <div class="form-group">
-                            <label class="control-label col-sm-4">Customer:</label>
+                            <label class="control-label col-sm-4">Reserved By:</label>
                             <div class="col-sm-8">
-                                <p  class="formreserve" id="vrRetrieve_Customer"></p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-4">Address:</label>
-                            <div class="col-sm-8">
-                                <p class="formreserve" id="vrRetrieve_Address"></p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-sm-4">Contact Number:</label>
-                            <div class="col-sm-8">
-                                <p class="formreserve" id="vrRetrieve_ContactNumber"></p>
+                                <p class="formreserve" id="vrRetrieve_Customer"></p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-4">Date Reserved:</label>
                             <div class="col-sm-8">
                                 <p class="formreserve" id="vrRetrieve_DateReserved"></p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">Due Date:</label>
+                            <div class="col-sm-8">
+                                <p class="formreserve" id="vrRetrieve_DueDate"></p>
                             </div>
                         </div>
                         <div class="form-group">
@@ -130,27 +130,27 @@
 
 
                 @*<button class="btn btn-primary btn-block btn-lg" data-toggle="collapse" data-target="#rental">Rent</button>
+                <br />
+                <div class="collapse" id="rental">
                     <br />
-                    <div class="collapse" id="rental">
-                        <br />
-                        <div class="form-group">
-                            <label for="firstname">Full Name:</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Address:</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="contactNo">Contact No:</label>
-                            <input type="text" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="date">Date Rent:</label>
-                            <input type="date" class="form-control">
-                        </div>
-                        <button class="btn btn-default btn-lg">Submit</button>
-                    </div>*@
+                    <div class="form-group">
+                        <label for="firstname">Full Name:</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactNo">Contact No:</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date Rent:</label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <button class="btn btn-default btn-lg">Submit</button>
+                </div>*@
             </div>
         </div>
         <div class="row">
@@ -252,10 +252,30 @@
                         $('#btnReserve').hide();
                         $('#btnCancelReserved').show();
                         $('#infoReserved').show();
+                        $('#btnrent').show();
+
+                        if(Results.IsRented == true) {
+                            $('#btnrent').hide();
+                            $('#infoReserved').hide();
+                            $('#btnCancelReserved').prop("disabled", true);
+                            $('#reservedInformation').show();
+
+                            $('#btnReserve').hide();
+                        }
+
                     } else {
-                        $('#btnReserve').show();
                         $('#btnCancelReserved').hide();
                         $('#infoReserved').hide();
+                        $('#btnrent').hide();
+
+                        if(Results.IsRented == true) {
+                            $('#btnrent').hide();
+                            $('#infoReserved').hide();
+                            $('#btnCancelReserved').prop("disabled", true);
+                            $('#reservedInformation').show();
+
+                            $('#btnReserve').hide();
+                        }
                     }
 
                     var videokeId = @videokeId;
@@ -294,6 +314,7 @@
                                 //document.getElementById('vrRetrieve_Address').innerHTML = Results.ReserveByCustomer;
                                 //document.getElementById('vrRetrieve_ContactNumber').innerHTML = Results.ReserveByCustomer;
                                 document.getElementById('vrRetrieve_DateReserved').innerHTML = VRResults.ReserveDateStart;
+                                document.getElementById('vrRetrieve_DueDate').innerHTML = VRResults.ReserveDateEnd;
                             }
                         }
                     });
@@ -308,72 +329,124 @@
 
         function btnCancelReserved_OnClick()
         {
-            var userId = "@userId";
-            $.ajax({
-                url: '/api/customer/listCustomerByUserId/' + userId,
-                cache: false,
-                type: 'GET',
-                contentType: 'application/json; charset=utf-8',
-                success: function (Results) {
-
-                    var reservationObject = new Object();
-                    var videokeId = @videokeId;
-                    var customerId = Results.Id;
-
+            alertify.confirm("Are you sure to cancel your reservation ?", function(e) {
+                if(e) {
+                    var userId = "@userId";
                     $.ajax({
-                        type: "DELETE",
-                        url: '/api/deleteVideokeReservation/' + videokeId + "/" + customerId,
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        statusCode: {
-                            200: function () {
-                                toastr.success("Successfully Cancel the Reservation");
+                        url: '/api/customer/listCustomerByUserId/' + userId,
+                        cache: false,
+                        type: 'GET',
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (Results) {
 
-                                var productObject = new Object();
-                                productObject.IsReserved = false;
-                                productObject.IsRented = false;
+                            var reservationObject = new Object();
+                            var videokeId = @videokeId;
+                            var customerId = Results.Id;
 
-                                var productData = JSON.stringify(productObject);
+                            $.ajax({
+                                type: "DELETE",
+                                url: '/api/deleteVideokeReservation/' + videokeId + "/" + customerId,
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                statusCode: {
+                                    200: function () {
+                                        toastr.success("Successfully Cancel the Reservation");
 
-                                var productId = @videokeId;
-                                $.ajax({
-                                    type: "PUT",
-                                    url: '/api/updateProductIsReserved/' + productId,
-                                    contentType: "application/json; charset=utf-8",
-                                    dataType: "json",
-                                    data: productData,
-                                    statusCode: {
-                                        200: function () {
-                                            toastr.success("Successfully updated the product");
-                                            setTimeout(function () {
-                                                window.location.reload(1);
-                                            }, 1000);
-                                        },
-                                        404: function () {
-                                            alert("Not Found");
-                                        },
-                                        500: function () {
-                                            alert("Bad Request");
-                                        }
+                                        var productObject = new Object();
+                                        productObject.IsReserved = false;
+                                        productObject.IsRented = false;
+
+                                        var productData = JSON.stringify(productObject);
+
+                                        var productId = @videokeId;
+                                        $.ajax({
+                                            type: "PUT",
+                                            url: '/api/updateProductIsReserved/' + productId,
+                                            contentType: "application/json; charset=utf-8",
+                                            dataType: "json",
+                                            data: productData,
+                                            statusCode: {
+                                                200: function () {
+                                                    toastr.success("Successfully updated the product");
+                                                    setTimeout(function () {
+                                                        window.location.reload(1);
+                                                    }, 1000);
+                                                },
+                                                404: function () {
+                                                    alert("Not Found");
+                                                },
+                                                500: function () {
+                                                    alert("Bad Request");
+                                                }
+                                            }
+                                        });
+                                    },
+                                    404: function () {
+                                        alert("Not Found");
+                                    },
+                                    500: function () {
+                                        alert("Bad Request");
                                     }
-                                });
-                            },
-                            404: function () {
-                                alert("Not Found");
-                            },
-                            500: function () {
-                                alert("Bad Request");
-                            }
+                                }
+                            });
                         }
                     });
+
+                    //vd_fullName
+                    //vd_address
+                    //vd_contactNo
+                    //vd_dateReserve
+                    //vd_dateNeeded
                 }
             });
+        }
 
-            //vd_fullName
-            //vd_address
-            //vd_contactNo
-            //vd_dateReserve
-            //vd_dateNeeded
+        // rented videoke
+        function btnrent_OnClick()
+        {
+            var productId = @videokeId;
+            $.ajax({
+                type: "PUT",
+                url: '/api/rentalVideoke/' + productId,
+                contentType: "application/json; charset=utf-8",
+                statusCode: {
+                    200: function () {
+                        toastr.info("Successfully rented");
+                        setTimeout(function () {
+                            window.location.reload(1);
+                        }, 1000);
+                    },
+                    404: function () {
+                        alert("Not Found");
+                    },
+                    500: function () {
+                        alert("Bad Request");
+                    }
+                }
+            });
+        }
+
+        function btnReturnVideoke() {
+            var productId = @videokeId;
+            $.ajax({
+                type: "PUT",
+                url: '/api/returnVideoke/' + productId,
+                contentType: "application/json; charset=utf-8",
+                statusCode: {
+                    200: function () {
+                        toastr.info("Successfully return");
+                        setTimeout(function () {
+                            window.location.reload(1);
+                        }, 1000);
+                    },
+                    404: function () {
+                        alert("Not Found");
+                    },
+                    500: function () {
+                        alert("Bad Request");
+                    }
+                }
+            });
         }
 
         // submit form in registration
@@ -476,6 +549,19 @@
             //vd_dateNeeded
         }
 
+        function dateOnchange(val) {
+
+            var actualDate = new Date(val);
+            // var newDate = new Date(actualDate.getFullYear(), actualDate.getMonth(), actualDate.getDate()+3);
+
+            var day = ("0" + parseInt(actualDate.getDate()+3)).slice(-2);
+            var month = ("0" + (actualDate.getMonth() + 1)).slice(-2);
+            var updateDate = actualDate.getFullYear() + "-" + (month) + "-" + (day);
+
+
+            document.getElementById('vd_dateNeeded').value = updateDate;
+        }
+
         // ready function
         $(document).ready(function () {
             getProductDetails();
@@ -489,6 +575,9 @@
             document.getElementById('vd_dateReserve').value = today;
             document.getElementById('vd_fullName').disabled = true;
             document.getElementById('vd_dateReserve').disabled = true;
+            document.getElementById('vd_dateNeeded').disabled = true;
+
+            dateOnchange(document.getElementById('vd_dateReserve').value);
 
         });
 

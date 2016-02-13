@@ -139,7 +139,7 @@ namespace VideokeRental.Controllers
                     var updateProduct = products.FirstOrDefault();
 
                     updateProduct.IsReserved = product.IsReserved;
-                    updateProduct.IsRented = product.IsReserved;
+                    updateProduct.IsRented = product.IsRented;
 
                     db.SubmitChanges();
 

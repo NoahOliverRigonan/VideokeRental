@@ -68,6 +68,15 @@ namespace VideokeRental.Controllers
                 db.tblVideokeReservations.InsertOnSubmit(newVideokeReservation);
                 db.SubmitChanges();
 
+                Data.tblCalendarReservation newCalendarReservation = new Data.tblCalendarReservation();
+
+                newCalendarReservation.CustomersIdReserved = videokeReservation.ReserveByCustomerId;
+                newCalendarReservation.ReservedDate = Convert.ToDateTime(videokeReservation.ReserveDateStart);
+                newCalendarReservation.ProductId = videokeReservation.ProductId;
+
+                db.tblCalendarReservations.InsertOnSubmit(newCalendarReservation);
+                db.SubmitChanges();
+
                 return newVideokeReservation.Id;
             }
             catch (Exception e)
@@ -90,6 +99,70 @@ namespace VideokeRental.Controllers
                 if (videokeReservations.Any())
                 {
                     db.tblVideokeReservations.DeleteAllOnSubmit(videokeReservations);
+                    db.SubmitChanges();
+
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+
+            }
+            catch
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
+        // rented
+        [Route("api/rentalVideoke/{productId}")]
+        public HttpResponseMessage PutProductRent(String productId)
+        {
+            try
+            {
+                var vr_productId = Convert.ToInt32(productId);
+                var videokeReservations = from d in db.tblProducts where d.Id == vr_productId select d;
+
+                if (videokeReservations.Any())
+                {
+                    var updateVideokeReservation = videokeReservations.FirstOrDefault();
+
+                    updateVideokeReservation.IsRented = true;
+                    updateVideokeReservation.IsReserved = false;
+
+                    db.SubmitChanges();
+
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound);
+                }
+
+            }
+            catch
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+        }
+
+        // rented
+        [Route("api/returnVideoke/{productId}")]
+        public HttpResponseMessage PutProductReturned(String productId)
+        {
+            try
+            {
+                var vr_productId = Convert.ToInt32(productId);
+                var videokeReservations = from d in db.tblProducts where d.Id == vr_productId select d;
+
+                if (videokeReservations.Any())
+                {
+                    var updateVideokeReservation = videokeReservations.FirstOrDefault();
+
+                    updateVideokeReservation.IsRented = false;
+                    updateVideokeReservation.IsReserved = false;
+
                     db.SubmitChanges();
 
                     return Request.CreateResponse(HttpStatusCode.OK);

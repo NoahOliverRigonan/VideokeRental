@@ -21,6 +21,8 @@ namespace VideokeRental.Controllers
                            {
                                Id = d.Id,
                                CustomersIdReserved = d.CustomersIdReserved,
+                               ProductId = d.ProductId,
+                               Product = d.tblProduct.ProductName,
                                CustomersReserved = d.tblCustomer.Customer,
                                ReservedDate = d.ReservedDate.ToShortDateString(),
                            };
@@ -38,6 +40,8 @@ namespace VideokeRental.Controllers
                                       {
                                           Id = d.Id,
                                           CustomersIdReserved = d.CustomersIdReserved,
+                                          ProductId = d.ProductId,
+                                          Product = d.tblProduct.ProductName,
                                           CustomersReserved = d.tblCustomer.Customer,
                                           ReservedDate = d.ReservedDate.ToShortDateString(),
                                       };

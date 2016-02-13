@@ -480,6 +480,7 @@ fieldset {
 
 
 .tbldisplay td {
+
     border: 1px solid #000000;
     font-size: 14px;
     font-family: Arial;
@@ -503,4 +504,10 @@ fieldset {
 .control-label {
     font-style: inherit;
     font-size: medium;
+}
+.informationBox {
+    border: 1px solid black;
+    padding-left: 15px;
+    box-shadow: 5px 5px 10px black;
+    padding-top: 20px;
 }

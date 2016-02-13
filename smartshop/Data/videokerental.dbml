@@ -66,7 +66,9 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="CustomersIdRented" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="RentedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="tblCustomer_tblCalendarRental" Member="tblCustomer" ThisKey="CustomersIdRented" OtherKey="Id" Type="tblCustomer" IsForeignKey="true" />
+      <Association Name="tblProduct_tblCalendarRental" Member="tblProduct" ThisKey="ProductId" OtherKey="Id" Type="tblProduct" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblCalendarReservation" Member="tblCalendarReservations">
@@ -74,7 +76,9 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="CustomersIdReserved" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ReservedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="tblCustomer_tblCalendarReservation" Member="tblCustomer" ThisKey="CustomersIdReserved" OtherKey="Id" Type="tblCustomer" IsForeignKey="true" />
+      <Association Name="tblProduct_tblCalendarReservation" Member="tblProduct" ThisKey="ProductId" OtherKey="Id" Type="tblProduct" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblCustomer" Member="tblCustomers">
@@ -118,6 +122,8 @@
       <Column Name="IsReserved" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="IsRented" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Association Name="tblProduct_tblCalendarRental" Member="tblCalendarRentals" ThisKey="Id" OtherKey="ProductId" Type="tblCalendarRental" />
+      <Association Name="tblProduct_tblCalendarReservation" Member="tblCalendarReservations" ThisKey="Id" OtherKey="ProductId" Type="tblCalendarReservation" />
       <Association Name="tblProduct_tblGallery" Member="tblGalleries" ThisKey="Id" OtherKey="ProductId" Type="tblGallery" />
       <Association Name="tblProduct_tblVideokeRental" Member="tblVideokeRentals" ThisKey="Id" OtherKey="ProductId" Type="tblVideokeRental" />
       <Association Name="tblProduct_tblVideokeReservation" Member="tblVideokeReservations" ThisKey="Id" OtherKey="ProductId" Type="tblVideokeReservation" />

@@ -82,7 +82,7 @@
                         <div id="reservation" class="tab-pane fade in active">
                             <br /><br />
                             <input type="date" id="myDate">
-                            
+
                             <button class="btn btn-primary" onclick="getReservation()"> Get Reservation</button>
                             <input type="hidden" id="demo">
                             <button onclick="window.location.href ='@Url.Action("CalendarReservePDF", "Software")'" cla class="btn btn-primary btn-sm pull-right" id="cmdPrintCompany"><i class="fa fa-print"></i> Print</button>
@@ -91,6 +91,7 @@
                                 <thead>
                                     <tr class="tablecolortbl">
                                         <th>Reserve Date</th>
+                                        <th>Product Id</th>
                                         <th>Customer Name</th>
                                     </tr>
                                 </thead>
@@ -101,7 +102,7 @@
                             <input type="date" id="calendarRenta" />
                             <button class="btn btn-primary" onclick="getRental()"> Get Rental</button>
                             <input type="hidden" id="rentalDate">
-                            <button onclick="window.location.href ='@Url.Action("CalendarRentalPDF", "Software")'" cla class="btn btn-primary btn-lg pull-right" id="cmdPrintCompany"><i class="fa fa-print"></i> Print</button>
+                            <button onclick="window.location.href ='@Url.Action("CalendarRentalPDF", "Software")'" cla class="btn btn-primary btn-sm pull-right" id="cmdPrintCompany"><i class="fa fa-print"></i> Print</button>
                             <br /><br />
                             <table id="tblCalendarRental" class="tbldisplay">
                                 <thead>
@@ -178,7 +179,9 @@
                                 Id: Results[i]["Id"],
                                 CustomersIdReserved: Results[i]["CustomersIdReserved"],
                                 CustomersReserved: Results[i]["CustomersReserved"],
-                                ReservedDate: Results[i]["ReservedDate"]
+                                ReservedDate: Results[i]["ReservedDate"],
+                                ProductId: Results[i]["ProductId"],
+                                Product: Results[i]["Product"],
                             });
                         }
                     }
@@ -186,7 +189,9 @@
                         aaData: calendarReservations,
                         aoColumns: [
                                 { mData: 'ReservedDate' },
+                                { mData: 'Product' },
                                 { mData: 'CustomersReserved' },
+
                         ]
                     });
                 }
@@ -210,12 +215,15 @@
                                 Id: Results[i]["Id"],
                                 CustomersIdReserved: Results[i]["CustomersIdReserved"],
                                 CustomersReserved: Results[i]["CustomersReserved"],
-                                ReservedDate: Results[i]["ReservedDate"]
+                                ReservedDate: Results[i]["ReservedDate"],
+                                ProductId: Results[i]["ProductId"],
+                                Product: Results[i]["Product"]
+
 
                             });
                         }
                     }
-                   
+
                     var table = $('#tblCalendarReserve').DataTable();
                     table.destroy();
                     setTimeout(function () {
@@ -223,11 +231,12 @@
                             aaData: calendarReservations,
                             aoColumns: [
                                     { mData: 'ReservedDate' },
+                                    { mData: 'Product' },
                                     { mData: 'CustomersReserved' },
                             ]
                         });
                     }, 50);
-                   
+
                 }
             });
             return calendarReservations;

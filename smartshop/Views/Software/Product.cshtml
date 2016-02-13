@@ -266,7 +266,7 @@
                                     productIsReservedElement.appendChild(productIsReservedTextNode);
                                     productIsReservedElement.style.color = "yellowgreen";
                                     productIsReservedElement.style.cssFloat = "left";
-
+                                    productIsReservedElement.setAttribute('class', 'reservedLabel');
                                 } else {
                                     var faDeleteElement = document.createElement("I");
                                     faDeleteElement.setAttribute('class', 'fa fa-close');
@@ -297,6 +297,7 @@
                                     productIsReservedElement.appendChild(productIsReservedTextNode);
                                     productIsReservedElement.style.color = "skyblue";
                                     productIsReservedElement.style.cssFloat = "left";
+                                    productIsReservedElement.setAttribute('class', 'reservedLabel');
                                 }
 
                                 // product Id
@@ -341,6 +342,21 @@
 
 
                                 var overlayDivision = document.getElementById("overlayId").appendChild(productDIVElement);
+
+                                if (Results[i]["IsRented"] == true) {
+                                    // product reserved boolean
+                                    var productIsRentedElement = document.createElement("LABEL");
+                                    var productIsRentedTextNode = document.createTextNode("RENTED!");
+                                    productIsRentedElement.appendChild(productIsRentedTextNode);
+                                    productIsRentedElement.style.color = "red";
+                                    productIsRentedElement.style.cssFloat = "left";
+
+                                    overlayDivision.appendChild(productIsRentedElement);
+
+                                    //$('.reservedLabel').hide();
+                                } else {
+                                    //$('.reservedLabel').show();
+                                }
 
                                 overlayDivision.appendChild(productIsReservedElement);
                                 overlayDivision.appendChild(buttonDeleteElement);
