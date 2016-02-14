@@ -511,3 +511,14 @@ fieldset {
     box-shadow: 5px 5px 10px black;
     padding-top: 20px;
 }
+#reservedInformation {
+    font-family: 'Comic Sans MS';
+    margin-bottom: 50px;
+    text-align: center;
+}
+.reservedInformation {
+    font-family: 'Comic Sans MS';
+    margin-bottom: 50px;
+    text-align: center;
+    font-size: x-large;
+}

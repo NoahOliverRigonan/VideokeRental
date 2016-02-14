@@ -11,6 +11,8 @@ namespace VideokeRental.Models
         [Key]
         public Int32 Id { get; set; }
         public Int32 CustomersIdRented { get; set; }
+        public Int32 ProductId { get; set; }
+        public String Product { get; set; }
         public String CustomersRent { get; set; }
         public String RentedDate { get; set; }
     }

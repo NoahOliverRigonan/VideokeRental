@@ -91,7 +91,7 @@
                                 <thead>
                                     <tr class="tablecolortbl">
                                         <th>Reserve Date</th>
-                                        <th>Product Id</th>
+                                        <th>Product</th>
                                         <th>Customer Name</th>
                                     </tr>
                                 </thead>
@@ -108,6 +108,7 @@
                                 <thead>
                                     <tr class="tablecolortbl">
                                         <th>Rent Date</th>
+                                        <th>Product</th>
                                         <th>Customer Name</th>
                                     </tr>
                                 </thead>
@@ -257,7 +258,9 @@
                                 Id: Results[i]["Id"],
                                 CustomersIdRented: Results[i]["CustomersIdRented"],
                                 CustomersRent: Results[i]["CustomersRent"],
-                                RentedDate: Results[i]["RentedDate"]
+                                RentedDate: Results[i]["RentedDate"],
+                                ProductId: Results[i]["ProductId"],
+                                Product: Results[i]["Product"],
                             });
                         }
                     }
@@ -265,6 +268,7 @@
                         aaData: calendarRentals,
                         aoColumns: [
                                 { mData: 'RentedDate' },
+                                { mData: 'Product' },
                                 { mData: 'CustomersRent' },
                         ]
                     });
@@ -289,7 +293,9 @@
                                 Id: Results[i]["Id"],
                                 CustomersIdRented: Results[i]["CustomersIdRented"],
                                 CustomersRent: Results[i]["CustomersRent"],
-                                RentedDate: Results[i]["RentedDate"]
+                                RentedDate: Results[i]["RentedDate"],
+                                ProductId: Results[i]["ProductId"],
+                            Product: Results[i]["Product"]
 
                             });
                         }
@@ -302,6 +308,7 @@
                             aaData: calendarRentals,
                             aoColumns: [
                                     { mData: 'RentedDate' },
+                                    { mData: 'Product' },
                                     { mData: 'CustomersRent' },
                             ]
                         });

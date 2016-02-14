@@ -117,7 +117,7 @@ namespace VideokeRental.Controllers
 
         // rented
         [Route("api/rentalVideoke/{productId}")]
-        public HttpResponseMessage PutProductRent(String productId)
+        public HttpResponseMessage PutProductRent(String productId, Models.tblCalendarRental calendarRental)
         {
             try
             {
@@ -133,6 +133,15 @@ namespace VideokeRental.Controllers
 
                     db.SubmitChanges();
 
+                    Data.tblCalendarRental newcalendarRental = new Data.tblCalendarRental();
+
+                    newcalendarRental.RentedDate = Convert.ToDateTime(calendarRental.RentedDate);
+                    newcalendarRental.ProductId = calendarRental.ProductId;
+                    newcalendarRental.CustomersIdRented = calendarRental.CustomersIdRented;
+
+                    db.tblCalendarRentals.InsertOnSubmit(newcalendarRental);
+                    db.SubmitChanges();
+
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
                 else
@@ -141,8 +150,9 @@ namespace VideokeRental.Controllers
                 }
 
             }
-            catch
+            catch(Exception e)
             {
+                Debug.WriteLine(e);
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
         }

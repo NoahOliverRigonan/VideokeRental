@@ -48,13 +48,13 @@
             </div>
             @*<div class="col-md-4">
 
-                @*<div class="smallboxes">
-                </div>
-                <div class="smallboxes">
-                </div>
-                <div class="smallboxes">
-                </div>*
-            </div>*@
+                    @*<div class="smallboxes">
+                    </div>
+                    <div class="smallboxes">
+                    </div>
+                    <div class="smallboxes">
+                    </div>*
+                </div>*@
             <div class="col-md-5">
 
                 <h4 class="styleVideoke">Videoke Details</h4>
@@ -65,7 +65,7 @@
 
                 <br />
                 <button id="btnCancelReserved" class="btn btn-danger btn-lg" onclick="btnCancelReserved_OnClick()">Cancel Reservation</button>
-                <button id="btnrent" class="btn btn-danger btn-lg" onclick="btnrent_OnClick()">Rent</button>
+                <button id="btnrent" class="btn btn-primary btn-lg" onclick="btnrent_OnClick()">Rent</button>
                 <button id="btnReserve" class="btn btn-success btn-block btn-lg" data-toggle="collapse" data-target="#reserve">Inquire for Reservation</button>
                 <div class="collapse" id="reserve">
                     <br />
@@ -97,7 +97,7 @@
                 <br />
 
                 <h1 id="reservedInformation">RENTED!</h1>
-                <button onclick="btnReturnVideoke()">Return</button>
+                <button class="btn btn-primary btn-block btn-lg" id="returnVideoke" onclick="btnReturnVideoke()">Return</button>
                 <div id="infoReserved">
                     <form class="form-horizontal informationBox" role="form">
                         <div class="form-group">
@@ -130,27 +130,27 @@
 
 
                 @*<button class="btn btn-primary btn-block btn-lg" data-toggle="collapse" data-target="#rental">Rent</button>
-                <br />
-                <div class="collapse" id="rental">
                     <br />
-                    <div class="form-group">
-                        <label for="firstname">Full Name:</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address:</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="contactNo">Contact No:</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Date Rent:</label>
-                        <input type="date" class="form-control">
-                    </div>
-                    <button class="btn btn-default btn-lg">Submit</button>
-                </div>*@
+                    <div class="collapse" id="rental">
+                        <br />
+                        <div class="form-group">
+                            <label for="firstname">Full Name:</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address:</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactNo">Contact No:</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Date Rent:</label>
+                            <input type="date" class="form-control">
+                        </div>
+                        <button class="btn btn-default btn-lg">Submit</button>
+                    </div>*@
             </div>
         </div>
         <div class="row">
@@ -253,28 +253,34 @@
                         $('#btnCancelReserved').show();
                         $('#infoReserved').show();
                         $('#btnrent').show();
+                        $('#returnVideoke').hide();
+                        $('#reservedInformation').hide();
 
                         if(Results.IsRented == true) {
                             $('#btnrent').hide();
                             $('#infoReserved').hide();
                             $('#btnCancelReserved').prop("disabled", true);
                             $('#reservedInformation').show();
-
                             $('#btnReserve').hide();
+                            $('#returnVideoke').hide();
+                            $('#reservedInformation').hide();
                         }
 
                     } else {
                         $('#btnCancelReserved').hide();
                         $('#infoReserved').hide();
                         $('#btnrent').hide();
+                        $('#returnVideoke').hide();
+                        $('#reservedInformation').hide();
 
                         if(Results.IsRented == true) {
                             $('#btnrent').hide();
                             $('#infoReserved').hide();
                             $('#btnCancelReserved').prop("disabled", true);
                             $('#reservedInformation').show();
-
                             $('#btnReserve').hide();
+                            $('#returnVideoke').show();
+                            $('#reservedInformation').show();
                         }
                     }
 
@@ -404,24 +410,52 @@
         // rented videoke
         function btnrent_OnClick()
         {
-            var productId = @videokeId;
-            $.ajax({
-                type: "PUT",
-                url: '/api/rentalVideoke/' + productId,
-                contentType: "application/json; charset=utf-8",
-                statusCode: {
-                    200: function () {
-                        toastr.info("Successfully rented");
-                        setTimeout(function () {
-                            window.location.reload(1);
-                        }, 1000);
-                    },
-                    404: function () {
-                        alert("Not Found");
-                    },
-                    500: function () {
-                        alert("Bad Request");
-                    }
+            alertify.confirm("Are you sure to rent this videoke ?", function(e) {
+                if(e)
+                {
+                    var userId = "@userId";
+                    $.ajax({
+                        url: '/api/customer/listCustomerByUserId/' + userId,
+                        cache: false,
+                        type: 'GET',
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (Results) {
+
+                            var videokeObject = new Object();
+
+                            var customerId = Results.Id;
+                            var productId = @videokeId;
+
+                            videokeObject.RentedDate = document.getElementById('vd_dateReserve').value;
+                            videokeObject.ProductId = productId;
+                            videokeObject.CustomersIdRented = customerId;
+
+                            var productData = JSON.stringify(videokeObject);
+
+                            $.ajax({
+                                type: "PUT",
+                                url: '/api/rentalVideoke/' + productId,
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                data: productData,
+                                statusCode: {
+                                    200: function () {
+                                        toastr.info("Successfully rented");
+                                        setTimeout(function () {
+                                            window.location.reload(1);
+                                        }, 1000);
+                                    },
+                                    404: function () {
+                                        alert("Not Found");
+                                    },
+                                    500: function () {
+                                        alert("Bad Request");
+                                    }
+                                }
+                            });
+                        }
+                    });
+
                 }
             });
         }

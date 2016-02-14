@@ -22,6 +22,8 @@ namespace VideokeRental.Controllers
                                       Id = d.Id,
                                       CustomersIdRented = d.CustomersIdRented,
                                       CustomersRent = d.tblCustomer.Customer,
+                                      ProductId = d.ProductId,
+                                      Product = d.tblProduct.ProductName,
                                       RentedDate = d.RentedDate.ToShortDateString(),
                                   };
             return calendarRentals.ToList();
@@ -39,6 +41,8 @@ namespace VideokeRental.Controllers
                                           Id = d.Id,
                                           CustomersIdRented = d.CustomersIdRented,
                                           CustomersRent = d.tblCustomer.Customer,
+                                          ProductId = d.ProductId,
+                                          Product = d.tblProduct.ProductName,
                                           RentedDate = d.RentedDate.ToShortDateString(),
                                       };
             return calendarRentals.ToList();

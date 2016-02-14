@@ -244,6 +244,16 @@
                                     var faEditElement = document.createElement("I");
                                     faEditElement.setAttribute('class', 'fa fa-edit');
 
+                                    var stringReservedOrRent;
+                                    var colorForReserveOrRent;
+                                    if (Results[i]["IsRented"] == true) {
+                                        stringReservedOrRent = "RENTED";
+                                        colorForReserveOrRent = "red"
+                                    } else {
+                                        stringReservedOrRent = "RESERVED";
+                                        colorForReserveOrRent = "yellowgreen"
+                                    }
+
                                     // button delete
                                     var buttonDeleteElement = document.createElement("BUTTON");
                                     //var buttonDeleteValue = document.createTextNode("Delete");
@@ -262,9 +272,9 @@
 
                                     // product reserved boolean
                                     var productIsReservedElement = document.createElement("LABEL");
-                                    var productIsReservedTextNode = document.createTextNode("RESERVED!");
+                                    var productIsReservedTextNode = document.createTextNode(stringReservedOrRent);
                                     productIsReservedElement.appendChild(productIsReservedTextNode);
-                                    productIsReservedElement.style.color = "yellowgreen";
+                                    productIsReservedElement.style.color = colorForReserveOrRent;
                                     productIsReservedElement.style.cssFloat = "left";
                                     productIsReservedElement.setAttribute('class', 'reservedLabel');
                                 } else {
@@ -274,6 +284,7 @@
                                     var faEditElement = document.createElement("I");
                                     faEditElement.setAttribute('class', 'fa fa-edit');
 
+                                    
                                     // button delete
                                     var buttonDeleteElement = document.createElement("BUTTON");
                                     //var buttonDeleteValue = document.createTextNode("Delete");
@@ -291,11 +302,23 @@
                                     var productFontsElement = document.createElement("I");
                                     productFontsElement.setAttribute('class', 'fa fa-check');
 
+                                    var stringReservedOrRent;
+                                    var colorForReserveOrRent;
+                                    if (Results[i]["IsRented"] == true) {
+                                        stringReservedOrRent = "RENTED";
+                                        colorForReserveOrRent = "red"
+                                        buttonDeleteElement.setAttribute('disabled', '');
+                                        buttonEditElement.setAttribute('disabled', '');
+                                    } else {
+                                        stringReservedOrRent = "AVAILABLE";
+                                        colorForReserveOrRent = "skyblue"
+                                    }
+
                                     // product reserved boolean
                                     var productIsReservedElement = document.createElement("LABEL");
-                                    var productIsReservedTextNode = document.createTextNode("AVAILABLE!");
+                                    var productIsReservedTextNode = document.createTextNode(stringReservedOrRent);
                                     productIsReservedElement.appendChild(productIsReservedTextNode);
-                                    productIsReservedElement.style.color = "skyblue";
+                                    productIsReservedElement.style.color = colorForReserveOrRent;
                                     productIsReservedElement.style.cssFloat = "left";
                                     productIsReservedElement.setAttribute('class', 'reservedLabel');
                                 }
@@ -340,24 +363,8 @@
                                 imageData.className = "imageCSS";
                                 productImageElement.appendChild(imageData);
 
-
                                 var overlayDivision = document.getElementById("overlayId").appendChild(productDIVElement);
-
-                                if (Results[i]["IsRented"] == true) {
-                                    // product reserved boolean
-                                    var productIsRentedElement = document.createElement("LABEL");
-                                    var productIsRentedTextNode = document.createTextNode("RENTED!");
-                                    productIsRentedElement.appendChild(productIsRentedTextNode);
-                                    productIsRentedElement.style.color = "red";
-                                    productIsRentedElement.style.cssFloat = "left";
-
-                                    overlayDivision.appendChild(productIsRentedElement);
-
-                                    //$('.reservedLabel').hide();
-                                } else {
-                                    //$('.reservedLabel').show();
-                                }
-
+                                
                                 overlayDivision.appendChild(productIsReservedElement);
                                 overlayDivision.appendChild(buttonDeleteElement);
                                 overlayDivision.appendChild(buttonEditElement);
