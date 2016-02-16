@@ -85,7 +85,14 @@
 
                             <button class="btn btn-primary" onclick="getReservation()"> Get Reservation</button>
                             <input type="hidden" id="demo">
-                            <button onclick="window.location.href ='@Url.Action("CalendarReservePDF", "Software")'" cla class="btn btn-primary btn-sm pull-right" id="cmdPrintCompany"><i class="fa fa-print"></i> Print</button>
+                            
+                            <button onclick="printReservation_OnClick()" cla class="btn btn-primary btn-sm pull-right" id="cmdPrintCompany"><i class="fa fa-print"></i> Print</button>
+
+                            
+                            <input style="margin-right: 10px;" type="date" class="pull-right" id="reserveDateTo" />
+                            <label style="margin-right: 10px; margin-left: 10px" class="pull-right"> To: </label>
+                            <input type="date" class="pull-right" id="reserveDateFrom" />
+                            <label style="margin-right: 10px;" class="pull-right"> Date from: </label>
                             <br /><br />
                             <table id="tblCalendarReserve" class="tbldisplay">
                                 <thead>
@@ -99,10 +106,16 @@
                         </div>
                         <div id="rental" class="tab-pane fade">
                             <br /><br />
-                            <input type="date" id="calendarRenta" />
+                            <input type="date" id="calendarRental" />
                             <button class="btn btn-primary" onclick="getRental()"> Get Rental</button>
-                            <input type="hidden" id="rentalDate">
-                            <button onclick="window.location.href ='@Url.Action("CalendarRentalPDF", "Software")'" cla class="btn btn-primary btn-sm pull-right" id="cmdPrintCompany"><i class="fa fa-print"></i> Print</button>
+                            <input type="hidden" id="rentalDate" />
+                            
+                            <button onclick="printRental_OnClick()" cla class="btn btn-primary btn-sm pull-right" id="cmdPrintCompany"><i class="fa fa-print"></i> Print</button>
+
+                            <input style="margin-right: 10px;" type="date" class="pull-right" id="rentDateTo" />
+                            <label style="margin-right: 10px; margin-left: 10px" class="pull-right"> To: </label> 
+                            <input type="date" class="pull-right" id="rentDateFrom" />
+                            <label style="margin-right: 10px;" class="pull-right"> Date from: </label>
                             <br /><br />
                             <table id="tblCalendarRental" class="tbldisplay">
                                 <thead>
@@ -295,7 +308,7 @@
                                 CustomersRent: Results[i]["CustomersRent"],
                                 RentedDate: Results[i]["RentedDate"],
                                 ProductId: Results[i]["ProductId"],
-                            Product: Results[i]["Product"]
+                                Product: Results[i]["Product"]
 
                             });
                         }
@@ -328,7 +341,7 @@
             var today = now.getFullYear() + "-" + (month) + "-" + (day);
 
             $('#myDate').val(today);
-            $('#calendarRenta').val(today);
+            $('#calendarRental').val(today);
             getCalendarReservation();
             $('#tabs').tab();
 
@@ -345,7 +358,31 @@
                     return true;
                 }
             });
+
+            $('#rentDateFrom').val(today);
+            $('#rentDateTo').val(today);
+            $('#reserveDateTo').val(today);
+            $('#reserveDateFrom').val(today);
+
+
+
         });
+
+        function printRental_OnClick()
+        {
+            var rentDateFrom = document.getElementById('rentDateFrom').value;
+            var rentDateTo = document.getElementById('rentDateTo').value;
+
+            window.location.href = '/Software/CalendarRentalPDF?DateFrom=' + rentDateFrom + '&DateTo=' + rentDateTo;
+        }
+
+        function printReservation_OnClick() {
+            var reserveDateFrom = document.getElementById('reserveDateFrom').value;
+            var reserveDateTo = document.getElementById('reserveDateTo').value;
+
+            window.location.href = '/Software/CalendarReservePDF?DateFrom=' + reserveDateFrom + '&DateTo=' + reserveDateTo;
+        }
+
     </script>
 
 
