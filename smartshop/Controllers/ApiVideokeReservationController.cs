@@ -142,6 +142,18 @@ namespace VideokeRental.Controllers
                     db.tblCalendarRentals.InsertOnSubmit(newcalendarRental);
                     db.SubmitChanges();
 
+                    Data.tblVideokeIncome newVideokeIncome = new Data.tblVideokeIncome();
+
+                    var productPrice = (from d in db.tblProducts where d.Id == vr_productId select d.Price).SingleOrDefault();
+
+                    newVideokeIncome.DateRent = Convert.ToDateTime(calendarRental.RentedDate);
+                    newVideokeIncome.ProductId = calendarRental.ProductId;
+                    newVideokeIncome.CustomerId = calendarRental.CustomersIdRented;
+                    newVideokeIncome.Price = productPrice;
+
+                    db.tblVideokeIncomes.InsertOnSubmit(newVideokeIncome);
+                    db.SubmitChanges();
+
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
                 else

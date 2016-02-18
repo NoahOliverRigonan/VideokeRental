@@ -70,11 +70,44 @@
             </div>
             <div class="col-md-10">
                 <div class="row">
-                    <div class="col-md-4">
-                        <h1>Our Reports Here! ...</h1>
-                        <input type="date" id="reportsDateStart"/><br /><br />
-                        <input type="date" id="reportsDateEnd" /><br /><br />
-                        <button class="btn btn-primary">Reports</button>
+                    <div class="col-md-12">
+                        <h2>Reports</h2>
+                        <br /><br />
+                        <input type="date" id="calendarRental" />
+                        <button class="btn btn-primary" onclick="getIncome()"> Go <i class="fa fa-arrow-right"></i></button>
+                        <input type="hidden" id="dateRent" />
+                        <br /><br />
+                        <table id="tblvideokeIncome" class="tbldisplay">
+                            <thead>
+                                <tr class="tablecolortbl">
+                                    <th>Date Rent</th>
+                                    <th>Product</th>
+                                    <th>Customer</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <br /><br />
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> Date from: </label>
+                                <div class="col-sm-4">
+                                    <input type="date" id="reportsDateStart" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"> To: </label>
+                                <div class="col-sm-4">
+                                    <input type="date" id="reportsDateEnd" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-2">  </div>
+                                <div class="col-sm-4">
+                                    <button class="btn btn-primary btn-sm"><i class="fa fa-print"></i> Print</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -121,9 +154,109 @@
     </footer>
     @Scripts.Render("~/Scripts/js")
     <script type="text/javascript">
+        // globla varialbles
+        var videokeIncomes;
 
-        $('#reportsDateStart').val(today);
-        $('#reportsDateEnd').val(today);
-        </script>
+        //get customers
+        function getVideokeIncome() {
+            videokeIncomes = new Array();
+            $.ajax({
+                url: '/api/videokeIncome/list',
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                success: function (Results) {
+                    if (Results.length > 0) {
+                        for (i = 0; i < Results.length; i++) {
+                            videokeIncomes.push({
+                                Id: Results[i]["Id"],
+                                CustomerId: Results[i]["CustomerId"],
+                                Customer: Results[i]["Customer"],
+                                ProductId: Results[i]["ProductId"],
+                                Product: Results[i]["Product"],
+                                Price: Results[i]["Price"],
+                                DateRent: Results[i]["DateRent"],
+
+                            });
+                        }
+                    }
+                    $('#tblvideokeIncome').dataTable({
+                        aaData: videokeIncomes,
+                        aoColumns: [
+                                { mData: 'DateRent' },
+                                { mData: 'Product' },
+                                { mData: 'Customer' },
+                                { mData: 'Price' },
+
+                        ]
+                    });
+                }
+            });
+            return videokeIncomes;
+        }
+
+        //get videoke Income
+        function getIncome() {
+            var x = document.getElementById("calendarRental").value;
+            document.getElementById("dateRent").value = x;
+            videokeIncomes = new Array();
+            $.ajax({
+                url: '/api/videokeIncome/' + x,
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                success: function (Results) {
+                    if (Results.length > 0) {
+                        for (i = 0; i < Results.length; i++) {
+                            videokeIncomes.push({
+                                Id: Results[i]["Id"],
+                                CustomerId: Results[i]["CustomerId"],
+                                Customer: Results[i]["Customer"],
+                                ProductId: Results[i]["ProductId"],
+                                Product: Results[i]["Product"],
+                                Price: Results[i]["Price"],
+                                DateRent: Results[i]["DateRent"]
+
+                            });
+                        }
+                    }
+
+                    var table = $('#tblvideokeIncome').DataTable();
+                    table.destroy();
+                    setTimeout(function () {
+                        $('#tblvideokeIncome').dataTable({
+                            aaData: videokeIncomes,
+                            aoColumns: [
+                                    { mData: 'DateRent' },
+                                    { mData: 'Product' },
+                                    { mData: 'Customer' },
+                                    { mData: 'Price' },
+                            ]
+                        });
+                    }, 50);
+
+                }
+            });
+            return videokeIncomes;
+        }
+
+
+        $(document).ready(function () {
+
+            var now = new Date();
+
+            var day = ("0" + now.getDate()).slice(-2);
+            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+            var today = now.getFullYear() + "-" + (month) + "-" + (day);
+
+            $('#reportsDateStart').val(today);
+            $('#reportsDateEnd').val(today);
+            $('#calendarRental').val(today);
+
+            getVideokeIncome();
+        });
+
+
+    </script>
 </body>
 </html>

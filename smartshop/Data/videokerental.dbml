@@ -96,7 +96,7 @@
       <Column Name="OtherInfo" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
       <Association Name="tblCustomer_tblCalendarRental" Member="tblCalendarRentals" ThisKey="Id" OtherKey="CustomersIdRented" Type="tblCalendarRental" />
       <Association Name="tblCustomer_tblCalendarReservation" Member="tblCalendarReservations" ThisKey="Id" OtherKey="CustomersIdReserved" Type="tblCalendarReservation" />
-      <Association Name="tblCustomer_tblVideokeRental" Member="tblVideokeRentals" ThisKey="Id" OtherKey="RentedByCustomerId" Type="tblVideokeRental" />
+      <Association Name="tblCustomer_tblVideokeIncome" Member="tblVideokeIncomes" ThisKey="Id" OtherKey="CustomerId" Type="tblVideokeIncome" />
       <Association Name="tblCustomer_tblVideokeReservation" Member="tblVideokeReservations" ThisKey="Id" OtherKey="ReserveByCustomerId" Type="tblVideokeReservation" />
       <Association Name="AspNetUser_tblCustomer" Member="AspNetUser" ThisKey="UserId" OtherKey="Id" Type="AspNetUser" IsForeignKey="true" />
     </Type>
@@ -125,7 +125,7 @@
       <Association Name="tblProduct_tblCalendarRental" Member="tblCalendarRentals" ThisKey="Id" OtherKey="ProductId" Type="tblCalendarRental" />
       <Association Name="tblProduct_tblCalendarReservation" Member="tblCalendarReservations" ThisKey="Id" OtherKey="ProductId" Type="tblCalendarReservation" />
       <Association Name="tblProduct_tblGallery" Member="tblGalleries" ThisKey="Id" OtherKey="ProductId" Type="tblGallery" />
-      <Association Name="tblProduct_tblVideokeRental" Member="tblVideokeRentals" ThisKey="Id" OtherKey="ProductId" Type="tblVideokeRental" />
+      <Association Name="tblProduct_tblVideokeIncome" Member="tblVideokeIncomes" ThisKey="Id" OtherKey="ProductId" Type="tblVideokeIncome" />
       <Association Name="tblProduct_tblVideokeReservation" Member="tblVideokeReservations" ThisKey="Id" OtherKey="ProductId" Type="tblVideokeReservation" />
     </Type>
   </Table>
@@ -136,21 +136,15 @@
       <Column Name="Details" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.tblVideokeRental" Member="tblVideokeRentals">
-    <Type Name="tblVideokeRental">
+  <Table Name="dbo.tblVideokeIncome" Member="tblVideokeIncomes">
+    <Type Name="tblVideokeIncome">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="RentedByCustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="RentalPurpose" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
-      <Column Name="RentedDateStart" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="RentedDateEnd" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="IsReturned" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="AmountPaid" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="IsExtend" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="ExtendAmountPaid" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Column Name="ExtendHours" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="tblCustomer_tblVideokeRental" Member="tblCustomer" ThisKey="RentedByCustomerId" OtherKey="Id" Type="tblCustomer" IsForeignKey="true" />
-      <Association Name="tblProduct_tblVideokeRental" Member="tblProduct" ThisKey="ProductId" OtherKey="Id" Type="tblProduct" IsForeignKey="true" />
+      <Column Name="CustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="DateRent" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="tblCustomer_tblVideokeIncome" Member="tblCustomer" ThisKey="CustomerId" OtherKey="Id" Type="tblCustomer" IsForeignKey="true" />
+      <Association Name="tblProduct_tblVideokeIncome" Member="tblProduct" ThisKey="ProductId" OtherKey="Id" Type="tblProduct" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblVideokeReservation" Member="tblVideokeReservations">
