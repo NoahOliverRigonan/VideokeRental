@@ -246,5 +246,121 @@ namespace VideokeRental.Controllers
 
             return new FileStreamResult(workStream, "application/pdf");
         }
+        
+        [Authorize]
+        // GET: Software
+        public ActionResult VideokeIncomePDF(String StartDate, String EndDate)
+        {
+            var videokeIncomes = from d in db.tblVideokeIncomes
+                                 where d.DateRent >= Convert.ToDateTime(StartDate) && d.DateRent <= Convert.ToDateTime(EndDate)
+                                  select new Models.tblVideokeIncome
+                                  {
+                                      Id = d.Id,
+                                      ProductId = d.ProductId,
+                                      Product = d.tblProduct.ProductName,
+                                      CustomerId = d.CustomerId,
+                                      Customer = d.tblCustomer.Customer,
+                                      Price = d.Price,
+                                      DateRent = d.DateRent.ToShortDateString(),
+                                  };
+
+            // Start of the PDF
+            MemoryStream workStream = new MemoryStream();
+            Rectangle rec = new Rectangle(PageSize.A3);
+            Document document = new Document(rec, 72, 72, 72, 72);
+            PdfWriter.GetInstance(document, workStream).CloseStream = false;
+
+            // Document Starts
+            document.Open();
+
+            // Fonts Customization
+            Font headerFont = FontFactory.GetFont("Arial", 17, Font.BOLD);
+            Font headerDetailFont = FontFactory.GetFont("Arial", 11);
+            Font columnFont = FontFactory.GetFont("Arial", 11, Font.BOLD);
+            Font cellFont = FontFactory.GetFont("Arial", 11);
+
+            // table main header
+            PdfPTable tableHeader = new PdfPTable(2);
+            float[] widthscellsheader = new float[] { 100f, 75f };
+            tableHeader.SetWidths(widthscellsheader);
+            tableHeader.WidthPercentage = 100;
+            tableHeader.AddCell(new PdfPCell(new Phrase("Income Report", headerFont)) { PaddingBottom = 5f, Border = 0, HorizontalAlignment = 0 });
+            tableHeader.AddCell(new PdfPCell(new Phrase("Printed " + DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToString("hh:mm:ss tt"), headerDetailFont))
+            {
+                Border = 0,
+                HorizontalAlignment = 2,
+                PaddingTop = 5f
+            });
+            tableHeader.AddCell(new PdfPCell(new Phrase("Date from " + StartDate + " to " + EndDate, cellFont)) { Border = 0, PaddingBottom = 5f, PaddingLeft = 5f, PaddingRight = 5f });
+            tableHeader.AddCell(new PdfPCell(new Phrase(" ", cellFont)) { Border = 0, PaddingBottom = 5f, PaddingLeft = 5f, PaddingRight = 5f });
+            document.Add(tableHeader);
+
+            Paragraph line = new Paragraph(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(0.0F, 100.0F, BaseColor.BLACK, Element.ALIGN_LEFT, 1)));
+            document.Add(line);
+
+
+            PdfPTable tableForVideokeIncome = new PdfPTable(4);
+            float[] widthscellsheaderForVideokeIncome = new float[] { 50f, 100f, 70f, 50f };
+            tableForVideokeIncome.SetWidths(widthscellsheaderForVideokeIncome);
+            tableForVideokeIncome.WidthPercentage = 100;
+            tableForVideokeIncome.AddCell(new PdfPCell(new Phrase("Date Rent", columnFont)) { HorizontalAlignment = 1, PaddingBottom = 5f, BackgroundColor = BaseColor.LIGHT_GRAY });
+            tableForVideokeIncome.AddCell(new PdfPCell(new Phrase("Product", columnFont)) { HorizontalAlignment = 1, PaddingBottom = 5f, BackgroundColor = BaseColor.LIGHT_GRAY });
+            tableForVideokeIncome.AddCell(new PdfPCell(new Phrase("Customer", columnFont)) { HorizontalAlignment = 1, PaddingBottom = 5f, BackgroundColor = BaseColor.LIGHT_GRAY });
+            tableForVideokeIncome.AddCell(new PdfPCell(new Phrase("Price", columnFont)) { HorizontalAlignment = 1, PaddingBottom = 5f, BackgroundColor = BaseColor.LIGHT_GRAY });
+
+            foreach (var videokeIncome in videokeIncomes)
+            {
+                tableForVideokeIncome.AddCell(new PdfPCell(new Phrase(videokeIncome.DateRent.ToString(), cellFont)) { PaddingBottom = 5f, PaddingLeft = 5f, PaddingRight = 5f });
+                tableForVideokeIncome.AddCell(new PdfPCell(new Phrase(videokeIncome.Product, cellFont)) { PaddingBottom = 5f, PaddingLeft = 5f, PaddingRight = 5f });
+                tableForVideokeIncome.AddCell(new PdfPCell(new Phrase(videokeIncome.Customer, cellFont)) { PaddingBottom = 5f, PaddingLeft = 5f, PaddingRight = 5f });
+                tableForVideokeIncome.AddCell(new PdfPCell(new Phrase(videokeIncome.Price.ToString("#,##0.00"), cellFont)) {  HorizontalAlignment = 2, PaddingBottom = 5f, PaddingLeft = 5f, PaddingRight = 5f });
+
+            }
+            document.Add(tableForVideokeIncome);
+
+            document.Add(Chunk.NEWLINE);
+
+            var TotalIncomePrice = videokeIncomes.Sum(d => d.Price);
+
+            PdfPTable tableForVideokeIncomeFooter = new PdfPTable(4);
+            float[] widthscellsheaderForVideokeIncomeFooter = new float[] { 50f, 100f, 70f, 50f };
+            tableForVideokeIncomeFooter.SetWidths(widthscellsheaderForVideokeIncomeFooter);
+            tableForVideokeIncomeFooter.WidthPercentage = 100;
+            tableForVideokeIncomeFooter.AddCell(new PdfPCell(new Phrase("", columnFont)) { Border = 0, PaddingBottom = 5f, PaddingLeft = 5f, PaddingRight = 5f });
+            tableForVideokeIncomeFooter.AddCell(new PdfPCell(new Phrase("", columnFont)) { Border = 0, PaddingBottom = 5f, PaddingLeft = 5f, PaddingRight = 5f, HorizontalAlignment = 2 });
+            tableForVideokeIncomeFooter.AddCell(new PdfPCell(new Phrase("Total Income:", columnFont)) { Border = 0, PaddingBottom = 5f, PaddingLeft = 5f, PaddingRight = 5f, HorizontalAlignment = 2 });
+            tableForVideokeIncomeFooter.AddCell(new PdfPCell(new Phrase(TotalIncomePrice.ToString("#,##0.00"), columnFont)) { HorizontalAlignment = 2, Border = 0, PaddingBottom = 5f, PaddingLeft = 5f, PaddingRight = 5f });
+            
+
+            document.Add(tableForVideokeIncomeFooter);
+
+            document.Add(Chunk.NEWLINE);
+
+            // Table for Footer
+            PdfPTable tableFooter = new PdfPTable(5);
+            tableFooter.WidthPercentage = 100;
+            float[] widthsCells2 = new float[] { 100f, 20f, 100f, 20f, 100f };
+            tableFooter.SetWidths(widthsCells2);
+            tableFooter.AddCell(new PdfPCell(new Phrase("")) { Border = 0, PaddingTop = 10f, HorizontalAlignment = 1, PaddingBottom = 5f });
+            tableFooter.AddCell(new PdfPCell(new Phrase(" ")) { Border = 0, PaddingBottom = 5f });
+            tableFooter.AddCell(new PdfPCell(new Phrase("")) { Border = 0, PaddingTop = 10f, HorizontalAlignment = 1, PaddingBottom = 5f });
+            tableFooter.AddCell(new PdfPCell(new Phrase(" ")) { Border = 0, PaddingBottom = 5f });
+            tableFooter.AddCell(new PdfPCell(new Phrase("")) { Border = 0, PaddingTop = 10f, HorizontalAlignment = 1, PaddingBottom = 5f });
+            tableFooter.AddCell(new PdfPCell(new Phrase("Prepared by:", columnFont)) { Border = 1, HorizontalAlignment = 1 });
+            tableFooter.AddCell(new PdfPCell(new Phrase(" ")) { Border = 0 });
+            tableFooter.AddCell(new PdfPCell(new Phrase("Checked by:", columnFont)) { Border = 1, HorizontalAlignment = 1 });
+            tableFooter.AddCell(new PdfPCell(new Phrase(" ")) { Border = 0 });
+            tableFooter.AddCell(new PdfPCell(new Phrase("Approved by:", columnFont)) { Border = 1, HorizontalAlignment = 1 });
+            document.Add(tableFooter);
+
+            // Document End
+            document.Close();
+
+            byte[] byteInfo = workStream.ToArray();
+            workStream.Write(byteInfo, 0, byteInfo.Length);
+            workStream.Position = 0;
+            return new FileStreamResult(workStream, "application/pdf");
+        }
+
     }
 }

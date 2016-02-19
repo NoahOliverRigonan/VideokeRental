@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Calendar</title>
+    <title>Reports</title>
 
     <!-- css -->
     @Styles.Render("~/Content/stylesheets")
@@ -88,7 +88,7 @@
                             </thead>
                         </table>
                         <br /><br />
-                        <form class="form-horizontal">
+                        <div class="form-horizontal">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"> Date from: </label>
                                 <div class="col-sm-4">
@@ -104,10 +104,10 @@
                             <div class="form-group">
                                 <div class="col-sm-2">  </div>
                                 <div class="col-sm-4">
-                                    <button class="btn btn-primary btn-sm"><i class="fa fa-print"></i> Print</button>
+                                    <button class="btn btn-primary btn-sm" onclick="printVideokeIncome_OnClick()"><i class="fa fa-print"></i> Print</button>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -239,7 +239,14 @@
             });
             return videokeIncomes;
         }
+        
 
+        function printVideokeIncome_OnClick() {
+            var reportsDateStart = document.getElementById('reportsDateStart').value;
+            var reportsDateEnd = document.getElementById('reportsDateEnd').value;
+
+            window.location.href = '/Software/VideokeIncomePDF?StartDate=' + reportsDateStart + '&EndDate=' + reportsDateEnd;
+        }
 
         $(document).ready(function () {
 
@@ -255,6 +262,9 @@
 
             getVideokeIncome();
         });
+
+        
+
 
 
     </script>
