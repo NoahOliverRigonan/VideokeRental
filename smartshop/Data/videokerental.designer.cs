@@ -991,6 +991,8 @@ namespace VideokeRental.Data
 		
 		private System.Nullable<int> _AccessFailedCount;
 		
+		private string _Address;
+		
 		private EntitySet<AspNetUserClaim> _AspNetUserClaims;
 		
 		private EntitySet<AspNetUserLogin> _AspNetUserLogins;
@@ -1029,6 +1031,8 @@ namespace VideokeRental.Data
     partial void OnLockoutEnabledChanged();
     partial void OnAccessFailedCountChanging(System.Nullable<int> value);
     partial void OnAccessFailedCountChanged();
+    partial void OnAddressChanging(string value);
+    partial void OnAddressChanged();
     #endregion
 		
 		public AspNetUser()
@@ -1296,6 +1300,26 @@ namespace VideokeRental.Data
 					this._AccessFailedCount = value;
 					this.SendPropertyChanged("AccessFailedCount");
 					this.OnAccessFailedCountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this.OnAddressChanging(value);
+					this.SendPropertyChanging();
+					this._Address = value;
+					this.SendPropertyChanged("Address");
+					this.OnAddressChanged();
 				}
 			}
 		}

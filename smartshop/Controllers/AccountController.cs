@@ -159,6 +159,7 @@ namespace VideokeRental.Controllers
                     FullName = model.FullName,
                     UserName = model.UserName,
                     Email = model.Email,
+                    Address = model.Address
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -208,6 +209,7 @@ namespace VideokeRental.Controllers
                         newCustomer.CustomerNumber = newStringCustomerNumber;
                         newCustomer.Customer = user.FullName;
                         newCustomer.Email = user.Email;
+                        newCustomer.MainAddress = user.Address;
 
                         db.tblCustomers.InsertOnSubmit(newCustomer);
                         db.SubmitChanges();

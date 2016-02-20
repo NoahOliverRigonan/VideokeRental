@@ -320,21 +320,36 @@ namespace VideokeRental.Controllers
 
             document.Add(Chunk.NEWLINE);
 
-            var TotalIncomePrice = videokeIncomes.Sum(d => d.Price);
+            Decimal TotalIncomePrice = 0;
+            Decimal NumberOfRentees = 0;
 
+            if (!videokeIncomes.Any())
+            {
+                TotalIncomePrice = 0;
+                NumberOfRentees = 0;
+            }
+            else 
+            {
+                TotalIncomePrice = videokeIncomes.Sum(d => d.Price);
+                NumberOfRentees = videokeIncomes.Count();
+            }
             PdfPTable tableForVideokeIncomeFooter = new PdfPTable(4);
             float[] widthscellsheaderForVideokeIncomeFooter = new float[] { 50f, 100f, 70f, 50f };
             tableForVideokeIncomeFooter.SetWidths(widthscellsheaderForVideokeIncomeFooter);
             tableForVideokeIncomeFooter.WidthPercentage = 100;
-            tableForVideokeIncomeFooter.AddCell(new PdfPCell(new Phrase("", columnFont)) { Border = 0, PaddingBottom = 5f, PaddingLeft = 5f, PaddingRight = 5f });
-            tableForVideokeIncomeFooter.AddCell(new PdfPCell(new Phrase("", columnFont)) { Border = 0, PaddingBottom = 5f, PaddingLeft = 5f, PaddingRight = 5f, HorizontalAlignment = 2 });
+            tableForVideokeIncomeFooter.AddCell(new PdfPCell(new Phrase("No of Rentees:", columnFont)) { Border = 0, PaddingBottom = 5f, PaddingLeft = 5f, PaddingRight = 5f, HorizontalAlignment = 2 });
+            tableForVideokeIncomeFooter.AddCell(new PdfPCell(new Phrase(NumberOfRentees.ToString(), columnFont)) { Border = 0, PaddingBottom = 5f, PaddingLeft = 5f, PaddingRight = 5f });
             tableForVideokeIncomeFooter.AddCell(new PdfPCell(new Phrase("Total Income:", columnFont)) { Border = 0, PaddingBottom = 5f, PaddingLeft = 5f, PaddingRight = 5f, HorizontalAlignment = 2 });
             tableForVideokeIncomeFooter.AddCell(new PdfPCell(new Phrase(TotalIncomePrice.ToString("#,##0.00"), columnFont)) { HorizontalAlignment = 2, Border = 0, PaddingBottom = 5f, PaddingLeft = 5f, PaddingRight = 5f });
             
 
             document.Add(tableForVideokeIncomeFooter);
 
+
             document.Add(Chunk.NEWLINE);
+            document.Add(Chunk.NEWLINE);
+            document.Add(Chunk.NEWLINE);
+
 
             // Table for Footer
             PdfPTable tableFooter = new PdfPTable(5);
