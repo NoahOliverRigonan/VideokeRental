@@ -123,7 +123,7 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary pull-left">Customer Detail</button>
+                                <button class="btn btn-primary pull-left" onclick="btnCustomerDetail_onClick()">Customer Details</button>
                                 <button type="button" class="btn btn-primary" onclick="btnSaveCustomer()">Save</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
@@ -261,8 +261,7 @@
             if (isValid == false) {
                 toastr.error("Invalid Entry");
             }
-            else
-            {
+            else {
                 var customerId = document.getElementById('customer_Id').value;
                 if (customerId == 0) {
                     $.ajax({
@@ -409,6 +408,10 @@
             console.log("lahos gawas");
         }
 
+        function btnCustomerDetail_onClick() {
+            var customer_id = document.getElementById('customer_Id').value;
+            window.location = '/Software/CustomerDetails?CustomerId=' + customer_id;
+        }
         // On Load Page
         $(document).ready(function () {
             document.getElementById('customer_CustomerNumber').disabled = true;

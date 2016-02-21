@@ -65,6 +65,13 @@ namespace VideokeRental.Controllers
         }
         [Authorize]
         // GET: Software
+        public ActionResult CustomerDetails()
+        {
+            return View();
+        }
+
+        [Authorize]
+        // GET: Software
         public ActionResult CalendarReservePDF(String DateFrom, String DateTo)
         {
             var calendarResevations = from d in db.tblCalendarReservations

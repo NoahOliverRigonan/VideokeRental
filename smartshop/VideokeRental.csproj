@@ -177,6 +177,8 @@
     <Compile Include="Controllers\ApiCalendarRentalController.cs" />
     <Compile Include="Controllers\ApiCalendarReservationController.cs" />
     <Compile Include="Controllers\ApiCustomerController.cs" />
+    <Compile Include="Controllers\ApiCustomerDetailsRentedController.cs" />
+    <Compile Include="Controllers\ApiCustomerDetailsReservedController.cs" />
     <Compile Include="Controllers\ApiMainUserController.cs" />
     <Compile Include="Controllers\ApiProductController.cs" />
     <Compile Include="Controllers\ApiVideokeReservationController.cs" />
@@ -200,6 +202,8 @@
     <Compile Include="Models\tblCalendarRental.cs" />
     <Compile Include="Models\tblCalendarReservation.cs" />
     <Compile Include="Models\tblCustomer.cs" />
+    <Compile Include="Models\tblCustomerDetailsRented.cs" />
+    <Compile Include="Models\tblCustomerDetailsReserved.cs" />
     <Compile Include="Models\tblProduct.cs" />
     <Compile Include="Models\tblVideokeIncome.cs" />
     <Compile Include="Models\tblVideokeReservation.cs" />
@@ -749,6 +753,7 @@
     <Content Include="Views\Software\Calendar.cshtml" />
     <Content Include="Views\Software\Reports.cshtml" />
     <Content Include="Views\Software\VideokeDetails.cshtml" />
+    <Content Include="Views\Software\CustomerDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
