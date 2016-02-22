@@ -97,46 +97,48 @@ else
             <span class="sr-only">Next</span>
         </a>
     </div>
-    
+
     <div class="container">
         <div id="about">
             <br /><br /><br /><br />
             <div class="row">
-                <div class="col-sm-4">
-                    <img class="model" src="" />
+                <div class="col-sm-6">
+                    <img src="../images/mypic2.jpg" />
                 </div>
-                <div class="col-sm-8">
-                    Description
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-8">
-                    <div>Description</div>
-                </div>
-                <div class="col-sm-4">
-                    <img class="model" src="" />
+                <div class="col-sm-6">
+                    <p class="paragraph">
+                        Online Videoke Rental System is a web based application in which it is designed to do transaction and manage online.
+                        The users of this system are the customers who like to rent a videoke. The system enable the users to
+                        reserve and rent and also view the videoke item, this system will help those people don’t
+                        have videoke’s at home. The system has its capabilities like easy access, user friendly and
+                        understandable interface, (COD) Cash On Delivery that help the renter to manage his time.
+                    </p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-4">
-                    <img class="model" src="" />
+                <div class="col-sm-6">
+                    <p class="paragraph">
+                        The Online Videoke Rental System is a web-based application that enables users/customers to
+                        reserve the “Videoke” via online. The user can reserve the “Videoke” that are only available
+                        The mode of payment is cash-on-delivery where the customer is going to pay as soon as the
+                        item is already delivered at the designated address.
+                    </p>
                 </div>
-                <div class="col-sm-8">
-                    <div>Description</div>
+                <div class="col-sm-6">
+                    <img class="picsize" src="../images/mypic3.jpg" />
                 </div>
             </div>
         </div>
     </div>
     <br /><br /><br /><br /><br />
     <div class="container">
-        <br />
+        <br /><br /><br />
         <center><h1>Subscribe Us!</h1></center>
         <br />
         <div class="row">
             <div class="col-sm-4">
                 <div id="myCanvas">
-                    <br />
-                    <br />
+                    <br /><br />
                     <center><h2><b>1 month</b></h2></center>
                     <center><h3><b>Free Trial</b></h3></center>
                     <br /><br /><br /><br /><br /><br />
@@ -443,6 +445,53 @@ else
         </div>
     </div>
     <br /><br />
+    
+    <!-- Contact Us Modal -->
+    <div class="modal fade" id="ContactUsModal" role="dialog">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Contact Us</h4>
+                </div>
+                <div class="modal-body">
+                    
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Email:</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Name:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Subject:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Message:</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success">Send</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="container">
             <div class="row">
@@ -451,7 +500,9 @@ else
                         <h4>Help</h4>
                         <ul style="list-style-type:none">
                             <li>
-                                <a href="#" class="btnfooter">Contact</a>
+                                <a href="#" data-toggle="modal" onclick="contactUsModal_OnClick()">Contact Us</a>
+                                
+                                @*<a href="#" class="btnfooter">Contact</a>*@
                             </li>
                             <li>
                                 <a href="#">Privacy Policy</a>

@@ -349,9 +349,15 @@ img.creditcard {
     width: 200px;
 }
 
-img.model {
-    height: 600px;
-    width: 350px;
+.picsize {
+    opacity: 0.8;
+}
+
+p.paragraph {
+    text-indent: 50px;
+    font-size: large;
+    margin-top: 150px;
+    margin-left: 50px;
 }
 
 .imageCSS {
