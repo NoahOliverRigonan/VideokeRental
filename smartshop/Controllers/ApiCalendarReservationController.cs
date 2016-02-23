@@ -17,15 +17,15 @@ namespace VideokeRental.Controllers
         {
 
             var calendarResevations = from d in db.tblCalendarReservations
-                           select new Models.tblCalendarReservation
-                           {
-                               Id = d.Id,
-                               CustomersIdReserved = d.CustomersIdReserved,
-                               ProductId = d.ProductId,
-                               Product = d.tblProduct.ProductName,
-                               CustomersReserved = d.tblCustomer.Customer,
-                               ReservedDate = d.ReservedDate.ToShortDateString(),
-                           };
+                                      select new Models.tblCalendarReservation
+                                      {
+                                          Id = d.Id,
+                                          CustomersIdReserved = d.CustomersIdReserved,
+                                          ProductId = d.ProductId,
+                                          Product = d.tblProduct.ProductName,
+                                          CustomersReserved = d.tblCustomer.Customer,
+                                          ReservedDate = d.ReservedDate.ToShortDateString(),
+                                      };
             return calendarResevations.ToList();
         }
 
@@ -47,5 +47,28 @@ namespace VideokeRental.Controllers
                                       };
             return calendarResevations.ToList();
         }
+
+        // customer Id
+        [Route("api/getCalendarResevationByCustomerId/{customerId}")]
+        public List<Models.tblCalendarReservation> GetCalendarReservationByCustomerId(String customerId)
+        {
+            var calendarResevation_customerId = Convert.ToInt32(customerId);
+            var calendarResevations = from d in db.tblCalendarReservations
+                                      where d.CustomersIdReserved == calendarResevation_customerId
+                                      group d by new
+                                      {
+                                          ProductId = d.ProductId,
+                                          Product = d.tblProduct.ProductName,
+                                          VideokeDescription = d.tblProduct.ProductDescription
+                                      } into g
+                                      select new Models.tblCalendarReservation
+                                      {
+                                          ProductId = g.Key.ProductId,
+                                          Product = g.Key.Product,
+                                          VideokeDescription = g.Key.VideokeDescription
+                                      };
+            return calendarResevations.ToList();
+        }
+
     }
 }

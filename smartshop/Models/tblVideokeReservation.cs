@@ -18,5 +18,7 @@ namespace VideokeRental.Models
         public String ReserveDateStart { get; set; }
         public String ReserveDateEnd { get; set; }
         public Boolean IsReserved { get; set; }
+        public Boolean IsOpened { get; set; }
+        public Int32 ReferenceNumber { get; set; }
     }
 }

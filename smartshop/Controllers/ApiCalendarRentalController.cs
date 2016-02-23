@@ -48,5 +48,27 @@ namespace VideokeRental.Controllers
                                       };
             return calendarRentals.ToList();
         }
+
+        //  customer Id 
+        [Route("api/getCalendarRentalByCustomerId/{customerId}")]
+        public List<Models.tblCalendarRental> GetCalendarRentalByCustomerId(String customerId)
+        {
+            var calendarRental_customerId = Convert.ToInt32(customerId);
+            var calendarRentals = from d in db.tblCalendarRentals
+                                  where d.CustomersIdRented == calendarRental_customerId
+                                  group d by new 
+                                  {
+                                      ProductId = d.ProductId,
+                                      Product = d.tblProduct.ProductName,
+                                      VideokeDescription = d.tblProduct.ProductDescription
+                                  } into g
+                                  select new Models.tblCalendarRental
+                                  {
+                                      ProductId = g.Key.ProductId,
+                                      Product = g.Key.Product,
+                                      VideokeDescription = g.Key.VideokeDescription
+                                  };
+            return calendarRentals.ToList();
+        }
     }
 }

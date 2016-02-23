@@ -75,6 +75,9 @@ namespace VideokeRental.Data
     partial void InserttblVideokeIncome(tblVideokeIncome instance);
     partial void UpdatetblVideokeIncome(tblVideokeIncome instance);
     partial void DeletetblVideokeIncome(tblVideokeIncome instance);
+    partial void InserttblVideokeRent(tblVideokeRent instance);
+    partial void UpdatetblVideokeRent(tblVideokeRent instance);
+    partial void DeletetblVideokeRent(tblVideokeRent instance);
     partial void InserttblVideokeReservation(tblVideokeReservation instance);
     partial void UpdatetblVideokeReservation(tblVideokeReservation instance);
     partial void DeletetblVideokeReservation(tblVideokeReservation instance);
@@ -227,6 +230,14 @@ namespace VideokeRental.Data
 			get
 			{
 				return this.GetTable<tblVideokeIncome>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblVideokeRent> tblVideokeRents
+		{
+			get
+			{
+				return this.GetTable<tblVideokeRent>();
 			}
 		}
 		
@@ -1553,8 +1564,6 @@ namespace VideokeRental.Data
 		
 		private int _ProductId;
 		
-		private EntitySet<tblCustomerDetailsRented> _tblCustomerDetailsRenteds;
-		
 		private EntityRef<tblCustomer> _tblCustomer;
 		
 		private EntityRef<tblProduct> _tblProduct;
@@ -1575,7 +1584,6 @@ namespace VideokeRental.Data
 		
 		public tblCalendarRental()
 		{
-			this._tblCustomerDetailsRenteds = new EntitySet<tblCustomerDetailsRented>(new Action<tblCustomerDetailsRented>(this.attach_tblCustomerDetailsRenteds), new Action<tblCustomerDetailsRented>(this.detach_tblCustomerDetailsRenteds));
 			this._tblCustomer = default(EntityRef<tblCustomer>);
 			this._tblProduct = default(EntityRef<tblProduct>);
 			OnCreated();
@@ -1669,19 +1677,6 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCalendarRental_tblCustomerDetailsRented", Storage="_tblCustomerDetailsRenteds", ThisKey="Id", OtherKey="RentedVideokeId")]
-		public EntitySet<tblCustomerDetailsRented> tblCustomerDetailsRenteds
-		{
-			get
-			{
-				return this._tblCustomerDetailsRenteds;
-			}
-			set
-			{
-				this._tblCustomerDetailsRenteds.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCustomer_tblCalendarRental", Storage="_tblCustomer", ThisKey="CustomersIdRented", OtherKey="Id", IsForeignKey=true)]
 		public tblCustomer tblCustomer
 		{
@@ -1769,18 +1764,6 @@ namespace VideokeRental.Data
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void attach_tblCustomerDetailsRenteds(tblCustomerDetailsRented entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblCalendarRental = this;
-		}
-		
-		private void detach_tblCustomerDetailsRenteds(tblCustomerDetailsRented entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblCalendarRental = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblCalendarReservation")]
@@ -1796,8 +1779,6 @@ namespace VideokeRental.Data
 		private System.DateTime _ReservedDate;
 		
 		private int _ProductId;
-		
-		private EntitySet<tblCustomerDetailsReserved> _tblCustomerDetailsReserveds;
 		
 		private EntityRef<tblCustomer> _tblCustomer;
 		
@@ -1819,7 +1800,6 @@ namespace VideokeRental.Data
 		
 		public tblCalendarReservation()
 		{
-			this._tblCustomerDetailsReserveds = new EntitySet<tblCustomerDetailsReserved>(new Action<tblCustomerDetailsReserved>(this.attach_tblCustomerDetailsReserveds), new Action<tblCustomerDetailsReserved>(this.detach_tblCustomerDetailsReserveds));
 			this._tblCustomer = default(EntityRef<tblCustomer>);
 			this._tblProduct = default(EntityRef<tblProduct>);
 			OnCreated();
@@ -1913,19 +1893,6 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCalendarReservation_tblCustomerDetailsReserved", Storage="_tblCustomerDetailsReserveds", ThisKey="Id", OtherKey="ReservedVideokeId")]
-		public EntitySet<tblCustomerDetailsReserved> tblCustomerDetailsReserveds
-		{
-			get
-			{
-				return this._tblCustomerDetailsReserveds;
-			}
-			set
-			{
-				this._tblCustomerDetailsReserveds.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCustomer_tblCalendarReservation", Storage="_tblCustomer", ThisKey="CustomersIdReserved", OtherKey="Id", IsForeignKey=true)]
 		public tblCustomer tblCustomer
 		{
@@ -2013,18 +1980,6 @@ namespace VideokeRental.Data
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void attach_tblCustomerDetailsReserveds(tblCustomerDetailsReserved entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblCalendarReservation = this;
-		}
-		
-		private void detach_tblCustomerDetailsReserveds(tblCustomerDetailsReserved entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblCalendarReservation = null;
-		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblCustomer")]
@@ -2059,11 +2014,11 @@ namespace VideokeRental.Data
 		
 		private EntitySet<tblCalendarReservation> _tblCalendarReservations;
 		
-		private EntitySet<tblCustomerDetailsRented> _tblCustomerDetailsRenteds;
-		
 		private EntitySet<tblCustomerDetailsReserved> _tblCustomerDetailsReserveds;
 		
 		private EntitySet<tblVideokeIncome> _tblVideokeIncomes;
+		
+		private EntitySet<tblVideokeRent> _tblVideokeRents;
 		
 		private EntitySet<tblVideokeReservation> _tblVideokeReservations;
 		
@@ -2101,9 +2056,9 @@ namespace VideokeRental.Data
 		{
 			this._tblCalendarRentals = new EntitySet<tblCalendarRental>(new Action<tblCalendarRental>(this.attach_tblCalendarRentals), new Action<tblCalendarRental>(this.detach_tblCalendarRentals));
 			this._tblCalendarReservations = new EntitySet<tblCalendarReservation>(new Action<tblCalendarReservation>(this.attach_tblCalendarReservations), new Action<tblCalendarReservation>(this.detach_tblCalendarReservations));
-			this._tblCustomerDetailsRenteds = new EntitySet<tblCustomerDetailsRented>(new Action<tblCustomerDetailsRented>(this.attach_tblCustomerDetailsRenteds), new Action<tblCustomerDetailsRented>(this.detach_tblCustomerDetailsRenteds));
 			this._tblCustomerDetailsReserveds = new EntitySet<tblCustomerDetailsReserved>(new Action<tblCustomerDetailsReserved>(this.attach_tblCustomerDetailsReserveds), new Action<tblCustomerDetailsReserved>(this.detach_tblCustomerDetailsReserveds));
 			this._tblVideokeIncomes = new EntitySet<tblVideokeIncome>(new Action<tblVideokeIncome>(this.attach_tblVideokeIncomes), new Action<tblVideokeIncome>(this.detach_tblVideokeIncomes));
+			this._tblVideokeRents = new EntitySet<tblVideokeRent>(new Action<tblVideokeRent>(this.attach_tblVideokeRents), new Action<tblVideokeRent>(this.detach_tblVideokeRents));
 			this._tblVideokeReservations = new EntitySet<tblVideokeReservation>(new Action<tblVideokeReservation>(this.attach_tblVideokeReservations), new Action<tblVideokeReservation>(this.detach_tblVideokeReservations));
 			this._AspNetUser = default(EntityRef<AspNetUser>);
 			OnCreated();
@@ -2359,19 +2314,6 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCustomer_tblCustomerDetailsRented", Storage="_tblCustomerDetailsRenteds", ThisKey="Id", OtherKey="CustomerId")]
-		public EntitySet<tblCustomerDetailsRented> tblCustomerDetailsRenteds
-		{
-			get
-			{
-				return this._tblCustomerDetailsRenteds;
-			}
-			set
-			{
-				this._tblCustomerDetailsRenteds.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCustomer_tblCustomerDetailsReserved", Storage="_tblCustomerDetailsReserveds", ThisKey="Id", OtherKey="CustomerId")]
 		public EntitySet<tblCustomerDetailsReserved> tblCustomerDetailsReserveds
 		{
@@ -2395,6 +2337,19 @@ namespace VideokeRental.Data
 			set
 			{
 				this._tblVideokeIncomes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCustomer_tblVideokeRent", Storage="_tblVideokeRents", ThisKey="Id", OtherKey="RentByCustomerId")]
+		public EntitySet<tblVideokeRent> tblVideokeRents
+		{
+			get
+			{
+				return this._tblVideokeRents;
+			}
+			set
+			{
+				this._tblVideokeRents.Assign(value);
 			}
 		}
 		
@@ -2489,18 +2444,6 @@ namespace VideokeRental.Data
 			entity.tblCustomer = null;
 		}
 		
-		private void attach_tblCustomerDetailsRenteds(tblCustomerDetailsRented entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblCustomer = this;
-		}
-		
-		private void detach_tblCustomerDetailsRenteds(tblCustomerDetailsRented entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblCustomer = null;
-		}
-		
 		private void attach_tblCustomerDetailsReserveds(tblCustomerDetailsReserved entity)
 		{
 			this.SendPropertyChanging();
@@ -2520,6 +2463,18 @@ namespace VideokeRental.Data
 		}
 		
 		private void detach_tblVideokeIncomes(tblVideokeIncome entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblCustomer = null;
+		}
+		
+		private void attach_tblVideokeRents(tblVideokeRent entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblCustomer = this;
+		}
+		
+		private void detach_tblVideokeRents(tblVideokeRent entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblCustomer = null;
@@ -2548,11 +2503,11 @@ namespace VideokeRental.Data
 		
 		private int _CustomerId;
 		
-		private int _RentedVideokeId;
+		private int _ProductId;
 		
-		private EntityRef<tblCalendarRental> _tblCalendarRental;
+		private System.DateTime _RentedDate;
 		
-		private EntityRef<tblCustomer> _tblCustomer;
+		private EntityRef<tblProduct> _tblProduct;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2562,14 +2517,15 @@ namespace VideokeRental.Data
     partial void OnIdChanged();
     partial void OnCustomerIdChanging(int value);
     partial void OnCustomerIdChanged();
-    partial void OnRentedVideokeIdChanging(int value);
-    partial void OnRentedVideokeIdChanged();
+    partial void OnProductIdChanging(int value);
+    partial void OnProductIdChanged();
+    partial void OnRentedDateChanging(System.DateTime value);
+    partial void OnRentedDateChanged();
     #endregion
 		
 		public tblCustomerDetailsRented()
 		{
-			this._tblCalendarRental = default(EntityRef<tblCalendarRental>);
-			this._tblCustomer = default(EntityRef<tblCustomer>);
+			this._tblProduct = default(EntityRef<tblProduct>);
 			OnCreated();
 		}
 		
@@ -2604,10 +2560,6 @@ namespace VideokeRental.Data
 			{
 				if ((this._CustomerId != value))
 				{
-					if (this._tblCustomer.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnCustomerIdChanging(value);
 					this.SendPropertyChanging();
 					this._CustomerId = value;
@@ -2617,94 +2569,80 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RentedVideokeId", DbType="Int NOT NULL")]
-		public int RentedVideokeId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId", DbType="Int NOT NULL")]
+		public int ProductId
 		{
 			get
 			{
-				return this._RentedVideokeId;
+				return this._ProductId;
 			}
 			set
 			{
-				if ((this._RentedVideokeId != value))
+				if ((this._ProductId != value))
 				{
-					if (this._tblCalendarRental.HasLoadedOrAssignedValue)
+					if (this._tblProduct.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnRentedVideokeIdChanging(value);
+					this.OnProductIdChanging(value);
 					this.SendPropertyChanging();
-					this._RentedVideokeId = value;
-					this.SendPropertyChanged("RentedVideokeId");
-					this.OnRentedVideokeIdChanged();
+					this._ProductId = value;
+					this.SendPropertyChanged("ProductId");
+					this.OnProductIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCalendarRental_tblCustomerDetailsRented", Storage="_tblCalendarRental", ThisKey="RentedVideokeId", OtherKey="Id", IsForeignKey=true)]
-		public tblCalendarRental tblCalendarRental
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RentedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime RentedDate
 		{
 			get
 			{
-				return this._tblCalendarRental.Entity;
+				return this._RentedDate;
 			}
 			set
 			{
-				tblCalendarRental previousValue = this._tblCalendarRental.Entity;
-				if (((previousValue != value) 
-							|| (this._tblCalendarRental.HasLoadedOrAssignedValue == false)))
+				if ((this._RentedDate != value))
 				{
+					this.OnRentedDateChanging(value);
 					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tblCalendarRental.Entity = null;
-						previousValue.tblCustomerDetailsRenteds.Remove(this);
-					}
-					this._tblCalendarRental.Entity = value;
-					if ((value != null))
-					{
-						value.tblCustomerDetailsRenteds.Add(this);
-						this._RentedVideokeId = value.Id;
-					}
-					else
-					{
-						this._RentedVideokeId = default(int);
-					}
-					this.SendPropertyChanged("tblCalendarRental");
+					this._RentedDate = value;
+					this.SendPropertyChanged("RentedDate");
+					this.OnRentedDateChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCustomer_tblCustomerDetailsRented", Storage="_tblCustomer", ThisKey="CustomerId", OtherKey="Id", IsForeignKey=true)]
-		public tblCustomer tblCustomer
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblProduct_tblCustomerDetailsRented", Storage="_tblProduct", ThisKey="ProductId", OtherKey="Id", IsForeignKey=true)]
+		public tblProduct tblProduct
 		{
 			get
 			{
-				return this._tblCustomer.Entity;
+				return this._tblProduct.Entity;
 			}
 			set
 			{
-				tblCustomer previousValue = this._tblCustomer.Entity;
+				tblProduct previousValue = this._tblProduct.Entity;
 				if (((previousValue != value) 
-							|| (this._tblCustomer.HasLoadedOrAssignedValue == false)))
+							|| (this._tblProduct.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._tblCustomer.Entity = null;
+						this._tblProduct.Entity = null;
 						previousValue.tblCustomerDetailsRenteds.Remove(this);
 					}
-					this._tblCustomer.Entity = value;
+					this._tblProduct.Entity = value;
 					if ((value != null))
 					{
 						value.tblCustomerDetailsRenteds.Add(this);
-						this._CustomerId = value.Id;
+						this._ProductId = value.Id;
 					}
 					else
 					{
-						this._CustomerId = default(int);
+						this._ProductId = default(int);
 					}
-					this.SendPropertyChanged("tblCustomer");
+					this.SendPropertyChanged("tblProduct");
 				}
 			}
 		}
@@ -2740,9 +2678,9 @@ namespace VideokeRental.Data
 		
 		private int _CustomerId;
 		
-		private int _ReservedVideokeId;
+		private int _ProductId;
 		
-		private EntityRef<tblCalendarReservation> _tblCalendarReservation;
+		private System.DateTime _ReservedDate;
 		
 		private EntityRef<tblCustomer> _tblCustomer;
 		
@@ -2754,13 +2692,14 @@ namespace VideokeRental.Data
     partial void OnIdChanged();
     partial void OnCustomerIdChanging(int value);
     partial void OnCustomerIdChanged();
-    partial void OnReservedVideokeIdChanging(int value);
-    partial void OnReservedVideokeIdChanged();
+    partial void OnProductIdChanging(int value);
+    partial void OnProductIdChanged();
+    partial void OnReservedDateChanging(System.DateTime value);
+    partial void OnReservedDateChanged();
     #endregion
 		
 		public tblCustomerDetailsReserved()
 		{
-			this._tblCalendarReservation = default(EntityRef<tblCalendarReservation>);
 			this._tblCustomer = default(EntityRef<tblCustomer>);
 			OnCreated();
 		}
@@ -2809,60 +2748,42 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReservedVideokeId", DbType="Int NOT NULL")]
-		public int ReservedVideokeId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId", DbType="Int NOT NULL")]
+		public int ProductId
 		{
 			get
 			{
-				return this._ReservedVideokeId;
+				return this._ProductId;
 			}
 			set
 			{
-				if ((this._ReservedVideokeId != value))
+				if ((this._ProductId != value))
 				{
-					if (this._tblCalendarReservation.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnReservedVideokeIdChanging(value);
+					this.OnProductIdChanging(value);
 					this.SendPropertyChanging();
-					this._ReservedVideokeId = value;
-					this.SendPropertyChanged("ReservedVideokeId");
-					this.OnReservedVideokeIdChanged();
+					this._ProductId = value;
+					this.SendPropertyChanged("ProductId");
+					this.OnProductIdChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCalendarReservation_tblCustomerDetailsReserved", Storage="_tblCalendarReservation", ThisKey="ReservedVideokeId", OtherKey="Id", IsForeignKey=true)]
-		public tblCalendarReservation tblCalendarReservation
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReservedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ReservedDate
 		{
 			get
 			{
-				return this._tblCalendarReservation.Entity;
+				return this._ReservedDate;
 			}
 			set
 			{
-				tblCalendarReservation previousValue = this._tblCalendarReservation.Entity;
-				if (((previousValue != value) 
-							|| (this._tblCalendarReservation.HasLoadedOrAssignedValue == false)))
+				if ((this._ReservedDate != value))
 				{
+					this.OnReservedDateChanging(value);
 					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tblCalendarReservation.Entity = null;
-						previousValue.tblCustomerDetailsReserveds.Remove(this);
-					}
-					this._tblCalendarReservation.Entity = value;
-					if ((value != null))
-					{
-						value.tblCustomerDetailsReserveds.Add(this);
-						this._ReservedVideokeId = value.Id;
-					}
-					else
-					{
-						this._ReservedVideokeId = default(int);
-					}
-					this.SendPropertyChanged("tblCalendarReservation");
+					this._ReservedDate = value;
+					this.SendPropertyChanged("ReservedDate");
+					this.OnReservedDateChanged();
 				}
 			}
 		}
@@ -3171,9 +3092,13 @@ namespace VideokeRental.Data
 		
 		private EntitySet<tblCalendarReservation> _tblCalendarReservations;
 		
+		private EntitySet<tblCustomerDetailsRented> _tblCustomerDetailsRenteds;
+		
 		private EntitySet<tblGallery> _tblGalleries;
 		
 		private EntitySet<tblVideokeIncome> _tblVideokeIncomes;
+		
+		private EntitySet<tblVideokeRent> _tblVideokeRents;
 		
 		private EntitySet<tblVideokeReservation> _tblVideokeReservations;
 		
@@ -3203,8 +3128,10 @@ namespace VideokeRental.Data
 		{
 			this._tblCalendarRentals = new EntitySet<tblCalendarRental>(new Action<tblCalendarRental>(this.attach_tblCalendarRentals), new Action<tblCalendarRental>(this.detach_tblCalendarRentals));
 			this._tblCalendarReservations = new EntitySet<tblCalendarReservation>(new Action<tblCalendarReservation>(this.attach_tblCalendarReservations), new Action<tblCalendarReservation>(this.detach_tblCalendarReservations));
+			this._tblCustomerDetailsRenteds = new EntitySet<tblCustomerDetailsRented>(new Action<tblCustomerDetailsRented>(this.attach_tblCustomerDetailsRenteds), new Action<tblCustomerDetailsRented>(this.detach_tblCustomerDetailsRenteds));
 			this._tblGalleries = new EntitySet<tblGallery>(new Action<tblGallery>(this.attach_tblGalleries), new Action<tblGallery>(this.detach_tblGalleries));
 			this._tblVideokeIncomes = new EntitySet<tblVideokeIncome>(new Action<tblVideokeIncome>(this.attach_tblVideokeIncomes), new Action<tblVideokeIncome>(this.detach_tblVideokeIncomes));
+			this._tblVideokeRents = new EntitySet<tblVideokeRent>(new Action<tblVideokeRent>(this.attach_tblVideokeRents), new Action<tblVideokeRent>(this.detach_tblVideokeRents));
 			this._tblVideokeReservations = new EntitySet<tblVideokeReservation>(new Action<tblVideokeReservation>(this.attach_tblVideokeReservations), new Action<tblVideokeReservation>(this.detach_tblVideokeReservations));
 			OnCreated();
 		}
@@ -3395,6 +3322,19 @@ namespace VideokeRental.Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblProduct_tblCustomerDetailsRented", Storage="_tblCustomerDetailsRenteds", ThisKey="Id", OtherKey="ProductId")]
+		public EntitySet<tblCustomerDetailsRented> tblCustomerDetailsRenteds
+		{
+			get
+			{
+				return this._tblCustomerDetailsRenteds;
+			}
+			set
+			{
+				this._tblCustomerDetailsRenteds.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblProduct_tblGallery", Storage="_tblGalleries", ThisKey="Id", OtherKey="ProductId")]
 		public EntitySet<tblGallery> tblGalleries
 		{
@@ -3418,6 +3358,19 @@ namespace VideokeRental.Data
 			set
 			{
 				this._tblVideokeIncomes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblProduct_tblVideokeRent", Storage="_tblVideokeRents", ThisKey="Id", OtherKey="ProductId")]
+		public EntitySet<tblVideokeRent> tblVideokeRents
+		{
+			get
+			{
+				return this._tblVideokeRents;
+			}
+			set
+			{
+				this._tblVideokeRents.Assign(value);
 			}
 		}
 		
@@ -3478,6 +3431,18 @@ namespace VideokeRental.Data
 			entity.tblProduct = null;
 		}
 		
+		private void attach_tblCustomerDetailsRenteds(tblCustomerDetailsRented entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblProduct = this;
+		}
+		
+		private void detach_tblCustomerDetailsRenteds(tblCustomerDetailsRented entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblProduct = null;
+		}
+		
 		private void attach_tblGalleries(tblGallery entity)
 		{
 			this.SendPropertyChanging();
@@ -3497,6 +3462,18 @@ namespace VideokeRental.Data
 		}
 		
 		private void detach_tblVideokeIncomes(tblVideokeIncome entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblProduct = null;
+		}
+		
+		private void attach_tblVideokeRents(tblVideokeRent entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblProduct = this;
+		}
+		
+		private void detach_tblVideokeRents(tblVideokeRent entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblProduct = null;
@@ -3865,6 +3842,391 @@ namespace VideokeRental.Data
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblVideokeRent")]
+	public partial class tblVideokeRent : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _ProductId;
+		
+		private int _RentByCustomerId;
+		
+		private System.DateTime _RentDateStart;
+		
+		private System.DateTime _RentDateEnd;
+		
+		private bool _IsRented;
+		
+		private bool _IsOpened;
+		
+		private int _ReferenceNumber;
+		
+		private EntityRef<tblVideokeRent> _tblVideokeRent2;
+		
+		private EntityRef<tblCustomer> _tblCustomer;
+		
+		private EntityRef<tblProduct> _tblProduct;
+		
+		private EntityRef<tblVideokeRent> _tblVideokeRent1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnProductIdChanging(int value);
+    partial void OnProductIdChanged();
+    partial void OnRentByCustomerIdChanging(int value);
+    partial void OnRentByCustomerIdChanged();
+    partial void OnRentDateStartChanging(System.DateTime value);
+    partial void OnRentDateStartChanged();
+    partial void OnRentDateEndChanging(System.DateTime value);
+    partial void OnRentDateEndChanged();
+    partial void OnIsRentedChanging(bool value);
+    partial void OnIsRentedChanged();
+    partial void OnIsOpenedChanging(bool value);
+    partial void OnIsOpenedChanged();
+    partial void OnReferenceNumberChanging(int value);
+    partial void OnReferenceNumberChanged();
+    #endregion
+		
+		public tblVideokeRent()
+		{
+			this._tblVideokeRent2 = default(EntityRef<tblVideokeRent>);
+			this._tblCustomer = default(EntityRef<tblCustomer>);
+			this._tblProduct = default(EntityRef<tblProduct>);
+			this._tblVideokeRent1 = default(EntityRef<tblVideokeRent>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					if (this._tblVideokeRent1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductId", DbType="Int NOT NULL")]
+		public int ProductId
+		{
+			get
+			{
+				return this._ProductId;
+			}
+			set
+			{
+				if ((this._ProductId != value))
+				{
+					if (this._tblProduct.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProductIdChanging(value);
+					this.SendPropertyChanging();
+					this._ProductId = value;
+					this.SendPropertyChanged("ProductId");
+					this.OnProductIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RentByCustomerId", DbType="Int NOT NULL")]
+		public int RentByCustomerId
+		{
+			get
+			{
+				return this._RentByCustomerId;
+			}
+			set
+			{
+				if ((this._RentByCustomerId != value))
+				{
+					if (this._tblCustomer.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRentByCustomerIdChanging(value);
+					this.SendPropertyChanging();
+					this._RentByCustomerId = value;
+					this.SendPropertyChanged("RentByCustomerId");
+					this.OnRentByCustomerIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RentDateStart", DbType="DateTime NOT NULL")]
+		public System.DateTime RentDateStart
+		{
+			get
+			{
+				return this._RentDateStart;
+			}
+			set
+			{
+				if ((this._RentDateStart != value))
+				{
+					this.OnRentDateStartChanging(value);
+					this.SendPropertyChanging();
+					this._RentDateStart = value;
+					this.SendPropertyChanged("RentDateStart");
+					this.OnRentDateStartChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RentDateEnd", DbType="DateTime NOT NULL")]
+		public System.DateTime RentDateEnd
+		{
+			get
+			{
+				return this._RentDateEnd;
+			}
+			set
+			{
+				if ((this._RentDateEnd != value))
+				{
+					this.OnRentDateEndChanging(value);
+					this.SendPropertyChanging();
+					this._RentDateEnd = value;
+					this.SendPropertyChanged("RentDateEnd");
+					this.OnRentDateEndChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsRented", DbType="Bit NOT NULL")]
+		public bool IsRented
+		{
+			get
+			{
+				return this._IsRented;
+			}
+			set
+			{
+				if ((this._IsRented != value))
+				{
+					this.OnIsRentedChanging(value);
+					this.SendPropertyChanging();
+					this._IsRented = value;
+					this.SendPropertyChanged("IsRented");
+					this.OnIsRentedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsOpened", DbType="Bit NOT NULL")]
+		public bool IsOpened
+		{
+			get
+			{
+				return this._IsOpened;
+			}
+			set
+			{
+				if ((this._IsOpened != value))
+				{
+					this.OnIsOpenedChanging(value);
+					this.SendPropertyChanging();
+					this._IsOpened = value;
+					this.SendPropertyChanged("IsOpened");
+					this.OnIsOpenedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReferenceNumber", DbType="Int NOT NULL")]
+		public int ReferenceNumber
+		{
+			get
+			{
+				return this._ReferenceNumber;
+			}
+			set
+			{
+				if ((this._ReferenceNumber != value))
+				{
+					this.OnReferenceNumberChanging(value);
+					this.SendPropertyChanging();
+					this._ReferenceNumber = value;
+					this.SendPropertyChanged("ReferenceNumber");
+					this.OnReferenceNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblVideokeRent_tblVideokeRent", Storage="_tblVideokeRent2", ThisKey="Id", OtherKey="Id", IsUnique=true, IsForeignKey=false)]
+		public tblVideokeRent tblVideokeRent2
+		{
+			get
+			{
+				return this._tblVideokeRent2.Entity;
+			}
+			set
+			{
+				tblVideokeRent previousValue = this._tblVideokeRent2.Entity;
+				if (((previousValue != value) 
+							|| (this._tblVideokeRent2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblVideokeRent2.Entity = null;
+						previousValue.tblVideokeRent1 = null;
+					}
+					this._tblVideokeRent2.Entity = value;
+					if ((value != null))
+					{
+						value.tblVideokeRent1 = this;
+					}
+					this.SendPropertyChanged("tblVideokeRent2");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblCustomer_tblVideokeRent", Storage="_tblCustomer", ThisKey="RentByCustomerId", OtherKey="Id", IsForeignKey=true)]
+		public tblCustomer tblCustomer
+		{
+			get
+			{
+				return this._tblCustomer.Entity;
+			}
+			set
+			{
+				tblCustomer previousValue = this._tblCustomer.Entity;
+				if (((previousValue != value) 
+							|| (this._tblCustomer.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblCustomer.Entity = null;
+						previousValue.tblVideokeRents.Remove(this);
+					}
+					this._tblCustomer.Entity = value;
+					if ((value != null))
+					{
+						value.tblVideokeRents.Add(this);
+						this._RentByCustomerId = value.Id;
+					}
+					else
+					{
+						this._RentByCustomerId = default(int);
+					}
+					this.SendPropertyChanged("tblCustomer");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblProduct_tblVideokeRent", Storage="_tblProduct", ThisKey="ProductId", OtherKey="Id", IsForeignKey=true)]
+		public tblProduct tblProduct
+		{
+			get
+			{
+				return this._tblProduct.Entity;
+			}
+			set
+			{
+				tblProduct previousValue = this._tblProduct.Entity;
+				if (((previousValue != value) 
+							|| (this._tblProduct.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblProduct.Entity = null;
+						previousValue.tblVideokeRents.Remove(this);
+					}
+					this._tblProduct.Entity = value;
+					if ((value != null))
+					{
+						value.tblVideokeRents.Add(this);
+						this._ProductId = value.Id;
+					}
+					else
+					{
+						this._ProductId = default(int);
+					}
+					this.SendPropertyChanged("tblProduct");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblVideokeRent_tblVideokeRent", Storage="_tblVideokeRent1", ThisKey="Id", OtherKey="Id", IsForeignKey=true)]
+		public tblVideokeRent tblVideokeRent1
+		{
+			get
+			{
+				return this._tblVideokeRent1.Entity;
+			}
+			set
+			{
+				tblVideokeRent previousValue = this._tblVideokeRent1.Entity;
+				if (((previousValue != value) 
+							|| (this._tblVideokeRent1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblVideokeRent1.Entity = null;
+						previousValue.tblVideokeRent2 = null;
+					}
+					this._tblVideokeRent1.Entity = value;
+					if ((value != null))
+					{
+						value.tblVideokeRent2 = this;
+						this._Id = value.Id;
+					}
+					else
+					{
+						this._Id = default(int);
+					}
+					this.SendPropertyChanged("tblVideokeRent1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblVideokeReservation")]
 	public partial class tblVideokeReservation : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3882,6 +4244,10 @@ namespace VideokeRental.Data
 		private System.DateTime _ReserveDateEnd;
 		
 		private bool _IsReserved;
+		
+		private System.Nullable<bool> _IsOpened;
+		
+		private System.Nullable<int> _ReferenceNumber;
 		
 		private EntityRef<tblCustomer> _tblCustomer;
 		
@@ -3903,6 +4269,10 @@ namespace VideokeRental.Data
     partial void OnReserveDateEndChanged();
     partial void OnIsReservedChanging(bool value);
     partial void OnIsReservedChanged();
+    partial void OnIsOpenedChanging(System.Nullable<bool> value);
+    partial void OnIsOpenedChanged();
+    partial void OnReferenceNumberChanging(System.Nullable<int> value);
+    partial void OnReferenceNumberChanged();
     #endregion
 		
 		public tblVideokeReservation()
@@ -4036,6 +4406,46 @@ namespace VideokeRental.Data
 					this._IsReserved = value;
 					this.SendPropertyChanged("IsReserved");
 					this.OnIsReservedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsOpened", DbType="Bit")]
+		public System.Nullable<bool> IsOpened
+		{
+			get
+			{
+				return this._IsOpened;
+			}
+			set
+			{
+				if ((this._IsOpened != value))
+				{
+					this.OnIsOpenedChanging(value);
+					this.SendPropertyChanging();
+					this._IsOpened = value;
+					this.SendPropertyChanged("IsOpened");
+					this.OnIsOpenedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReferenceNumber", DbType="Int")]
+		public System.Nullable<int> ReferenceNumber
+		{
+			get
+			{
+				return this._ReferenceNumber;
+			}
+			set
+			{
+				if ((this._ReferenceNumber != value))
+				{
+					this.OnReferenceNumberChanging(value);
+					this.SendPropertyChanging();
+					this._ReferenceNumber = value;
+					this.SendPropertyChanged("ReferenceNumber");
+					this.OnReferenceNumberChanged();
 				}
 			}
 		}

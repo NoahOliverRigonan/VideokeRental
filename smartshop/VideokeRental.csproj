@@ -177,10 +177,9 @@
     <Compile Include="Controllers\ApiCalendarRentalController.cs" />
     <Compile Include="Controllers\ApiCalendarReservationController.cs" />
     <Compile Include="Controllers\ApiCustomerController.cs" />
-    <Compile Include="Controllers\ApiCustomerDetailsRentedController.cs" />
-    <Compile Include="Controllers\ApiCustomerDetailsReservedController.cs" />
     <Compile Include="Controllers\ApiMainUserController.cs" />
     <Compile Include="Controllers\ApiProductController.cs" />
+    <Compile Include="Controllers\ApiVideokeRentController.cs" />
     <Compile Include="Controllers\ApiVideokeReservationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -202,10 +201,9 @@
     <Compile Include="Models\tblCalendarRental.cs" />
     <Compile Include="Models\tblCalendarReservation.cs" />
     <Compile Include="Models\tblCustomer.cs" />
-    <Compile Include="Models\tblCustomerDetailsRented.cs" />
-    <Compile Include="Models\tblCustomerDetailsReserved.cs" />
     <Compile Include="Models\tblProduct.cs" />
     <Compile Include="Models\tblVideokeIncome.cs" />
+    <Compile Include="Models\tblVideokeRent.cs" />
     <Compile Include="Models\tblVideokeReservation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

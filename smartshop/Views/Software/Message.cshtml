@@ -74,8 +74,21 @@
                 </div>
             </div>
             <div class="col-md-10">
-                <h2>Messages</h2>
-
+                <h2>Notification List</h2>
+                <br /><br />
+                <table id="tblvideokerent" class="tbldisplay">
+                    <thead>
+                        <tr class="tablecolortbl">
+                            <th style="width: 60px"><center></center></th>
+                            <th style="width: 60px"><center></center></th>
+                            <th>Date Rent</th>
+                            <th>Videoke Name</th>
+                            <th>Customer</th>
+                            <th>Address</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>
@@ -119,13 +132,61 @@
     </footer>
     @Scripts.Render("~/Scripts/js")
     <script type="text/javascript">
-        var count;
+        // globla varialbles
+        var VideokeNotificationLists;
 
-        for (count = 0; count < 10; count++) {
-            (+count);
-            ("<br />");
+        function getVideokeNotificationList() {
+            VideokeNotificationLists = new Array();
+            $.ajax({
+                url: '/api/videokeRent/list',
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                success: function (Results) {
+                    if (Results.length > 0) {
+                        for (i = 0; i < Results.length; i++) {
+                            VideokeNotificationLists.push({
+                                EditId: '<button class="btn btn-primary btn-sm btn-block" onclick="btnEditButton()"><span class="glyphicon glyphicon-edit"></span> Edit</button>',
+                                DeleteId: '<button class="btn btn-danger btn-sm btn-block" onclick="btnDeleteButton()"><span class="glyphicon glyphicon-trash"></span> Delete</button>',
+                                Id: Results[i]["Id"],
+                                ProductId: Results[i]["ProductId"],
+                                Product: Results[i]["Product"],
+                                RentByCustomerId: Results[i]["RentByCustomerId"],
+                                RentByCustomer: Results[i]["RentByCustomer"],
+                                RentDateStart: Results[i]["RentDateStart"],
+                                RentDateEnd: Results[i]["RentDateEnd"],
+                                IsRented: Results[i]["IsRented"],
+                                Price: Results[i]["Price"],
+                                CompleteAddress: Results[i]["Street"] + ", " + Results[i]["Town"] + ", " + Results[i]["City"],
+                                Street: Results[i]["Street"],
+                                Town: Results[i]["Town"],
+                                City: Results[i]["City"]
+                            });
+                        }
+                    }
+                    $('#tblvideokerent').dataTable({
+                        aaData: VideokeNotificationLists,
+                        aoColumns: [
+                                { mData: 'EditId' },
+                                { mData: 'DeleteId' },
+                                { mData: 'RentDateEnd' },
+                                { mData: 'Product' },
+                                { mData: 'RentByCustomer' },
+                                { mData: 'CompleteAddress' },
+                                { mData: 'Price' },
+
+                        ]
+                    });
+                }
+            });
+            return VideokeNotificationLists;
         }
-        console.log(count);
+
+        $(document).ready(function () {
+
+            getVideokeNotificationList();
+        });
+
     </script>
 
 </body>

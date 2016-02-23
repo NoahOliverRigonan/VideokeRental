@@ -16,5 +16,7 @@ namespace VideokeRental.Models
         public String CustomersRent { get; set; }
         public String RentedDate { get; set; }
         public String Address { get; set; }
+        public Decimal Price { get; set; }
+        public String VideokeDescription { get; set; }
     }
 }

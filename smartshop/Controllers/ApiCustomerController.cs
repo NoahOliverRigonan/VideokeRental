@@ -66,6 +66,25 @@ namespace VideokeRental.Controllers
             return (Models.tblCustomer)customers.FirstOrDefault();
         }
 
+        [Route("api/customer/listCustomerById/{id}")]
+        public Models.tblCustomer GetCustomerById(String id)
+        {
+            var customerId = Convert.ToInt32(id);
+            var customers = from d in db.tblCustomers
+                            where d.Id == customerId
+                            select new Models.tblCustomer
+                            {
+                                Id = d.Id,
+                                UserId = d.UserId,
+                                CustomerNumber = d.CustomerNumber,
+                                CustomerName = d.Customer,
+                                Street = d.Street,
+                                Town = d.Town,
+                                City = d.City
+                            };
+            return (Models.tblCustomer)customers.FirstOrDefault();
+        }
+
         // add
         [Route("api/customer/add")]
         public int Post(Models.tblCustomer customer)

@@ -388,7 +388,7 @@
                                         });
                                     },
                                     404: function () {
-                                        alert("Not Found");
+                                        toastr.warning("You have no rights to cancel the reservation");
                                     },
                                     500: function () {
                                         alert("Bad Request");
@@ -433,26 +433,49 @@
                             var productData = JSON.stringify(videokeObject);
 
                             $.ajax({
-                                type: "PUT",
-                                url: '/api/rentalVideoke/' + productId,
+                                type: "DELETE",
+                                url: '/api/deleteVideokeReservation/' + productId + "/" + customerId,
                                 contentType: "application/json; charset=utf-8",
                                 dataType: "json",
-                                data: productData,
                                 statusCode: {
                                     200: function () {
-                                        toastr.info("Successfully rented");
-                                        setTimeout(function () {
-                                            window.location.reload(1);
-                                        }, 1000);
+                                        toastr.success("Successfully Cancel the Reservation");
+
+                                        $.ajax({
+                                            type: "PUT",
+                                            url: '/api/rentalVideoke/' + productId,
+                                            contentType: "application/json; charset=utf-8",
+                                            dataType: "json",
+                                            data: productData,
+                                            statusCode: {
+                                                200: function () {
+                                                    toastr.info("Successfully rented");
+                                                    setTimeout(function () {
+                                                        window.location.reload(1);
+                                                    }, 1000);
+                                                },
+                                                404: function () {
+                                                    alert("Not Found");
+                                                },
+                                                500: function () {
+                                                    alert("Bad Request");
+                                                }
+                                            }
+                                        });
                                     },
                                     404: function () {
-                                        alert("Not Found");
+                                        toastr.warning("You have no rights to cancel the reservation");
                                     },
                                     500: function () {
                                         alert("Bad Request");
                                     }
                                 }
                             });
+
+
+
+
+
                         }
                     });
 
@@ -493,6 +516,8 @@
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
                 success: function (Results) {
+
+                    console.log(userId);
 
                     var reservationObject = new Object();
                     var videokeId = @videokeId;
@@ -612,6 +637,10 @@
             document.getElementById('vd_dateNeeded').disabled = true;
 
             dateOnchange(document.getElementById('vd_dateReserve').value);
+
+            setInterval(function() {
+                //window.location.reload();
+            }, 2000);
 
         });
 

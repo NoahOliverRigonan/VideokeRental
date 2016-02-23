@@ -15,6 +15,8 @@ namespace VideokeRental.Models
         public String Product { get; set; }
         public String CustomersReserved { get; set; }
         public String ReservedDate { get; set; }
+        public Decimal Price { get; set; }
+        public String VideokeDescription { get; set; }
 
     }
 }
