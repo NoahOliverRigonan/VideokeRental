@@ -65,9 +65,17 @@ else
                                     @*<input type="email" class="form-control" id="email">*@
                                     @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
                                     <br />
-                                    <label for="Address">Address: </label>
+                                    <label for="Address">Street: </label>
                                     @*<input type="email" class="form-control" id="email">*@
-                                    @Html.TextAreaFor(m => m.Address, new { @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.Street, new { @class = "form-control" })
+                                    <br />
+                                    <label for="Address">Town: </label>
+                                    @*<input type="email" class="form-control" id="email">*@
+                                    @Html.TextBoxFor(m => m.Town, new { @class = "form-control" })
+                                    <br />
+                                    <label for="Address">City: </label>
+                                    @*<input type="email" class="form-control" id="email">*@
+                                    @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
                                     <br />
                                     <label for="Email">Email: </label>
                                     @*<input type="email" class="form-control" id="email">*@

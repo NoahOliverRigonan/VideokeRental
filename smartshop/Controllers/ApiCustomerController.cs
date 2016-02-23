@@ -22,7 +22,9 @@ namespace VideokeRental.Controllers
                                Id = d.Id,
                                CustomerNumber = d.CustomerNumber,
                                CustomerName = d.Customer,
-                               CustomerAddress = d.MainAddress
+                               Street = d.Street,
+                               Town = d.Town,
+                               City = d.City
                            };
             return customers.ToList();
         }
@@ -38,7 +40,9 @@ namespace VideokeRental.Controllers
                                 UserId = d.UserId,
                                 CustomerNumber = d.CustomerNumber,
                                 CustomerName = d.Customer,
-                                CustomerAddress = d.MainAddress
+                                Street = d.Street,
+                                Town = d.Town,
+                                City = d.City
                             };
             return (Models.tblCustomer)customers.FirstOrDefault();
         }
@@ -55,7 +59,9 @@ namespace VideokeRental.Controllers
                                 UserId = d.UserId,
                                 CustomerNumber = d.CustomerNumber,
                                 CustomerName = d.Customer,
-                                CustomerAddress = d.MainAddress
+                                Street = d.Street,
+                                Town = d.Town,
+                                City = d.City
                             };
             return (Models.tblCustomer)customers.FirstOrDefault();
         }
@@ -71,7 +77,10 @@ namespace VideokeRental.Controllers
 
                 newnCustomer.CustomerNumber = customer.CustomerNumber;
                 newnCustomer.Customer = customer.CustomerName;
-                newnCustomer.MainAddress = customer.CustomerAddress;
+                newnCustomer.Street = customer.Street;
+                newnCustomer.Town = customer.Town;
+                newnCustomer.City = customer.City;
+
 
                 db.tblCustomers.InsertOnSubmit(newnCustomer);
                 db.SubmitChanges();
@@ -102,7 +111,9 @@ namespace VideokeRental.Controllers
 
                     updateCustomer.CustomerNumber = customer.CustomerNumber;
                     updateCustomer.Customer = customer.CustomerName;
-                    updateCustomer.MainAddress = customer.CustomerAddress;
+                    updateCustomer.Street = customer.Street;
+                    updateCustomer.Town = customer.Town;
+                    updateCustomer.City = customer.City;
 
                     db.SubmitChanges();
 

@@ -24,6 +24,7 @@ namespace VideokeRental.Controllers
                                       CustomersRent = d.tblCustomer.Customer,
                                       ProductId = d.ProductId,
                                       Product = d.tblProduct.ProductName,
+                                      Address = d.tblCustomer.MainAddress,
                                       RentedDate = d.RentedDate.ToShortDateString(),
                                   };
             return calendarRentals.ToList();

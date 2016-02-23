@@ -18,7 +18,9 @@ namespace VideokeRental.Models
         }
 
         public string FullName { get; set; }
-        public string Address { get; set; }
+        public string Street { get; set; }
+        public string Town { get; set; }
+        public string City { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

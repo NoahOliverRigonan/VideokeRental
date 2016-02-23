@@ -117,6 +117,7 @@
                                         <th>Rent Date</th>
                                         <th>Videoke Name</th>
                                         <th>Customer Name</th>
+                                        <th>Address</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -268,6 +269,7 @@
                                 RentedDate: Results[i]["RentedDate"],
                                 ProductId: Results[i]["ProductId"],
                                 Product: Results[i]["Product"],
+                                Address: Results[i]["Address"],
                             });
                         }
                     }
@@ -277,6 +279,7 @@
                                 { mData: 'RentedDate' },
                                 { mData: 'Product' },
                                 { mData: 'CustomersRent' },
+                                { mData: 'Address' },
                         ]
                     });
                 }

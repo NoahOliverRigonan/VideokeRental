@@ -55,7 +55,10 @@
       <Column Name="LockoutEndDateUtc" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="LockoutEnabled" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="AccessFailedCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Street" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Town" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Association Name="AspNetUser_AspNetUserClaim" Member="AspNetUserClaims" ThisKey="Id" OtherKey="UserId" Type="AspNetUserClaim" />
       <Association Name="AspNetUser_AspNetUserLogin" Member="AspNetUserLogins" ThisKey="Id" OtherKey="UserId" Type="AspNetUserLogin" />
       <Association Name="AspNetUser_AspNetUserRole" Member="AspNetUserRoles" ThisKey="Id" OtherKey="UserId" Type="AspNetUserRole" />
@@ -91,7 +94,7 @@
       <Column Name="CustomerNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Customer" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="MainAddress" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Street" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
       <Column Name="Town" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
       <Column Name="City" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />

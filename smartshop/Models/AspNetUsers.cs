@@ -13,6 +13,8 @@ namespace VideokeRental.Models
         public String FullName { get; set; }
         public String Email { get; set; }
         public String UserName { get; set; }
-        public String Address { get; set; }
+        public String Street { get; set; }
+        public String Town { get; set; }
+        public String City { get; set; }
     }
 }

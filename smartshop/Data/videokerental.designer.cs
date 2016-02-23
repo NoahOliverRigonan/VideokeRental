@@ -1015,6 +1015,12 @@ namespace VideokeRental.Data
 		
 		private string _Address;
 		
+		private string _Street;
+		
+		private string _Town;
+		
+		private string _City;
+		
 		private EntitySet<AspNetUserClaim> _AspNetUserClaims;
 		
 		private EntitySet<AspNetUserLogin> _AspNetUserLogins;
@@ -1055,6 +1061,12 @@ namespace VideokeRental.Data
     partial void OnAccessFailedCountChanged();
     partial void OnAddressChanging(string value);
     partial void OnAddressChanged();
+    partial void OnStreetChanging(string value);
+    partial void OnStreetChanged();
+    partial void OnTownChanging(string value);
+    partial void OnTownChanged();
+    partial void OnCityChanging(string value);
+    partial void OnCityChanged();
     #endregion
 		
 		public AspNetUser()
@@ -1326,7 +1338,7 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(500)")]
 		public string Address
 		{
 			get
@@ -1342,6 +1354,66 @@ namespace VideokeRental.Data
 					this._Address = value;
 					this.SendPropertyChanged("Address");
 					this.OnAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Street", DbType="NVarChar(500)")]
+		public string Street
+		{
+			get
+			{
+				return this._Street;
+			}
+			set
+			{
+				if ((this._Street != value))
+				{
+					this.OnStreetChanging(value);
+					this.SendPropertyChanging();
+					this._Street = value;
+					this.SendPropertyChanged("Street");
+					this.OnStreetChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Town", DbType="NVarChar(500)")]
+		public string Town
+		{
+			get
+			{
+				return this._Town;
+			}
+			set
+			{
+				if ((this._Town != value))
+				{
+					this.OnTownChanging(value);
+					this.SendPropertyChanging();
+					this._Town = value;
+					this.SendPropertyChanged("Town");
+					this.OnTownChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_City", DbType="NVarChar(500)")]
+		public string City
+		{
+			get
+			{
+				return this._City;
+			}
+			set
+			{
+				if ((this._City != value))
+				{
+					this.OnCityChanging(value);
+					this.SendPropertyChanging();
+					this._City = value;
+					this.SendPropertyChanged("City");
+					this.OnCityChanged();
 				}
 			}
 		}
@@ -2141,7 +2213,7 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(100)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
 		public string Email
 		{
 			get
