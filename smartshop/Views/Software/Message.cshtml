@@ -63,7 +63,7 @@
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading panel-heading-custom">
-                            <a href="@Url.Action("Message", "Software")" class="panel-active"><i class="fa fa-envelope"></i> Message</a>
+                            <a href="@Url.Action("Message", "Software")" class="panel-active"><i class="fa fa-globe"></i> Notification</a>
                         </div>
                     </div>
                     <div class="panel panel-default">
@@ -76,19 +76,47 @@
             <div class="col-md-10">
                 <h2>Notification List</h2>
                 <br /><br />
-                <table id="tblvideokerent" class="tbldisplay">
-                    <thead>
-                        <tr class="tablecolortbl">
-                            <th style="width: 60px"><center></center></th>
-                            <th style="width: 60px"><center></center></th>
-                            <th>Date Rent</th>
-                            <th>Videoke Name</th>
-                            <th>Customer</th>
-                            <th>Address</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                </table>
+                <div class="container">
+                    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                        <li class="active"><a data-toggle="tab" href="#reservation" id="menuReservation">Reservation</a></li>
+                        <li><a data-toggle="tab" href="#rental" id="menuRental">Rental</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="reservation" class="tab-pane fade in active">
+                            <br /><br />
+                            <table id="tblvideokerent" class="tbldisplay">
+                                <thead>
+                                    <tr class="tablecolortbl">
+                                        <th style="width: 60px"><center></center></th>
+                                        <th style="width: 60px"><center></center></th>
+                                        <th>Date Rent</th>
+                                        <th>Videoke Name</th>
+                                        <th>Customer</th>
+                                        <th>Address</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div id="rental" class="tab-pane fade">
+                            <br /><br />
+                            <table id="tblvideokerent" class="tbldisplay">
+                                <thead>
+                                    <tr class="tablecolortbl">
+                                        <th style="width: 60px"><center></center></th>
+                                        <th style="width: 60px"><center></center></th>
+                                        <th>Date Rent</th>
+                                        <th>Videoke Name</th>
+                                        <th>Customer</th>
+                                        <th>Address</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -133,10 +161,12 @@
     @Scripts.Render("~/Scripts/js")
     <script type="text/javascript">
         // globla varialbles
-        var VideokeNotificationLists;
+        var VideokeReservationNotificationList;
+        var VideokeRentNotificationList;
 
-        function getVideokeNotificationList() {
-            VideokeNotificationLists = new Array();
+
+        function getVideokeReservationNotificationList() {
+            VideokeReservationNotificationList = new Array();
             $.ajax({
                 url: '/api/videokeRent/list',
                 cache: false,
@@ -145,7 +175,7 @@
                 success: function (Results) {
                     if (Results.length > 0) {
                         for (i = 0; i < Results.length; i++) {
-                            VideokeNotificationLists.push({
+                            VideokeReservationNotificationList.push({
                                 EditId: '<button class="btn btn-primary btn-sm btn-block" onclick="btnEditButton()"><span class="glyphicon glyphicon-edit"></span> Edit</button>',
                                 DeleteId: '<button class="btn btn-danger btn-sm btn-block" onclick="btnDeleteButton()"><span class="glyphicon glyphicon-trash"></span> Delete</button>',
                                 Id: Results[i]["Id"],
@@ -165,7 +195,7 @@
                         }
                     }
                     $('#tblvideokerent').dataTable({
-                        aaData: VideokeNotificationLists,
+                        aaData: VideokeReservationNotificationList,
                         aoColumns: [
                                 { mData: 'EditId' },
                                 { mData: 'DeleteId' },
@@ -179,12 +209,82 @@
                     });
                 }
             });
-            return VideokeNotificationLists;
+            return VideokeReservationNotificationList;
         }
 
-        $(document).ready(function () {
 
-            getVideokeNotificationList();
+
+
+
+        function getVideokeReservationNotificationList() {
+            VideokeRentNotificationList = new Array();
+            $.ajax({
+                url: '/api/videokeRent/list',
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                success: function (Results) {
+                    if (Results.length > 0) {
+                        for (i = 0; i < Results.length; i++) {
+                            VideokeRentNotificationList.push({
+                                EditId: '<button class="btn btn-primary btn-sm btn-block" onclick="btnEditButton()"><span class="glyphicon glyphicon-edit"></span> Edit</button>',
+                                DeleteId: '<button class="btn btn-danger btn-sm btn-block" onclick="btnDeleteButton()"><span class="glyphicon glyphicon-trash"></span> Delete</button>',
+                                Id: Results[i]["Id"],
+                                ProductId: Results[i]["ProductId"],
+                                Product: Results[i]["Product"],
+                                RentByCustomerId: Results[i]["RentByCustomerId"],
+                                RentByCustomer: Results[i]["RentByCustomer"],
+                                RentDateStart: Results[i]["RentDateStart"],
+                                RentDateEnd: Results[i]["RentDateEnd"],
+                                IsRented: Results[i]["IsRented"],
+                                Price: Results[i]["Price"],
+                                CompleteAddress: Results[i]["Street"] + ", " + Results[i]["Town"] + ", " + Results[i]["City"],
+                                Street: Results[i]["Street"],
+                                Town: Results[i]["Town"],
+                                City: Results[i]["City"]
+                            });
+                        }
+                    }
+                    $('#tblvideokerent').dataTable({
+                        aaData: VideokeRentNotificationList,
+                        aoColumns: [
+                                { mData: 'EditId' },
+                                { mData: 'DeleteId' },
+                                { mData: 'RentDateEnd' },
+                                { mData: 'Product' },
+                                { mData: 'RentByCustomer' },
+                                { mData: 'CompleteAddress' },
+                                { mData: 'Price' },
+
+                        ]
+                    });
+                }
+            });
+            return VideokeRentNotificationList;
+        }
+
+        // On Load Page
+        $(document).ready(function () {
+            var now = new Date();
+
+            
+            getVideokeReservationNotificationList()
+            
+
+            $('#menuReservation').click(function () {
+                $('#reservation').show();
+                $('#rental').hide();
+            });
+
+            $('#menuRental').click(function () {
+                $('#reservation').hide();
+                $('#rental').show();
+                getVideokeRentNotificationList();
+                window.getVideokeRentNotificationList = function () {
+                    return true;
+                }
+            });
+
         });
 
     </script>

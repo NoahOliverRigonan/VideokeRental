@@ -22,6 +22,7 @@ namespace VideokeRental.Controllers
                                Id = d.Id,
                                CustomerNumber = d.CustomerNumber,
                                CustomerName = d.Customer,
+                               ContactNumber = d.ContactNumber,
                                Street = d.Street,
                                Town = d.Town,
                                City = d.City
@@ -40,6 +41,7 @@ namespace VideokeRental.Controllers
                                 UserId = d.UserId,
                                 CustomerNumber = d.CustomerNumber,
                                 CustomerName = d.Customer,
+                                ContactNumber = d.ContactNumber,
                                 Street = d.Street,
                                 Town = d.Town,
                                 City = d.City
@@ -59,6 +61,7 @@ namespace VideokeRental.Controllers
                                 UserId = d.UserId,
                                 CustomerNumber = d.CustomerNumber,
                                 CustomerName = d.Customer,
+                                ContactNumber = d.ContactNumber,
                                 Street = d.Street,
                                 Town = d.Town,
                                 City = d.City
@@ -78,6 +81,7 @@ namespace VideokeRental.Controllers
                                 UserId = d.UserId,
                                 CustomerNumber = d.CustomerNumber,
                                 CustomerName = d.Customer,
+                                ContactNumber = d.ContactNumber,
                                 Street = d.Street,
                                 Town = d.Town,
                                 City = d.City
@@ -96,6 +100,7 @@ namespace VideokeRental.Controllers
 
                 newnCustomer.CustomerNumber = customer.CustomerNumber;
                 newnCustomer.Customer = customer.CustomerName;
+                newnCustomer.ContactNumber = customer.ContactNumber;
                 newnCustomer.Street = customer.Street;
                 newnCustomer.Town = customer.Town;
                 newnCustomer.City = customer.City;
@@ -130,6 +135,7 @@ namespace VideokeRental.Controllers
 
                     updateCustomer.CustomerNumber = customer.CustomerNumber;
                     updateCustomer.Customer = customer.CustomerName;
+                    updateCustomer.ContactNumber = customer.ContactNumber;
                     updateCustomer.Street = customer.Street;
                     updateCustomer.Town = customer.Town;
                     updateCustomer.City = customer.City;

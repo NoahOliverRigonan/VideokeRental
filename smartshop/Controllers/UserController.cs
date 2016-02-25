@@ -20,11 +20,19 @@ namespace VideokeRental.Controllers
                     string id = string.Concat(new string[] { user.Id });
                     string email = string.Concat(new string[] { user.Email });
                     string userName = string.Concat(new string[] { user.UserName });
+                    string street = string.Concat(new string[] { user.Street });
+                    string town = string.Concat(new string[] { user.Town });
+                    string city = string.Concat(new string[] { user.City });
+
 
                     ViewData.Add("UserId", id);
                     ViewData.Add("FullName", fullName);
                     ViewData.Add("Email", email);
                     ViewData.Add("UserName", userName);
+                    //ViewData.Add("Street", street);
+                    //ViewData.Add("Town", town);
+                    //ViewData.Add("City",city);
+                    ViewData.Add("Address", street + town + city);
                 }
             }
             base.OnActionExecuted(filterContext);

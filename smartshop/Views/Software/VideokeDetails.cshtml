@@ -1,7 +1,10 @@
 ﻿@{
     var videokeId = Request.QueryString["VideokeId"];
     var fullName = ViewData["FullName"];
+    var address = ViewData["Address"];
     var userId = ViewData["UserId"];
+   
+    
 }
 <!DOCTYPE html>
 <html>
@@ -96,8 +99,9 @@
                 <br />
                 <br />
 
-                <h1 id="reservedInformation">RENTED!</h1>
                 <button class="btn btn-primary btn-block btn-lg" id="returnVideoke" onclick="btnReturnVideoke()">Return</button>
+                <h1 id="reservedInformation">Rented!</h1>
+                <h1 id="vrRetrieve_CustomerRented"></h1>
                 <div id="infoReserved">
                     <form class="form-horizontal informationBox" role="form">
                         <div class="form-group">
@@ -261,9 +265,13 @@
                             $('#infoReserved').hide();
                             $('#btnCancelReserved').prop("disabled", true);
                             $('#reservedInformation').show();
+                            $('#vrRetrieve_CustomerRented').hide();
                             $('#btnReserve').hide();
                             $('#returnVideoke').hide();
                             $('#reservedInformation').hide();
+                            
+
+                        
                         }
 
                     } else {
@@ -272,6 +280,7 @@
                         $('#btnrent').hide();
                         $('#returnVideoke').hide();
                         $('#reservedInformation').hide();
+                        $('#vrRetrieve_CustomerRented').show();
 
                         if(Results.IsRented == true) {
                             $('#btnrent').hide();
@@ -281,6 +290,7 @@
                             $('#btnReserve').hide();
                             $('#returnVideoke').show();
                             $('#reservedInformation').show();
+                            $('#vrRetrieve_CustomerRented').hide();
                         }
                     }
 
@@ -291,6 +301,8 @@
                         type: 'GET',
                         contentType: 'application/json; charset=utf-8',
                         success: function (VRResults) {
+
+                            console.log("asdsds");
 
                             //var customerId = VRResults.
                             if(VRResults != null)
@@ -317,6 +329,7 @@
 
                                 //vrRetrieve_Customer
                                 document.getElementById('vrRetrieve_Customer').innerHTML = VRResults.ReserveByCustomer;
+                                document.getElementById('vrRetrieve_CustomerRented').innerHTML = VRResults.ReserveByCustomer;
                                 //document.getElementById('vrRetrieve_Address').innerHTML = Results.ReserveByCustomer;
                                 //document.getElementById('vrRetrieve_ContactNumber').innerHTML = Results.ReserveByCustomer;
                                 document.getElementById('vrRetrieve_DateReserved').innerHTML = VRResults.ReserveDateStart;
@@ -471,10 +484,6 @@
                                     }
                                 }
                             });
-
-
-
-
 
                         }
                     });
@@ -631,11 +640,12 @@
             var today = now.getFullYear() + "-" + (month) + "-" + (day);
 
             document.getElementById('vd_fullName').value = "@fullName";
+            document.getElementById('vd_address').value = "@address";
             document.getElementById('vd_dateReserve').value = today;
             document.getElementById('vd_fullName').disabled = true;
             document.getElementById('vd_dateReserve').disabled = true;
             document.getElementById('vd_dateNeeded').disabled = true;
-
+            
             dateOnchange(document.getElementById('vd_dateReserve').value);
 
             setInterval(function() {
