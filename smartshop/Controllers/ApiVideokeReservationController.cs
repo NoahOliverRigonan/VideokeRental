@@ -10,12 +10,11 @@ namespace VideokeRental.Controllers
 {
     public class ApiVideokeReservationController : ApiController
     {
-        private Data.videokerentalDataContext db = new Data.videokerentalDataContext();
+        private Data.videokerentaldbDataContext db = new Data.videokerentaldbDataContext();
 
         [Route("api/videokeReservation/list")]
         public List<Models.tblVideokeReservation> Get()
         {
-
             var videokeReservations = from d in db.tblVideokeReservations
                                       select new Models.tblVideokeReservation
                                       {
@@ -27,6 +26,11 @@ namespace VideokeRental.Controllers
                                           ReserveDateStart = d.ReserveDateStart.ToShortDateString(),
                                           ReserveDateEnd = d.ReserveDateEnd.ToShortDateString(),
                                           IsReserved = d.IsReserved,
+                                          Opened = d.Opened,
+                                          Price = d.tblProduct.Price,
+                                          Street = d.tblCustomer.Street,
+                                          Town = d.tblCustomer.Town,
+                                          City = d.tblCustomer.City
                                       };
             return videokeReservations.ToList();
         }
@@ -64,7 +68,8 @@ namespace VideokeRental.Controllers
                 newVideokeReservation.ReserveDateStart = Convert.ToDateTime(videokeReservation.ReserveDateStart);
                 newVideokeReservation.ReserveDateEnd = Convert.ToDateTime(videokeReservation.ReserveDateEnd);
                 newVideokeReservation.IsReserved = true;
-                 
+                newVideokeReservation.Opened = false;
+
                 db.tblVideokeReservations.InsertOnSubmit(newVideokeReservation);
                 db.SubmitChanges();
 

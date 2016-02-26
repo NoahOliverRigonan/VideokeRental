@@ -86,12 +86,12 @@
                     </div>
                     <div class="form-group">
                         <label for="date">Date Reserve:</label>
-                        <input type="date" id="vd_dateReserve" class="form-control requiredVideokeReservation" onchange="dateOnchange(this.value)">
+                        <input type="text" id="vd_dateReserve" class="form-control requiredVideokeReservation" onchange="dateOnchange(this.value)">
                     </div>
                     <div class="form-group">
                         <label for="date">Due Date:</label>
 
-                        <input type="date" id="vd_dateNeeded" class="form-control requiredVideokeReservation">
+                        <input type="text" id="vd_dateNeeded" class="form-control requiredVideokeReservation">
                     </div>
                     <button class="btn btn-default btn-lg" onclick="btnSubmitReservation()">Submit</button>
                 </div>
@@ -462,10 +462,41 @@
                                             data: productData,
                                             statusCode: {
                                                 200: function () {
-                                                    toastr.info("Successfully rented");
-                                                    setTimeout(function () {
-                                                        window.location.reload(1);
-                                                    }, 1000);
+                                                    var videokeObjectRent = new Object();
+                                                    
+                                                    var customerId = Results.Id;
+                                                    var productId = @videokeId;
+
+                                                    videokeObjectRent.ProductId = productId;
+                                                    videokeObjectRent.RentByCustomerId = customerId;
+                                                    videokeObjectRent.RentDateStart = new Date(document.getElementById('vd_dateReserve').value);
+                                                    videokeObjectRent.RentDateEnd = new Date(document.getElementById('vd_dateNeeded').value);
+
+                                                    var productDataRent = JSON.stringify(videokeObjectRent);
+
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: '/api/videokeRent/add',
+                                                        contentType: "application/json; charset=utf-8",
+                                                        dataType: "json",
+                                                        data: productDataRent,
+                                                        statusCode: {
+                                                            200: function () {
+                                                                toastr.info("Successfully rented");
+                                                                setTimeout(function () {
+                                                                    window.location.reload(1);
+                                                                }, 1000);
+
+                                                            },
+                                                            404: function () {
+                                                                alert("Not Found");
+                                                            },
+                                                            500: function () {
+                                                                alert("Bad Request");
+                                                            }
+                                                        }
+                                                    });
+
                                                 },
                                                 404: function () {
                                                     alert("Not Found");
@@ -537,8 +568,8 @@
 
                     reservationObject.ProductId = videokeId;
                     reservationObject.ReserveByCustomerId = customerId;
-                    reservationObject.ReserveDateStart = document.getElementById('vd_dateReserve').value;
-                    reservationObject.ReserveDateEnd = document.getElementById('vd_dateNeeded').value;
+                    reservationObject.ReserveDateStart = new Date(document.getElementById('vd_dateReserve').value);
+                    reservationObject.ReserveDateEnd = new Date(document.getElementById('vd_dateNeeded').value);
                     var reservationData = JSON.stringify(reservationObject);
 
                     var isValid = true;

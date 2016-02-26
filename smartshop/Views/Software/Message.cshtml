@@ -6,6 +6,7 @@
     <!-- css -->
     @Styles.Render("~/Content/stylesheets")
     @Styles.Render("~/font-awesome/fonts")
+    @Scripts.Render("~/Scripts/js")
 </head>
 <body>
 
@@ -85,12 +86,12 @@
                     <div class="tab-content">
                         <div id="reservation" class="tab-pane fade in active">
                             <br /><br />
-                            <table id="tblvideokerent" class="tbldisplay">
+                            <table id="tblvideokeReserve" class="tbldisplay">
                                 <thead>
                                     <tr class="tablecolortbl">
                                         <th style="width: 60px"><center></center></th>
                                         <th style="width: 60px"><center></center></th>
-                                        <th>Date Rent</th>
+                                        <th>Date Reserve</th>
                                         <th>Videoke Name</th>
                                         <th>Customer</th>
                                         <th>Address</th>
@@ -101,7 +102,7 @@
                         </div>
                         <div id="rental" class="tab-pane fade">
                             <br /><br />
-                            <table id="tblvideokerent" class="tbldisplay">
+                            <table id="tblvideokeRent" class="tbldisplay">
                                 <thead>
                                     <tr class="tablecolortbl">
                                         <th style="width: 60px"><center></center></th>
@@ -158,7 +159,6 @@
             </div>
         </div>
     </footer>
-    @Scripts.Render("~/Scripts/js")
     <script type="text/javascript">
         // globla varialbles
         var VideokeReservationNotificationList;
@@ -168,7 +168,7 @@
         function getVideokeReservationNotificationList() {
             VideokeReservationNotificationList = new Array();
             $.ajax({
-                url: '/api/videokeRent/list',
+                url: '/api/videokeReservation/list',
                 cache: false,
                 type: 'GET',
                 contentType: 'application/json; charset=utf-8',
@@ -181,11 +181,11 @@
                                 Id: Results[i]["Id"],
                                 ProductId: Results[i]["ProductId"],
                                 Product: Results[i]["Product"],
-                                RentByCustomerId: Results[i]["RentByCustomerId"],
-                                RentByCustomer: Results[i]["RentByCustomer"],
-                                RentDateStart: Results[i]["RentDateStart"],
-                                RentDateEnd: Results[i]["RentDateEnd"],
-                                IsRented: Results[i]["IsRented"],
+                                ReserveByCustomerId: Results[i]["ReserveByCustomerId"],
+                                ReserveByCustomer: Results[i]["ReserveByCustomer"],
+                                ReserveDateStart: Results[i]["ReserveDateStart"],
+                                ReserveDateEnd: Results[i]["ReserveDateEnd"],
+                                IsReserved: Results[i]["IsReserved"],
                                 Price: Results[i]["Price"],
                                 CompleteAddress: Results[i]["Street"] + ", " + Results[i]["Town"] + ", " + Results[i]["City"],
                                 Street: Results[i]["Street"],
@@ -194,29 +194,25 @@
                             });
                         }
                     }
-                    $('#tblvideokerent').dataTable({
+                    $('#tblvideokeReserve').dataTable({
                         aaData: VideokeReservationNotificationList,
                         aoColumns: [
                                 { mData: 'EditId' },
                                 { mData: 'DeleteId' },
-                                { mData: 'RentDateEnd' },
+                                { mData: 'ReserveDateStart' },
                                 { mData: 'Product' },
-                                { mData: 'RentByCustomer' },
+                                { mData: 'ReserveByCustomer' },
                                 { mData: 'CompleteAddress' },
                                 { mData: 'Price' },
-
                         ]
                     });
                 }
             });
+
             return VideokeReservationNotificationList;
         }
 
-
-
-
-
-        function getVideokeReservationNotificationList() {
+        function getVideokeRentNotificationList() {
             VideokeRentNotificationList = new Array();
             $.ajax({
                 url: '/api/videokeRent/list',
@@ -245,12 +241,12 @@
                             });
                         }
                     }
-                    $('#tblvideokerent').dataTable({
+                    $('#tblvideokeRent').dataTable({
                         aaData: VideokeRentNotificationList,
                         aoColumns: [
                                 { mData: 'EditId' },
                                 { mData: 'DeleteId' },
-                                { mData: 'RentDateEnd' },
+                                { mData: 'RentDateStart' },
                                 { mData: 'Product' },
                                 { mData: 'RentByCustomer' },
                                 { mData: 'CompleteAddress' },
@@ -266,10 +262,8 @@
         // On Load Page
         $(document).ready(function () {
             var now = new Date();
+            getVideokeReservationNotificationList();
 
-            
-            getVideokeReservationNotificationList()
-            
 
             $('#menuReservation').click(function () {
                 $('#reservation').show();

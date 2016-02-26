@@ -117,7 +117,6 @@
                                         <th>Rent Date</th>
                                         <th>Videoke Name</th>
                                         <th>Customer Name</th>
-                                        <th>Address</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -190,7 +189,7 @@
                                 CustomersReserved: Results[i]["CustomersReserved"],
                                 ReservedDate: Results[i]["ReservedDate"],
                                 ProductId: Results[i]["ProductId"],
-                                Product: Results[i]["Product"],
+                                Product: Results[i]["Product"]
                             });
                         }
                     }
@@ -199,7 +198,7 @@
                         aoColumns: [
                                 { mData: 'ReservedDate' },
                                 { mData: 'Product' },
-                                { mData: 'CustomersReserved' },
+                                { mData: 'CustomersReserved' }
 
                         ]
                     });
@@ -228,7 +227,6 @@
                                 ProductId: Results[i]["ProductId"],
                                 Product: Results[i]["Product"]
 
-
                             });
                         }
                     }
@@ -241,7 +239,7 @@
                             aoColumns: [
                                     { mData: 'ReservedDate' },
                                     { mData: 'Product' },
-                                    { mData: 'CustomersReserved' },
+                                    { mData: 'CustomersReserved' }
                             ]
                         });
                     }, 50);
@@ -268,8 +266,7 @@
                                 CustomersRent: Results[i]["CustomersRent"],
                                 RentedDate: Results[i]["RentedDate"],
                                 ProductId: Results[i]["ProductId"],
-                                Product: Results[i]["Product"],
-                                Address: Results[i]["Address"],
+                                Product: Results[i]["Product"]
                             });
                         }
                     }
@@ -278,8 +275,7 @@
                         aoColumns: [
                                 { mData: 'RentedDate' },
                                 { mData: 'Product' },
-                                { mData: 'CustomersRent' },
-                                { mData: 'Address' },
+                                { mData: 'CustomersRent' }
                         ]
                     });
                 }

@@ -1,11 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="videokerental" Class="videokerentalDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=BUTCH\SQLEXPRESS;Initial Catalog=videokerental;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="videokerentalConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="videokerental" Class="videokerentaldbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=BUTCH\SQLEXPRESS;Initial Catalog=videokerental;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DefaultConnection" Provider="System.Data.SqlClient" />
   <Table Name="dbo.[__MigrationHistory]" Member="__MigrationHistories">
     <Type Name="__MigrationHistory">
       <Column Name="MigrationId" Type="System.String" DbType="NVarChar(150) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="ContextKey" Type="System.String" DbType="NVarChar(300) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Model" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="ProductVersion" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblVideokeReservation" Member="tblVideokeReservations">
+    <Type Name="tblVideokeReservation">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReserveByCustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ReserveDateStart" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ReserveDateEnd" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="IsReserved" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsOpened" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ReferenceNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Opened" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="tblCustomer_tblVideokeReservation" Member="tblCustomer" ThisKey="ReserveByCustomerId" OtherKey="Id" Type="tblCustomer" IsForeignKey="true" />
+      <Association Name="tblProduct_tblVideokeReservation" Member="tblProduct" ThisKey="ProductId" OtherKey="Id" Type="tblProduct" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.AspNetRoles" Member="AspNetRoles">
@@ -98,12 +113,12 @@
       <Column Name="City" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
       <Column Name="ContactNumber" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="OtherInfo" Type="System.String" DbType="NVarChar(350)" CanBeNull="true" />
+      <Association Name="tblCustomer_tblVideokeReservation" Member="tblVideokeReservations" ThisKey="Id" OtherKey="ReserveByCustomerId" Type="tblVideokeReservation" />
       <Association Name="tblCustomer_tblCalendarRental" Member="tblCalendarRentals" ThisKey="Id" OtherKey="CustomersIdRented" Type="tblCalendarRental" />
       <Association Name="tblCustomer_tblCalendarReservation" Member="tblCalendarReservations" ThisKey="Id" OtherKey="CustomersIdReserved" Type="tblCalendarReservation" />
       <Association Name="tblCustomer_tblCustomerDetailsReserved" Member="tblCustomerDetailsReserveds" ThisKey="Id" OtherKey="CustomerId" Type="tblCustomerDetailsReserved" />
       <Association Name="tblCustomer_tblVideokeIncome" Member="tblVideokeIncomes" ThisKey="Id" OtherKey="CustomerId" Type="tblVideokeIncome" />
       <Association Name="tblCustomer_tblVideokeRent" Member="tblVideokeRents" ThisKey="Id" OtherKey="RentByCustomerId" Type="tblVideokeRent" />
-      <Association Name="tblCustomer_tblVideokeReservation" Member="tblVideokeReservations" ThisKey="Id" OtherKey="ReserveByCustomerId" Type="tblVideokeReservation" />
       <Association Name="AspNetUser_tblCustomer" Member="AspNetUser" ThisKey="UserId" OtherKey="Id" Type="AspNetUser" IsForeignKey="true" />
     </Type>
   </Table>
@@ -146,13 +161,13 @@
       <Column Name="IsReserved" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="IsRented" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Association Name="tblProduct_tblVideokeReservation" Member="tblVideokeReservations" ThisKey="Id" OtherKey="ProductId" Type="tblVideokeReservation" />
       <Association Name="tblProduct_tblCalendarRental" Member="tblCalendarRentals" ThisKey="Id" OtherKey="ProductId" Type="tblCalendarRental" />
       <Association Name="tblProduct_tblCalendarReservation" Member="tblCalendarReservations" ThisKey="Id" OtherKey="ProductId" Type="tblCalendarReservation" />
       <Association Name="tblProduct_tblCustomerDetailsRented" Member="tblCustomerDetailsRenteds" ThisKey="Id" OtherKey="ProductId" Type="tblCustomerDetailsRented" />
       <Association Name="tblProduct_tblGallery" Member="tblGalleries" ThisKey="Id" OtherKey="ProductId" Type="tblGallery" />
       <Association Name="tblProduct_tblVideokeIncome" Member="tblVideokeIncomes" ThisKey="Id" OtherKey="ProductId" Type="tblVideokeIncome" />
       <Association Name="tblProduct_tblVideokeRent" Member="tblVideokeRents" ThisKey="Id" OtherKey="ProductId" Type="tblVideokeRent" />
-      <Association Name="tblProduct_tblVideokeReservation" Member="tblVideokeReservations" ThisKey="Id" OtherKey="ProductId" Type="tblVideokeReservation" />
     </Type>
   </Table>
   <Table Name="dbo.tblVideokeDetails" Member="tblVideokeDetails">
@@ -181,26 +196,12 @@
       <Column Name="RentDateStart" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="RentDateEnd" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="IsRented" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="IsOpened" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="ReferenceNumber" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsOpened" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ReferenceNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="tblVideokeRent_tblVideokeRent" Member="tblVideokeRent2" ThisKey="Id" OtherKey="Id" Type="tblVideokeRent" Cardinality="One" />
       <Association Name="tblCustomer_tblVideokeRent" Member="tblCustomer" ThisKey="RentByCustomerId" OtherKey="Id" Type="tblCustomer" IsForeignKey="true" />
       <Association Name="tblProduct_tblVideokeRent" Member="tblProduct" ThisKey="ProductId" OtherKey="Id" Type="tblProduct" IsForeignKey="true" />
       <Association Name="tblVideokeRent_tblVideokeRent" Member="tblVideokeRent1" ThisKey="Id" OtherKey="Id" Type="tblVideokeRent" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblVideokeReservation" Member="tblVideokeReservations">
-    <Type Name="tblVideokeReservation">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ReserveByCustomerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ReserveDateStart" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="ReserveDateEnd" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="IsReserved" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="IsOpened" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="ReferenceNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="tblCustomer_tblVideokeReservation" Member="tblCustomer" ThisKey="ReserveByCustomerId" OtherKey="Id" Type="tblCustomer" IsForeignKey="true" />
-      <Association Name="tblProduct_tblVideokeReservation" Member="tblProduct" ThisKey="ProductId" OtherKey="Id" Type="tblProduct" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

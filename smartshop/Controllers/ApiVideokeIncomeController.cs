@@ -9,7 +9,7 @@ namespace VideokeRental.Controllers
 {
     public class ApiVideokeIncomeController : ApiController
     {
-        private Data.videokerentalDataContext db = new Data.videokerentalDataContext();
+        private Data.videokerentaldbDataContext db = new Data.videokerentaldbDataContext();
 
         [Route("api/videokeIncome/list")]
         public List<Models.tblVideokeIncome> Get()

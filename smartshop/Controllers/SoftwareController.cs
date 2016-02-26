@@ -13,7 +13,7 @@ namespace VideokeRental.Controllers
     public class SoftwareController : UserAccountController
     {
 
-        private Data.videokerentalDataContext db = new Data.videokerentalDataContext();
+        private Data.videokerentaldbDataContext db = new Data.videokerentaldbDataContext();
 
         [Authorize]
         // GET: Software

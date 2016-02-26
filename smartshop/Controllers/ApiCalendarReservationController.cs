@@ -9,7 +9,7 @@ namespace VideokeRental.Controllers
 {
     public class ApiCalendarReservationController : ApiController
     {
-        private Data.videokerentalDataContext db = new Data.videokerentalDataContext();
+        private Data.videokerentaldbDataContext db = new Data.videokerentaldbDataContext();
 
         // list
         [Route("api/calendarReservation/list")]

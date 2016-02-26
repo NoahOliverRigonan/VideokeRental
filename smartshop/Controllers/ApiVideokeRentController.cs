@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -9,7 +10,7 @@ namespace VideokeRental.Controllers
 {
     public class ApiVideokeRentController : ApiController
     {
-        private Data.videokerentalDataContext db = new Data.videokerentalDataContext();
+        private Data.videokerentaldbDataContext db = new Data.videokerentaldbDataContext();
 
         [Route("api/videokeRent/list")]
         public List<Models.tblVideokeRent> Get()
@@ -56,6 +57,32 @@ namespace VideokeRental.Controllers
                                           City = d.tblCustomer.City
                                       };
             return (Models.tblVideokeRent)videokeRents.FirstOrDefault();
+        }
+
+        // add
+        [Route("api/videokeRent/add")]
+        public int Post(Models.tblVideokeRent videokeRent)
+        {
+            try
+            {
+                Data.tblVideokeRent newVideokeRent = new Data.tblVideokeRent();
+
+                newVideokeRent.ProductId = videokeRent.ProductId;
+                newVideokeRent.RentByCustomerId = videokeRent.RentByCustomerId;
+                newVideokeRent.RentDateStart = Convert.ToDateTime(videokeRent.RentDateStart);
+                newVideokeRent.RentDateEnd = Convert.ToDateTime(videokeRent.RentDateEnd);
+                newVideokeRent.IsRented = true;
+
+                db.tblVideokeRents.InsertOnSubmit(newVideokeRent);
+                db.SubmitChanges();
+
+                return newVideokeRent.Id;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                return 0;
+            }
         }
     }
 }

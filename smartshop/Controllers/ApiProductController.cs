@@ -11,7 +11,7 @@ namespace VideokeRental.Controllers
 {
     public class ApiProductController : ApiController
     {
-        private Data.videokerentalDataContext db = new Data.videokerentalDataContext();
+        private Data.videokerentaldbDataContext db = new Data.videokerentaldbDataContext();
 
         // list
         [Route("api/product/list")]

@@ -18,7 +18,6 @@ namespace VideokeRental.Models
         public String RentDateEnd { get; set; }
         public Boolean IsRented { get; set; }
         public Boolean IsOpened { get; set; }
-        public Int32 ReferenceNumber { get; set; }
         public Decimal Price { get; set; }
         public String Street { get; set; }
         public String Town { get; set; }

@@ -9,7 +9,7 @@ namespace VideokeRental.Controllers
 {
     public class ApiMainUserController : ApiController
     {
-        private Data.videokerentalDataContext db = new Data.videokerentalDataContext();
+        private Data.videokerentaldbDataContext db = new Data.videokerentaldbDataContext();
 
         [Route("api/mainUser/list")]
         public List<Models.ApplicationUser> Get()

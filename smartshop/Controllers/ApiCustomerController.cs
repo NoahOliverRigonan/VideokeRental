@@ -10,7 +10,7 @@ namespace VideokeRental.Controllers
 {
     public class ApiCustomerController : ApiController
     {
-        private Data.videokerentalDataContext db = new Data.videokerentalDataContext();
+        private Data.videokerentaldbDataContext db = new Data.videokerentaldbDataContext();
 
         [Route("api/customer/list")]
         public List<Models.tblCustomer> Get()
