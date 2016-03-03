@@ -63,7 +63,7 @@
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading panel-heading-custom">
-                            <a href="@Url.Action("Message", "Software")" class="panel-active"><i class="fa fa-globe"></i> Notification</a>
+                            <a href="@Url.Action("Message", "Software")" class="panel-menu"><i class="fa fa-globe"></i> Notification</a>
                         </div>
                     </div>
                     <div class="panel panel-default">
@@ -95,12 +95,12 @@
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">User Info</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form class="form-horizontal">
+                            <form class="form-horizontal">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">User Info</h4>
+                                </div>
+                                <div class="modal-body">
                                     <input type="hidden" id="customer_Id" />
                                     <div class="form-group">
                                         <label class="col-sm-4 control-label">Customer Number</label>
@@ -132,13 +132,19 @@
                                             <input type="text" id="customer_CustomerCityAddress" class="form-control requiredCustomer">
                                         </div>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-primary pull-left" onclick="btnCustomerDetail_onClick()">Customer Details</button>
-                                <button type="button" class="btn btn-primary" onclick="btnSaveCustomer()">Save</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label">Email</label>
+                                        <div class="col-sm-8">
+                                            <input type="email" id="customer_CustomerEmail" class="form-control requiredCustomer">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary pull-left" onclick="btnCustomerDetail_onClick()">Customer Details</button>
+                                    <button type="submit" class="btn btn-primary" onclick="btnSaveCustomer()">Save</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -259,6 +265,8 @@
             customerObject.Street = document.getElementById('customer_CustomerStreetAddress').value;
             customerObject.Town = document.getElementById('customer_CustomerTownAddress').value;
             customerObject.City = document.getElementById('customer_CustomerCityAddress').value;
+            customerObject.Email = document.getElementById('customer_CustomerEmail').value;
+            
             var customerData = JSON.stringify(customerObject);
 
             var isValid = true;

@@ -26,7 +26,6 @@ namespace VideokeRental.Controllers
                                           ReserveDateStart = d.ReserveDateStart.ToShortDateString(),
                                           ReserveDateEnd = d.ReserveDateEnd.ToShortDateString(),
                                           IsReserved = d.IsReserved,
-                                          Opened = d.Opened,
                                           Price = d.tblProduct.Price,
                                           Street = d.tblCustomer.Street,
                                           Town = d.tblCustomer.Town,

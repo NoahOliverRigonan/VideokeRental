@@ -31,86 +31,12 @@
                 @*<img src="../images/store.png" alt="Flower" class="navcode">*@
             </div>
             @Html.Partial("_LoginPartial")
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#" id="messageEmail" data-placement="bottom"><i class="fa fa-envelope"></i></a></li>
-                </ul>
-            </div>
         </div>
     </nav>
     <br />
     <br />
 
     <div class="container">
-        <!-- Popover 2 hidden content -->
-        <div style="display: none; width: 200px;">
-            <div id="messageTitle" style="display: none;">
-                <div><b>Messages - Email</b> <a href="#" class="pull-right">View all</a></div>
-            </div>
-
-            <div id="messageContents" style="display: none;">
-                <a href="#" type="button" class="btn btn-default btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Butch Canada
-                </a>
-                <a href="#" type="button" class="btn btn-default btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Alsonny Reyes
-                </a>
-                <a href="#" type="button" class="btn btn-warning btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Butch Canada (56)
-                </a>
-                <a href="#" type="button" class="btn btn-default btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Joann Patalinghug
-                </a>
-                <a href="#" type="button" class="btn btn-warning btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Paul Batuigas (101)
-                </a>
-                <a href="#" type="button" class="btn btn-warning btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Kharen Abas (43)
-                </a>
-                <a href="#" type="button" class="btn btn-warning btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Lea Jan (4)
-                </a>
-                <a href="#" type="button" class="btn btn-warning btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Cherry Gumpay (11)
-                </a>
-                <a href="#" type="button" class="btn btn-default btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Jessil Racho
-                </a>
-                <a href="#" type="button" class="btn btn-warning btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Anthony Sabaricos (1)
-                </a>
-                <a href="#" type="button" class="btn btn-default btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Butch Canada
-                </a>
-                <a href="#" type="button" class="btn btn-default btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Alsonny Reyes
-                </a>
-                <a href="#" type="button" class="btn btn-warning btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Butch Canada (56)
-                </a>
-                <a href="#" type="button" class="btn btn-default btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Joann Patalinghug
-                </a>
-                <a href="#" type="button" class="btn btn-warning btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Paul Batuigas (101)
-                </a>
-                <a href="#" type="button" class="btn btn-warning btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Kharen Abas (43)
-                </a>
-                <a href="#" type="button" class="btn btn-warning btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Lea Jan (4)
-                </a>
-                <a href="#" type="button" class="btn btn-warning btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Cherry Gumpay (11)
-                </a>
-                <a href="#" type="button" class="btn btn-default btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Jessil Racho
-                </a>
-                <a href="#" type="button" class="btn btn-warning btn-lg content-message">
-                    <i class="fa fa-envelope-o"></i> Anthony Sabaricos (1)
-                </a>
-            </div>
-        </div>
         <br />
         <br />
         <div class="row">
@@ -138,12 +64,12 @@
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading panel-heading-custom">
-                            <a href="@Url.Action("Calendar", "Software")" class="panel-menu"><i class="fa fa-calendar"></i> Calendar</a>
+                            <a href="@Url.Action("Message", "Software")" class="panel-menu"><i class="fa fa-globe"></i> Notification</a>
                         </div>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading panel-heading-custom">
-                            <a href="@Url.Action("Message", "Software")" class="panel-active"><i class="fa fa-globe"></i> Notification</a>
+                            <a href="@Url.Action("Calendar", "Software")" class="panel-menu"><i class="fa fa-calendar"></i> Calendar</a>
                         </div>
                     </div>
                     <div class="panel panel-default">

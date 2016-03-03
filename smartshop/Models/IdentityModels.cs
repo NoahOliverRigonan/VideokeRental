@@ -21,6 +21,7 @@ namespace VideokeRental.Models
         public string Street { get; set; }
         public string Town { get; set; }
         public string City { get; set; }
+        public int? Role { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

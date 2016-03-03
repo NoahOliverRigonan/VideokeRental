@@ -1,13 +1,16 @@
 ﻿@using Microsoft.AspNet.Identity
+@using System.Web.Http;
+
 @if (Request.IsAuthenticated)
 {
     <section>
         @{ Response.Redirect("~/Software/Index");}
     </section>
+
 }
 else
 {
-<!-- navbar menu -->
+    <!-- navbar menu -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -23,7 +26,6 @@ else
                 <ul class="nav navbar-nav">
                     <li><a href="@Url.Action("Index","Home")">Home </a></li>
                     <li><a href="@Url.Action("Index", "Home")#about">About</a></li>
-                    <li><a href="@Url.Action("Index", "Home")#myCanvas">Subscribe</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
                 @*<form class="navbar-form navbar-right" role="search">
@@ -43,8 +45,9 @@ else
         <div class="row">
             <div class="col-md-4">
                 <div class="panel panel-info">
-                   <div class="panel-heading">
-                    <h4><b>Log in</b></h4></div>
+                    <div class="panel-heading">
+                        <h4><b>Log in</b></h4>
+                    </div>
                     <div class="panel-body">
                         <center><img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" /></center>
                         <br />
@@ -87,7 +90,7 @@ else
                 </div>
             </div>
             <div class="col-md-4">
-                </div>
+            </div>
             <div class="col-md-4"></div>
         </div>
     </div>

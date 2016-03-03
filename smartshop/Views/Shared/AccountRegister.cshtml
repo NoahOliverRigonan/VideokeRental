@@ -23,7 +23,6 @@ else
                 <ul class="nav navbar-nav">
                     <li><a href="@Url.Action("Index","Home")">Home </a></li>
                     <li><a href="@Url.Action("Index", "Home")#about">About</a></li>
-                    <li><a href="@Url.Action("Index", "Home")#myCanvas">Subscribe</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
                 @*<form class="navbar-form navbar-right" role="search">
@@ -62,6 +61,8 @@ else
                                     @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
                                     <br />*@
                                     
+                                    @*<label for="PhoneNumber">Contact Number: </label>
+                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })*@
                                     <br />
                                     <label for="Address">Street: </label>
                                     @*<input type="email" class="form-control" id="email">*@

@@ -82,7 +82,23 @@ namespace VideokeRental.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToAction("Index", "Software");
+
+                    Data.videokerentaldbDataContext db = new Data.videokerentaldbDataContext();
+
+                    var users = from d in db.AspNetUsers where d.UserName == model.UserName select d;
+                    var getUserRole = (from d in db.AspNetUsers where d.Id == users.First().Id select d.Role).SingleOrDefault();
+
+                    var redirection = RedirectToAction("", "");
+                    if (getUserRole == 1)
+                    {
+                        redirection = RedirectToAction("Index", "Software");
+                    }
+                    else
+                    {
+                        redirection = RedirectToAction("UserIndex", "Software");
+                    }
+
+                    return redirection;
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -161,7 +177,8 @@ namespace VideokeRental.Controllers
                     Email = model.Email,
                     Street = model.Street,
                     Town = model.Town,
-                    City = model.City
+                    City = model.City,
+                    Role = 2
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -194,7 +211,7 @@ namespace VideokeRental.Controllers
                     //db.tblCustomers.InsertOnSubmit(newCustomer);
                     //db.SubmitChanges();
 
-                    Data.videokerentalDataContext db = new Data.videokerentalDataContext();
+                    Data.videokerentaldbDataContext db = new Data.videokerentaldbDataContext();
 
                     var users = from d in db.AspNetUsers where d.UserName == user.UserName select d;
 
@@ -219,7 +236,7 @@ namespace VideokeRental.Controllers
                         db.SubmitChanges();
                     }
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("UserIndex", "Software");
                 }
                 AddErrors(result);
                 Debug.WriteLine(result);

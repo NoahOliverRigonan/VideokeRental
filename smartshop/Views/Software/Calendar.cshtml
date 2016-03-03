@@ -23,11 +23,6 @@
                 @*<img src="../images/store.png" alt="Flower" class="navcode">*@
             </div>
             @Html.Partial("_LoginPartial")
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-                </ul>
-            </div>
         </div>
     </nav>
     <br />
@@ -55,12 +50,12 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading panel-heading-custom">
-                        <a href="@Url.Action("Calendar", "Software")" class="panel-active"><i class="fa fa-calendar"></i> Calendar</a>
+                        <a href="@Url.Action("Message", "Software")" class="panel-menu"><i class="fa fa-globe"></i> Notification</a>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading panel-heading-custom">
-                        <a href="@Url.Action("Message", "Software")" class="panel-active"><i class="fa fa-globe"></i> Notification</a>
+                        <a href="@Url.Action("Calendar", "Software")" class="panel-active"><i class="fa fa-calendar"></i> Calendar</a>
                     </div>
                 </div>
                 <div class="panel panel-default">
@@ -72,7 +67,6 @@
             <div class="col-md-10">
                 <h2>Calendar</h2>
                 <br /><br />
-                <div class="container">
                     <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
                         <li class="active"><a data-toggle="tab" href="#reservation" id="menuReservation">Reservation</a></li>
                         <li><a data-toggle="tab" href="#rental" id="menuRental">Rental</a></li>
@@ -125,7 +119,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <br />
     <footer class="footer">
         <div class="container">

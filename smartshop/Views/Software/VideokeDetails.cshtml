@@ -1,10 +1,10 @@
 ﻿@{
     var videokeId = Request.QueryString["VideokeId"];
     var fullName = ViewData["FullName"];
-    var address = ViewData["Address"];
+    var street = ViewData["Street"];
     var userId = ViewData["UserId"];
-   
-    
+
+
 }
 <!DOCTYPE html>
 <html>
@@ -30,11 +30,6 @@
                 @*<img src="../images/store.png" alt="Flower" class="navcode">*@
             </div>
             @Html.Partial("_LoginPartial")
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-                </ul>
-            </div>
         </div>
     </nav>
     <br />
@@ -269,9 +264,9 @@
                             $('#btnReserve').hide();
                             $('#returnVideoke').hide();
                             $('#reservedInformation').hide();
-                            
 
-                        
+
+
                         }
 
                     } else {
@@ -462,40 +457,13 @@
                                             data: productData,
                                             statusCode: {
                                                 200: function () {
-                                                    var videokeObjectRent = new Object();
-                                                    
-                                                    var customerId = Results.Id;
-                                                    var productId = @videokeId;
 
-                                                    videokeObjectRent.ProductId = productId;
-                                                    videokeObjectRent.RentByCustomerId = customerId;
-                                                    videokeObjectRent.RentDateStart = new Date(document.getElementById('vd_dateReserve').value);
-                                                    videokeObjectRent.RentDateEnd = new Date(document.getElementById('vd_dateNeeded').value);
+                                                    toastr.info("Successfully rented");
+                                                    setTimeout(function () {
+                                                        window.location.reload(1);
+                                                    }, 1000);
 
-                                                    var productDataRent = JSON.stringify(videokeObjectRent);
 
-                                                    $.ajax({
-                                                        type: "POST",
-                                                        url: '/api/videokeRent/add',
-                                                        contentType: "application/json; charset=utf-8",
-                                                        dataType: "json",
-                                                        data: productDataRent,
-                                                        statusCode: {
-                                                            200: function () {
-                                                                toastr.info("Successfully rented");
-                                                                setTimeout(function () {
-                                                                    window.location.reload(1);
-                                                                }, 1000);
-
-                                                            },
-                                                            404: function () {
-                                                                alert("Not Found");
-                                                            },
-                                                            500: function () {
-                                                                alert("Bad Request");
-                                                            }
-                                                        }
-                                                    });
 
                                                 },
                                                 404: function () {
@@ -671,12 +639,14 @@
             var today = now.getFullYear() + "-" + (month) + "-" + (day);
 
             document.getElementById('vd_fullName').value = "@fullName";
-            document.getElementById('vd_address').value = "@address";
+            document.getElementById('vd_address').value = '@street';
+
+
             document.getElementById('vd_dateReserve').value = today;
             document.getElementById('vd_fullName').disabled = true;
             document.getElementById('vd_dateReserve').disabled = true;
             document.getElementById('vd_dateNeeded').disabled = true;
-            
+
             dateOnchange(document.getElementById('vd_dateReserve').value);
 
             setInterval(function() {

@@ -23,6 +23,7 @@ namespace VideokeRental.Controllers
                     string street = string.Concat(new string[] { user.Street });
                     string town = string.Concat(new string[] { user.Town });
                     string city = string.Concat(new string[] { user.City });
+                    string role = string.Concat(new string[] { user.Role.ToString() });
 
 
                     ViewData.Add("UserId", id);
@@ -33,6 +34,7 @@ namespace VideokeRental.Controllers
                     //ViewData.Add("Town", town);
                     //ViewData.Add("City",city);
                     ViewData.Add("Address", street + town + city);
+                    ViewData.Add("Role", role);
                 }
             }
             base.OnActionExecuted(filterContext);

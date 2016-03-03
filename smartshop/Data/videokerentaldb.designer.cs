@@ -406,7 +406,7 @@ namespace VideokeRental.Data
 		
 		private string _ReferenceNumber;
 		
-		private bool _Opened;
+		private System.Nullable<bool> _Opened;
 		
 		private EntityRef<tblCustomer> _tblCustomer;
 		
@@ -432,7 +432,7 @@ namespace VideokeRental.Data
     partial void OnIsOpenedChanged();
     partial void OnReferenceNumberChanging(string value);
     partial void OnReferenceNumberChanged();
-    partial void OnOpenedChanging(bool value);
+    partial void OnOpenedChanging(System.Nullable<bool> value);
     partial void OnOpenedChanged();
     #endregion
 		
@@ -611,8 +611,8 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Opened", DbType="Bit NOT NULL")]
-		public bool Opened
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Opened", DbType="Bit")]
+		public System.Nullable<bool> Opened
 		{
 			get
 			{
@@ -726,7 +726,7 @@ namespace VideokeRental.Data
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _Id;
+		private int _Id;
 		
 		private string _Name;
 		
@@ -736,7 +736,7 @@ namespace VideokeRental.Data
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnIdChanging(string value);
+    partial void OnIdChanging(int value);
     partial void OnIdChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
@@ -748,8 +748,8 @@ namespace VideokeRental.Data
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string Id
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
 		{
 			get
 			{
@@ -1168,7 +1168,7 @@ namespace VideokeRental.Data
 		
 		private string _UserId;
 		
-		private string _RoleId;
+		private int _RoleId;
 		
 		private EntityRef<AspNetRole> _AspNetRole;
 		
@@ -1180,7 +1180,7 @@ namespace VideokeRental.Data
     partial void OnCreated();
     partial void OnUserIdChanging(string value);
     partial void OnUserIdChanged();
-    partial void OnRoleIdChanging(string value);
+    partial void OnRoleIdChanging(int value);
     partial void OnRoleIdChanged();
     #endregion
 		
@@ -1215,8 +1215,8 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string RoleId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", DbType="Int NOT NULL")]
+		public int RoleId
 		{
 			get
 			{
@@ -1266,7 +1266,7 @@ namespace VideokeRental.Data
 					}
 					else
 					{
-						this._RoleId = default(string);
+						this._RoleId = default(int);
 					}
 					this.SendPropertyChanged("AspNetRole");
 				}
@@ -1290,12 +1290,12 @@ namespace VideokeRental.Data
 					if ((previousValue != null))
 					{
 						this._AspNetUser.Entity = null;
-						previousValue.AspNetUserRoles.Remove(this);
+						previousValue.AspNetUserRole = null;
 					}
 					this._AspNetUser.Entity = value;
 					if ((value != null))
 					{
-						value.AspNetUserRoles.Add(this);
+						value.AspNetUserRole = this;
 						this._UserId = value.Id;
 					}
 					else
@@ -1368,11 +1368,13 @@ namespace VideokeRental.Data
 		
 		private string _City;
 		
+		private System.Nullable<int> _Role;
+		
 		private EntitySet<AspNetUserClaim> _AspNetUserClaims;
 		
 		private EntitySet<AspNetUserLogin> _AspNetUserLogins;
 		
-		private EntitySet<AspNetUserRole> _AspNetUserRoles;
+		private EntityRef<AspNetUserRole> _AspNetUserRole;
 		
 		private EntitySet<tblCustomer> _tblCustomers;
 		
@@ -1414,13 +1416,15 @@ namespace VideokeRental.Data
     partial void OnTownChanged();
     partial void OnCityChanging(string value);
     partial void OnCityChanged();
+    partial void OnRoleChanging(System.Nullable<int> value);
+    partial void OnRoleChanged();
     #endregion
 		
 		public AspNetUser()
 		{
 			this._AspNetUserClaims = new EntitySet<AspNetUserClaim>(new Action<AspNetUserClaim>(this.attach_AspNetUserClaims), new Action<AspNetUserClaim>(this.detach_AspNetUserClaims));
 			this._AspNetUserLogins = new EntitySet<AspNetUserLogin>(new Action<AspNetUserLogin>(this.attach_AspNetUserLogins), new Action<AspNetUserLogin>(this.detach_AspNetUserLogins));
-			this._AspNetUserRoles = new EntitySet<AspNetUserRole>(new Action<AspNetUserRole>(this.attach_AspNetUserRoles), new Action<AspNetUserRole>(this.detach_AspNetUserRoles));
+			this._AspNetUserRole = default(EntityRef<AspNetUserRole>);
 			this._tblCustomers = new EntitySet<tblCustomer>(new Action<tblCustomer>(this.attach_tblCustomers), new Action<tblCustomer>(this.detach_tblCustomers));
 			OnCreated();
 		}
@@ -1765,6 +1769,26 @@ namespace VideokeRental.Data
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Role", DbType="Int")]
+		public System.Nullable<int> Role
+		{
+			get
+			{
+				return this._Role;
+			}
+			set
+			{
+				if ((this._Role != value))
+				{
+					this.OnRoleChanging(value);
+					this.SendPropertyChanging();
+					this._Role = value;
+					this.SendPropertyChanged("Role");
+					this.OnRoleChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_AspNetUserClaim", Storage="_AspNetUserClaims", ThisKey="Id", OtherKey="UserId")]
 		public EntitySet<AspNetUserClaim> AspNetUserClaims
 		{
@@ -1791,16 +1815,32 @@ namespace VideokeRental.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_AspNetUserRole", Storage="_AspNetUserRoles", ThisKey="Id", OtherKey="UserId")]
-		public EntitySet<AspNetUserRole> AspNetUserRoles
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="AspNetUser_AspNetUserRole", Storage="_AspNetUserRole", ThisKey="Id", OtherKey="UserId", IsUnique=true, IsForeignKey=false)]
+		public AspNetUserRole AspNetUserRole
 		{
 			get
 			{
-				return this._AspNetUserRoles;
+				return this._AspNetUserRole.Entity;
 			}
 			set
 			{
-				this._AspNetUserRoles.Assign(value);
+				AspNetUserRole previousValue = this._AspNetUserRole.Entity;
+				if (((previousValue != value) 
+							|| (this._AspNetUserRole.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._AspNetUserRole.Entity = null;
+						previousValue.AspNetUser = null;
+					}
+					this._AspNetUserRole.Entity = value;
+					if ((value != null))
+					{
+						value.AspNetUser = this;
+					}
+					this.SendPropertyChanged("AspNetUserRole");
+				}
 			}
 		}
 		
@@ -1856,18 +1896,6 @@ namespace VideokeRental.Data
 		}
 		
 		private void detach_AspNetUserLogins(AspNetUserLogin entity)
-		{
-			this.SendPropertyChanging();
-			entity.AspNetUser = null;
-		}
-		
-		private void attach_AspNetUserRoles(AspNetUserRole entity)
-		{
-			this.SendPropertyChanging();
-			entity.AspNetUser = this;
-		}
-		
-		private void detach_AspNetUserRoles(AspNetUserRole entity)
 		{
 			this.SendPropertyChanging();
 			entity.AspNetUser = null;

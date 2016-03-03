@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Web.Http;
+
+@if (Request.IsAuthenticated)
+{
+    if (ViewData["Role"] == "1")
+    {
+        <section>
+            @{ Response.Redirect("~/Software/Index");}
+        </section>
+    }
+    else
+    {
+        <section>
+            @{ Response.Redirect("~/Software/usersView");}
+        </section>
+    }
+}

@@ -6,6 +6,7 @@
     <!-- css -->
     @Styles.Render("~/Content/stylesheets")
     @Styles.Render("~/font-awesome/fonts")
+    @Scripts.Render("~/Scripts/js")
 </head>
 <body>
 
@@ -22,11 +23,6 @@
                 @*<img src="../images/store.png" alt="Flower" class="navcode">*@
             </div>
             @Html.Partial("_LoginPartial")
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-                </ul>
-            </div>
         </div>
     </nav>
     <br />
@@ -54,12 +50,12 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading panel-heading-custom">
-                        <a href="@Url.Action("Calendar", "Software")" class="panel-menu"><i class="fa fa-calendar"></i> Calendar</a>
+                        <a href="@Url.Action("Message", "Software")" class="panel-menu"><i class="fa fa-globe"></i> Notification</a>
                     </div>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading panel-heading-custom">
-                        <a href="@Url.Action("Message", "Software")" class="panel-active"><i class="fa fa-globe"></i> Notification</a>
+                        <a href="@Url.Action("Calendar", "Software")" class="panel-menu"><i class="fa fa-calendar"></i> Calendar</a>
                     </div>
                 </div>
                 <div class="panel panel-default">
@@ -73,38 +69,69 @@
                     <div class="col-md-12">
                         <h2>Reports</h2>
                         <br /><br />
-                        <input type="date" id="calendarRental" />
-                        <button class="btn btn-primary" onclick="getIncome()"> Go <i class="fa fa-arrow-right"></i></button>
-                        <input type="hidden" id="dateRent" />
-                        <br /><br />
-                        <table id="tblvideokeIncome" class="tbldisplay">
-                            <thead>
-                                <tr class="tablecolortbl">
-                                    <th>Date Rent</th>
-                                    <th>Videoke Name</th>
-                                    <th>Customer</th>
-                                    <th>Price</th>
-                                </tr>
-                            </thead>
-                        </table>
-                        <br /><br />
-                        <div class="form-horizontal">
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"> Date from: </label>
-                                <div class="col-sm-4">
-                                    <input type="date" id="reportsDateStart" class="form-control" />
-                                </div>
+                        <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                            <li class="active"><a data-toggle="tab" href="#reservation" id="menuReservation">Reservation</a></li>
+                            <li><a data-toggle="tab" href="#rental" id="menuRental">Rental</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="reservation" class="tab-pane fade in active">
+                                <br /><br />
+                                <input type="date" id="calendarReserved" />
+                                <button class="btn btn-primary" onclick="getReservation()"> Go <i class="fa fa-arrow-right"></i></button>
+                                <input type="hidden" id="demo" />
+                                <button onclick="printReservation_OnClick()" cla class="btn btn-primary btn-sm pull-right" id="cmdPrintCompany"><i class="fa fa-print"></i> Print</button>
+                                <input style="margin-right: 10px;" type="date" class="pull-right" id="reserveDateTo" />
+                                <label style="margin-right: 10px; margin-left: 10px" class="pull-right"> To: </label>
+                                <input type="date" class="pull-right" id="reserveDateFrom" />
+                                <label style="margin-right: 10px;" class="pull-right"> Date from: </label>
+                                <br /><br />
+                                <table id="tblvideokeReserved" class="tbldisplay">
+                                    <thead>
+                                        <tr class="tablecolortbl">
+                                            <th>Date Reserve</th>
+                                            <th>Videoke Name</th>
+                                            <th>Customer</th>
+                                        </tr>
+                                    </thead>
+                                </table>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"> To: </label>
-                                <div class="col-sm-4">
-                                    <input type="date" id="reportsDateEnd" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-2">  </div>
-                                <div class="col-sm-4">
-                                    <button class="btn btn-primary btn-sm" onclick="printVideokeIncome_OnClick()"><i class="fa fa-print"></i> Print</button>
+                            <div id="rental" class="tab-pane fade in">
+                                <br /><br />
+                                <input type="date" id="calendarRental" />
+                                <button class="btn btn-primary" onclick="getIncome()"> Go <i class="fa fa-arrow-right"></i></button>
+                                <input type="hidden" id="dateRent" />
+                                <br /><br />
+                                <table id="tblvideokeIncome" class="tbldisplay">
+                                    <thead>
+                                        <tr class="tablecolortbl">
+                                            <th>Date Rent</th>
+                                            <th>Videoke Name</th>
+                                            <th>Customer</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                                <br /><br />
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"> Date from: </label>
+                                        <div class="col-sm-4">
+                                            <input type="date" id="reportsDateStart" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"> To: </label>
+                                        <div class="col-sm-4">
+                                            <input type="date" id="reportsDateEnd" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-2">  </div>
+                                        <div class="col-sm-4">
+                                            <button class="btn btn-primary btn-sm" onclick="printVideokeIncome_OnClick()"><i class="fa fa-print"></i> Print</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -152,10 +179,96 @@
             </div>
         </div>
     </footer>
-    @Scripts.Render("~/Scripts/js")
+
     <script type="text/javascript">
         // globla varialbles
+        var calendarReservations;
         var videokeIncomes;
+
+        // get Reservation
+        function getCalendarReservation() {
+            calendarReservations = new Array();
+            $.ajax({
+                url: '/api/calendarReservation/list',
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                success: function (Results) {
+                    if (Results.length > 0) {
+                        for (i = 0; i < Results.length; i++) {
+                            calendarReservations.push({
+                                Id: Results[i]["Id"],
+                                CustomersIdReserved: Results[i]["CustomersIdReserved"],
+                                CustomersReserved: Results[i]["CustomersReserved"],
+                                ReservedDate: Results[i]["ReservedDate"],
+                                ProductId: Results[i]["ProductId"],
+                                Product: Results[i]["Product"]
+                            });
+                        }
+                    }
+                    $('#tblvideokeReserved').dataTable({
+                        aaData: calendarReservations,
+                        aoColumns: [
+                                { mData: 'ReservedDate' },
+                                { mData: 'Product' },
+                                { mData: 'CustomersReserved' }
+
+                        ]
+                    });
+                }
+            });
+            return calendarReservations;
+        }
+
+        function getReservation() {
+            var x = document.getElementById("calendarReserved").value;
+            document.getElementById("demo").value = x;
+
+            var now = new Date(x);
+
+            var day = ("0" + now.getDate()).slice(-2);
+            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+            var today = (month) + "-" + (day) + "-" + now.getFullYear();
+            
+            console.log(today);
+            calendarReservations = new Array();
+            $.ajax({
+                url: '/api/getCalendarResevation/' + today,
+                cache: false,
+                type: 'GET',
+                contentType: 'application/json; charset=utf-8',
+                success: function (Results) {
+                    if (Results.length > 0) {
+                        for (i = 0; i < Results.length; i++) {
+                            calendarReservations.push({
+                                Id: Results[i]["Id"],
+                                CustomersIdReserved: Results[i]["CustomersIdReserved"],
+                                CustomersReserved: Results[i]["CustomersReserved"],
+                                ReservedDate: Results[i]["ReservedDate"],
+                                ProductId: Results[i]["ProductId"],
+                                Product: Results[i]["Product"]
+
+                            });
+                        }
+                    }
+
+                    var table = $('#tblvideokeReserved').DataTable();
+                    table.destroy();
+                    setTimeout(function () {
+                        $('#tblvideokeReserved').dataTable({
+                            aaData: calendarReservations,
+                            aoColumns: [
+                                    { mData: 'ReservedDate' },
+                                    { mData: 'Product' },
+                                    { mData: 'CustomersReserved' }
+                            ]
+                        });
+                    }, 50);
+
+                }
+            });
+            return calendarReservations;
+        }
 
         //get customers
         function getVideokeIncome() {
@@ -239,13 +352,19 @@
             });
             return videokeIncomes;
         }
-        
 
         function printVideokeIncome_OnClick() {
             var reportsDateStart = document.getElementById('reportsDateStart').value;
             var reportsDateEnd = document.getElementById('reportsDateEnd').value;
 
             window.location.href = '/Software/VideokeIncomePDF?StartDate=' + reportsDateStart + '&EndDate=' + reportsDateEnd;
+        }
+
+        function printReservation_OnClick() {
+            var reserveDateFrom = document.getElementById('reserveDateFrom').value;
+            var reserveDateTo = document.getElementById('reserveDateTo').value;
+
+            window.location.href = '/Software/CalendarReservePDF?DateFrom=' + reserveDateFrom + '&DateTo=' + reserveDateTo;
         }
 
         $(document).ready(function () {
@@ -255,15 +374,35 @@
             var day = ("0" + now.getDate()).slice(-2);
             var month = ("0" + (now.getMonth() + 1)).slice(-2);
             var today = now.getFullYear() + "-" + (month) + "-" + (day);
+            getCalendarReservation();
+
+            $('#menuReservation').click(function () {
+                $('#reservation').show();
+                $('#rental').hide();
+
+            });
+
+            $('#menuRental').click(function () {
+                $('#rental').show();
+                $('#reservation').hide();
+                getVideokeIncome();
+                window.getVideokeIncome = function () {
+                    return true;
+                }
+            });
+
 
             $('#reportsDateStart').val(today);
             $('#reportsDateEnd').val(today);
+            $('#calendarReserved').val(today);
             $('#calendarRental').val(today);
+            $('#reserveDateTo').val(today);
+            $('#reserveDateFrom').val(today);
 
-            getVideokeIncome();
+
         });
 
-        
+
 
 
 

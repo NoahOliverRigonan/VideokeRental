@@ -28,11 +28,6 @@
                 @*<img src="../images/store.png" alt="Flower" class="navcode">*@
             </div>
             @Html.Partial("_LoginPartial")
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><i class="fa fa-envelope"></i></a></li>
-                </ul>
-            </div>
         </div>
     </nav>
     <br />
@@ -40,7 +35,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <h2 id="vrRetrieve_CustomerName">Customer Name:</h2>
+                <h3 id="vrRetrieve_CustomerName">Customer Name:</h3>
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
                         <label class="control-label col-sm-4">Address:</label>
@@ -48,12 +43,12 @@
                             <p class="formreserve" id="vrRetrieve_Address"></p>
                         </div>
                     </div>
-                    <div class="form-group">
+                    @*<div class="form-group">
                         <label class="control-label col-sm-4">Contact No.:</label>
                         <div class="col-sm-8">
                             <p class="formreserve" id="vd_contactNo"></p>
                         </div>
-                    </div>
+                    </div>*@
                 </form>
             </div>
             <div class="col-md-8">
@@ -263,7 +258,7 @@
                     //            Product: Results[i]["Product"],
                     //            VideokeDescription: Results[i]["VideokeDescription"]
                     //        });
-                    //    }
+                    //    }  
                     //}
                     
                     document.getElementById('vrRetrieve_CustomerName').innerHTML = Results.CustomerName;

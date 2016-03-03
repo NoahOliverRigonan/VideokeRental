@@ -23,7 +23,6 @@ else
                 <ul class="nav navbar-nav">
                     <li><a href="#myCarousel">Home </a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#myCanvas">Subscribe</a></li>
                     @*<li class="active"><a href="@Url.Action("RentalVideoke","Home")">Product </a></li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -72,7 +71,7 @@ else
         <div class="carousel-inner" role="listbox" align="center">
             <div class="item active" data-slide="next" aria-hidden="true">
 
-                <img src="../images/unnamed14.jpg" alt="works" class="carouselImage">
+                <img src="../images/videokebanner.jpg" alt="works" class="carouselImage">
                 <div class="carousel-caption">
                     <h1></h1>
                     <p></p>
@@ -101,6 +100,8 @@ else
     <div class="container">
         <div id="about">
             <br /><br /><br /><br />
+            <center><h3>About Online Videoke Rental System</h3></center>
+            <br /><br />
             <div class="row">
                 <div class="col-sm-6">
                     <img src="../images/mypic2.jpg" />
@@ -131,361 +132,28 @@ else
         </div>
     </div>
     <br /><br /><br /><br /><br />
-    <div class="container">
-        <br /><br /><br />
-        <center><h1>Subscribe Us!</h1></center>
-        <br />
-        <div class="row">
-            <div class="col-sm-4">
-                <div id="myCanvas">
-                    <br /><br />
-                    <center><h2><b>1 month</b></h2></center>
-                    <center><h3><b>Free Trial</b></h3></center>
-                    <br /><br /><br /><br /><br /><br />
-                    <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" onclick="freeTrialModal_OnClick()" @*data-target="#freeTrialModal"*@>Get Started</button>
-                    <div class="modal fade" id="freeTrialModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-                        <div class="modal-dialog modal-lg">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Information</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <center><label>Basic Information</label></center>
-                                            <br /><br />
-                                            <form class="form-horizontal" role="form">
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">First Name:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Last Name:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Email Address:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="email" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Phone Number:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <br />
-                                                <hr />
-                                                <br />
-                                                <center><label>Credit Card Detail  <img class="creditcard" src="images/credit.jpg" /></label></center>
-                                                <br />
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Credit Card No:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Date:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="date" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <center><label>Company Detail</label></center>
-                                            <br /><br />
-                                            <form class="form-horizontal" role="form">
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Company Name:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="email" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Address:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Tel No:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </form>
-                                            <br /><br /><br /><br /><br /><br /><br /><br /><br />
-                                            <center><h1>Free Trail<br /><small>1 month</small></h1></center>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-            <div class="col-sm-4">
-                <div id="myCanvas">
-                    <br />
-                    <br />
-                    <center><h2><b>6 months</b></h2></center>
-                    <center><h3><b>&#36; 50.00</b></h3></center>
-                    <br /><br /><br /><br /><br /><br />
-                    <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" onclick="sixMonthsModal_OnClick()">Get Started</button>
-                    <div class="modal fade" id="6MonthsModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-                        <div class="modal-dialog modal-lg">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Information</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <center><label>Basic Information</label></center>
-                                            <br /><br />
-                                            <form class="form-horizontal" role="form">
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">First Name:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Last Name:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Email Address:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="email" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Phone Number:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <br />
-                                                <hr />
-                                                <br />
-                                                <center><label>Credit Card Detail  <img class="creditcard" src="images/credit.jpg" /></label></center>
-                                                <br />
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Credit Card No:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Date:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="date" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <center><label>Company Detail</label></center>
-                                            <br /><br />
-                                            <form class="form-horizontal" role="form">
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Company Name:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="email" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Address:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Tel No:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </form>
-                                            <br /><br /><br /><br /><br /><br /><br /><br /><br />
-                                            <center><h1>6 Months<br /><small>&#36; 50.00</small></h1></center>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div id="myCanvas">
-                    <br />
-                    <br />
-                    <center><h2><b>12 months</b></h2></center>
-                    <center><h3><b>&#36; 80.00</b></h3></center>
-                    <br /><br /><br /><br /><br /><br />
-                    <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" onclick="twelveMonthsModal_OnClick()">Get Started</button>
-                    <div class="modal fade" id="12MonthsModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-                        <div class="modal-dialog modal-lg">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Information</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <center><label>Basic Information</label></center>
-                                            <br /><br />
-                                            <form class="form-horizontal" role="form">
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">First Name:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Last Name:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Email Address:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="email" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Phone Number:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <br />
-                                                <hr />
-                                                <br />
-                                                <center><label>Credit Card Detail  <img class="creditcard" src="images/credit.jpg" /></label></center>
-                                                <br />
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Credit Card No:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Date:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="date" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <center><label>Company Detail</label></center>
-                                            <br /><br />
-                                            <form class="form-horizontal" role="form">
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Company Name:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="email" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Address:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-sm-4">Tel No:</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </form>
-                                            <br /><br /><br /><br /><br /><br /><br /><br /><br />
-                                            <center><h1>12 Months<br /><small>&#36; 80.00</small></h1></center>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br /><br />
-    
     <!-- Contact Us Modal -->
     <div class="modal fade" id="ContactUsModal" role="dialog">
-        <div class="modal-dialog modal-md">
+        <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Contact Us</h4>
                 </div>
                 <div class="modal-body">
-                    
+
                     <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Email:</label>
-                            <div class="col-sm-10">
-                                <input type="email" class="form-control">
-                            </div>
+                            <label class="col-sm-4 control-label">Email: butch.canada@gmail.com</label>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Name:</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Subject:</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Message:</label>
-                            <div class="col-sm-10">
-                                <textarea class="form-control"></textarea>
-                            </div>
+                            <label class="col-sm-4 control-label">Call us: 09430817258</label>
                         </div>
                     </form>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success">Send</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -501,7 +169,7 @@ else
                         <ul style="list-style-type:none">
                             <li>
                                 <a href="#" data-toggle="modal" onclick="contactUsModal_OnClick()">Contact Us</a>
-                                
+
                                 @*<a href="#" class="btnfooter">Contact</a>*@
                             </li>
                             <li>

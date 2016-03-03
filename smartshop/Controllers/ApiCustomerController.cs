@@ -96,20 +96,21 @@ namespace VideokeRental.Controllers
 
             try
             {
-                Data.tblCustomer newnCustomer = new Data.tblCustomer();
+                Data.tblCustomer newCustomer = new Data.tblCustomer();
 
-                newnCustomer.CustomerNumber = customer.CustomerNumber;
-                newnCustomer.Customer = customer.CustomerName;
-                newnCustomer.ContactNumber = customer.ContactNumber;
-                newnCustomer.Street = customer.Street;
-                newnCustomer.Town = customer.Town;
-                newnCustomer.City = customer.City;
+                newCustomer.CustomerNumber = customer.CustomerNumber;
+                newCustomer.Customer = customer.CustomerName;
+                newCustomer.ContactNumber = customer.ContactNumber;
+                newCustomer.Street = customer.Street;
+                newCustomer.Town = customer.Town;
+                newCustomer.City = customer.City;
+                newCustomer.Email = customer.Email;
 
 
-                db.tblCustomers.InsertOnSubmit(newnCustomer);
+                db.tblCustomers.InsertOnSubmit(newCustomer);
                 db.SubmitChanges();
 
-                return newnCustomer.Id;
+                return newCustomer.Id;
             }
             catch(Exception e)
             {

@@ -253,6 +253,7 @@
     <Content Include="images\type.jpg" />
     <Content Include="images\unnamed14.jpg" />
     <Content Include="images\vforrent.jpg" />
+    <Content Include="images\videokebanner.jpg" />
     <Content Include="images\wood.jpg" />
     <Content Include="OOS %28Back up%29\content\bootstrap.css" />
     <Content Include="OOS %28Back up%29\content\bootstrap.min.css" />
@@ -755,6 +756,10 @@
     <Content Include="Views\Software\Reports.cshtml" />
     <Content Include="Views\Software\VideokeDetails.cshtml" />
     <Content Include="Views\Software\CustomerDetails.cshtml" />
+    <Content Include="Views\Software\UserIndex.cshtml" />
+    <Content Include="Views\Software\usersView.cshtml" />
+    <Content Include="Views\Software\UsersProduct.cshtml" />
+    <Content Include="Views\Shared\ManageIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

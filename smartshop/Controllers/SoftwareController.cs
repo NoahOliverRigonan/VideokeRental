@@ -384,5 +384,23 @@ namespace VideokeRental.Controllers
             return new FileStreamResult(workStream, "application/pdf");
         }
 
+        [Authorize]
+        // GET: Software
+        public ActionResult UserIndex()
+        {
+            return View();
+        }
+        [Authorize]
+        // GET: Software
+        public ActionResult usersView()
+        {
+            return View();
+        }
+        [Authorize]
+        // GET: Software
+        public ActionResult usersProduct()
+        {
+            return View();
+        }
     }
 }
